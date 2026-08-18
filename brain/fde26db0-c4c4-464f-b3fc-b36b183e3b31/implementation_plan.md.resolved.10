@@ -1,0 +1,51 @@
+# Kế hoạch Chuyển đổi TikTok API sang Laravel
+
+Để đảm bảo tính đồng bộ hoàn toàn với hệ thống hiện tại, tôi sẽ chuyển đổi toàn bộ logic và giao diện quản lý TikTok API từ Next.js sang Laravel.
+
+## 1. Cơ sở dữ liệu (Database & Models)
+Thay vì sử dụng file JSON, chúng ta sẽ sử dụng database của Laravel để quản lý dữ liệu bền vững:
+
+### [NEW] Migrations:
+- **`create_brands_table`**: Lưu danh sách thương hiệu (`id`, `name`).
+- **`create_tiktok_apps_table`**: Lưu cấu hình Partner Apps (`id`, `app_key`, `app_secret`, `name`).
+- **`create_tiktok_tokens_table`**: Lưu thông tin Shop và Token (`shop_id`, `shop_cipher`, `access_token`, `refresh_token`, `expires_at`, `brand_id`, `app_id`).
+
+### [NEW] Models:
+- `App\Models\Brand`
+- `App\Models\TikTokApp`
+- `App\Models\TikTokToken`
+
+## 2. Logic Xử lý (Service Layer)
+
+### [NEW] `App\Services\TikTokService.php`
+- Chuyển đổi logic từ `auth.ts` sang PHP sử dụng Laravel `Http` facade.
+- **`generateAuthUrl($appKey, $state)`**: Tạo URL xác thực.
+- **`exchangeCode($code, $appId)`**: Đổi code lấy token và lưu vào DB.
+- **`refreshAccessToken($shopId)`**: Tự động làm mới token.
+- **`getValidToken($shopId)`**: Lấy token hợp lệ (tự động refresh nếu cần).
+
+## 3. Điều hướng và Controllers
+
+### [NEW] `App\Http\Controllers\TikTokAuthController.php`
+- Xử lý các route: `tiktok/connect` (redirect sang TikTok) và `tiktok/callback` (xử lý phản hồi).
+
+### [NEW] `App\Http\Controllers\SettingsController.php`
+- Quản lý giao diện cài đặt: danh sách Shop, danh sách App và Thương hiệu.
+
+## 4. Giao diện (Blade Views)
+
+### [NEW] `resources/views/settings/tiktok.blade.php`
+- Xây dựng lại giao diện quản lý 3 tab (Shops, Brands, Apps) sử dụng Blade template.
+- Giữ vững phong cách **Premium Aesthetics** (Pantone 292 C) và sử dụng Lucide Icons.
+- Sử dụng Vanilla JS và AJAX để xử lý các hành động (Lưu App, Xóa Shop, Gán Brand) mà không cần load lại trang.
+
+## 5. Cấu hình
+- Thêm các biến môi trường vào file `.env`.
+- Cấu hình file `config/tiktok.php`.
+
+---
+
+> [!IMPORTANT]
+> **Câu hỏi cần xác nhận**:
+> 1. Tôi sẽ tạo các bảng Database riêng lẻ như trên để dễ dàng quản lý mối quan hệ (ví dụ: gán Shop cho Brand), bạn đồng ý chứ?
+> 2. Bạn có muốn tôi tích hợp menu "Cài đặt TikTok" trực tiếp vào Sidebar hiện tại của file `app.blade.php` không?

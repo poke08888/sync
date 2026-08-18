@@ -1,0 +1,13 @@
+# Hạng mục Phát triển: KPI Cards Module
+
+## 1. Cấu trúc Component
+- `[x]` Tạo component `KPICard.jsx` có chứa số liệu chính, tỷ lệ % (cùng kỳ), và Sparkline (Recharts).
+- `[x]` Tích hợp cảnh báo (Alert) cho thẻ "Tỷ lệ hủy đơn" nếu vượt ngưỡng báo động.
+
+## 2. Dữ liệu và Logic
+- `[x]` Tạo mock data mô phỏng 8 metrics chính: Gross Revenue, Net Revenue, Cancel Rate, Total Cost, ROAS, AOV, Order Count, Gross Margin.
+- `[x]` Viết logic lưới lọc (Time Filter): Cho phép dải thời gian "Hôm nay", "Hôm qua", "7 ngày", "30 ngày", "Tháng này", "Quý này", "Năm này" và mock tự thay đổi dữ liệu "cùng kỳ" (YoY hoặc PoP).
+
+## 3. Tích hợp Trang chủ (Dashboard.jsx)
+- `[x]` Cập nhật trang `Dashboard.jsx` để dùng grid 4 cột (desktop) chứa đúng 8 thẻ KPI này.
+- `[x]` Ráp nối state của Time Filter để số liệu đổi thay khi click chọn range.

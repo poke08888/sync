@@ -1,0 +1,196 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>KOC Livestream Dashboard</title>
+    <link rel="stylesheet" href="css/style.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+</head>
+<body>
+    <!-- Sidebar -->
+    <nav class="sidebar">
+        <div class="brand">
+            <i class="fa-solid fa-chart-line"></i>
+            KOC Report
+        </div>
+        <ul class="nav-links">
+            <li><a href="index.html" class="nav-item active"><i class="fa-solid fa-house"></i> Dashboard</a></li>
+            <li><a href="koc-list.html" class="nav-item"><i class="fa-solid fa-users"></i> Danh sách KOC</a></li>
+            <li><a href="koc-management.html" class="nav-item"><i class="fa-solid fa-user-plus"></i> Quản lý KOC</a></li>
+            <li><a href="data-upload.html" class="nav-item"><i class="fa-solid fa-cloud-arrow-up"></i> Upload Dữ liệu</a></li>
+        </ul>
+    </nav>
+
+    <!-- Main Content -->
+    <main class="main-content">
+        <header>
+            <h1 class="page-title">Tổng quan hiệu quả</h1>
+            <div class="controls">
+                <div class="date-filter">
+                    <button class="filter-btn active">Ngày</button>
+                    <button class="filter-btn">Tuần</button>
+                    <button class="filter-btn">Tháng</button>
+                </div>
+            </div>
+        </header>
+
+        <!-- Metric Cards -->
+        <div class="metrics-grid">
+            <!-- Doanh thu tổng -->
+            <div class="card">
+                <div class="card-header">
+                    <span class="card-title">Doanh thu tổng</span>
+                    <div class="card-icon icon-revenue"><i class="fa-solid fa-sack-dollar"></i></div>
+                </div>
+                <div class="metric-value">2.5 Tỷ ₫</div>
+                <div class="metric-trend"><span class="trend-up"><i class="fa-solid fa-arrow-trend-up"></i> 12%</span> vs tháng trước</div>
+            </div>
+
+            <!-- Doanh thu ADS -->
+            <div class="card">
+                <div class="card-header">
+                    <span class="card-title">Doanh thu ADS</span>
+                    <div class="card-icon icon-ads"><i class="fa-solid fa-bullhorn"></i></div>
+                </div>
+                <div class="metric-value">850 Tr ₫</div>
+                <div class="metric-trend"><span class="trend-up"><i class="fa-solid fa-arrow-trend-up"></i> 5%</span></div>
+            </div>
+
+            <!-- Chi phí ADS -->
+            <div class="card">
+                <div class="card-header">
+                    <span class="card-title">Chi phí ADS</span>
+                    <div class="card-icon icon-cost"><i class="fa-solid fa-money-bill-transfer"></i></div>
+                </div>
+                <div class="metric-value">210 Tr ₫</div>
+                <div class="metric-trend"><span class="trend-down"><i class="fa-solid fa-arrow-trend-down"></i> 2%</span> (Tốt)</div>
+            </div>
+
+            <!-- % ADS (ACOS) -->
+            <div class="card">
+                <div class="card-header">
+                    <span class="card-title">% Chi phí / Doanh thu</span>
+                    <div class="card-icon icon-ads"><i class="fa-solid fa-percent"></i></div>
+                </div>
+                <div class="metric-value">24.7%</div>
+            </div>
+
+             <!-- Số phiên live -->
+             <div class="card">
+                <div class="card-header">
+                    <span class="card-title">Số phiên live</span>
+                    <div class="card-icon icon-sessions"><i class="fa-solid fa-video"></i></div>
+                </div>
+                <div class="metric-value">124</div>
+            </div>
+
+             <!-- Số phiên live ra đơn -->
+             <div class="card">
+                <div class="card-header">
+                    <span class="card-title">Phiên có đơn</span>
+                    <div class="card-icon icon-sessions"><i class="fa-solid fa-cart-shopping"></i></div>
+                </div>
+                <div class="metric-value">118</div>
+            </div>
+
+            <!-- Số giờ live -->
+            <div class="card">
+                <div class="card-header">
+                    <span class="card-title">Tổng giờ live</span>
+                    <div class="card-icon icon-sessions"><i class="fa-regular fa-clock"></i></div>
+                </div>
+                <div class="metric-value">450h</div>
+            </div>
+
+            <!-- Lượt hiển thị (Impressions) -->
+            <div class="card">
+                <div class="card-header">
+                    <span class="card-title">Lượt hiển thị</span>
+                    <div class="card-icon icon-revenue"><i class="fa-regular fa-eye"></i></div>
+                </div>
+                <div class="metric-value">1.2M</div>
+            </div>
+            
+            <!-- Other key metrics -->
+            <div class="card">
+                <div class="card-header">
+                    <span class="card-title">Lượt nhấp</span>
+                    <div class="card-icon icon-revenue"><i class="fa-solid fa-arrow-pointer"></i></div>
+                </div>
+                <div class="metric-value">45,000</div>
+            </div>
+
+            <div class="card">
+                <div class="card-header">
+                    <span class="card-title">CTR</span>
+                    <div class="card-icon icon-revenue"><i class="fa-solid fa-percent"></i></div>
+                </div>
+                <div class="metric-value">3.75%</div>
+            </div>
+
+             <div class="card">
+                <div class="card-header">
+                    <span class="card-title">CVR</span>
+                    <div class="card-icon icon-revenue"><i class="fa-solid fa-filter"></i></div>
+                </div>
+                <div class="metric-value">2.1%</div>
+            </div>
+
+             <div class="card">
+                <div class="card-header">
+                    <span class="card-title">AOV</span>
+                    <div class="card-icon icon-revenue"><i class="fa-solid fa-basket-shopping"></i></div>
+                </div>
+                <div class="metric-value">350k ₫</div>
+            </div>
+        </div>
+
+        <!-- Recent Performance Table Section -->
+        <div class="table-container">
+            <table class="custom-table">
+                <thead>
+                    <tr>
+                        <th>KOC</th>
+                        <th>Ngày Live</th>
+                        <th>Doanh thu</th>
+                        <th>Chi phí Ads</th>
+                        <th>ROI</th>
+                        <th>Trạng thái</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td>
+                            <div class="koc-info">
+                                <div style="width: 30px; height: 30px; background: #6366f1; border-radius: 50%; display:flex; align-items:center; justify-content:center; font-weight:bold;">H</div>
+                                <span>Hà Linh Official</span>
+                            </div>
+                        </td>
+                        <td>20/10/2023</td>
+                        <td>150,000,000 ₫</td>
+                        <td>20,000,000 ₫</td>
+                        <td style="color: var(--success)">7.5x</td>
+                        <td><span style="padding: 4px 8px; background: rgba(16, 185, 129, 0.2); color: var(--success); border-radius: 4px; font-size: 0.8rem;">Hoàn thành</span></td>
+                    </tr>
+                    <tr>
+                        <td>
+                            <div class="koc-info">
+                                <div style="width: 30px; height: 30px; background: #ec4899; border-radius: 50%; display:flex; align-items:center; justify-content:center; font-weight:bold;">P</div>
+                                <span>Phạm Thoại</span>
+                            </div>
+                        </td>
+                        <td>19/10/2023</td>
+                        <td>89,000,000 ₫</td>
+                        <td>12,000,000 ₫</td>
+                        <td style="color: var(--success)">7.4x</td>
+                        <td><span style="padding: 4px 8px; background: rgba(16, 185, 129, 0.2); color: var(--success); border-radius: 4px; font-size: 0.8rem;">Hoàn thành</span></td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+    </main>
+
+    <script src="js/script.js"></script>
+</body>
+</html>

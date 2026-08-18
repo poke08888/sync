@@ -1,0 +1,50 @@
+Ecom OS
+[0] (67,131)<a class='nav-item flex items-center justify-between ' href='/' />
+	[1] (43,131)<div  />
+		[2] (51,131)<span >Tổng quan />
+[3] (67,186)<a class='nav-item flex items-center justify-between active' href='/koc-live' />
+	[4] (41,186)<div  />
+		[5] (49,186)<span >KOC Live />
+	[6] (111,186)<span >375 />
+[7] (67,241)<a class='nav-item flex items-center justify-between ' href='/brands' />
+	[8] (46,241)<div  />
+		[9] (54,241)<span >Thương hiệu />
+[10] (67,296)<a class='nav-item flex items-center justify-between ' href='/marketing' />
+	[11] (53,296)<div  />
+		[12] (61,296)<span >Marketing & Ads />
+[13] (67,352)<a class='nav-item flex items-center justify-between ' href='/inventory' />
+	[14] (41,352)<div  />
+		[15] (49,352)<span >Kho hàng />
+[16] (67,407)<a class='nav-item flex items-center justify-between ' href='/customers' />
+	[17] (45,407)<div  />
+		[18] (53,407)<span >Khách hàng />
+[19] (67,908)<a class='nav-item ' href='/settings' />
+	[20] (44,908)<span >Cài đặt />
+[21] (67,962)<button class='nav-item text-rose-500 hover:bg-rose-500/10 transition-colors text-left w-full' />
+	[22] (50,962)<span >Đăng xuất />
+[23] (568,500)<main class='main-content' scrollable='true' />
+	Bộ lọc Dashboard
+	Cấu hình hiển thị dữ liệu toàn cục
+	[24] (330,68)<button class='px-4 py-2.5 bg-[#1A1E29] border border-white/10 rounded-xl text-gray-300 text-sm font-bold flex items-center gap-2 hover:bg-white/5 transition-all'>Tất cả các Brand />
+	[25] (397,68)<button class='px-4 py-2 text-xs font-bold rounded-xl transition-all text-gray-500 hover:text-gray-300'>Hôm nay />
+	[26] (436,68)<button class='px-4 py-2 text-xs font-bold rounded-xl transition-all text-gray-500 hover:text-gray-300'>Hôm qua />
+	[27] (471,68)<button class='px-4 py-2 text-xs font-bold rounded-xl transition-all bg-indigo-500 text-white shadow-[0_0_15px_rgba(99,102,241,0.3)]'>7 Ngày />
+	[28] (506,68)<button class='px-4 py-2 text-xs font-bold rounded-xl transition-all text-gray-500 hover:text-gray-300'>30 Ngày />
+	[29] (546,68)<button class='px-4 py-2 text-xs font-bold rounded-xl transition-all text-gray-500 hover:text-gray-300'>Tháng này />
+	[30] (588,68)<button class='px-4 py-2 text-xs font-bold rounded-xl transition-all text-gray-500 hover:text-gray-300'>Tùy chỉnh />
+	KOC Live Analytics
+	Phân tích hiệu suất livestream tích hợp theo bộ lọc toàn cầu.
+	[31] (564,361)<div  />
+		[32] (564,361)<div  />
+			[33] (564,305)<div  />
+			[34] (564,373)<div  />
+				[35] (564,362)<p >Tải lên dữ liệu LIVE Analysis />
+				[36] (564,387)<p >Kéo thả file .xlsx từ TikTok Shop vào đây hoặc click để chọn />
+			[37] (564,432)<div  />
+				[38] (569,432)<span >Excel format (Row 3 headers) />
+	Bắt đầu Phân tích Hệ sinh thái KOC
+	Hãy tải file
+	Live Analysis (.xlsx)
+	từ TikTok Shop Dashboard của bạn để mở khóa các chỉ số hiệu suất KOC chuyên sâu.
+	Hỗ trợ gộp nhiều file
+	Lưu trữ Offline

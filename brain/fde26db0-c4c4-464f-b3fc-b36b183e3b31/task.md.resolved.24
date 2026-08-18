@@ -1,0 +1,9 @@
+# Hạng mục Công việc - Xây dựng TikTok Order Service
+
+- `[/]` Cập nhật Schema bảng `orders` (Cancel reason, SKU data, Raw JSON).
+- `[ ]` Cập nhật Model `Order.php` (Fillable & Casts).
+- `[ ]` Triển khai `searchOrders` với APIv2 (202309).
+- `[ ]` Triển khai `getAllOrders` (Xử lý Phân trang Paging).
+- `[ ]` Triển khai `syncOrdersToDb` (Upsert logic).
+- `[ ]` Triển khai `computeOrderMetrics` (GMV, AOV, Cancel Rate, Hourly/Daily analysis).
+- `[ ]` Code Review & Kiểm tra đồng bộ.

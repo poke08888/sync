@@ -1,0 +1,9 @@
+# Hạng mục Công việc - Xây dựng TikTok Sync Engine & Cache
+
+- `[/]` Cập nhật Schema bảng `tiktok_tokens` (theo dõi last_sync).
+- `[ ]` Triển khai `TikTokSyncEngine` (Full & Incremental Sync).
+- `[ ]` Triển khai `TikTokCacheService` (Redis layer).
+- `[ ]` Tạo Laravel Job `SyncTikTokShopJob`.
+- `[ ]` Cấu hình Scheduler trong `Kernel.php`.
+- `[ ]` Tích hợp Cache vào `DashboardController`.
+- `[ ]` Kiểm tra luồng đồng bộ tự động.

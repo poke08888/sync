@@ -1,0 +1,139 @@
+<!DOCTYPE html>
+<html lang="vi">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Danh sách KOC - KOC Report</title>
+    <link rel="stylesheet" href="css/style.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+</head>
+
+<body>
+    <nav class="sidebar">
+        <div class="brand">
+            <i class="fa-solid fa-chart-line"></i>
+            KOC Report
+        </div>
+        <ul class="nav-links">
+            <li><a href="index.html" class="nav-item"><i class="fa-solid fa-house"></i> Dashboard</a></li>
+            <li><a href="koc-list.html" class="nav-item active"><i class="fa-solid fa-users"></i> Danh sách KOC</a></li>
+            <li><a href="koc-management.html" class="nav-item"><i class="fa-solid fa-user-plus"></i> Quản lý KOC</a>
+            </li>
+            <li><a href="data-upload.html" class="nav-item"><i class="fa-solid fa-cloud-arrow-up"></i> Upload Dữ
+                    liệu</a></li>
+        </ul>
+    </nav>
+
+    <main class="main-content">
+        <header>
+            <h1 class="page-title">Danh sách KOC</h1>
+            <div class="controls">
+                <div class="date-filter">
+                    <button class="filter-btn active">Tuần này</button>
+                    <button class="filter-btn">Tháng này</button>
+                </div>
+            </div>
+        </header>
+
+        <div class="card">
+            <div class="card-header" style="align-items: center;">
+                <h2 class="card-title">Hiệu suất KOC</h2>
+                <input type="text" placeholder="Tìm kiếm KOC..." class="form-control"
+                    style="width: 250px; font-size: 0.9rem; padding: 0.5rem 1rem;">
+            </div>
+
+            <div style="overflow-x: auto;">
+                <table class="custom-table">
+                    <thead>
+                        <tr>
+                            <th>KOC</th>
+                            <th>Doanh thu</th>
+                            <th>Giờ Live (Tuần)</th>
+                            <th>Giờ Live (Tháng)</th>
+                            <th>Đơn hàng</th>
+                            <th>AOV</th>
+                            <th>Hành động</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td>
+                                <div class="koc-info">
+                                    <div
+                                        style="width: 30px; height: 30px; background: #6366f1; border-radius: 50%; display:flex; align-items:center; justify-content:center; font-weight:bold;">
+                                        H</div>
+                                    <div>
+                                        <div style="font-weight: 500;">Hà Linh Official</div>
+                                        <div style="font-size: 0.8rem; color: var(--text-secondary);">ID: KOC001</div>
+                                    </div>
+                                </div>
+                            </td>
+                            <td style="font-weight: 600;">1.2 Tỷ ₫</td>
+                            <td>12h</td>
+                            <td>48h</td>
+                            <td>3,500</td>
+                            <td>342k ₫</td>
+                            <td><a href="koc-detail.html" class="btn-secondary"
+                                    style="padding: 0.4rem 0.8rem; font-size: 0.8rem; text-decoration: none;">Chi
+                                    tiết</a></td>
+                        </tr>
+                        <tr>
+                            <td>
+                                <div class="koc-info">
+                                    <div
+                                        style="width: 30px; height: 30px; background: #ec4899; border-radius: 50%; display:flex; align-items:center; justify-content:center; font-weight:bold;">
+                                        P</div>
+                                    <div>
+                                        <div style="font-weight: 500;">Phạm Thoại</div>
+                                        <div style="font-size: 0.8rem; color: var(--text-secondary);">ID: KOC002</div>
+                                    </div>
+                                </div>
+                            </td>
+                            <td style="font-weight: 600;">890 Tr ₫</td>
+                            <td>15h</td>
+                            <td>60h</td>
+                            <td>2,100</td>
+                            <td>420k ₫</td>
+                            <td><a href="koc-detail.html" class="btn-secondary"
+                                    style="padding: 0.4rem 0.8rem; font-size: 0.8rem; text-decoration: none;">Chi
+                                    tiết</a></td>
+                        </tr>
+                        <tr>
+                            <td>
+                                <div class="koc-info">
+                                    <div
+                                        style="width: 30px; height: 30px; background: #8b5cf6; border-radius: 50%; display:flex; align-items:center; justify-content:center; font-weight:bold;">
+                                        V</div>
+                                    <div>
+                                        <div style="font-weight: 500;">Việt Phương Thoa</div>
+                                        <div style="font-size: 0.8rem; color: var(--text-secondary);">ID: KOC003</div>
+                                    </div>
+                                </div>
+                            </td>
+                            <td style="font-weight: 600;">560 Tr ₫</td>
+                            <td>8h</td>
+                            <td>32h</td>
+                            <td>1,800</td>
+                            <td>310k ₫</td>
+                            <td><a href="koc-detail.html" class="btn-secondary"
+                                    style="padding: 0.4rem 0.8rem; font-size: 0.8rem; text-decoration: none;">Chi
+                                    tiết</a></td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+
+            <div style="display: flex; justify-content: center; margin-top: 1.5rem; gap: 0.5rem;">
+                <button class="btn-secondary" style="padding: 0.5rem 1rem;">&lt;</button>
+                <button class="btn-primary" style="padding: 0.5rem 1rem;">1</button>
+                <button class="btn-secondary" style="padding: 0.5rem 1rem;">2</button>
+                <button class="btn-secondary" style="padding: 0.5rem 1rem;">3</button>
+                <button class="btn-secondary" style="padding: 0.5rem 1rem;">&gt;</button>
+            </div>
+        </div>
+    </main>
+    <script src="js/script.js"></script>
+</body>
+
+</html>

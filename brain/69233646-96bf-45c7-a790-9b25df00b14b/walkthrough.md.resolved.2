@@ -1,0 +1,37 @@
+# Thành Quả Giai Đoạn 3: Hệ Thống KPI Tracker & Forecast
+
+Tôi đã hoàn thiện module **KPI Tracker** - "trái tim" điều hành cho CEO để bám sát mục tiêu doanh số của cả 5 thương hiệu. Module này không chỉ hiển thị con số, mà còn cung cấp logic phân tích "Nhịp độ" (Pace) và "Dự báo" (Forecast) thông minh.
+
+## 1. Các Tính Năng Đã Triển Khai
+
+- **Theo Dõi Tiến Độ (Progress Bar):** Hiển thị trực quan % doanh thu đã đạt được so với Target mục tiêu.
+- **Phân Tích Nhịp Độ (Pace Status):** 
+  - Hệ thống tự động so sánh `% Thời gian đã trôi qua` vs `% Doanh số đạt được`.
+  - Hiển thị **AHEAD OF PACE** (Xanh) nếu đang chạy nhanh hơn kế hoạch.
+  - Hiển thị **BEHIND PACE** (Đỏ) nếu đang chậm hơn thời gian thực tế.
+- **Daily Average Needed (Quan trọng nhất):** 
+  - Tính toán chính xác số doanh thu trung bình CEO cần đạt được **mỗi ngày** trong số ngày còn lại của kỳ để "về đích".
+  - Hiển thị thông điệp thúc giục cụ thể: *"Cần đạt X đ/ngày trong N ngày còn lại"*.
+- **Dự Báo Cuối Kỳ (Forecast):** Dựa trên tốc độ hiện tại, hệ thống ước tính con số doanh thu cuối kỳ bạn sẽ đạt được (kèm % đạt KPI dự kiến).
+- **Biểu Đồ Phân Bổ (Weekly Breakdown):**
+  - Biểu đồ cột so sánh Revenue vs vạch Target (Reference Line).
+  - Tự động highlight (đậm màu) ở cột thời gian hiện tại.
+- **Bộ Lọc Đa Năng:** Toggle nhanh giữa Tuần / Tháng / Quý / Năm và Dropdown chọn Brand.
+
+## 2. Bản Preview Thực Tế
+
+Dưới đây là hình ảnh thực tế của module KPI Tracker vừa được tích hợp vào Dashboard:
+
+![Bản xem trước KPI Tracker Module](file:///Users/kevin/.gemini/antigravity/brain/69233646-96bf-45c7-a790-9b25df00b14b/kpi_tracker_v1_demo_1775790621758.webp)
+
+> [!TIP]
+> Bạn có thể truy cập `http://localhost:3000` ngay bây giờ, thử click vào các tab **Weekly / Monthly** và chọn **Brands** để thấy dữ liệu tracker thay đổi tương ứng.
+
+## 3. Trạng Thái Hiện Tại
+
+- [x] Kiến trúc Database (Prisma)
+- [x] 8 KPI Main Cards (Revenue, Ads, ROAS...)
+- [x] KPI Tracker & Forecast Module
+- [ ] **Data Pipeline (Bước cuối):** Cài đặt Webhooks sàn hoặc Trang Upload dữ liệu từ file.
+
+Tôi đã sẵn sàng để thực hiện phần **Data Pipeline** để biến các con số Mock này thành dữ liệu thật từ Shopee/TikTok. Bạn muốn tôi làm phần Upload file Excel hay cấu trúc Webhook trước?

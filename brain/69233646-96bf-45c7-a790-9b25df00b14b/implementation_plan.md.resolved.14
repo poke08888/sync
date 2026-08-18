@@ -1,0 +1,37 @@
+# Kế hoạch Xây dựng Hệ thống 12 thẻ KPI KOC Live
+
+Tôi sẽ triển khai giao diện hiển thị 12 chỉ số quan trọng cho module KOC Live, chia thành 2 hàng chuyên biệt: Chỉ số Kinh doanh và Chỉ số Hiệu quả tiếp cận.
+
+## User Review Required
+
+> [!IMPORTANT]
+> - Tôi sẽ bổ sung thêm các hàm định dạng số rút gọn (vd: "1.2b", "450k") trong `utils.ts` để đảm bảo giao diện gọn gàng khi dữ liệu lớn.
+> - Bố cục sẽ được tối ưu cho Responsive: 6 cột trên màn hình lớn và tự động giãn ra trên các màn hình nhỏ hơn.
+
+## Proposed Changes
+
+### 1. Nâng cấp Tiện ích Định dạng
+#### [MODIFY] [utils.ts](file:///Users/kevin/.gemini/antigravity/scratch/ecom-next-dashboard/src/lib/utils.ts)
+- Bổ sung `formatKocValue`: Hàm xử lý rút gọn số (b, m, k) cho cả tiền tệ và số lượng lớn.
+- Bổ sung `formatPercent` và `formatDuration`.
+
+### 2. Mở rộng logic tính toán KPI
+#### [MODIFY] [koc-service.ts](file:///Users/kevin/.gemini/antigravity/scratch/ecom-next-dashboard/src/lib/koc-service.ts)
+- Cập nhật hàm `computeKpis` để tính thêm:
+    - `uniqueKocs`: Số lượng Creator id duy nhất.
+    - `avgDurationPerSession`: Tổng giờ / số phiên.
+    - `impressions`, `clicks`, `ctr`, `cvr` (blended).
+
+### 3. Cập nhật giao diện Dashboard
+#### [MODIFY] [page.tsx](file:///Users/kevin/.gemini/antigravity/scratch/ecom-next-dashboard/src/app/(dashboard)/koc-live/page.tsx)
+- Triển khai lưới (Grid) 12 thẻ KPI với 2 hàng:
+    - **Hàng 1 (Business)**: Doanh thu, Phiên live, Phiên ra đơn, Đơn hàng, AOV, Doanh thu/Giờ.
+    - **Hàng 2 (Efficiency)**: KOC Active, Giờ live TB, Hiển thị, Nhấp, CTR, CVR.
+- Áp dụng hệ màu Accent (Teal, Blue, Emerald, Amber, Coral, Purple, Gray) như yêu cầu.
+
+## Verification Plan
+
+### Manual Verification
+- Kiểm tra việc hiển thị rút gọn số: Thử giả lập doanh thu 1.5 tỷ xem có hiện "1.5b" không.
+- Kiểm tra tính đúng đắn của tỷ lệ CTR/CVR (Blended).
+- Đảm bảo Layout 2 hàng x 6 cột hiển thị đều trên màn hình Desktop.

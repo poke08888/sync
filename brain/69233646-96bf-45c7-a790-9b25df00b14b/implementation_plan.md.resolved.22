@@ -1,0 +1,35 @@
+# Kế hoạch Bổ sung Chỉ số So sánh Cùng kỳ (Comparison Metrics)
+
+Tôi sẽ triển khai tính năng so sánh hiệu suất hiện tại với kỳ trước (ví dụ: 7 ngày này so với 7 ngày trước đó) để bạn dễ dàng đánh giá xu hướng tăng trưởng của KOC.
+
+## User Review Required
+
+> [!IMPORTANT]
+> - **Cách tính Kỳ trước**: Hệ thống sẽ tự động xác định khoảng thời gian có độ dài tương đương ngay trước khoảng thời gian bạn đang lọc. Ví dụ: Nếu lọc từ 01/04 - 07/04 (7 ngày), kỳ trước sẽ là 25/03 - 31/03.
+> - **Giao diện hiển thị**: Chỉ số so sánh (phần trăm tăng/giảm) sẽ được hiển thị ngay bên dưới giá trị chính của các thẻ KPI với màu sắc tương ứng (Xanh: Tăng, Đỏ: Giảm).
+
+## Proposed Changes
+
+### 1. Nâng cấp Logic Tính toán
+#### [MODIFY] [koc-service.ts](file:///Users/kevin/.gemini/antigravity/scratch/ecom-next-dashboard/src/lib/koc-service.ts)
+- Thêm hàm `getComparisonStats(sessions, filteredSessions, dateRange)` để tính toán KPI cho cả hai kỳ và trả về tỷ lệ thay đổi.
+
+### 2. Cập nhật Dashboard Tổng quan
+#### [MODIFY] [page.tsx](file:///Users/kevin/.gemini/antigravity/scratch/ecom-next-dashboard/src/app/(dashboard)/koc-live/page.tsx)
+- Cập nhật Component `StatCard` để hiển thị thêm line "vs kỳ trước" kèm icon mũi tên (Up/Down).
+- Truyền dữ liệu so sánh vào 12 thẻ KPI.
+
+### 3. Cập nhật Chi tiết KOC (Tab Lịch sử)
+#### [MODIFY] [KocHistoryTab.tsx](file:///Users/kevin/.gemini/antigravity/scratch/ecom-next-dashboard/src/components/koc/KocHistoryTab.tsx)
+- Tính toán so sánh riêng cho KOC đang chọn.
+- Hiển thị tỷ lệ thay đổi trong các Stat Pills (GMV, Phiên, Giờ live...).
+
+## Verification Plan
+
+### Automated Tests
+- Kiểm tra logic tính toán kỳ trước trong `koc-service.ts` với các khoảng thời gian khác nhau (1 ngày, 7 ngày, 30 ngày).
+
+### Manual Verification
+1. **Kiểm tra Dashboard**: Đảm bảo các thẻ GMV, Đơn hàng... hiển thị phần trăm thay đổi.
+2. **Kiểm tra Chi chi tiết KOC**: Khi chọn một KOC, verify các pill thông số có hiển thị biến động so với kỳ trước không.
+3. **Kiểm tra trạng thái trống**: Nếu kỳ trước không có dữ liệu (ví dụ: mới upload file đầu tiên), hệ thống hiển thị "—" hoặc "N/A" thay vì lỗi.

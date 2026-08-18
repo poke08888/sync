@@ -1,0 +1,93 @@
+<current_dom_explanation>
+This is a temporary snapshot of the current page's DOM structure. The DOM will change if you navigate to or interact with another page. Use a tool like browser_get_dom to capture and preserve the DOM in your trajectory if needed for later reference.
+</current_dom_explanation>
+<current_dom>
+Ecom OS
+[0] (67,128)<a class='nav-item active' href='/' />
+	[1] (50,128)<span >Overview />
+[2] (67,181)<a class='nav-item' href='/brands' />
+	[3] (46,181)<span >Brands />
+[4] (67,234)<a class='nav-item' href='/marketing' />
+	[5] (61,234)<span >Marketing (Ads) />
+[6] (67,288)<a class='nav-item' href='/inventory' />
+	[7] (50,288)<span >Inventory />
+[8] (67,341)<a class='nav-item' href='/customers' />
+	[9] (52,341)<span >Customers />
+[10] (67,908)<a class='nav-item' href='/settings' />
+	[11] (48,908)<span >Settings />
+[12] (67,953)<a class='nav-item' href='#' />
+	[13] (45,953)<span >Logout />
+Marketing Attribution
+Track blended performance, MER, and creative efficacy across all platforms.
+Blended ROAS
+3.83x
+Total Rev / Ad Spend
+MER
+21%
+Ad Spend / Total Rev
+Avg. CPM
+₫12,400
+All platforms
+Total Ad Spend
+₫150k
+Month to date
+Spend vs Revenue by Platform
+[14] (428,538)<div  />
+	Ad Spend
+	Revenue
+Top Creatives
+[15] (847,385)<div  />
+	[16] (847,380)<div  />
+		[17] (769,380)<div  />
+			[18] (737,380)<div >🎥 />
+			[19] (780,380)<div  />
+				[20] (780,372)<span >Hero Video: Silk Mask />
+				[21] (780,387)<span >CTR:
+2.1
+% />
+		[22] (959,380)<div >4.2
+x />
+	[23] (847,406)<div  />
+		[24] (828,406)<div  />
+[25] (847,452)<div  />
+	[26] (847,447)<div  />
+		[27] (768,447)<div  />
+			[28] (737,447)<div >🎥 />
+			[29] (780,447)<div  />
+				[30] (780,439)<span >Product Demo: Gown />
+				[31] (780,454)<span >CTR:
+1.8
+% />
+		[32] (959,447)<div >3.8
+x />
+	[33] (847,473)<div  />
+		[34] (818,473)<div  />
+[35] (847,519)<div  />
+	[36] (847,514)<div  />
+		[37] (773,514)<div  />
+			[38] (737,514)<div >🎥 />
+			[39] (785,514)<div  />
+				[40] (785,506)<span >Customer Review: Serum />
+				[41] (785,521)<span >CTR:
+2.5
+% />
+		[42] (959,514)<div >4.5
+x />
+	[43] (847,540)<div  />
+		[44] (835,540)<div  />
+[45] (847,586)<div  />
+	[46] (847,581)<div  />
+		[47] (769,581)<div  />
+			[48] (737,581)<div >🎥 />
+			[49] (781,581)<div  />
+				[50] (781,573)<span >Unboxing: Home Luxe />
+				[51] (781,588)<span >CTR:
+1.2
+% />
+		[52] (959,581)<div >2.9
+x />
+	[53] (847,607)<div  />
+		[54] (797,607)<div  />
+[55] (847,655)<button class='w-full mt-8 py-3 bg-white/5 hover:bg-white/10 border border-white/10 rounded-xl text-xs font-bold text-gray-400 hover:text-white transition-all transition-all'>View All Content Performance />
+
+</current_dom>

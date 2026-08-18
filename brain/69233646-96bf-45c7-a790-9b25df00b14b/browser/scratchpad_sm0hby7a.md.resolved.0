@@ -1,0 +1,8 @@
+# Tasks Checklist
+- [ ] Navigate to http://localhost:3000
+- [ ] Wait for page to compile (5s)
+- [ ] Verify 8 KPI cards
+- [ ] Verify Sparklines
+- [ ] Verify Time Filter
+- [ ] Scroll and ensure all render correctly
+- [ ] Capture screenshots as evidence

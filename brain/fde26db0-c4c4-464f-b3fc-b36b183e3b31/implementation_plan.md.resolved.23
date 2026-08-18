@@ -1,0 +1,31 @@
+# Kế hoạch Sửa lỗi Dashboard và Kết nối App
+
+Tôi đã xác định được nguyên nhân khiến hệ thống bị treo ở màn hình loading và lỗi khi lưu cấu hình App. Kế hoạch này tập trung vào việc làm cho hệ thống "kiên cố" hơn trước các lỗi tiềm ẩn.
+
+## 1. Xử lý lỗi Dashboard bị treo
+
+**Vấn đề**: Hiện tại nếu API Dashboard gặp lỗi (500 hoặc 404), biến `data` sẽ là `null` và hệ thống sẽ hiển thị màn hình loading mãi mãi.
+
+### [MODIFY] `Dashboard.jsx` (React)
+- Bổ sung state `error` để theo dõi trạng thái lỗi.
+- Nếu API lỗi -> Hiển thị thông báo "Không thể tải dữ liệu" kèm nút "Thử lại".
+
+### [MODIFY] `DashboardController.php` (Laravel)
+- Bọc toàn bộ logic tính toán trong khối `try-catch`.
+- Nếu có lỗi -> Trả về JSON lỗi (500) thay vì để Laravel tự render trang lỗi HTML (thứ mà React không hiểu được).
+
+## 2. Xử lý lỗi Lưu cấu hình App ("Lỗi lưu dữ liệu")
+
+**Vấn đề**: Khả năng cao do lỗi **CSRF** (Laravel chặn request POST từ React) hoặc lỗi Database ở Backend.
+
+### [MODIFY] `TikTokSettingsController.php` (Laravel)
+- Đảm bảo tất cả các response đều trả về đủ Headers CORS.
+- Thêm log chi tiết vào phương thức `saveApp` để biết chính xác lỗi xảy ra ở dòng nào.
+
+### [MODIFY] `tiktokService.js` & `dashboardService.js` (React)
+- Cập nhật cơ chế fetch để log toàn bộ nội dung lỗi từ Backend. Điều này sẽ giúp chúng ta thấy được thông báo lỗi thực sự từ Laravel (ví dụ: "Table xxx not found").
+
+## 3. Các bước tiếp theo để Debug
+Nếu sau khi áp dụng các sửa lỗi trên vẫn chưa hoạt động, tôi sẽ kiểm tra trực tiếp trạng thái Database của bạn (migrated chưa?) và cấu hình CSRF.
+
+Mời bạn xác nhận để tôi triển khai các bản vá này!

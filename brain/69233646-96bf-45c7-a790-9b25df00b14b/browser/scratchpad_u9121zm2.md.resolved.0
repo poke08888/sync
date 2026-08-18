@@ -1,0 +1,5 @@
+# Task List
+- [ ] Navigate to http://localhost:3000
+- [ ] Wait for the dashboard to compile and load (10s)
+- [ ] Verify the UI state
+- [ ] Return to the main agent

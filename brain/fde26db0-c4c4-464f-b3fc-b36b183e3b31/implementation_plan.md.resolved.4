@@ -1,0 +1,74 @@
+# Kế hoạch tích hợp TikTok Shop Partner API
+
+Dự án này sẽ xây dựng module quản lý xác thực và vòng đời Token cho TikTok Shop dành cho hệ thống Dashboard TMĐT sử dụng Next.js 14 (App Router).
+
+## 1. Cấu trúc Thư mục & Modules
+
+### [NEW] `lib/tiktok/config.ts`
+Chứa các hằng số cấu hình:
+- `BASE_URL`: `https://open-api.tiktok-shops.com`
+- `AUTH_URL`: `https://auth.tiktok-shops.com`
+- `APP_KEY`, `APP_SECRET`, `REDIRECT_URI` (đọc từ `.env.local`)
+- `SCOPES`: Danh sách quyền truy cập (`order.read`, `product.read`, v.v.)
+
+### [NEW] `lib/tiktok/auth.ts`
+Class/Module xử lý Logic xác thực:
+- `generateAuthURL(state, appKey?, redirectUri?)`: Tạo URL redirect sang TikTok. Hỗ trợ truyền `appKey` tùy chỉnh cho từng Brand.
+- `exchangeCode(code, appKey, appSecret)`: Đổi authorization code lấy bộ Token.
+- `refreshAccessToken(refreshToken, appKey, appSecret)`: Làm mới Access Token khi hết hạn.
+- `getValidToken(shopId)`: Logic trung tâm: lấy token từ storage -> kiểm tra hết hạn (buffer 5p) -> tự động refresh -> trả về token hợp lệ.
+
+### [NEW] `lib/tiktok/storage.ts`
+Lưu trữ dữ liệu (sử dụng JSON cho môi trường Dev):
+- Path: `data/tiktok_tokens.json`
+- Schema:
+  ```ts
+  interface TikTokTokenData {
+    shop_id: string;
+    shop_cipher: string;
+    access_token: string;
+    refresh_token: string;
+    expires_at: number; // timestamp
+    refresh_expires_at: number;
+    shop_name: string;
+    seller_name: string;
+    app_key: string; // Để biết dùng App Secret nào để refresh
+    created_at: string;
+  }
+  ```
+- Methods: `saveTokens`, `getTokens`, `listConnectedShops`.
+
+## 2. API Route Handlers
+
+### [NEW] `app/api/auth/tiktok/connect/route.ts`
+- Nhận request (có thể kèm `brandId` hoặc `appKey` trong query).
+- Sinh `state` (csrf protection).
+- Redirect người dùng sang TikTok Auth Center.
+
+### [NEW] `app/api/auth/tiktok/route.ts` (OAuth Callback)
+- Nhận `code` và `state`.
+- Gọi `exchangeCode`.
+- Lưu kết quả vào storage.
+- Redirect về trang dashboard thành công.
+
+## 3. Quản lý Nhiều Shop & Nhiều App Key
+
+Hệ thống sẽ được thiết kế để hỗ trợ:
+- **Cấu hình động**: Cho phép lưu nhiều bộ `App Key / Secret` trong file cấu hình hoặc database.
+- **Ánh xạ Shop**: Mỗi bản ghi Token sẽ lưu `app_key` để khi refresh sẽ biết dùng `App Secret` nào tương ứng.
+
+## 4. Open Questions & User Review
+> [!IMPORTANT]
+> **Câu hỏi cần xác nhận**:
+> 1. **Thư mục Project**: Bạn muốn tôi tạo bộ code này trong thư mục nào? (Ví dụ: tạo mới folder `tiktok-integration-next` hay tích hợp vào một folder có sẵn?).
+> 2. **Xác thực Shop**: TikTok Global Portal yêu cầu `shop_cipher` cho hầu hết các API call. Tôi sẽ đảm bảo lưu trữ giá trị này.
+> 3. **Cấu hình App Key**: Bạn nói "thêm App Key và App Secret ở tính năng cài đặt". Tôi sẽ tạo cấu trúc storage cho `app_configs.json` để bạn có thể lưu nhiều bộ credentials thay vì chỉ dùng 1 bộ trong `.env`. Bạn có đồng ý hướng này không?
+
+## 5. Verification Plan
+### Automated Testing
+- Tạo các unit test cho logic tính `isTokenExpired`.
+- Giả lập (Mock) API TikTok để kiểm tra luồng exchange/refresh token.
+
+### Manual Verification
+- Cung cấp script test nhỏ để ghi thử dữ liệu vào JSON và đọc ra.
+- Kiểm tra các URL generate ra có đúng format TikTok yêu cầu không.

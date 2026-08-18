@@ -1,0 +1,80 @@
+Ecom OS
+Overview
+Brands
+Marketing (Ads)
+Customers
+Settings
+Logout
+[0] (570,500)<main class='main-content' scrollable='true' />
+	Pace Status
+	AHEAD OF PACE
+	Time Elapsed
+	60
+	%
+	Target Logic
+	★ DAILY AVERAGE NEEDED
+	₫
+	15.000
+	/ day
+	Cần đạt
+	₫
+	15.000
+	đ/ngày
+	trong
+	12
+	ngày
+	còn lại
+	Forecast End of Period
+	₫
+	533.333,333
+	106.7
+	% of KPI
+	Based on current pace
+	Region Performance
+	Direct vs Platforms
+	Top Performing Products
+	Silk Serenity Mask
+	₫45,200k
+	Tech Luxe Band
+	₫32,100k
+	Aura Glow Serum
+	₫24,800k
+	Essential Fit Tee
+	₫15,400k
+1
+of
+1
+error
+Next.js (14.2.35) is outdated
+[1] (713,136)<a href='https://nextjs.org/docs/messages/version-staleness'>(learn more) />
+[2] (745,136)<button aria-label='Close' />
+	[3] (745,135)<span  />
+Unhandled Runtime Error
+Error
+:
+Text
+content
+does
+not
+match
+server-rendered
+HTML.
+See
+more
+info
+here:
+[4] (473,269)<a href='https://nextjs.org/docs/messages/react-hydration-error'>https://nextjs.org/docs/messages/react-hydration-error />
+Text content did not match. Server: "320,000" Client: "320.000"
+[5] (259,370)<button  />
+...
+<div>
+<div>
+<div>
+<div>
+<div>
+<span>
+"320,000"
+"320.000"
+Call Stack
+[6] (500,700)<details  />
+	[7] (500,696)<summary >React />

@@ -1,0 +1,231 @@
+# Kiến Trúc Hệ Thống E-commerce Dashboard (Cập nhật)
+
+Hệ thống dashboard và reporting hoàn chỉnh dành cho việc quản lý 5 brands trên TikTok Shop và Shopee. Bản thiết kế này được tối ưu và thiết kế bám sát Tech Stack chi tiết của bạn yêu cầu.
+
+## User Review Required
+
+> [!IMPORTANT]  
+> Dưới đây là kiến trúc hệ thống chuẩn xác dựa trên Stack (Next.js, Prisma, Supabase, BullMQ, Upstash). Vui lòng đưa ra quyết định tại mục **Open Questions** (cuối file) trước khi chúng ta tiến hành vào Code.
+
+---
+
+## 1. Quyết Định Công Nghệ Cụ Thể
+
+Tech Stack của chúng ta sẽ rất vững chắc để phục vụ Dashboard chuyên nghiệp:
+- **Frontend**: `Next.js 14 (App Router)` với SSR (Server-Side Rendering) để fetch data trực tiếp ở Server Component, giúp Dashboard tải siêu tốc.
+- **Primary DB**: `PostgreSQL (Supabase)` xử lý tập trung analytics query cho lượng đơn hàng lớn.
+- **ORM**: `Prisma` giúp type-safe từ đầu đến cuối và dễ quản lý migrations schema.
+- **Cache**: `Redis (Upstash)` dùng để Share Session, Rate Limiting API, và làm Dashboard Cache (cache kết quả query nặng).
+- **Auth**: `Supabase Auth` (Dùng RLS trên Postgres để đảm bảo an toàn phân quyền CEO, Brand Manager, Media Buyer riêng biệt).
+- **File Storage**: `Supabase Storage` - lưu báo cáo excel thủ công nếu có.
+- **Queue/Background Jobs**: `BullMQ` chạy trên nền `Upstash Redis` để xử lý ETL sync data lúc 6h sáng hoặc webhook mà không bị nghẽn (timeout) của Vercel Serverless.
+- **Deploy**: `Vercel`.
+
+## 2. Database Schema Thiết Kế Bằng Prisma
+
+Dưới đây là thiết kế Schema `schema.prisma` cho đầy đủ các metrics:
+
+```prisma
+generator client {
+  provider = "prisma-client-js"
+}
+
+datasource db {
+  provider = "postgresql"
+  url      = env("DATABASE_URL") // Supabase Postgres
+}
+
+model User {
+  id        String   @id @default(uuid())
+  email     String   @unique
+  role      String   // CEO, BRAND_MANAGER, MEDIA_BUYER
+  brands    Brand[]  @relation("UserBrands")
+  createdAt DateTime @default(now())
+}
+
+model Brand {
+  id        String   @id @default(uuid())
+  name      String
+  users     User[]   @relation("UserBrands")
+  shops     Shop[]
+}
+
+model Shop {
+  id              String   @id @default(uuid())
+  brandId         String
+  brand           Brand    @relation(fields: [brandId], references: [id])
+  platform        String   // TIKTOK, SHOPEE
+  shopIdentifier  String   
+  orders          Order[]
+  adsCampaigns    AdsCampaign[]
+  products        Product[]
+}
+
+model Product {
+  id          String   @id @default(uuid())
+  shopId      String
+  shop        Shop     @relation(fields: [shopId], references: [id])
+  sku         String
+  name        String
+  price       Float
+  inventory   Inventory?
+  orderItems  OrderItem[]
+}
+
+model Order {
+  id              String   @id @default(uuid())
+  shopId          String
+  shop            Shop     @relation(fields: [shopId], references: [id])
+  platformOrderId String   @unique // Khử trùng lặp từ Webhook Sàn
+  status          String   // PENDING, SHIPPED, COMPLETED, CANCELLED, RETURNED
+  totalAmount     Float
+  createdAt       DateTime
+  items           OrderItem[]
+}
+
+model OrderItem {
+  id        String  @id @default(uuid())
+  orderId   String
+  order     Order   @relation(fields: [orderId], references: [id])
+  productId String
+  product   Product @relation(fields: [productId], references: [id])
+  quantity  Int
+  price     Float
+}
+
+model AdsCampaign {
+  id          String   @id @default(uuid())
+  shopId      String
+  shop        Shop     @relation(fields: [shopId], references: [id])
+  platform    String
+  name        String
+  spend       Float
+  impressions Int
+  clicks      Int
+  revenue     Float
+  date        DateTime
+}
+
+model Inventory {
+  id         String   @id @default(uuid())
+  productId  String   @unique
+  product    Product  @relation(fields: [productId], references: [id])
+  stockLevel Int
+  updatedAt  DateTime @updatedAt
+}
+```
+
+## 3. Data Pipeline / ETL Logic (Xử Lý Qua Queue)
+
+Do tính chất webhook của sàn có thể đẩy data số lượng lớn 1 lúc, và Job `6h sáng` sẽ phải crawl nhiều API:
+
+**Extract:**
+- **Webhooks:** Webhook từ TikTok/Shopee gửi qua `app/api/webhooks/route.ts`. API này chỉ dùng để nhận body và **đẩy thẳng JSON vào Queue BullMQ (trên Redis)** rồi báo `200 OK` luôn để trách việc bị sàn cảnh báo rớt webhook.
+- **Cron Job:** Mỗi 6h00 AM, Vercel kích hoạt `app/api/cron/route.ts`. Route này tạo một Batch Job trong BullMQ để crawl API sales của ngày hôm qua.
+
+**Transform & Load (Bằng BullMQ Worker):**
+- Tiến trình Worker riêng sẽ nhận Job từ List, thực hiện gọi API để lấy đủ dữ liệu, dùng `Prisma` để Mapping lại `order.status` và chuần hóa Format sau đó chạy `upsert` vào **Supabase**.
+
+## 4. Công Thức Metrics
+
+Các Metrics sẽ được tính qua SQL/Prisma Aggregate (có caching qua Upstash Redis trả cho Dashboard):
+
+* **Orders:**
+  * Tổng Đơn = `COUNT` các Order (Trừ trạng thái CANCELLED).
+  * Doanh thu (Gross) = `SUM(totalAmount)`.
+* **Ads:**
+  * Spend = `SUM(spend)` của `AdsCampaign`.
+  * ROAS = (Tổng doanh thu từ chiến dịch) / Ad Spend.
+  * CAC = Ad Spend / Tổng đơn Ads.
+* **Inventory:**
+  * Stock-out warning = Các Product có `inventory.stockLevel` < Threshold an toàn.
+* **Tần suất cập nhật:** Các biểu đồ xu hướng (Trend Chart) sẽ được Cache trên Upstash thay vì query trực tiếp db mỗi lần truy cập trang, Cache được vô hiệu hoá hoặc cập nhật khi có Event từ Worker hoàn thành.
+
+## 5. Tổ Chức Folder Frontend Dashboard
+
+```text
+src/
+├── app/
+│   ├── (auth)/login/
+│   ├── (dashboard)/
+│   │   ├── layout.tsx                  # Wrapper check Supabase Auth + RLS 
+│   │   ├── page.tsx                    # CEO Overview (SSR + Redis Cache load nhanh)
+│   │   ├── brands/[brandId]/page.tsx   # Dành cho Brand Manager quản lý từng Shop
+│   │   ├── marketing/page.tsx          # Dành cho Media Buyer (Chỉ số Ads, Spend)
+│   │   └── data-upload/page.tsx        # Upload XLSX/CSV lên Supabase Storage
+│   └── api/
+│       ├── webhooks/                   # Tiếp nhận Webhook
+│       └── cron/                       # Kích hoạt Sync
+├── components/
+│   ├── layout/                         # Sidebar, Topbar Premium design
+│   ├── ui/                             # UI components (Buttons, Cards - chuẩn Vanilla CSS/Theme)
+│   ├── charts/                         # Biểu đồ động hiển thị doanh thu
+│   └── metrics/                        # Metric Cards (Hiển thị % tăng trưởng)
+├── lib/
+│   ├── prisma.ts                       # Khởi tạo Prisma Client
+│   ├── supabase/                       # Khởi tạo Supabase Client
+│   ├── redis.ts                        # Khởi tạo Upstash Redis Client
+│   └── bullmq/                         # Setup Producer Job/Worker cho BullMQ
+└── actions/                            # Next.js Server Actions (Lấy dữ liệu, verify quyền, submit forms)
+```
+
+## 6. Phase 2: KPI Metrics Module (Đang chuẩn bị triển khai)
+
+Module KPI Cards sẽ được xây dựng trên `src/components/metrics/KpiDashboard.tsx` bao gồm:
+
+1. **Các KPIs**: Gross Revenue, Net Revenue, Cancellation Rate (có cảnh báo > X%), Total Costs, Blended ROAS, AOV, Total Orders, Gross Margin %.
+2. **Layout UI Card**: Font số lớn, % thay đổi cùng kỳ, mũi tên semantic, Recharts Sparkline.
+3. **Time Filter**: Các option động (Hôm nay/Hôm qua/7 ngày/30 ngày...), tự động tính "cùng kỳ".
+4. **Tech Stack Module**: React + Recharts + Tailwind CSS (Dùng Mock data).
+
+## 7. Phase 3: KPI Tracker Module (Đang chuẩn bị triển khai)
+
+Module KPI Tracker dùng để theo dõi mục tiêu doanh số so với thực tế, bao gồm:
+
+1. **KPI Targets**: Cho phép giả lập/thiết lập target theo Tuần/Tháng/Quý/Năm cho từng Brand.
+2. **Chỉ số Progress & Pace**:
+   - **Progress Bar**: % Đã đạt được.
+   - **Pace Indicator**: So sánh % thời gian đã trôi qua vs % doanh số đạt được. (Xanh nếu nhanh hơn, Đỏ nếu chậm hơn).
+   - **Daily Average Needed**: Tính toán mức doanh thu trung bình cần đạt mỗi ngày để hoàn thành mục tiêu.
+   - **Forecast**: Dự báo kết quả cuối kỳ dựa trên Pace hiện tại.
+3. **Charts**: Weekly breakdown bar chart với vạch KPI line mục tiêu.
+4. **Multi-brand Support**: Dropdown chọn Brand hoặc xem All brands side-by-side.
+
+## 8. Phase 4: API Integration Foundation (Webhooks & Workers)
+
+Dựa trên các chỉ đạo mới nhất từ CEO, kiến trúc API sẽ được cấu hình như sau:
+
+1. **Webhook Receiver Endpoints**:
+   - `app/api/webhooks/tiktok` & `shopee`: Tiếp nhận sự kiện và xử lý **Real-time 100%**. Dashboard sẽ cập nhật ngay khi nhận được tín hiệu đơn hàng mới.
+2. **Background Processing (BullMQ)**:
+   - Worker sẽ đảm nhận việc xử lý thô và ghi vào DB.
+   - Luồng Sync History: Khi một shop được kết nối, Worker sẽ tự động thực hiện batch-jobs để dọn dẹp và crawl dữ liệu cũ từ API sàn (lên tới 90 ngày hoặc tối đa mức API sàn cho phép).
+3. **Settings Page (CEO Only)**:
+   - Giao diện quản lý API Keys tại `/settings`.
+   - **Phân quyền nâng cao**: Chặn vai trò Media Buyer tiếp cận trang này. Chỉ người dùng có role `CEO` mới có quyền xem/cập nhật Keys.
+4. **Data Sync Logic**: Xây dựng service `src/lib/api-sync.ts` thực hiện chuẩn hóa dữ liệu.
+
+## 9. Phase 5: Core Visual Analytics (4 Biểu đồ phân tích chuyên sâu)
+
+Triển khai bộ 4 biểu đồ trọng tâm để CEO phân tích hành vi và hiệu suất:
+
+1. **Hourly Sales Chart (Biểu đồ theo giờ)**:
+   - Line chart so sánh kỳ này vs cùng kỳ.
+   - Cơ chế tự động tính toán và Highlight 3 khung giờ đỉnh (Peak hours).
+2. **Daily Sales Performance (Biểu đồ theo ngày)**:
+   - Combo Bar (Doanh số) + Line (MA7 - Moving Average).
+   - Overlay đường cùng kỳ (Dashed) và vạch KPI Mục tiêu (Amber).
+   - Annotations cho các sự kiện sàn (9.9, 10.10, payday...).
+3. **Platform Distribution (Tỷ trọng kênh)**:
+   - Donut chart (TikTok vs Shopee vs Direct).
+   - Center label hiển thị tổng doanh số.
+   - Logic Drill-down: Click vào segment để xem brand breakdown.
+4. **Top 10 Products (Bảng xếp hạng sản phẩm)**:
+   - Horizontal Bar Chart với tính năng Sort động (Revenue/Qty/Margin).
+   - Color coding dựa trên biên lợi nhuận (Xanh/Vàng/Đỏ).
+   - Tích hợp 7-day trend mini sparklines.
+
+---
+
+## Mọi quyết định đã được chốt. Hệ thống sẽ bắt đầu thực thi xây dựng bộ biểu đồ này.
+

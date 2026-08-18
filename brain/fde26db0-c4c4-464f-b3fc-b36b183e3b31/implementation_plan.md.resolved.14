@@ -1,0 +1,23 @@
+# Kế hoạch Tinh chỉnh Trang Dashboard React (5173)
+
+Để trang Dashboard React trở nên chuyên nghiệp và "thật" hơn, tôi sẽ thực hiện các bước tinh chỉnh sau:
+
+## 1. Kết nối Dữ liệu Sống (Data Interaction)
+Hiện tại trang Dashboard chính vẫn dùng dữ liệu giả (Mock data). Tôi sẽ:
+- **Backend**: Cập nhật `DashboardController` trong Laravel để trả về JSON cho các chỉ số Doanh số, ROAS, KPI và Biểu đồ.
+- **Frontend**: Xây dựng `dashboardService.js` trong React để gọi dữ liệu từ Laravel.
+- **Dynamic Metrics**: Các thẻ KPI (Gross, Net, Cancel Rate...) sẽ hiển thị số liệu thực tế được tính toán từ các shop TikTok đã đồng bộ.
+
+## 2. Đồng bộ Bộ lọc Thương hiệu (Brand Sync)
+- **Global Selector**: Chuyển dropdown "All Brands" thành dữ liệu thực tế lấy từ Database.
+- **Filter Action**: Khi chọn Thương hiệu trên Dashboard React, toàn bộ số liệu sẽ được tải lại từ API tương ứng với `brand_id` đó.
+
+## 3. Tối ưu hóa UI/UX module TikTok
+- **Feedback Sync**: Thêm thanh trạng thái tiến trình (Progress) hoặc thông báo chi tiết khi nhấn nút "Đồng bộ đơn hàng".
+- **Visual Polish**: Điều chỉnh khoảng cách (spacing), hiệu ứng đổ bóng (shadows) và bo góc (border-radius) của các thẻ Shop để đạt chuẩn "Premium Aesthetics".
+- **Empty States**: Thiết kế lại giao diện khi chưa có shop nào được kết nối để hướng dẫn người dùng bắt đầu.
+
+## 4. Hoàn thiện các Module "Đang nâng cấp"
+- Triển khai giao diện cơ bản cho các tab **Orders** và **Inventory** nhắm tới dữ liệu từ TikTok Shop.
+
+Mời bạn xác nhận để tôi bắt đầu quy trình làm đẹp và "thổi hồn" vào Dashboard React của bạn!

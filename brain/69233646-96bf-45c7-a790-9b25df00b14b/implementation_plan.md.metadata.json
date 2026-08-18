@@ -1,0 +1,7 @@
+{
+  "artifactType": "ARTIFACT_TYPE_IMPLEMENTATION_PLAN",
+  "summary": "Kế hoạch thiết lập kết nối vĩnh viễn (Permanent Connectivity) bằng Cloudflare Tunnel. Thay thế cho Pinggy đã hết hạn.",
+  "updatedAt": "2026-04-14T04:48:46.460112Z",
+  "version": "27",
+  "requestFeedback": true
+}

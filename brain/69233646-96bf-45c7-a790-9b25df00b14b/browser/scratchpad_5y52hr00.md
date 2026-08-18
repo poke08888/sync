@@ -1,0 +1,14 @@
+# Progress Checklist
+- [x] Verify Inventory page
+    - [x] Advanced charts/tables
+    - [x] Stock alerts
+- [x] Verify Customers page
+    - [x] Cohort Table
+    - [x] Pie/Trend charts
+- [x] Verify Marketing page
+    - [x] Top Creatives
+    - [x] ROAS/MER charts
+- [x] Verify Brands page
+    - [x] BCG Matrix (Scatter plot)
+    - [x] P&L Table
+- [x] Check Dark Mode rendering

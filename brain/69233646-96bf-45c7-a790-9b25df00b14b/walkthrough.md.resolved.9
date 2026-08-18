@@ -1,0 +1,34 @@
+# Data Layer & Trang KOC Live Analytics
+
+Tôi đã hoàn tất việc xây dựng lớp dữ liệu và trang phân tích KOC Live, cho phép xử lý dữ liệu từ file Excel export của TikTok Shop trực tiếp trên trình duyệt.
+
+## Các thành phần đã triển khai
+
+### 1. Data Service (`koc-service.ts`)
+Đây là "bộ não" của module, chịu trách nhiệm:
+- **Parse dữ liệu**: Tự động bỏ qua các hàng thừa của TikTok Shop, ánh xạ chính xác 25 cột dữ liệu.
+- **Xử lý định dạng**: Chuyển đổi thời lượng "1h 30min" sang số thập phân (1.5h), làm sạch các ký tự tiền tệ và phần trăm.
+- **Tính toán chỉ số phái sinh**: Tự động tính CVR (Orders/Clicks), Revenue per Hour, và AOV.
+- **Aggregation**: Cung cấp các hàm để nhóm dữ liệu theo KOC, theo Ngày để phục vụ biểu đồ.
+
+### 2. Thành phần Upload (`KocLiveUpload.tsx`)
+- Giao diện kéo thả hiện đại với trạng thái phản hồi tức thì.
+- **Tích hợp SheetJS**: Đọc file `.xlsx` trực tiếp và chuyển đổi sang JSON ngay khi upload.
+- **Hỗ trợ cộng dồn**: Bạn có thể upload nhiều file liên tiếp, hệ thống sẽ tự động gộp dữ liệu (tránh trùng lặp phiên LIVE dựa trên ID và thời gian).
+
+### 3. Dashboard KOC Live (`page.tsx`)
+- **KPI Cards**: Hiển thị tổng GMV, Đơn hàng, Hiệu suất (Rev/h) và Tỷ lệ chuyển đổi.
+- **Biểu đồ xu hướng**: Theo dõi biến động GMV theo ngày từ các file đã nạp.
+- **Bảng xếp hạng KOC**: Liệt kê các KOC có đóng góp GMV cao nhất cùng các chỉ số chi tiết.
+
+## Kết quả kiểm tra giao diện
+
+![KOC Live Page Initial State](/Users/kevin/.gemini/antigravity/brain/69233646-96bf-45c7-a790-9b25df00b14b/koc_live_datalayer_verify_final_1775794158313.webp)
+
+## Hướng dẫn sử dụng
+1. Chọn mục **KOC Live** mới xuất hiện trên thanh Sidebar.
+2. Kéo thả file Excel export từ TikTok Shop (Live Analysis) vào vùng upload.
+3. Xem các chỉ số KPI và biểu đồ tự động cập nhật ngay lập tức.
+4. Sử dụng nút **"Xóa dữ liệu"** nếu muốn reset lại từ đầu.
+
+Module này hiện đang hoạt động hoàn toàn ở phía Client, không cần backend, giúp bảo mật dữ liệu của bạn tối đa.

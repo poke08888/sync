@@ -1,0 +1,24 @@
+# Task: Nâng cấp Hệ thống Inventory (V2)
+
+## Phân kỳ 1: Auth & Phân quyền (Mock RBAC)
+- [ ] Tạo `AuthContext.tsx` để quản lý vai trò người dùng (CEO, WAREHOUSE_ADMIN)
+- [ ] Tích hợp `AuthContext` vào `RootLayout`
+- [ ] Chỉnh sửa `Sidebar` và các trang Upload để ẩn/hiện dựa trên Role
+- [ ] Thêm bộ chọn Role tạm thời tại giao diện để dễ dàng test chuyển đổi quyền
+
+## Phân kỳ 2: Logic Đa kho & Gộp kho
+- [ ] Cập nhật `replenishment-engine.ts` hỗ trợ logic gộp dữ liệu (Combined view)
+- [ ] Cập nhật API `/api/dashboard/summary` hỗ trợ query param `warehouseCode`
+- [ ] Cập nhật API `/api/dashboard/replenishment` hỗ trợ query param `warehouseCode`
+- [ ] Thêm dropdown chọn Kho hàng tại Dashboard chính
+- [ ] Triển khai logic gợi ý "Luân chuyển hàng" (Internal Transfer) khi một kho thiếu, kho khác thừa
+
+## Phân kỳ 3: Cấu hình Bot & Thông báo
+- [ ] Xây dựng trang `/settings` với module cấu hình Telegram Bot
+- [ ] Tạo API route `/api/notifications/test` để gửi tin nhắn thử nghiệm
+- [ ] Thêm bộ hướng dẫn "Lấy Token & Chat ID" trực tiếp trên UI
+- [ ] Cập nhật `lib/notifications.ts` hỗ trợ cấu hình động từ database/state thay vì chỉ biến môi trường
+
+## Phân kỳ 4: Chỉnh sửa & Nghiệm thu
+- [ ] Cho phép sửa trực tiếp thông số Lead Time / Safety Stock trên bảng Inventory (dành cho Admin)
+- [ ] Kiểm tra toàn bộ luồng: Chọn Admin -> Upload -> Gộp kho -> Nhận thông báo Bot

@@ -1,0 +1,7 @@
+{
+  "artifactType": "ARTIFACT_TYPE_IMPLEMENTATION_PLAN",
+  "summary": "Khôi phục Bộ khung (Skeleton) Laravel bằng cách tải trực tiếp từ GitHub. Quy trình bao gồm sao lưu code hiện tại, tải và giải nén Laravel Core, sau đó hợp nhất dữ liệu để hệ thống hoạt động bình thường.",
+  "updatedAt": "2026-04-09T11:15:01.061200Z",
+  "version": "25",
+  "requestFeedback": true
+}

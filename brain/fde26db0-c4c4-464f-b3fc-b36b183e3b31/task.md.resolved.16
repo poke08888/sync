@@ -1,0 +1,7 @@
+# Hạng mục Công việc - Đồng bộ Đơn hàng TikTok
+
+- `[x]` Database: Cập nhật bảng `orders` thêm `shop_id` và `brand_id`.
+- `[x]` Service Layer: Mở rộng `TikTokService` với hàm `syncOrders`.
+- `[x]` Controller: Thêm hàm xử lý đồng bộ và Route tương ứng.
+- `[x]` UI: Thêm nút "Đồng bộ" vào giao diện Cài đặt.
+- `[x]` Kiểm tra luồng đồng bộ (Thật & Giả lập).

@@ -1,0 +1,38 @@
+# Kế hoạch Việt hóa hệ thống Dashboard
+
+Dịch toàn bộ giao diện người dùng, nhãn biểu đồ, thông số KPI và các trang quản lý sang Tiếng Việt để tối ưu trải nghiệm cho CEO và quản lý tại Việt Nam.
+
+## User Review Required
+
+> [!IMPORTANT]
+> Toàn bộ các thuật ngữ chuyên môn (ROAS, GM, MER, LTV, CAC) sẽ được giữ nguyên hoặc kèm theo chú giải Tiếng Việt để đảm bảo tính chuyên nghiệp trong báo cáo tài chính.
+
+## Proposed Changes
+
+Hệ thống sẽ được dịch theo các nhóm sau:
+
+### 1. Core Utilities & Layout (Đã hoàn thành)
+- [x] **utils.ts**: Đổi định dạng số sang chuẩn `vi-VN` (dùng dấu chấm làm phân cách).
+- [x] **layout.tsx**: Việt hóa thanh Sidebar (Tổng quan, Thương hiệu, Marketing, Kho hàng, Khách hàng, Cài đặt).
+
+### 2. Tổng quan Dashboard (Đang thực hiện)
+- [x] **KpiDashboard.tsx**: Việt hóa các thẻ KPI chính.
+- [x] **KpiTracker.tsx**: Việt hóa bộ theo dõi tiến độ KPI.
+- [x] **HourlySalesChart.tsx**: Việt hóa biểu đồ doanh thu theo giờ.
+- [x] **DailySalesChart.tsx**: Việt hóa biểu đồ hiệu suất ngày.
+- [x] **PlatformDistributionChart.tsx**: Việt hóa biểu đồ tỷ trọng kênh.
+- [x] **TopProductsChart.tsx**: Việt hóa danh sách Top sản phẩm.
+
+### 3. Các Module chuyên sâu (Sắp tới)
+- [x] **customers/page.tsx**: Việt hóa trang Trí tuệ Khách hàng.
+- [/] **inventory/page.tsx**: Việt hóa trang Sức khỏe Sản phẩm & Kho hàng (Còn phần cảnh báo).
+- [NEW] **brands/page.tsx**: Việt hóa trang Danh mục Tài chính (P&L).
+- [NEW] **marketing/page.tsx**: Việt hóa trang Marketing Attribution.
+- [NEW] **settings/page.tsx**: Việt hóa trang Cài đặt Hệ thống.
+
+## Verification Plan
+
+### Manual Verification
+- Kiểm tra lại toàn bộ giao diện sau khi dịch.
+- Đảm bảo các con số hiển thị đúng định dạng `123.456₫`.
+- Kiểm tra các Tooltip trên biểu đồ không bị lỗi font hoặc sai nghĩa.

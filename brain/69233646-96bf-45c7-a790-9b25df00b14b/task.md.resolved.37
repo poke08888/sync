@@ -1,0 +1,17 @@
+# Task: Khắc phục Sự cố Kết nối (Connectivity Fix)
+
+## Chuẩn bị
+- [x] Dừng các tiến trình LocalTunnel cũ (lt)
+- [x] Giải phóng cổng 3000 nếu bị treo
+
+## Triển khai SSH Tunnel (Pinggy)
+- [/] Khởi tạo SSH Tunnel qua cổng 443 đến `localhost:3000`
+- [ ] Thu thập URL công khai mới từ Pinggy
+- [ ] Kiểm tra tính ổn định của đường truyền
+
+## Kiểm tra & Bàn giao
+- [ ] Kiểm tra URL mới qua `curl` (Status 200)
+- [ ] Cập nhật Walkthrough hướng dẫn truy cập
+- [ ] Xác nhận người dùng đã truy cập thành công
+- [ ] Cập nhật Walkthrough cho người dùng
+- [ ] Xác nhận người dùng đã truy cập thành công

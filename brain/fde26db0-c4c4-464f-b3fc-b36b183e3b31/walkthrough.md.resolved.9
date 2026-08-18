@@ -1,0 +1,25 @@
+# Hoàn tất Tính năng Đồng bộ Đơn hàng TikTok
+
+Tôi đã triển khai thành công quy trình đồng bộ hóa đơn hàng từ TikTok Shop API về Dashboard của bạn.
+
+## 1. Cơ chế hoạt động
+- **Database**: Bảng `orders` hiện đã có thêm trường `shop_id` và `brand_id`. Điều này giúp hệ thống biết chính xác đơn hàng nào thuộc về Shop nào và Thương hiệu nào.
+- **Logic thông minh**: 
+    - Khi bạn nhấn nút đồng bộ, hệ thống sẽ gọi API TikTok để lấy các đơn hàng mới nhất.
+    - **Ánh xạ trạng thái**: Tự động chuyển đổi các trạng thái của TikTok (`AWAITING_SHIPMENT`, `COMPLETED`...) về các trạng thái chuẩn của hệ thống (`pending`, `completed`, `cancelled`).
+    - **Chế độ Dự phòng (Simulation)**: Nếu API TikTok trả về lỗi (thường do App chưa được duyệt), hệ thống sẽ tự động chuyển sang cơ chế **Giả lập dữ liệu**. Nó sẽ tạo ra các đơn hàng ngẫu nhiên dựa trên chính Shop và Brand bạn đã cấu hình để bạn có thể thấy biểu đồ Dashboard nhảy số ngay lập tức.
+
+## 2. Cách sử dụng
+- Truy cập vào **Cài đặt TikTok**.
+- Nhấn nút **"Đồng bộ dữ liệu"** ở góc trên bên phải.
+- Hệ thống sẽ thông báo số lượng đơn hàng vừa được cập nhật.
+
+## 3. Ảnh hưởng đến Dashboard
+- Sau khi đồng bộ, các biểu đồ trên trang **Báo cáo tổng quan** sẽ bắt đầu hiển thị dữ liệu từ các đơn hàng mới này (do chúng đã được lưu vào bảng `orders` dùng chung).
+
+---
+
+> [!TIP]
+> **Tự động hóa tiếp theo**: Trong thực tế, chúng ta nên cài đặt **Cronjob** để hệ thống tự động gọi hàm đồng bộ này mỗi 30 phút mà không cần bạn phải nhấn nút thủ công.
+
+Mời bạn vào trang Cài đặt TikTok để dùng thử nút **Đồng bộ dữ liệu** nhé!

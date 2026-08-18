@@ -1,0 +1,50 @@
+Ecom OS
+[0] (67,131)<a class='nav-item flex items-center justify-between ' href='/' />
+	[1] (43,131)<div  />
+		[2] (51,131)<span >Tổng quan />
+[3] (67,186)<a class='nav-item flex items-center justify-between active' href='/koc-live' />
+	[4] (41,186)<div  />
+		[5] (49,186)<span >KOC Live />
+[6] (67,241)<a class='nav-item flex items-center justify-between ' href='/brands' />
+	[7] (46,241)<div  />
+		[8] (54,241)<span >Thương hiệu />
+[9] (67,296)<a class='nav-item flex items-center justify-between ' href='/marketing' />
+	[10] (53,296)<div  />
+		[11] (61,296)<span >Marketing & Ads />
+[12] (67,352)<a class='nav-item flex items-center justify-between ' href='/inventory' />
+	[13] (41,352)<div  />
+		[14] (49,352)<span >Kho hàng />
+[15] (67,407)<a class='nav-item flex items-center justify-between ' href='/customers' />
+	[16] (45,407)<div  />
+		[17] (53,407)<span >Khách hàng />
+[18] (67,908)<a class='nav-item ' href='/settings' />
+	[19] (44,908)<span >Cài đặt />
+[20] (67,962)<button class='nav-item text-rose-500 hover:bg-rose-500/10 transition-colors text-left w-full' />
+	[21] (50,962)<span >Đăng xuất />
+Bộ lọc Dashboard
+Cấu hình hiển thị dữ liệu toàn cục
+[22] (330,68)<button class='px-4 py-2.5 bg-[#1A1E29] border border-white/10 rounded-xl text-gray-300 text-sm font-bold flex items-center gap-2 hover:bg-white/5 transition-all'>Tất cả các Brand />
+[23] (397,68)<button class='px-4 py-2 text-xs font-bold rounded-xl transition-all text-gray-500 hover:text-gray-300'>Hôm nay />
+[24] (436,68)<button class='px-4 py-2 text-xs font-bold rounded-xl transition-all text-gray-500 hover:text-gray-300'>Hôm qua />
+[25] (471,68)<button class='px-4 py-2 text-xs font-bold rounded-xl transition-all bg-indigo-500 text-white shadow-[0_0_15px_rgba(99,102,241,0.3)]'>7 Ngày />
+[26] (506,68)<button class='px-4 py-2 text-xs font-bold rounded-xl transition-all text-gray-500 hover:text-gray-300'>30 Ngày />
+[27] (546,68)<button class='px-4 py-2 text-xs font-bold rounded-xl transition-all text-gray-500 hover:text-gray-300'>Tháng này />
+[28] (588,68)<button class='px-4 py-2 text-xs font-bold rounded-xl transition-all text-gray-500 hover:text-gray-300'>Tùy chỉnh />
+KOC Live Analytics
+Phân tích hiệu suất livestream tích hợp theo bộ lọc toàn cầu.
+[29] (829,157)<button class='px-4 py-2 text-xs font-bold rounded-lg transition-all text-gray-500 hover:text-gray-300'>Tổng quan />
+[30] (877,157)<button class='px-4 py-2 text-xs font-bold rounded-lg transition-all text-gray-500 hover:text-gray-300'>Lịch sử chi tiết />
+[31] (924,157)<button class='relative px-4 py-2 text-xs font-bold rounded-lg transition-all text-gray-500 hover:text-gray-300'>Cảnh báo />
+[32] (960,157)<button class='px-4 py-2 text-xs font-bold rounded-lg transition-all bg-indigo-500 text-white shadow-lg'>Dữ liệu />
+[33] (257,246)<label class='text-[10px] text-gray-500 font-extrabold uppercase tracking-widest px-1'>Gán dữ liệu cho Brand />
+[34] (257,283)<select class='w-full bg-white/[0.03] border border-white/5 rounded-xl py-2.5 pl-9 pr-4 text-sm text-white focus:outline-none focus:border-indigo-500 appearance-none cursor-pointer hover:bg-white/[0.05] transition-all' />
+* Một file upload chỉ phục vụ dữ liệu cho 1 brand duy nhất
+[35] (568,482)<div  />
+	[36] (568,482)<div  />
+		[37] (568,426)<div  />
+		[38] (568,493)<div  />
+			[39] (568,482)<p >Tải lên file cho />
+				[40] (598,482)<span >Macaron Cos />
+			[41] (568,508)<p >Kéo thả file .xlsx từ TikTok Shop vào đây hoặc click để chọn />
+		[42] (568,553)<div  />
+			[43] (573,553)<span >Excel format (Row 3 headers) />

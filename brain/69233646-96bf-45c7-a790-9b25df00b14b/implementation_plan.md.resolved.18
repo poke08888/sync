@@ -1,0 +1,51 @@
+# Kế hoạch Tích hợp Toàn diện KOC Live Dashboard
+
+Tôi sẽ tiến hành tích hợp module KOC Live vào hệ thống Dashboard chính, đảm bảo tính đồng bộ về bộ lọc, quản lý dữ liệu bền vững và trải nghiệm người dùng tối ưu.
+
+## User Review Required
+
+> [!IMPORTANT]
+> - **Global Filter State**: Tôi đề xuất sử dụng `FilterContext` để đồng bộ bộ lọc Ngày và Thương hiệu giữa tất cả các trang. Khi bạn đổi ngày ở trang Tổng quan, trang KOC Live sẽ tự động cập nhật theo.
+> - **Data Persistence**: Tôi sẽ sử dụng `localStorage` để lưu trữ dữ liệu KOC đã upload. Điều này giúp dữ liệu không bị mất khi bạn tải lại trang (F5).
+> - **Upload Management**: Một mục quản lý file mới sẽ được thêm vào bên dưới khu vực upload để bạn có thể xem lại các file đã tải lên và xóa chúng nếu cần.
+
+## Proposed Changes
+
+### 1. Cơ sở hạ tầng & Trạng thái Toàn cục
+#### [NEW] [FilterContext.tsx](file:///Users/kevin/.gemini/antigravity/scratch/ecom-next-dashboard/src/context/FilterContext.tsx)
+- Quản lý `selectedBrand`, `timeRange`, `customRange`.
+- Cung cấp Provider bọc quanh toàn bộ ứng dụng.
+
+#### [MODIFY] [layout.tsx](file:///Users/kevin/.gemini/antigravity/scratch/ecom-next-dashboard/src/app/layout.tsx)
+- Tích hợp `FilterProvider`.
+- Đưa `DashboardFilters` vào Layout để hiển thị đồng nhất ở mọi trang (trừ trang Settings/Login nếu cần).
+
+### 2. Quản lý Dữ liệu & Persistence
+#### [MODIFY] [koc-service.ts](file:///Users/kevin/.gemini/antigravity/scratch/ecom-next-dashboard/src/lib/koc-service.ts)
+- Bổ sung logic xử lý lỗi: Chia cho 0, parse thời lượng lỗi (về 0), bỏ qua dòng trống.
+- Bổ sung hàm lọc dữ liệu theo khoảng ngày (`filterSessionsByRange`).
+
+### 3. Thành phần Giao diện & UX
+#### [MODIFY] [Sidebar.tsx](file:///Users/kevin/.gemini/antigravity/scratch/ecom-next-dashboard/src/components/layout/Sidebar.tsx)
+- Thêm Badge hiển thị số KOC Active (Monthly).
+
+#### [MODIFY] [KocLiveUpload.tsx](file:///Users/kevin/.gemini/antigravity/scratch/ecom-next-dashboard/src/components/koc/KocLiveUpload.tsx)
+- Thêm section "Quản lý dữ liệu": Danh sách file, ngày bắt đầu-kết thúc của mỗi file, số phiên.
+- Nút xóa file lẻ hoặc xóa tất cả.
+
+#### [MODIFY] [KocTable.tsx](file:///Users/kevin/.gemini/antigravity/scratch/ecom-next-dashboard/src/components/koc/KocTable.tsx)
+- Implement **Debounce Search** (300ms).
+- UI Responsive: ngang cho mobile, lưới linh hoạt.
+
+### 4. Xử lý Edge Cases & Empty States
+- Hiển thị Illustration và hướng dẫn khi chưa có dữ liệu.
+- Thông báo "Không có dữ liệu trong khoảng thời gian này" khi bộ lọc không khớp.
+- Chặn lỗi định dạng file không đúng.
+
+## Verification Plan
+
+### Automated/Manual Verification
+1. **Kiểm tra đồng bộ**: Đổi ngày ở trang chủ -> sang trang KOC Live xem ngày có tự đổi không.
+2. **Kiểm tra lưu trữ**: Upload file -> F5 trang -> Dữ liệu vẫn còn đó.
+3. **Kiểm tra xóa**: Xóa 1 file trong danh sách -> KPI và biểu đồ tự cập nhật lại.
+4. **Kiểm tra mobile**: Dùng trình duyệt thu nhỏ màn hình để kiểm tra Responsive của bảng và thẻ KPI.

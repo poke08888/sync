@@ -1,0 +1,129 @@
+<current_dom_explanation>
+This is a temporary snapshot of the current page's DOM structure. The DOM will change if you navigate to or interact with another page. Use a tool like browser_get_dom to capture and preserve the DOM in your trajectory if needed for later reference.
+</current_dom_explanation>
+<current_dom>
+Ecom OS
+[0] (67,131)<a class='nav-item flex items-center justify-between ' href='/' />
+	[1] (43,131)<div  />
+		[2] (51,131)<span >Tổng quan />
+[3] (67,186)<a class='nav-item flex items-center justify-between active' href='/koc-live' />
+	[4] (41,186)<div  />
+		[5] (49,186)<span >KOC Live />
+	[6] (111,186)<span >375 />
+[7] (67,241)<a class='nav-item flex items-center justify-between ' href='/brands' />
+	[8] (46,241)<div  />
+		[9] (54,241)<span >Thương hiệu />
+[10] (67,296)<a class='nav-item flex items-center justify-between ' href='/marketing' />
+	[11] (53,296)<div  />
+		[12] (61,296)<span >Marketing & Ads />
+[13] (67,352)<a class='nav-item flex items-center justify-between ' href='/inventory' />
+	[14] (41,352)<div  />
+		[15] (49,352)<span >Kho hàng />
+[16] (67,407)<a class='nav-item flex items-center justify-between ' href='/customers' />
+	[17] (45,407)<div  />
+		[18] (53,407)<span >Khách hàng />
+[19] (67,908)<a class='nav-item ' href='/settings' />
+	[20] (44,908)<span >Cài đặt />
+[21] (67,962)<button class='nav-item text-rose-500 hover:bg-rose-500/10 transition-colors text-left w-full' />
+	[22] (50,962)<span >Đăng xuất />
+[23] (568,500)<main class='main-content' scrollable='true' />
+	Bộ lọc Dashboard
+	Cấu hình hiển thị dữ liệu toàn cục
+	[24] (325,68)<button class='px-4 py-2.5 bg-[#1A1E29] border border-white/10 rounded-xl text-gray-300 text-sm font-bold flex items-center gap-2 hover:bg-white/5 transition-all'>Macaron Cos />
+	[25] (387,68)<button class='px-4 py-2 text-xs font-bold rounded-xl transition-all text-gray-500 hover:text-gray-300'>Hôm nay />
+	[26] (425,68)<button class='px-4 py-2 text-xs font-bold rounded-xl transition-all text-gray-500 hover:text-gray-300'>Hôm qua />
+	[27] (461,68)<button class='px-4 py-2 text-xs font-bold rounded-xl transition-all text-gray-500 hover:text-gray-300'>7 Ngày />
+	[28] (496,68)<button class='px-4 py-2 text-xs font-bold rounded-xl transition-all text-gray-500 hover:text-gray-300'>30 Ngày />
+	[29] (536,68)<button class='px-4 py-2 text-xs font-bold rounded-xl transition-all text-gray-500 hover:text-gray-300'>Tháng này />
+	[30] (577,68)<button class='px-4 py-2 text-xs font-bold rounded-xl transition-all bg-indigo-500 text-white shadow-[0_0_15px_rgba(99,102,241,0.3)]'>Tùy chỉnh />
+	[31] (861,68)<input class='bg-transparent border-none text-xs font-bold text-white focus:ring-0 cursor-pointer' />
+	TỚI
+	[32] (930,68)<input class='bg-transparent border-none text-xs font-bold text-white focus:ring-0 cursor-pointer' />
+	KOC Live Analytics
+	Phân tích hiệu suất livestream tích hợp theo bộ lọc toàn cầu.
+	[33] (821,157)<button class='px-4 py-2 text-xs font-bold rounded-lg transition-all text-gray-500 hover:text-gray-300'>Tổng quan />
+	[34] (869,157)<button class='px-4 py-2 text-xs font-bold rounded-lg transition-all bg-indigo-500 text-white shadow-lg'>Lịch sử chi tiết />
+	[35] (916,157)<button class='relative px-4 py-2 text-xs font-bold rounded-lg transition-all text-gray-500 hover:text-gray-300'>Cảnh báo />
+	[36] (952,157)<button class='px-4 py-2 text-xs font-bold rounded-lg transition-all text-gray-500 hover:text-gray-300'>Dữ liệu />
+	[37] (242,246)<label class='text-[10px] text-gray-500 font-extrabold uppercase tracking-widest px-1'>Chọn KOC phân tích />
+	[38] (242,278)<div  />
+		[39] (220,278)<div  />
+			[40] (182,278)<div >* />
+			[41] (226,278)<span >Cá nhân (Toàn bộ KOC) />
+	[42] (242,332)<input class='w-full bg-[#0B0E14] border border-white/5 rounded-xl py-2 pl-9 pr-4 text-xs text-white focus:outline-none focus:border-indigo-500' placeholder='Tìm tên hoặc username...' />
+	[43] (242,515)<div class='max-h-[300px] overflow-y-auto' scrollable='true' />
+		[44] (238,380)<button class='w-full px-4 py-3 text-left text-sm transition-all flex items-center justify-between
+                    bg-indigo-500/10 text-indigo-400 font-bold'>Toàn bộ KOC trong team />
+		[45] (238,429)<button class='w-full px-4 py-3 text-left text-sm transition-all flex items-center justify-between group
+                      text-gray-400 hover:text-white hover:bg-white/5' />
+			[46] (214,429)<div  />
+				[47] (184,429)<div >T />
+				[48] (224,429)<div  />
+					[49] (224,420)<span >Tun Phạm Official />
+					[50] (224,438)<span >@
+tunpham97 />
+		[51] (238,487)<button class='w-full px-4 py-3 text-left text-sm transition-all flex items-center justify-between group
+                      text-gray-400 hover:text-white hover:bg-white/5' />
+			[52] (212,487)<div  />
+				[53] (184,487)<div >M />
+				[54] (222,487)<div  />
+					[55] (222,478)<span >Mỡ học skincare />
+					[56] (222,496)<span >@
+mohocskincare />
+		[57] (238,545)<button class='w-full px-4 py-3 text-left text-sm transition-all flex items-center justify-between group
+                      text-gray-400 hover:text-white hover:bg-white/5' />
+			[58] (206,545)<div  />
+				[59] (184,545)<div >M />
+				[60] (216,545)<div  />
+					[61] (216,536)<span >Mai Trịnh />
+					[62] (216,554)<span >@
+maitrinh0912 />
+		[63] (238,603)<button class='w-full px-4 py-3 text-left text-sm transition-all flex items-center justify-between group
+                      text-gray-400 hover:text-white hover:bg-white/5' />
+			[64] (206,603)<div  />
+				[65] (184,603)<div >M />
+				[66] (216,603)<div  />
+					[67] (216,594)<span >Mần đẹp 💅 />
+					[68] (216,612)<span >@
+trangtrankoc />
+		[69] (238,661)<button class='w-full px-4 py-3 text-left text-sm transition-all flex items-center justify-between group
+                      text-gray-400 hover:text-white hover:bg-white/5' />
+			[70] (210,661)<div  />
+				[71] (184,661)<div >N />
+				[72] (220,661)<div  />
+					[73] (220,652)<span >Ngọc hiền hiền />
+					[74] (220,670)<span >@
+ngochienhien95 />
+		N
+		Nhung Daily
+		@
+		nhungdaily2
+		C
+		Chang Ơiii
+		@
+		trang.bong7997
+		C
+		Cái gì hay thì chia sẻ ☺️
+		@
+		bing_family0_0
+		Đ
+		Đăng Vương
+		@
+		dangvuongreview
+		S
+		Sương Săn Seo🌱
+		@
+		suongsanseo
+		Thật Review
+	[75] (379,247)<label class='text-[10px] text-gray-500 font-extrabold uppercase tracking-widest px-1'>Chế độ hiển thị />
+	[76] (344,278)<button class='px-4 py-1.5 text-[10px] font-black uppercase tracking-widest rounded-lg transition-all bg-indigo-500 text-white shadow-lg'>Ngày />
+	[77] (377,278)<button class='px-4 py-1.5 text-[10px] font-black uppercase tracking-widest rounded-lg transition-all text-gray-500 hover:text-gray-300'>Tuần />
+	[78] (411,278)<button class='px-4 py-1.5 text-[10px] font-black uppercase tracking-widest rounded-lg transition-all text-gray-500 hover:text-gray-300'>Tháng />
+	[79] (463,279)<button class='mt-auto mb-1 flex items-center gap-2 px-4 py-2 bg-white/5 hover:bg-white/10 text-gray-400 rounded-xl text-xs font-bold transition-all'>Reset />
+	Diễn biến Doanh thu Tổng hợp
+	Theo thời gian đã chọn
+	[80] (564,617)<div  />
+	Tỷ trọng đóng góp của Top 5 KOC
+	Phân tích thành phần GMV theo ngày
+
+</current_dom>

@@ -1,0 +1,32 @@
+# Kế hoạch Tái cấu trúc Quản lý Dữ liệu KOC
+
+Tôi sẽ chuyển đổi cách quản lý dữ liệu từ dạng hiển thị trực tiếp sang một Tab riêng biệt, giúp giao diện gọn gàng và tập trung hơn vào việc phân tích.
+
+## User Review Required
+
+> [!IMPORTANT]
+> - **Tab mặc định**: Nếu chưa có dữ liệu, hệ thống sẽ tự động chuyển bạn vào tab **"Dữ liệu"** để upload. Khi đã có dữ liệu, mặc định sẽ là tab **"Tổng quan"**.
+> - **Xóa dữ liệu**: Nút "Xóa toàn bộ" sẽ bị loại bỏ theo yêu cầu. Bạn sẽ quản lý dữ liệu bằng cách xóa từng file cụ thể trong danh sách.
+
+## Proposed Changes
+
+### 1. Tinh chỉnh Component Upload
+#### [MODIFY] [KocLiveUpload.tsx](file:///Users/kevin/.gemini/antigravity/scratch/ecom-next-dashboard/src/components/koc/KocLiveUpload.tsx)
+- Loại bỏ prop `onClearAll`.
+- Xóa nút "Xóa tất cả" trong giao diện.
+- Điều chỉnh Style để phù hợp khi đặt bên trong một Tab (không cần border ngoài quá dày).
+
+### 2. Tái cấu trúc Trang chính
+#### [MODIFY] [page.tsx](file:///Users/kevin/.gemini/antigravity/scratch/ecom-next-dashboard/src/app/(dashboard)/koc-live/page.tsx)
+- Cập nhật state `activeTab` để bao gồm giá trị `'data'`.
+- Logic chuyển tab thông minh: 
+    - Khởi tạo `data` nếu chưa có session nào.
+- Di chuyển component `KocLiveUpload` từ vị trí hiện tại vào trong khối render của tab `'data'`.
+- Thêm nút chuyển sang tab **"Dữ liệu"** trên thanh điều hướng tab.
+
+## Verification Plan
+
+### Manual Verification
+1. **Kiểm tra Tab mới**: Đảm bảo tab "Dữ liệu" xuất hiện và chứa đầy đủ phần upload + quản lý file.
+2. **Kiểm tra Xóa dữ liệu**: Xác nhận nút "Xóa tất cả" đã biến mất và nút xóa từng file vẫn hoạt động đúng.
+3. **Kiểm tra Trạng thái trống**: Khi xóa hết file (không còn session), hệ thống có tự chuyển về tab "Dữ liệu" không.

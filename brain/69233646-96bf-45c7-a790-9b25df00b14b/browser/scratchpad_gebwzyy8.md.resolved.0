@@ -1,0 +1,12 @@
+# KOC History Tab Verification Plan
+
+- [ ] Navigate to http://localhost:3000/koc-live
+- [ ] Verify "Tổng quan" and "Lịch sử chi tiết" tabs are visible
+- [ ] Click "Lịch sử chi tiết" tab
+- [ ] Verify filter bar components:
+    - [ ] Dropdown for KOC selection
+    - [ ] Period buttons (Ngày/Tuần/Tháng/Năm)
+    - [ ] Date range picker
+    - [ ] Reset filter button
+- [ ] Verify empty state or structure
+- [ ] Capture a screenshot of the History tab

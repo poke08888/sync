@@ -1,0 +1,36 @@
+# Kế hoạch Xây dựng TikTok Affiliate & Creator Service (Laravel)
+
+Tôi sẽ xây dựng lớp `TikTokAffiliateService` để quản lý và theo dõi hiệu suất của các KOC/Creators dựa trên luồng dữ liệu Affiliate từ TikTok Shop Partner API.
+
+## 1. Cơ cấu Dữ liệu Hybrid
+
+Vì TikTok Affiliate API cung cấp dữ liệu bán hàng (Orders/Commission) nhưng không cung cấp dữ liệu chi tiết về Live Stream (phải lấy từ file XLSX của Seller Center), tôi sẽ xây dựng hệ thống dữ liệu "lai" (Hybrid):
+
+### [NEW] Migration `create_tiktok_creators_table.php`
+- Lưu trữ hồ sơ Creator:
+    - `open_id` (string, unique): Mã định danh trên TikTok.
+    - `nickname` (string): Tên hiển thị.
+    - `follower_count` (integer): Số người theo dõi.
+    - `avatar_url` (string): Ảnh đại diện.
+    - `performance_data` (json): Lưu trữ các chỉ số tổng hợp (GMV, Orders từ API).
+    - `live_metrics` (json): Lưu trữ dữ liệu Live Stream (đã được import từ file XLSX).
+
+### [NEW] Model `TikTokCreator.php`
+- Cấu hình quan hệ với các đơn hàng Affiliate.
+
+## 2. Dịch vụ Nghiệp vụ
+
+### [NEW] `app/Services/TikTokAffiliateService.php`
+- **`searchAffiliateOrders(Carbon $from, Carbon $to)`**: Truy vấn API lấy danh sách đơn hàng được tạo qua kênh Affiliate.
+- **`searchCreators(array $params)`**: Truy vấn danh sách Creator đang hợp tác.
+- **`computeKocMetrics(array $orders)`**: 
+    - Tổng hợp GMV, Commission theo từng Creator.
+    - Tính toán AOV (Average Order Value).
+    - Phân tích Top sản phẩm được Creator đẩy mạnh.
+- **`integrateLiveData(string $creatorId, array $xlsxData)`**: Logic map dữ liệu Live từ file upload vào profile Creator trên hệ thống.
+
+## 3. Câu hỏi và Lưu ý
+- **Mapping**: Để kết nối dữ liệu từ API và XLSX, ta sẽ dùng `open_id` hoặc `nickname` (tùy vào dữ liệu trong file XLSX).
+- **Dashboard KOC**: Tôi sẽ cung cấp API để React Dashboard có thể lấy dữ liệu phân tích KOC hoàn chỉnh sau khi gộp hai nguồn dữ liệu.
+
+Mời bạn xác nhận để tôi bắt đầu triển khai dịch vụ quản lý KOC chuyên nghiệp này!

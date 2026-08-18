@@ -1,0 +1,19 @@
+# Kế hoạch Bổ sung Bộ lọc Thương hiệu trên Dashboard
+
+Hiện tại chúng ta đã có module quản lý Thương hiệu và gán Shop vào Brand. Bước cuối cùng để hoàn thiện là tích hợp bộ lọc này vào Dashboard chính để xem số liệu chi tiết theo từng Brand.
+
+## 1. Cập nhật DashboardController
+- **Fetch Brands**: Lấy danh sách tất cả thương hiệu từ bảng `brands` để hiển thị lên dropdown.
+- **Query Filtering**: Cập nhật các câu lệnh truy vấn dữ liệu (Đơn hàng, Chi phí, KPI) để lọc theo `brand_id` nếu người dùng chọn.
+- **State Management**: Giữ lại thương hiệu đã chọn sau khi load lại trang.
+
+## 2. Cập nhật Dashboard UI (`index.blade.php`)
+- **Filter Bar**: Thêm một nhóm lọc mới có nhãn **"Thương hiệu:"** ngay cạnh bộ lọc "Kênh bán".
+- **Dropdown**: Hiển thị danh sách thương hiệu thực tế từ database.
+- **Interactivity**: Tự động reload trang khi người dùng thay đổi thương hiệu chọn.
+
+## 3. Lợi ích
+- Cho phép bạn xem báo cáo doanh số, ROAS, KPI riêng cho từng nhãn hàng (Vd: Chỉ xem số liệu của Brand A, hoặc Brand B).
+- Tận dụng tối đa dữ liệu đồng bộ từ TikTok API đã được gán nhãn thương hiệu.
+
+Mời bạn xác nhận để tôi hoàn thiện mảnh ghép cuối cùng này của Dashboard!

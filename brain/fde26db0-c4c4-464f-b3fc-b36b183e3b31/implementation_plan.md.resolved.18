@@ -1,0 +1,42 @@
+# Kế hoạch Xây dựng TikTok Product & Inventory Service (Laravel)
+
+Tôi sẽ xây dựng lớp `TikTokProductService` để quản lý danh mục sản phẩm và theo dõi trạng thái kho hàng từ TikTok Shop, tích hợp cơ chế cảnh báo thông minh.
+
+## 1. Cập nhật Cơ sở Dữ liệu
+
+### [MODIFY] Migration mới
+- Bổ sung các cột vào bảng `products`:
+    - `tiktok_product_id` (string, unique): Mã định danh sản phẩm trên TikTok.
+    - `shop_id` (string): Liên kết với shop.
+    - `status` (string): Trạng thái (ACTIVATE, SELLER_DEACTIVATED, v.v.).
+    - `skus` (json): Danh sách SKU chi tiết (giá, thuộc tính, mã SKU).
+    - `images` (json): Danh sách hình ảnh sản phẩm.
+    - `category_name` (string): Tên ngành hàng.
+    - `total_stock` (integer): Tổng tồn kho thực tế.
+    - `synced_at` (timestamp): Thời điểm đồng bộ cuối cùng.
+
+### [MODIFY] Model `Product.php`
+- Thêm `casts` cho `skus` và `images` sang kiểu `array`.
+- Bổ sung các trường mới vào `fillable`.
+
+## 2. Thành phần mới
+
+### [NEW] `app/Services/TikTokProductService.php`
+- **`searchProducts(array $params)`**: Truy vấn API tìm kiếm sản phẩm (Endpoint v202309).
+- **`getAllProducts()`**: 
+    - Cơ chế tự động phân trang để lấy toàn bộ danh mục sản phẩm của shop.
+- **`getProductDetail(string $productId)`**: Lấy thông tin chi tiết nhất của một sản phẩm.
+- **`getInventoryByWarehouse(array $productIds)`**: Tính toán tổng lượng tồn kho khả dụng từ tất cả các kho hàng.
+- **`computeInventoryHealth(array $products, array $avgDailySales)`**:
+    - Tính toán **Days of Supply** (Số ngày còn đủ hàng) = `Tồn kho / Doanh số trung bình ngày`.
+    - Phân loại trạng thái:
+        - `healthy`: > 14 ngày.
+        - `low`: 7 - 14 ngày.
+        - `critical`: 1 - 7 ngày.
+        - `stockout`: 0 ngày.
+    - Trả về danh sách cảnh báo (Alerts) để hiển thị trên Dashboard.
+
+## 3. Câu hỏi và Lưu ý
+- **Average Daily Sales**: Chỉ số này thường được lấy từ `TikTokOrderService` (đã xây dựng) dựa trên dữ liệu 7 hoặc 30 ngày gần nhất. Tôi sẽ thiết kế để Service này có thể nhận dữ liệu doanh số làm đầu vào.
+
+Mời bạn xác nhận để tôi bắt đầu triển khai module quản lý kho hàng chuyên nghiệp này!

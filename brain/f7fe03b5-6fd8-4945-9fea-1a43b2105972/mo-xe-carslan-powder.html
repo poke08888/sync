@@ -1,0 +1,804 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Phiếu mổ xẻ video · Phấn phủ Carslan 2.0 Bản mát lạnh</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,400;9..144,600;9..144,900&family=Space+Grotesk:wght@400;500;600;700&family=Be+Vietnam+Pro:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+<style>
+:root{
+  --bg:#f4eee2; --bg2:#efe7d7; --panel:#fffdf7; --panel2:#f9f3e7;
+  --line:rgba(140,96,40,.28); --line-soft:rgba(70,54,32,.14);
+  --ink:#2a2016; --ink-dim:#574a3a; --ink-mute:#8a7c67;
+  --amber:#9a6314; --amber-hi:#8a5614; --amber-deep:#7a5212;
+  --rose:#9e3a3a; --ok:#6f5612;
+  --disp:'Fraunces',Georgia,serif; --ui:'Space Grotesk',sans-serif; --body:'Be Vietnam Pro',system-ui,sans-serif;
+}
+*{box-sizing:border-box}
+html{scroll-behavior:smooth}
+body{margin:0;color-scheme:light;background-color:#f4eee2;background:
+   radial-gradient(1200px 600px at 80% -10%, rgba(154,99,20,.10), transparent 60%),
+   radial-gradient(900px 500px at 0% 30%, rgba(122,82,18,.07), transparent 60%),
+   var(--bg);
+  color:var(--ink);font-family:var(--body);line-height:1.62;-webkit-font-smoothing:antialiased;
+  font-size:16px;overflow-x:hidden;}
+.wrap{max-width:1080px;margin:0 auto;padding:0 22px}
+a{color:var(--amber-hi)}
+
+/* eyebrow */
+.eyebrow{font-family:var(--ui);text-transform:uppercase;letter-spacing:.32em;font-size:11px;color:var(--amber);font-weight:600}
+
+/* HERO */
+.hero{position:relative;padding:84px 0 56px;border-bottom:1px solid var(--line)}
+.hero .kicker{display:flex;gap:14px;align-items:center;flex-wrap:wrap;margin-bottom:26px}
+.hero h1{font-family:var(--disp);font-weight:900;font-size:clamp(40px,8vw,86px);line-height:.96;
+  letter-spacing:-.02em;margin:0 0 6px}
+.hero h1 .em{font-style:italic;font-weight:400;color:var(--amber-hi)}
+.hero .sub{font-family:var(--disp);font-weight:400;font-style:italic;font-size:clamp(18px,3vw,26px);color:var(--ink-dim);margin:0 0 30px}
+.meta{display:flex;flex-wrap:wrap;gap:0;border:1px solid var(--line);border-radius:14px;overflow:hidden;background:rgba(255,253,247,.7);backdrop-filter:blur(4px)}
+.meta div{flex:1 1 130px;padding:16px 18px;border-right:1px solid var(--line-soft)}
+.meta div:last-child{border-right:none}
+.meta dt{font-family:var(--ui);font-size:10px;letter-spacing:.2em;text-transform:uppercase;color:var(--ink-mute);margin-bottom:5px}
+.meta dd{margin:0;font-weight:600;font-size:15px}
+
+/* section frame */
+.sec{padding:64px 0;border-bottom:1px solid var(--line-soft)}
+.sec-head{display:flex;align-items:baseline;gap:16px;margin-bottom:30px}
+.sec-no{font-family:var(--ui);font-weight:700;font-size:13px;color:var(--amber-deep);border:1px solid var(--line);border-radius:999px;padding:4px 12px;flex:none}
+.sec h2{font-family:var(--disp);font-weight:600;font-size:clamp(24px,4vw,36px);letter-spacing:-.015em;margin:0;line-height:1.05}
+.lead{color:var(--ink-dim);max-width:62ch;margin:0 0 8px}
+
+/* verdict chips */
+.verdict{display:grid;grid-template-columns:repeat(auto-fit,minmax(150px,1fr));gap:14px;margin-top:8px}
+.vcard{background:linear-gradient(160deg,var(--panel2),var(--panel));border:1px solid var(--line);border-radius:16px;padding:20px}
+.vcard .vlabel{font-family:var(--ui);font-size:10px;letter-spacing:.18em;text-transform:uppercase;color:var(--ink-mute);margin-bottom:10px}
+.vcard .vbig{font-family:var(--disp);font-size:30px;font-weight:600;color:var(--amber-hi);line-height:1}
+.vcard .vbig small{font-size:14px;color:var(--ink-dim);font-family:var(--body);font-weight:500}
+.vcard p{margin:10px 0 0;font-size:13.5px;color:var(--ink-dim)}
+
+/* STORYBOARD */
+.timeline{position:relative}
+.timeline::before{content:"";position:absolute;left:19px;top:8px;bottom:8px;width:2px;
+  background:linear-gradient(var(--amber),rgba(231,173,91,.12));border-radius:2px}
+.act{margin-bottom:46px;position:relative}
+.act-head{display:flex;gap:18px;align-items:flex-start;margin-bottom:22px}
+.act-no{font-family:var(--disp);font-weight:900;font-size:20px;color:#fff;background:var(--amber);
+  width:40px;height:40px;border-radius:50%;display:grid;place-items:center;flex:none;z-index:2;
+  box-shadow:0 0 0 6px var(--bg),0 0 0 7px var(--line)}
+.act-range{font-family:var(--ui);font-size:11px;letter-spacing:.14em;color:var(--amber);text-transform:uppercase}
+.act-title{font-family:var(--disp);font-size:22px;font-weight:600;margin:2px 0 6px;letter-spacing:-.01em}
+.act-sum{margin:0;color:var(--ink-dim);font-size:14px;max-width:64ch}
+.beats{display:grid;grid-template-columns:1fr;gap:12px;margin-left:58px}
+.beat{display:flex;gap:15px;background:var(--panel);border:1px solid var(--line-soft);border-radius:14px;padding:14px;transition:border-color .3s,transform .3s,box-shadow .3s;align-items:flex-start}
+.beat:hover{border-color:var(--line);transform:translateY(-2px);box-shadow:0 8px 24px rgba(70,48,20,.08)}
+.beat-frame{position:relative;flex:none;width:88px;height:156px;border-radius:9px;overflow:hidden;border:1px solid var(--line)}
+.beat-frame img{width:100%;height:100%;object-fit:cover;display:block}
+.beat-frame .ts{position:absolute;left:0;bottom:0;font-family:var(--ui);font-size:9.5px;font-weight:600;
+  background:var(--amber);color:#fff;padding:1px 5px;border-top-right-radius:6px;letter-spacing:.04em}
+.beat-body{min-width:0;flex:1}
+.beat .zh{font-size:13px;color:var(--ink);margin:0 0 4px;font-weight:500;line-height:1.4}
+.beat .vi{font-size:13.5px;color:var(--amber-hi);margin:0 0 6px;line-height:1.45;font-weight:600}
+.beat .note{font-size:11.5px;color:var(--ink-mute);margin:0;line-height:1.5}
+.matrix{margin-top:12px;border-top:1px solid var(--line);padding-top:10px}
+.cam{display:flex;gap:13px;align-items:flex-start;background:rgba(154,99,20,.07);
+  border:1px solid var(--line);border-left:3px solid var(--amber);border-radius:0 10px 10px 0;
+  padding:9px 12px;margin-bottom:9px}
+.cam .cam-lbl{flex:none;width:74px}
+.cam-parts{display:grid;grid-template-columns:repeat(3,1fr);gap:6px 16px;flex:1}
+.cam-seg{font-size:12px;color:var(--ink);line-height:1.36}
+.cam-seg i{font-style:normal;font-family:var(--ui);font-size:8px;letter-spacing:.13em;text-transform:uppercase;color:var(--amber);display:block;margin-bottom:2px}
+.mgrid{display:grid;grid-template-columns:1fr 1fr;gap:0 26px}
+.mrow{display:flex;gap:11px;align-items:baseline;padding:5px 0;border-bottom:1px solid var(--line-soft)}
+.mlbl{flex:none;width:74px;line-height:1.12}
+.mlbl b{display:block;font-size:12px;color:var(--ink);font-weight:600}
+.mlbl span{display:block;font-family:var(--ui);font-size:8px;letter-spacing:.14em;color:var(--ink-mute)}
+.mval{font-size:12px;color:var(--ink-dim);line-height:1.42}
+
+/* generic cards grid */
+.cards{display:grid;grid-template-columns:repeat(auto-fit,minmax(240px,1fr));gap:16px}
+.card{background:linear-gradient(160deg,var(--panel2),var(--panel));border:1px solid var(--line);border-radius:16px;padding:22px}
+.card h4{font-family:var(--ui);font-size:11px;letter-spacing:.16em;text-transform:uppercase;color:var(--amber);margin:0 0 12px;font-weight:600}
+.card p{margin:0;font-size:14.5px;color:var(--ink-dim)}
+.card .big{font-family:var(--disp);font-size:19px;color:var(--ink);font-weight:600;margin:0 0 8px;line-height:1.25}
+
+/* table */
+.tbl{width:100%;border-collapse:collapse;font-size:14px}
+.tbl th{text-align:left;font-family:var(--ui);font-size:10.5px;letter-spacing:.16em;text-transform:uppercase;color:var(--ink-mute);font-weight:600;padding:0 14px 12px;border-bottom:1px solid var(--line)}
+.tbl td{padding:15px 14px;border-bottom:1px solid var(--line-soft);vertical-align:top}
+.c-crit{font-weight:600;color:var(--ink);width:24%}
+.c-note{color:var(--ink-dim);font-size:13.5px}
+.chip{display:inline-block;font-family:var(--ui);font-size:11px;font-weight:600;letter-spacing:.04em;padding:4px 11px;border-radius:999px;white-space:nowrap}
+.chip.ok{background:rgba(111,86,18,.12);color:#5f4a10;border:1px solid rgba(111,86,18,.4)}
+.chip.mid{background:rgba(154,99,20,.13);color:#8a5614;border:1px solid rgba(154,99,20,.38)}
+.chip.low{background:rgba(158,58,58,.12);color:#8f3232;border:1px solid rgba(158,58,58,.4)}
+
+/* formula blocks */
+.formula{background:var(--panel2);border:1px solid var(--line);border-left:3px solid var(--amber);border-radius:0 14px 14px 0;padding:18px 22px;margin-bottom:14px}
+.formula .flabel{font-family:var(--ui);font-size:10.5px;letter-spacing:.16em;text-transform:uppercase;color:var(--amber);margin-bottom:8px}
+.formula .fbody{font-size:15px}
+.formula .fbody b{color:var(--amber-hi);font-weight:600}
+
+/* lists */
+.klist{list-style:none;padding:0;margin:0}
+.klist li{position:relative;padding:10px 0 10px 26px;border-bottom:1px solid var(--line-soft);font-size:14.5px;color:var(--ink-dim)}
+.klist li::before{content:"";position:absolute;left:4px;top:18px;width:7px;height:7px;border-radius:50%;background:var(--amber)}
+.klist li:last-child{border-bottom:none}
+.two{display:grid;grid-template-columns:1fr 1fr;gap:30px}
+
+/* golden rule */
+.rule{margin-top:26px;background:linear-gradient(135deg,rgba(154,99,20,.10),rgba(122,82,18,.04));border:1px solid var(--line);border-radius:18px;padding:26px}
+.rule .rl{font-family:var(--ui);font-size:11px;letter-spacing:.2em;text-transform:uppercase;color:var(--amber);margin-bottom:10px}
+.rule p{margin:0;font-size:15.5px}
+.rule b{color:var(--amber-hi)}
+
+footer{padding:46px 0 70px;color:var(--ink-mute);font-size:12.5px;font-family:var(--ui);letter-spacing:.04em}
+
+.reveal{opacity:0;transform:translateY(16px);transition:opacity .6s ease,transform .6s ease}
+.reveal.in{opacity:1;transform:none}
+@media (prefers-reduced-motion:reduce){.reveal{opacity:1;transform:none;transition:none}}
+@media(max-width:680px){
+  .two{grid-template-columns:1fr;gap:18px}
+  .beats{margin-left:0}
+  .mgrid{grid-template-columns:1fr}
+  .cam{flex-direction:column;gap:7px}
+  .cam-parts{grid-template-columns:1fr;gap:7px}
+  .timeline::before{display:none}
+  .meta div{flex:1 1 45%}
+  .c-crit{width:auto}
+  .tbl,.tbl tbody,.tbl tr,.tbl td{display:block;width:100%}
+  .tbl thead{display:none}
+  .tbl td{border:none;padding:3px 0}
+  .tbl tr{border-bottom:1px solid var(--line-soft);padding:14px 0}
+}
+@media (prefers-reduced-motion:reduce){.reveal{opacity:1;transform:none;transition:none}}
+@media(max-width:680px){
+  .two{grid-template-columns:1fr;gap:18px}
+  .beats{margin-left:0}
+  .mgrid{grid-template-columns:1fr}
+  .cam{flex-direction:column;gap:7px}
+  .cam-parts{grid-template-columns:1fr;gap:7px}
+  .timeline::before{display:none}
+  .meta div{flex:1 1 45%}
+  .c-crit{width:auto}
+  .tbl,.tbl tbody,.tbl tr,.tbl td{display:block;width:100%}
+  .tbl thead{display:none}
+  .tbl td{border:none;padding:3px 0}
+  .tbl tr{border-bottom:1px solid var(--line-soft);padding:14px 0}
+}
+</style>
+</head>
+<body>
+
+<header class="hero">
+  <div class="wrap">
+    <div class="kicker">
+      <span class="eyebrow">Nonelab · Mổ xẻ video</span>
+      <span class="eyebrow" style="color:var(--ink-mute)">Khung Năm Lực · 素材库</span>
+    </div>
+    <h1>Phiếu <span class="em">mổ&nbsp;xẻ</span> video</h1>
+    <p class="sub">Carslan · Phấn phủ Carslan 2.0 Bản mát lạnh (Màu xanh) — Chiến dịch kiến thức "Tips nền siêu nền" chống trôi chống mốc</p>
+    <dl class="meta">
+      <div><dt>Nền tảng</dt><dd>TikTok / Douyin</dd></div>
+      <div><dt>Thời lượng</dt><dd>1 phút 13 giây · dọc 9:16</dd></div>
+      <div><dt>Thể loại</dt><dd>Hướng dẫn kỹ thuật trang điểm (Tutorial/Vlog)</dd></div>
+      <div><dt>Sản phẩm</dt><dd>Phấn phủ Carslan 2.0 (Bản mát lạnh)</dd></div>
+      <div><dt>Gương mặt</dt><dd>Nữ Creator xinh đẹp</dd></div>
+      <div><dt>CTA</dt><dd>Quất liền một em · Trải nghiệm thực tế</dd></div>
+    </dl>
+  </div>
+</header>
+
+<main class="wrap">
+
+  <!-- VERDICT -->
+  <section class="sec">
+    <div class="sec-head"><span class="sec-no">Chốt nhanh</span><h2>Vì sao nó chạy — và đâu là chỗ hở để ta vượt</h2></div>
+    <p class="lead">Đây là video dạng <b style="color:var(--amber-hi)">Hướng dẫn kỹ thuật trang điểm (Tutorial) kết hợp Thử thách trực quan thực tế</b>. Creator khéo léo dùng kiến thức chuyên sâu về da để dạy người xem cách chờ kem nền set khô trước khi dặm phấn, tạo độ tin cậy tuyệt đối, sau đó bán sản phẩm cực kỳ tự nhiên.</p>
+    <div class="verdict">
+      <div class="vcard reveal"><div class="vlabel">Mở đầu bùng nổ</div><div class="vbig">Mạnh</div><p>Đánh thẳng nỗi đau "sợ bồ bẹo má trôi nền" kèm hình ảnh trực quan.</p></div>
+      <div class="vcard reveal"><div class="vlabel">Điểm bán có hình</div><div class="vbig">Xuất sắc</div><p>Test ngón tay in dấu vân tay và cảnh đi tập gym đổ mồ hôi nền vẫn bám chặt.</p></div>
+      <div class="vcard reveal"><div class="vlabel">Động cơ ra đơn</div><div class="vbig">Chuyên môn</div><p>Chia sẻ mẹo set nền hữu ích cho da khô, thuyết phục bằng kiến thức.</p></div>
+      <div class="vcard reveal"><div class="vlabel">Đối chuẩn</div><div class="vbig">② &amp; ③</div><p>Giải pháp cho da khô sợ mốc nền + cùng nhóm khách chăm da.</p></div>
+    </div>
+  </section>
+
+  <!-- STORYBOARD + TRANSCRIPT -->
+  <section class="sec">
+    <div class="sec-head"><span class="sec-no">01 · 02 · 03</span><h2>Storyboard &amp; transcript song ngữ</h2></div>
+    <p class="lead">Khung hình thật được trích trực tiếp từ video kèm lời thoại chi tiết. Mỗi phân cảnh được mổ theo <b style="color:var(--amber-hi)">ma trận 6 yếu tố sản xuất</b> để tạo shot list tái hiện chuẩn xác.</p>
+    <div class="timeline">
+      
+      <!-- MAN 1 -->
+      <section class="act reveal">
+        <div class="act-head">
+          <div class="act-no">01</div>
+          <div>
+            <div class="act-range">0:00–0:15</div>
+            <h3 class="act-title">Màn 1 · Hook Bẹo má &amp; Nêu nỗi sợ trôi nền</h3>
+            <p class="act-sum">Mở đầu bằng nỗi sợ bẹo má của các cặp đôi để dẫn dắt đến giải pháp lớp nền bền bỉ, mỏng nhẹ cho da khô.</p>
+          </div>
+        </div>
+        <div class="beats">
+          
+          <div class="beat reveal">
+            <div class="beat-frame"><img loading="lazy" src="data:image/jpeg;base64,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"><span class="ts">0:01</span></div>
+            <div class="beat-body">
+              <p class="zh">Creator tự bẹo má mạnh trước ống kính</p>
+              <p class="vi">"Make up cho xinh nhưng mà không cho bồ bẹo má..."</p>
+              <p class="note">Hook đánh trúng tâm lý sợ hỏng lớp trang điểm khi người yêu bẹo má.</p>
+              <div class="matrix">
+                <div class="cam">
+                  <div class="mlbl cam-lbl"><b>Góc máy</b><span>CAMERA</span></div>
+                  <div class="cam-parts">
+                    <span class="cam-seg"><i>Cỡ cảnh</i>Cận (CU) mặt</span>
+                    <span class="cam-seg"><i>Góc</i>Ngang tầm mắt</span>
+                    <span class="cam-seg"><i>Chuyển động</i>Tripod tĩnh</span>
+                  </div>
+                </div>
+                <div class="mgrid">
+                  <div class="mrow"><div class="mlbl"><b>Hành động</b><span>ACTION</span></div><div class="mval">Dùng ngón tay bấu nhẹ má kéo sang bên, mỉm cười</div></div>
+                  <div class="mrow"><div class="mlbl"><b>Bối cảnh</b><span>SETTING</span></div><div class="mval">Góc phòng ngủ, có bình hoa ly trắng phía sau</div></div>
+                  <div class="mrow"><div class="mlbl"><b>Âm thanh</b><span>SOUND</span></div><div class="mval">Giọng nói tự nhiên, nhạc nền nhẹ nhàng</div></div>
+                  <div class="mrow"><div class="mlbl"><b>Trang phục</b><span>WARDROBE</span></div><div class="mval">Áo hai dây màu be sữa, tóc đen dài</div></div>
+                  <div class="mrow"><div class="mlbl"><b>Diễn viên</b><span>CAST</span></div><div class="mval">1 Nữ creator xinh xắn, da căng bóng</div></div>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <div class="beat reveal">
+            <div class="beat-frame"><img loading="lazy" src="data:image/jpeg;base64,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"><span class="ts">0:03</span></div>
+            <div class="beat-body">
+              <p class="zh">Ấn ngón tay lên má ẩm để chỉ ra dấu vết</p>
+              <p class="vi">"...là vì mọi người sợ bị trôi nền đúng không?"</p>
+              <p class="note">Nêu lý do cốt lõi của nỗi sợ: kem nền dễ bị dịch chuyển hoặc để lại vết hằn nếu chưa set phấn.</p>
+              <div class="matrix">
+                <div class="cam">
+                  <div class="mlbl cam-lbl"><b>Góc máy</b><span>CAMERA</span></div>
+                  <div class="cam-parts">
+                    <span class="cam-seg"><i>Cỡ cảnh</i>Cận (CU) $ightarrow$ Cực cận (ECU) má</span>
+                    <span class="cam-seg"><i>Góc</i>Hơi chếch bên má</span>
+                    <span class="cam-seg"><i>Chuyển động</i>Tĩnh</span>
+                  </div>
+                </div>
+                <div class="mgrid">
+                  <div class="mrow"><div class="mlbl"><b>Hành động</b><span>ACTION</span></div><div class="mval">Ấn ngón trỏ lên gò má, chỉ tay vào nốt khuyết điểm rãnh cười</div></div>
+                  <div class="mrow"><div class="mlbl"><b>Bối cảnh</b><span>SETTING</span></div><div class="mval">Phòng ngủ sáng sủa</div></div>
+                  <div class="mrow"><div class="mlbl"><b>Âm thanh</b><span>SOUND</span></div><div class="mval">VO chia sẻ sự đồng cảm với người xem</div></div>
+                  <div class="mrow"><div class="mlbl"><b>Trang phục</b><span>WARDROBE</span></div><div class="mval">Áo hai dây be sữa, sơn móng tay họa tiết dễ thương</div></div>
+                  <div class="mrow"><div class="mlbl"><b>Diễn viên</b><span>CAST</span></div><div class="mval">Nữ creator tương tác sát màn hình</div></div>
+                </div>
+              </div>
+            </div>
+          </div>
+
+        </div>
+      </section>
+
+      <!-- MAN 2 -->
+      <section class="act reveal">
+        <div class="act-head">
+          <div class="act-no">02</div>
+          <div>
+            <div class="act-range">0:15–0:33</div>
+            <h3 class="act-title">Màn 2 · Kỹ thuật đánh nền &amp; Chờ nền khô</h3>
+            <p class="act-sum">Creator hướng dẫn đánh nền lỏng từ đầu và chỉ ra lỗi sai phổ biến: phủ phấn ngay khi nền còn ướt.</p>
+          </div>
+        </div>
+        <div class="beats">
+          
+          <div class="beat reveal">
+            <div class="beat-frame"><img loading="lazy" src="data:image/jpeg;base64,/9j/4AAQSkZJRgABAQAAAQABAAD/2wBDAAYEBQYFBAYGBQYHBwYIChAKCgkJChQODwwQFxQYGBcUFhYaHSUfGhsjHBYWICwgIyYnKSopGR8tMC0oMCUoKSj/2wBDAQcHBwoIChMKChMoGhYaKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCj/wAARCACyAGQDASIAAhEBAxEB/8QAHwAAAQUBAQEBAQEAAAAAAAAAAAECAwQFBgcICQoL/8QAtRAAAgEDAwIEAwUFBAQAAAF9AQIDAAQRBRIhMUEGE1FhByJxFDKBkaEII0KxwRVS0fAkM2JyggkKFhcYGRolJicoKSo0NTY3ODk6Q0RFRkdISUpTVFVWV1hZWmNkZWZnaGlqc3R1dnd4eXqDhIWGh4iJipKTlJWWl5iZmqKjpKWmp6ipqrKztLW2t7i5usLDxMXGx8jJytLT1NXW19jZ2uHi4+Tl5ufo6erx8vP09fb3+Pn6/8QAHwEAAwEBAQEBAQEBAQAAAAAAAAECAwQFBgcICQoL/8QAtREAAgECBAQDBAcFBAQAAQJ3AAECAxEEBSExBhJBUQdhcRMiMoEIFEKRobHBCSMzUvAVYnLRChYkNOEl8RcYGRomJygpKjU2Nzg5OkNERUZHSElKU1RVVldYWVpjZGVmZ2hpanN0dXZ3eHl6goOEhYaHiImKkpOUlZaXmJmaoqOkpaanqKmqsrO0tba3uLm6wsPExcbHyMnK0tPU1dbX2Nna4uPk5ebn6Onq8vP09fb3+Pn6/9oADAMBAAIRAxEAPwDyf4d+FdJ1vwxqV9f2Ut1d20reWqSlRtEeeQOoycnvxxVFvC+lj/lk/wD38NaHw2u57DQ5rmwvJIbtLokojkZXapztxgjPUH06Yzi0/SpGc+/hvTF/5ZP/AN9mo/8AhHtM/wCeT/8AfZrpLC3W81SztZCwSeZI2K9QCwHHvzWxq3hC6sbYXKSCWDaoJRSTv25fJwAqA/xOV4PGdrYLjSOD/wCEf03/AJ5P/wB9mg+HtN/55P8A99muk1vSn0iYQTXVvNcK7xTRRCQGB1IBViygE5yPlLDg+2c3eQDgnBGD70ahYzD4f03/AJ5P/wB9mk/4R/Tf+eT/APfZroLp5bWN7O5tY4bhJMliCssRAKMjc8ZIGQwyCOMAnMAguZ4nnjt5pIkUlnClgoXaCSfQbl+m4eoo1Cxi/wDCP6b/AM8n/wC+zR/wj+nf88m/77NXN0wmJJXy6uTQywRo0ylN/wB1WOGxtVgdvXBDKQeh7ZwaAsZP/CO6bjPlP/32aT/hH9N/55P/AN9mtTPAozRcLGO+g6eGwIm/77NFW5izSErnHtRSuFh3gcN/ZlwcfL53X/gIreesnwJE0mhXLLGSVuOX3DoVAxjvzitlgqyBZiyDODhckfhkU27ElzwpAJtfgd8CKANO7scLHtBIYnsA22t3XPFmlpd2c+n206ahabp0Pm/uUuQ2Fcrg7yMFl+bGSoORuBqeFbnT7C5mkSWR5njYI8qbAhHIyAWyOM/8BHvWbp+h22o6pMrTs6EvIghTyvMA5AAfGzJyOh6enNRzLmHc6jTNTuLLwdajTXmRZrKXzZBMoSCOPzcoRt5d3ecrnO0TLwxVWHPaD4wtdLuryWTRluI7m4M3lNPlVA4WP5lYldjTIwOdwkHQqDXb+G9X0xLm8sNUjit/KCho7iQSxhOhXcGwTkqDknvnoa8Y1W6SbU7uWGFbeN5WZYV6ICfuj6VSkNM6bVPF9xf6WbGWEvGZ1mMs0peWUAtkSOAC24eSCeP9QhxnmtYfEMCAIunzI5minkkW7y0zAkTB9yHKSoIg0YwmYlO3Hy15z53qaQy+9O47s7mx8arB4iudXuNP+0TzwxwAPKreSFQDchZG+bKJgtu+XcH8wsWqK+8Ztcafe2sNj5H2hPKR1mOYUBXYg4yVVTcRjJyUnKkkKK4kze9ETmW5jjB+9n+VFwNBTkClP3SO5pPKcHABPvUiwsT8/FIQ2OEKvJGepoqbyB60UAU/Ayo2jXPmuVAlJAA5OFGSPp3PYGtt7iZYDBHLsiT77OoG9eTgn/gR69/oMc94Ikt4rF3unlhVbgMJY/vDC89j7duma6C/gZfKRZI/Kb5FZHDByeMZH5/h2ya5Ks7TsZi3Fz9lSykBjImPCSAZwCNrDH3lyCMkc7Tx1rV0+/ZI4buWSMCM4LmMOME8kjpk9yMGubnuLe6u5CJf9T+7jDj5VAyQB6c5OPfNXfLDWLsH8sHqgbCsR+hq6cb+8yom1rC2l9El+tu0RmTczREFS44YEf3h17ZyD3rz2/Yi5kz/AHj/ADrqiXVDESQoJJU9j/kD8q4e8ud2o3KSebtVhjywD1Gea6ErFiC6Vuh/WpRMmPmJH4VRimtI+Nk3ryRUsc4lL+RDK4Bx04Hp3p2Juy+sO4AgHBqxYRFb2Pj1/lTYbsRwxx/Y7lyFHzxwbUI7Yyf8Pwot70vqVnEkMkYlLFjIADgKTj+VKxRvClNAFFAhKKKKAJfhH4Ou/E9ldy28iQxQyFXlkOAMp6+vOePTkjIq5e+CNf8AD1ubi+TNk8auiq4DY3oNxX+E8p7jdjBw2Ou/ZnvfI8N6vFGokm+1bwhOMjYvfn+Rr2DxXHFqmhXaoomUxuFBPVwCMH3B/UUnSjO9tyJxnG0mtGfJryOQV8ox84wwIPHT8unb0qxBOZMo52knJAPB9/1ovI5F1C6SVtzJK6k/8CNZup3K29kQp/fvKVTB6DA5ogrKwzR1LUsM0Nt94cM/YeorjNRmyTtJAz+J960JpDb2mOcuOGPOAe9J4d8M3/iK622yMwPPA6D1rRtJFJOWiOdDtu681s2N41miPLHkHliOuP8AP8q9dX4LSrp8fzAS4ySR3964nxV4L1HQ1ka5iE0WMcD7vvUqcWW6U46tC2OpWt7EfIY5AxtYYxVyOIEhtgODnOOnBH8ia8/R5LSUvCSAOv8A9eu60DV1vbFoVKhmIZ1xyMZxj2+am0QXlHNDDtUgFNYc1NgI8UUtFAHpn7LVtFP4U1UzRRvi+IBZQcZjSvYdbREtXjjUJGq7VVRgAAcACvE/2bLpLPwXrUzuyhLpn4JHSNTXoN3rzyRagIp/NkgkkDI4LH/W7QAODnoAK6I6I553bsfPusoI9X1Fj2mc/wDjxrhri6828MpGcfdHrXb/ABEW6tJbi5aMQw3LvtDH5jyOx5A69QM9uhrzjfufHesjZbF+QvPHuzln7jtz/jivqv4P+FYtJ8P2rvGPPlQMxxzXy7oKQ3GpWcNw3l25lQuw4OM+v4V9W6Vpy2UdvcWWr30isBtjafev5VjWZ2YaO7O9uLcbOg4rjfFej299ZyxyorZBHvWxfTPcafFmRwJQclSQeOtcBqFx4QjjV0ube5unxg/aS8mT0xzkHkdKwTvqdTVkfNnimxOna1d2xXBjkIBx1FQ+F3aLUNyYAClj9Byf5V1nxp02a11y3ughEc0IyTySwJ5P4EVzPhBfMv4eSCxZOnTKnmuxO6PMmuWTR36x5UMAQCM81FKnPFaflrsG0YA4qjcjBoJuVuRRSmikBB8N5tXj8PXkWn3UcdpPLIskZIDHCJuIyPRh37Vo6nqeqJqV7cwSmPz53lyrY2gsThSCCPqc1f8Ag9Y3Go+Cp7W1idml1Qo0ioWEamEDJ9B/9arOtaFqlvo9i72GoTS/Ztzqtscqeu3gdfmxzzxWyg2rmLqJS5e5wniL7dquk3+o6nLK32Ty41OQ4ZmICg5IIG0McgHke+a4iJT5gY9jmu68Yy+T4dtbY21xbTuQ08cwCtvV5hyM5HBXrg/hjPCK5PWs2bI7z4YaLFrPiOCG5UNBn5hX07pHgnQNCAu7KwhWeMZSRlDMp9QTzmvmv4EagkfjQwSEDzU3Jk917D8CT+FfV9xcQLprC5lWMMOHJxg9q5aralY9Cgk6dyoQYrKykIbbvY59ajvPD2kK32sWNuJs794QZ3HnP1zWPDJpTyxKuuEovKhZBjJ689K6S+uYXsMxMrRgYBByKzu0dFtT51/aBuYDJDEf9aFxHzyCWHP5KR+IrifhrZ/ar0qy7hG3mkEccDH9RT/i5qKal44u/LZWjtwtuGDZBIyT+RJH4Vs/B+Ama+lIwNi9vUn/AArspr3UeXXlebZ1lxarEDhQPYCsO+GGNdTqeEbBxyM1y+ot8xq2Yoz3mRGwxANFUb1Z3mzEI9uP4ic0VIz1r9l6SO38G6pLI0Y/05woZwpLCFT346A8n365Nen3Nwx3RSsY2LkDzMRs/BYr83LdG6BQAeOma8p/Zrmli8Dal5bHadSAKsp28pGpwQMhju4GeSB711XiyfyrqG2sCikqYlSSLzVyFbcWOc85Gecn8au9hJHJftAta3PhO0V44TezXO+2ddoZkCAuRjkgl1GM+/OCa+b/ACXf5VH3unvX0l8QZoLC2tdWvL77TdRLKiWrSDBhkc/MAB/Cdi5OQQp79PBb+OOdpDboEXecKTnA7UiiPwy8un6hHd27+VdQtvjb0I7H2PQjvk19TeCvEumeNtBNtdBBPjbNbyYJU8cj1HTn/wDVXzJZW7SSFAm5nBYZ6/nXo/wishqT3MaFkuIj5iSK2G5GDyOf/wBdc9dK1zpw0mnY9qi8EWsJR2a28gf3Y8MR71h/ErxCNH8OXcWkhTPFA2wKMhMDjNWjBqvleTJeTMvTriq134eV7GZZRuYoc5965ee71PQqNtbnyfbLNqF6o3tJPKxyzNkknqST+PNe1+ArAad54baqyQROvYfelH54C1heH/Bn9h38y3gLyiRhG5GAUHTB7HJ/ziu80gAXaLnO2PGfX5mr0o66o8WV1ozP169gUI0LxzAg8o4OK42/1BSx+Qj8a6TxwwivFYDPykYHUnIrzzVZLxi629u5kI+UYz/XFKT1BLQ0Gu4WOWjBPuAaK5aK115k+WOQAcfPtB/WikM9v/Z7u47LwVfyyCPc9+8as/YlIh/U8YOcdu+p4jmvDay3ysYYJDsjVFO93c8Yx0O4jnPOOnNY/wCzxClz4YvYfLBYXrFmK5wNkeAPfI/DFek+K9Phkm0yBocwrNuO3jJ2MRn261jVq8rsjopUuZXZ4B400+7tjawXMqyzygOyjChcAdQOuOMt3x7VzyIkUKCNd4SSRTIy4zgJ0/Et/k16D8UbGWLVNcnZoQLSGCJVI+bMvmE4+m1j/wDqrg7dGXRIYmUBYriXcWGSCQnP4DNOm21dkTWtkGhCO41kIRhCDlRXsvwM8P3AvNQ1EgpBwiYB+b6Z6jGOfrXJfCHwLPr+oPe3bSW9kOeBhpOc4z6Y/wA8V9NaZaRafbLBbQqkajgCoqyT0NqMLalJ02nDQ5PrVa5sp5kby2Rdw6EVuTKcElTVFnYNWHKdN7nE6roNywPnQwyAjqGI/pxXA+IdFuoNT0+JWEdvcuyFs5KMAz9e4Izxx06817bctuGDXnni7a/irw1ZMCI5JJ5WPukRx/6FW1OTTMKsE0eaeKNB1m3it3eJpY0JLujbuCcj3/SseJmEanHJGTX0Lb2cVzYRswB4I9ehIry3x7okNhdCe3wquxDKPX1rRTu7MwlTtG6OWjZWXLDJopyoQMKisB6tiitDI7z9l+IHwrqsnf7aR/5DT/GvSfETqt3aGRclMsCPUDA/ma89/Ze/5EnVsdft5/8ARaV1Pjy/W2ihdmxskyee2DXJV+NnbR+BHGfEaGG5uLmRcFrrVIpZGPBMQijCjp0y0o+oauW0XwzBqet2VpEDJFLcSzSgtgBPl449duPofWutluoJvDFze+TPLcpJLDsgiMhZg02zIGcc4O48dKwfDGpxaV41fU4bqyj0yNWZ4ZrgKWjdGfKtt5O1VOOuSqnDEgaRTtoYNq+p7lodjb6RZrb2iKiDsKsxajM135YHGcY749azbPWo9REDWGmX00MtotyJlMWwMwfEOd+DIDGwO3Kg4ycEGobbW5GubdTpGoRpNtIkcw4UNyCw8zcvGCQVyMgEZIBy5JHRzx7mpfXdw8kmZGTacBQcVXur6WO3jboSOSR/nrVC08XadfvOtxpGtQSRFgPO0+T94qgneuwEMOMeuSvHIrFufGMdyqNHpOtJutmufLNi+VwARGewcjOBnGVIyDgGuVijNdzpEvQ8Ks/DEVwfiiVLjx5oapIA9vBcylc8kFNo/r+VbUt+Ybe5uLq2lgt7eBZ5HkkjGNyB9mN2Sw+ZSMfeUjuu7zm/jvNQ+IkdxaXNhOkUssAa3uVmCQIoBlymRhvMO3JznIIGKqEJXFOpGx6VYagBpyrnAO4j8Sa4zx6PtGmOx5CkNV27v0a5ihicNIW5A7AjP9azfFr/APEpnU/3ajaZW8DkofJaJHmdVZxkAnHFFTiRbZRG8kCHHSV8H0yPbiius4Tsf2Zplg8Dau7nA+3n/wBFpVTxzqS6trUVrCTtVsHnhiT0/SuU+GGuDSPAd/FvCNLenGTjJKIAKm02bF9FdXAcZcyg8nJHpzWLhzTbOjn5YJHXeEryDzZdNiZklkuCwYJ1+dg3Oenz9fWtHT/Cmj+KW1C6uVkH2mX7RHPGwDruZuR1GCFHBzgGuY+HsiXHipkYOokj2NGXI5ChiRgfLnofx59PXfCtnFbafIYVXy5ZnkUgdVzgH8hVpWZizk/D/hnxP4RmYeH9YtJbR8PJDdIyxs3Q5UbucY5Ug8elP1bR/E2sXk89xfGwebaxeyvJnRSsaqAkZZVVS4LN1Y5wGHJb0BxxVYrljkgAAkk9hVNJ6hzPY4ifwzqkoUx+KdXjaOEwrmRWyeQrMBgEgE5OMkhTkYOej82WMfIkbZU/M2eG/wB3HI/EU+S+QHCQhh6sxyfypjMs0ReIkEHDIece/wBKhQizeUatON2jmNb8Pza9ka7q1w0ORtt7NBBEOmdwO4tyM8njtirul6Tpuk2Zt9NtlgTqcZJY88knk/jV2TJPNMxWi0Odts5KK0gttZu/kO5z5gJJJ5+vbIPHaofE/lCyclSe/PTFTX7Y8UlM4HkKT/301QeJ5YJNPlQZ5UjOOK5ZaTZ2Q1pnITSyblS2a8IRVVvs7Q7Q2P8Ab5z0/Sio4IoUVja+XBG537RgZJ5zRXUcJzngsM1k6ZBDS4Ck4H3cn8SFx+Irv7a1ltVtJCpM0TNujO4YIBz2+h71y/wrjil0+Z5ZAAtwMqcc/cx+vHpgmuu16XZp5t4Z1Qk7Xw/+ry2AAT+eOvHoabBMp6FK9v4osp5wsKzP5GQ/AQoUx1yM4Ne/RbY4Y0X7qqAK+YtGEdz4pEEzsYy/mIAQeUUj8vun8K9/stSCwIJZoywA5DAVKRTZvSMMVUuMvbzonLFcgeuDmqEmpxYwJUP/AAIVCNQUsCrpkd9woHF2aZVcipbIkCZz90Jj6kkYqSSS3fLNHED/ALM2B+WKp3F7GqhQ8KIOgVqlRszuq4qM4OKW4SPyajdwEJPaqkl5Dn/Wof8AgQrL1jUxDYzPGykqhOSwAHHr2+tUcNjirrWTfeNb2OFg0cREAwCD8oJb/wAez+ArotckVtHcIysHTHlleVPGT6DkdRzj8a8q8HXI/t7zWdEO7eeeO+f516nPqMNzF5Vskbuer8CsJ7nTT1ieWT+JILOT7Nc6b50kICbzgZA/OirHiPRWl1WR0MQ3Abue/wDnFFaqbMXTPOrjr+X9agoorUwFo70UUDFpDRRQAlFFFAgpRRRQAUlFFABRRRTGf//Z"><span class="ts">0:09</span></div>
+            <div class="beat-body">
+              <p class="zh">Creator dùng cọ tán kem nền lỏng lên da</p>
+              <p class="vi">Bắt đầu đánh nền bằng kem nền giàu ẩm cho da khô</p>
+              <p class="note">Creator dùng cọ dẹt quét một đường kem nền lỏng lên má. Hướng dẫn da khô nên chọn nền ẩm mượt.</p>
+              <div class="matrix">
+                <div class="cam">
+                  <div class="mlbl cam-lbl"><b>Góc máy</b><span>CAMERA</span></div>
+                  <div class="cam-parts">
+                    <span class="cam-seg"><i>Cỡ cảnh</i>Cận (CU) mặt</span>
+                    <span class="cam-seg"><i>Góc</i>Ngang tầm mắt</span>
+                    <span class="cam-seg"><i>Chuyển động</i>Tĩnh, nét sâu trung bình</span>
+                  </div>
+                </div>
+                <div class="mgrid">
+                  <div class="mrow"><div class="mlbl"><b>Hành động</b><span>ACTION</span></div><div class="mval">Cầm cọ dẹt tán kem nền từ trong ra ngoài má, da mộc chưa trang điểm mắt</div></div>
+                  <div class="mrow"><div class="mlbl"><b>Bối cảnh</b><span>SETTING</span></div><div class="mval">Bàn trang điểm sáng rõ</div></div>
+                  <div class="mrow"><div class="mlbl"><b>Âm thanh</b><span>SOUND</span></div><div class="mval">VO giải thích thói quen dùng nền ẩm của da khô</div></div>
+                  <div class="mrow"><div class="mlbl"><b>Trang phục</b><span>WARDROBE</span></div><div class="mval">Mặt mộc hoàn toàn, tóc kẹp gọn phía sau</div></div>
+                  <div class="mrow"><div class="mlbl"><b>Diễn viên</b><span>CAST</span></div><div class="mval">Nữ creator mặt mộc, da khỏe</div></div>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <div class="beat reveal">
+            <div class="beat-frame"><img loading="lazy" src="data:image/jpeg;base64,/9j/4AAQSkZJRgABAQAAAQABAAD/2wBDAAYEBQYFBAYGBQYHBwYIChAKCgkJChQODwwQFxQYGBcUFhYaHSUfGhsjHBYWICwgIyYnKSopGR8tMC0oMCUoKSj/2wBDAQcHBwoIChMKChMoGhYaKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCj/wAARCACyAGQDASIAAhEBAxEB/8QAHwAAAQUBAQEBAQEAAAAAAAAAAAECAwQFBgcICQoL/8QAtRAAAgEDAwIEAwUFBAQAAAF9AQIDAAQRBRIhMUEGE1FhByJxFDKBkaEII0KxwRVS0fAkM2JyggkKFhcYGRolJicoKSo0NTY3ODk6Q0RFRkdISUpTVFVWV1hZWmNkZWZnaGlqc3R1dnd4eXqDhIWGh4iJipKTlJWWl5iZmqKjpKWmp6ipqrKztLW2t7i5usLDxMXGx8jJytLT1NXW19jZ2uHi4+Tl5ufo6erx8vP09fb3+Pn6/8QAHwEAAwEBAQEBAQEBAQAAAAAAAAECAwQFBgcICQoL/8QAtREAAgECBAQDBAcFBAQAAQJ3AAECAxEEBSExBhJBUQdhcRMiMoEIFEKRobHBCSMzUvAVYnLRChYkNOEl8RcYGRomJygpKjU2Nzg5OkNERUZHSElKU1RVVldYWVpjZGVmZ2hpanN0dXZ3eHl6goOEhYaHiImKkpOUlZaXmJmaoqOkpaanqKmqsrO0tba3uLm6wsPExcbHyMnK0tPU1dbX2Nna4uPk5ebn6Onq8vP09fb3+Pn6/9oADAMBAAIRAxEAPwDkPEer6hqCwW2qmOSa03IkgVQxU44JHDDjIPueTmuferExbOHzleMHtVd6zLNPRNJj1SzvWQyi6gXKBcMHJGVG3Gf4WHX+IemDm3UE1q6pcRPGzKGXcMBlPRge4PqODXfeD47PTPDUF5rEebS7nZVljHzR5Krlj2UMnOfUdTxXE65LFdancTw3r3KyTOA0qkMFBwp9MbduMYxgjAAGYUm2xlAtTS2auXumXNpA8s4VUVwgyfv5BOV9QMcn3FZbSc9asROTSFhVYyD1pjSgdW4pAWVVFYlVAJ7inqw9ayZtUhj6c1Rk11d/yrjtyadgOldxtUUwnHPSuc/tjd/rDtPbjj9ami1DfGxXYwPGBx+vSiwE86NPKzDoDjiirdtcxNECB9frRQB02oQSwzsJllBb5lMqFWYZ+9g+tMtLe1klK3t59mTGcrEZDn0wMfzrSnS5aeKe4JlhwC0EjZwntjHYn378darBxcXW2W2toflEcZKYVsYGSR3PJye/oMVi6qFc6LW2sLvw7b6LYTrBLauVxMNpnkX+EZPBYsSOoyQOKp6D4aitZDfX9wksUYLJHFHvDDax3Mx+UAYB4Jz04NZj6jLHciCV2h+zSeWEjGGTB52tg4JORkds9cjGzFc6ZbTzwTxRpaTPkbWb8RgZAGSOmCOOlRCbYLU1fECaY3ge6uZgbifZIIpI9xAJGATgADnrz2A5yBXi/m+nJrrvFN1bwNLa208sVvlg0LknyySoI984H5CuFlmJ/wBUdi46nqf8K6YR0G9CSa6KnAOT6Zx+FUZpLm4GFBYe/AP+eKkeSCDJmJzxx/F6VXmvXkU7IxEnTceWPOP89KuwrkUibFJd8kHtgf5/WqUsuWPJ/Oid5JHy25t3OCagPXkYPoKYiUSg8HP41LENsgKsVPUMPX0qsF3AkdR2NPR+OaQG7aX0vlcFhzyM45orPVywz1/Gigdz2MRXUEX2uaIm0UFYnEgbMRGQDznA4wccZbtjFWwbdKl66JiBXlCmP5WGR9455GcjAHUGq15ealYQx3Ni7qh3xzxN80e0LnIB6DBxnjkEc1nXN79u0eSRCUaUgOvmc8A/dHoSCe/XHJ5ryUpMlCAyQv5188v+knJdywYgYPBYZ4OOtZur6/NdEfvAQnyK+0AkfhWTeXTSM6xsywj5eG+9j3qn5ixqZJGAx0HY16UIJFFt5WZhI75/2mGc1nXF9lttsCH6bh1/+tVO7unuJDhjtz16fh9Ku2Nm+Dt+U4B5549T6f8A161Abb2uH8yX53HUfwjnvWlBpl3eyqltCXY8biOF+g/Cup8K+EX1CeHCsU688/8AAj7nivcvDng61sowzRjcBjkfrWU6qjoa06TlqeI6X8Nbu6jUyjr/ALOfxNXpfhQwT5dwf3FfRkNjFEmFQDjsKrXVuuOAM1i6sjoVGJ8u6j8NtRtN7x/Nj9a5OTR5beVkuVKEduh/WvrueBTkMoIPrXE+LvCFnq0T4RY5sfK4HerhW7mc6HVHgMcWUHlIxA4yFyM0VLrek3ek6lLaXEDB1Ocr0Yeooro3Oax95adotpb6VBbrDFiFBglBy3XccdyRn618rfG2PTrbxJNb2AVRCSkipHsEf8QX3yWcg9gcYxivrW/uVtNKuZiwTZCzlmBIQYPJA5/Lmvh/x9ez3OuXUU0ivIZmklK7gA/AK4J4UEMQMDG8jpilKKM4as5glWZ3kyEHpWZPI11NheF7ZOBU19MAuxeB/FjuaqQfMT1x2HqaDQvWVupY4+Ygdew969I8B+FLnVXDKuIScsxHX/PH5fnT+GPhFtd1QNdqyWsWCyEfe9B+v5V9JaRpcVnbJFbxiNQOAO1ZVanLojejS5tWZej6Vp+gQjc6I2OpOCceg7/zrXOv6fGyKZc7hkcYGPxq8un23mbpEDuepbnFXm06yeIs8CNgYywzXOrPc62mtjNt9Wsrr/U3CZ6YPHP1p11wDmuX1rQbYlntVMLqc4QnB6dvX/Cs6B9QsCA11I8A+bawz3GffPXv3puK6EptbnS3FUZ03ZpYLsXAI53DqDUhGc1BZg3enRSzbnRScdSAaK1XjIY4oq+Yix3PxC1Sys/CU8ly5WAuBICpCuFyzKxwflYKVJwevHODXxBrV813fXV025TM5KgtuKjsM98Divor48+MrWbwvDY6VdozzybXMEmCIgp3A7ecHO0jp835/Md5Izz7UAzjbgjNdrPMgrFSKGS8uNkQBJP0FaWn2Ma3G123sozhTkZ59PpU9nbhbZ0gJBIy0mB6Y49K7v4R+GTquuKZ4/8ARIQHYn+LngVLkkaKDkexfCnw8NM0OKR1KyzgMQRzjtmvQo4syLHGB5j8Lnuew/E8fjRp0HkqrIACuMccflV+dVS6huYAoGRIE/uMDyPpkce2K4W+Z3Z6CXKrI45vEdgt4baS5ijnH8LsAa6K8nFnaFWkR5DGrEdNpYZA/Iiuf1nwZoupa7Fd3UQNvFL5hRxkyKDnbkdCcYz2zXjHjLSPFtt4gvL+2Mx+23D3Msls5X7zEnKg46n9K0jFPqKc2tkesXF+ruR3zVZGErBcVwGi3euNPDFdQ3E5bAZzFtK59ex+tekeHNKkmlaS5wEX171LjbQ0Turkos1gTI+8eTVW8ult48k59hW7rISNCR0A61xc04lkIIz6VKQmyvJ4mgRyroQR60VI2mW8p3uq5PqKK0vEytM80+OOn2uleL7uzsbeC2t4tu1IgRgsASMdOhX868qjy0jSd84HFfTvjr4ZT+Ldd1LUjfC0a7kVwvleZtwkaddwz/q8/j7Vk2HwH0u2hH27Ub6dyckptjU/hgkfnWzrw7nPHD1HujyjQtJluUWOJGII3McZ/OvdvhtpkWnNPHGAQGVd397C8n8609C8O6XpO2HTYViJGD1Y4IB+8eccYrctrOx8rJCgZPQAVzSrcx2Kly2OhhvIbfIeSFSRjD46e2aLfU7BXzNIwU8fcNcnfyW1uf3W3g96oz69FGEJKHYd+DWalqbqmmdjf3NvNIfs5cxt90spGapo80cUkURCLICGZVAYg9Ru649s4rnv+Eg1jWLcQ6TZSTIDkyhT5ae5bpXS25ZYV+0Y8zHOK0btqiHBLRlaHT4l5CjPrirUUQj4UcVct57ZIHe4jLdlwcZNZ0twZH+SNlGeKQkiLVIxLA6nuMV47r/ii18O6nFbXsU+GBJlC/KOcY9Sf8RXst0rvDkCuA8S+HbTVWkhvYVdH+cHuG9RVQt1IqXWqMaz8T6feQLNDeRlG9WwfyorHPgWaACO1eLy1GAWQ5P1orTkj3MvaT7Hs1z4jiij/eyooHqcVi6h4+0i2AFxeRKT03EDP5149rlteTxTPa3MvmNnG5+nsD2rzS7s7u0aY3cUgZhkyN8wJ3ev4VlTo827Nqtfk2ifQmpfEzR1BjGpQopyCIV3vj8M4/8Ar1JceIZZo0S0DbSoIz16V80hcSdQOCffpmvp/wAG6Yl9bW84wUkUPn1Bp1KMYK5NKu5vYdpOjanq7gyzGOM9cV22j+DdKtNsk8X2qYc7pTuwfYVq2VvHbxLGg4FXFYgnkbayN3JstTXASy8iGNY4x2UYrBkRpGJ7etajuMcnFARGTAxVttkLQwZrpI5vLkIVVAArJv8AxrplnM0Cwz3DJ994YWdU+pHH4da6S+s4ZFKyIrjsDWZd21nbWoSGFFbsF9aSKbVhY9dgutNWW3kR7eYBlYd6568vop7yCJCC5JP4YrC8UXGp2A8qG3hiXohHKj6qMfzqDwykjTrLO7SygZLlcDPsKuK6mcnfQ6gpRUU8u2QjNFURY8qjuAyYU5FUdVhhltZvPA8sodxPGBiqF5byJua0nkjbrjOR+tclqOuXtyXsp3HlqxQhR97BPX8cURhzPQc6iitTIdSPmORj14zkcV9UfB26EnhWwjfHmxRrGQPQDj9MV8txruZ4sqG+8rDpnPr/APrr3n4bXrWKwyH/AFbAI34VdbZGFDc90jbjipGfArPtZxJGGU5z6VY+Zs8VyHYZWvanNaW8j28Dzuqk7E6n2rl4PiTBaRldQt5bWRQcif5R65B6Ec9Qa7yNFTJxljXK61pFqZHDwI0Uh5BHStaaT0YJXIT46t5m2YhDY79f51Xl8QRXJ56DkMBjFYms+HxCC1i++Fx0Zc46nHP9K5HWRqNlasbWBpJAOFDcHnpz04zW3Kg5HFXaO+utUivWByDt9R1p8M0cYLKAM15lperXF3IsIgninzkxuh4GeuRx+tdLqupjS9Lknnz8g6d2PYCk1bRGEnrci8R+M9P0rUTb3EreZtDEKpbGc+lFePTzG/uZ7q8O6aVyxO7A/DJ6Dp+FFaKmupzOs76G1d6jPbWUlzLauFHYkd/X2rhhK0l0XdjukYliOOSc/wA69E8RXCpavGApd1ICeo7n8v6V5q338ilS2KrvVIu7iJIyFzgjHv7f0r2L4fXYmsVViMjggnnr19q8k0+zN88v+kQQ+VE0372RU3AY4XJGW77RycHAJwD6H4XnXTFha6njbzA4EUDGchlDDIMYZfmKlQM5OVONp3U6sbrQmjJJ6ntehagbcrHK2Yj90+ldfDKHUEV5LaayTeeRJY3IhMZcSBGY5D7ACADjPJGTnCkkBdrNt6d4uFtFJus7+SOIoGxA25NxIHy/ebHBIQMQGBI4bHI4M7faR7nobGs/UkV05OK59/G9oq2W7T9W8y6UlI/shBDCNpChzwWwuMAnJIx0OIbjxYkkcLPpmohXLBnEJIi2vtYMB8xZTtyFVhk8EgMwahLsHPHuUNUMkbtgEp7Vz95egKVC7n7DFamr+Io7S7WOXSNWYt8pkjhV1VtqnB2sT/EBnG0nIBO1sVtcAgktNkUUnnxCZ2WZCYM7gUYA53AgAgcfMCCQDjaPMtwde2iZS0vZaW0stxsDnLMT0UV514r1w6vcAw5+yRkeWT0JP8X19B/+qm+OvEb3SS2NgWW3QjzZAP8AWew9v5/TrgWk8s9vFDCpyOMgnAH9O1XGPVnHUnfRElpBOYsRN8gOBgj8f1orYgs2SCNTFNIcdUZVH5MQaKrmRlZnP6BDPfzT3Vy++SdvL3OPz/DtWCIiZNhG1gcHPGDXovgzT9sCAgbUiLkEHnJx+vrXGqqyavO0OXjaQkHHOMnHX1A/WlGWrKa0RQtVDOmTxnk16D4bzG8CYfPnBgFA5+VhgD8vz9q4izg/0oI2TvK42nr83/669P8ACtis2pxyRrtRAq7ugJ4bj1HQZz2NKo9C6S1PQrIrKuUbJXjPQH/61SXqSGJ1CqSVIG4sAfrtZWx/usp9CDzSC3CTOVXapxzngk9T9ac5ZuCefQ1xnctjL0eeXSFh8x5pnVNjyPcTPv4T5tryMAxIcnA6FQAuG39KmvRSxgM2PY1ivbBuWyfrWZfRgdBVc19yV7uiNnUtXgQEhxXJ3tzJfuygkIep9RSfY2lck5xV20tMEcdKtMiTbOc17Q7b+wrtvIjLJGzq23kYGaqeAtMil05ZCFOSUOB3yT/hXb69aBfDuosR0t3/APQTXP8Awzj/AOJM5I/5e2H/AI6lawd4s56is0dH/Ysf92iuuaAE9KKxuzosjyHTjHa6BqUgMisSkCMq8oT8qnPHQkZIPHNcRb2Lya55U0Yy4VBg/cYkc/hmu/jG7wrOjmI7p8BCSG4w3I7f/XrMWwke50+4zmMXauyDjCZAz+laQdrnO0Ya+Hp/7bit3C75ByVyR2IGAM5xn64r1fw/orWsFvIgJUfnz3qGXSAb60klmzvkHJByegGQMepXPbOfWvQrG2WO3AYZNTOV0b04WMkRMMADk+hzT/7NLAMRjHQCthLYNcqdtXpIFVRyc1ibnKTWp24AIrOn08nJYHFdXdRqpyTmqE7KQeOKEJowIbIKpGOanhtkTkjFWnkRRwOarbyz+1WiGUfFWB4a1L/rg4/Q1znw9j8vw9C5GPMndx+g/pWv4/nMPhW7I6sFX8yBWb4OynhfT1IIPzN+btitqfwnNV1Z6L5lFUBNkUVidB5sEUeFbjCqMXUeMDp+7jq5dAJo1gyDa32gjI4PDpiiirMUd7oiK843qG/1g5GePlGP1NdBZcqme/Wiis2dES/F9+luPumiikaGNek5PNZlwTzRRQSyi/WkSiimQznPiV/yK8v++n/oQpNC/wCQNp//AF7xf+g0UV0Q+E5Z/EdIKKKK5zpP/9k="><span class="ts">0:14</span></div>
+            <div class="beat-body">
+              <p class="zh">Ấn ngón tay để lộ dấu vân tay lõm sâu trên nền ướt</p>
+              <p class="vi">"Nên là sau khi đánh nền xong mà ấn vào nó vẫn bị lộ vết như thế này..."</p>
+              <p class="note">Cận cảnh trực quan dấu vân tay hằn sâu trên da má ẩm kem nền, chứng minh nền chưa khô.</p>
+              <div class="matrix">
+                <div class="cam">
+                  <div class="mlbl cam-lbl"><b>Góc máy</b><span>CAMERA</span></div>
+                  <div class="cam-parts">
+                    <span class="cam-seg"><i>Cỡ cảnh</i>Cực cận (ECU) má</span>
+                    <span class="cam-seg"><i>Góc</i>Ngang hoặc chếch 45°</span>
+                    <span class="cam-seg"><i>Chuyển động</i>Tĩnh, phóng đại tiêu cự</span>
+                  </div>
+                </div>
+                <div class="mgrid">
+                  <div class="mrow"><div class="mlbl"><b>Hành động</b><span>ACTION</span></div><div class="mval">Ấn ngón tay trỏ lên má và nhấc ra, để lại một vết lõm mờ kem nền rõ rệt</div></div>
+                  <div class="mrow"><div class="mlbl"><b>Bối cảnh</b><span>SETTING</span></div><div class="mval">Ánh sáng hắt xiên làm nổi bật vết lõm</div></div>
+                  <div class="mrow"><div class="mlbl"><b>Âm thanh</b><span>SOUND</span></div><div class="mval">VO cảnh báo: Phủ phấn ngay lúc này sẽ gây trượt và vỡ nền</div></div>
+                  <div class="mrow"><div class="mlbl"><b>Trang phục</b><span>WARDROBE</span></div><div class="mval">Nhẫn vàng trơn ở ngón áp út</div></div>
+                  <div class="mrow"><div class="mlbl"><b>Diễn viên</b><span>CAST</span></div><div class="mval">Khuôn mặt mộc phủ nền ẩm</div></div>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <div class="beat reveal">
+            <div class="beat-frame"><img loading="lazy" src="data:image/jpeg;base64,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"><span class="ts">0:21</span></div>
+            <div class="beat-body">
+              <p class="zh">Dặm phấn phủ riêng cho vùng mắt trước</p>
+              <p class="vi">"Cho nên trong lúc đợi nền khô, mình sẽ phủ trước phấn mắt, lông mày..."</p>
+              <p class="note">Mẹo trang điểm: tranh thủ thời gian chờ nền tự khô để trang điểm mắt và vẽ lông mày trước.</p>
+              <div class="matrix">
+                <div class="cam">
+                  <div class="mlbl cam-lbl"><b>Góc máy</b><span>CAMERA</span></div>
+                  <div class="cam-parts">
+                    <span class="cam-seg"><i>Cỡ cảnh</i>Cận (CU) vùng mắt</span>
+                    <span class="cam-seg"><i>Góc</i>Ngang tầm mắt</span>
+                    <span class="cam-seg"><i>Chuyển động</i>Tĩnh</span>
+                  </div>
+                </div>
+                <div class="mgrid">
+                  <div class="mrow"><div class="mlbl"><b>Hành động</b><span>ACTION</span></div><div class="mval">Dùng mút dặm phấn phủ lên mí mắt và vùng dưới mắt nhẹ nhàng</div></div>
+                  <div class="mrow"><div class="mlbl"><b>Bối cảnh</b><span>SETTING</span></div><div class="mval">Phòng ngủ sáng đều</div></div>
+                  <div class="mrow"><div class="mlbl"><b>Âm thanh</b><span>SOUND</span></div><div class="mval">VO chia sẻ mẹo tận dụng thời gian</div></div>
+                  <div class="mrow"><div class="mlbl"><b>Trang phục</b><span>WARDROBE</span></div><div class="mval">Không có trang sức phức tạp</div></div>
+                  <div class="mrow"><div class="mlbl"><b>Diễn viên</b><span>CAST</span></div><div class="mval">Khuôn mặt creator đang trang điểm dở</div></div>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <div class="beat reveal">
+            <div class="beat-frame"><img loading="lazy" src="data:image/jpeg;base64,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"><span class="ts">0:23</span></div>
+            <div class="beat-body">
+              <p class="zh">Dùng cọ vẽ chân mày chi tiết</p>
+              <p class="vi">Kẻ lông mày và trang điểm vùng mắt để chờ nền má khô</p>
+              <p class="note">Quay cận cảnh thao tác chuốt lông mày bằng mascara chuyên dụng.</p>
+              <div class="matrix">
+                <div class="cam">
+                  <div class="mlbl cam-lbl"><b>Góc máy</b><span>CAMERA</span></div>
+                  <div class="cam-parts">
+                    <span class="cam-seg"><i>Cỡ cảnh</i>Cận (CU) vùng lông mày</span>
+                    <span class="cam-seg"><i>Góc</i>Ngang tầm mắt</span>
+                    <span class="cam-seg"><i>Chuyển động</i>Tĩnh</span>
+                  </div>
+                </div>
+                <div class="mgrid">
+                  <div class="mrow"><div class="mlbl"><b>Hành động</b><span>ACTION</span></div><div class="mval">Tay cầm cọ mascara lông mày chải vuốt ngược theo chiều lông mọc</div></div>
+                  <div class="mrow"><div class="mlbl"><b>Bối cảnh</b><span>SETTING</span></div><div class="mval">Góc phòng trang điểm</div></div>
+                  <div class="mrow"><div class="mlbl"><b>Âm thanh</b><span>SOUND</span></div><div class="mval">VO tiếp tục thuyết minh quy trình</div></div>
+                  <div class="mrow"><div class="mlbl"><b>Trang phục</b><span>WARDROBE</span></div><div class="mval">Khuyên tai ngọc trai nhỏ sáng</div></div>
+                  <div class="mrow"><div class="mlbl"><b>Diễn viên</b><span>CAST</span></div><div class="mval">Đôi tay và khuôn mặt nghiêng của creator</div></div>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <div class="beat reveal">
+            <div class="beat-frame"><img loading="lazy" src="data:image/jpeg;base64,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"><span class="ts">0:30</span></div>
+            <div class="beat-body">
+              <p class="zh">Phủ phấn nén lên cánh mũi để chuẩn bị tạo khối</p>
+              <p class="vi">"Rồi thì mình sẽ đi phủ phấn ở phần mũi để tạo khối mũi."</p>
+              <p class="note">Dùng mút dặm phấn phủ lên sóng mũi và cánh mũi để kiềm dầu trước khi đánh phấn tạo khối.</p>
+              <div class="matrix">
+                <div class="cam">
+                  <div class="mlbl cam-lbl"><b>Góc máy</b><span>CAMERA</span></div>
+                  <div class="cam-parts">
+                    <span class="cam-seg"><i>Cỡ cảnh</i>Cận (CU) trực diện mũi</span>
+                    <span class="cam-seg"><i>Góc</i>Ngang tầm mắt</span>
+                    <span class="cam-seg"><i>Chuyển động</i>Tĩnh</span>
+                  </div>
+                </div>
+                <div class="mgrid">
+                  <div class="mrow"><div class="mlbl"><b>Hành động</b><span>ACTION</span></div><div class="mval">Dặm nhẹ mút phấn quanh đầu mũi và cánh mũi</div></div>
+                  <div class="mrow"><div class="mlbl"><b>Bối cảnh</b><span>SETTING</span></div><div class="mval">Phòng ngủ sáng rõ</div></div>
+                  <div class="mrow"><div class="mlbl"><b>Âm thanh</b><span>SOUND</span></div><div class="mval">VO giải thích việc tạo khối mũi sau khi phủ phấn</div></div>
+                  <div class="mrow"><div class="mlbl"><b>Trang phục</b><span>WARDROBE</span></div><div class="mval">Áo hai dây màu be</div></div>
+                  <div class="mrow"><div class="mlbl"><b>Diễn viên</b><span>CAST</span></div><div class="mval">Khuôn mặt trực diện của creator</div></div>
+                </div>
+              </div>
+            </div>
+          </div>
+
+        </div>
+      </section>
+
+      <!-- MAN 3 -->
+      <section class="act reveal">
+        <div class="act-head">
+          <div class="act-no">03</div>
+          <div>
+            <div class="act-range">0:33–0:46</div>
+            <h3 class="act-title">Màn 3 · Kiểm tra nền khô &amp; Giới thiệu phấn Carslan xanh</h3>
+            <p class="act-sum">Ấn ngón tay kiểm tra da đã khô ráo, giới thiệu hộp phấn Carslan xanh bản mát lạnh cho da khô.</p>
+          </div>
+        </div>
+        <div class="beats">
+          
+          <div class="beat reveal">
+            <div class="beat-frame"><img loading="lazy" src="data:image/jpeg;base64,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"><span class="ts">0:34</span></div>
+            <div class="beat-body">
+              <p class="zh">Ấn thử ngón tay lần 2 lên má ẩm</p>
+              <p class="vi">"Đến lúc này mình sẽ test lại xem nền đã thực sự khô chưa..."</p>
+              <p class="note">Dùng ngón tay ấn mạnh vào má và rút ra $ightarrow$ da má mịn ráo, không còn bị in hằn dấu vân tay.</p>
+              <div class="matrix">
+                <div class="cam">
+                  <div class="mlbl cam-lbl"><b>Góc máy</b><span>CAMERA</span></div>
+                  <div class="cam-parts">
+                    <span class="cam-seg"><i>Cỡ cảnh</i>Cực cận (ECU) má</span>
+                    <span class="cam-seg"><i>Góc</i>Ngang tầm mắt</span>
+                    <span class="cam-seg"><i>Chuyển động</i>Tĩnh</span>
+                  </div>
+                </div>
+                <div class="mgrid">
+                  <div class="mrow"><div class="mlbl"><b>Hành động</b><span>ACTION</span></div><div class="mval">Ấn ngón trỏ lên má, nhấc ra khoe bề mặt da phẳng mịn không tì vết</div></div>
+                  <div class="mrow"><div class="mlbl"><b>Bối cảnh</b><span>SETTING</span></div><div class="mval">Ánh sáng softbox chiếu nghiêng tôn bề mặt mịn</div></div>
+                  <div class="mrow"><div class="mlbl"><b>Âm thanh</b><span>SOUND</span></div><div class="mval">VO khẳng định nền đã khô và tệp vào da hoàn toàn</div></div>
+                  <div class="mrow"><div class="mlbl"><b>Trang phục</b><span>WARDROBE</span></div><div class="mval">Khuyên tai vàng nhỏ</div></div>
+                  <div class="mrow"><div class="mlbl"><b>Diễn viên</b><span>CAST</span></div><div class="mval">Da má mịn của model</div></div>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <div class="beat reveal">
+            <div class="beat-frame"><img loading="lazy" src="data:image/jpeg;base64,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"><span class="ts">0:40</span></div>
+            <div class="beat-body">
+              <p class="zh">Giơ hộp phấn phủ bột Carslan 2.0 màu xanh mát lạnh</p>
+              <p class="vi">"Vì da khô nên mình sẽ dùng phấn phủ của Carslan bản màu xanh này..."</p>
+              <p class="note">Giơ chai/hộp bột phấn Carslan 2.0 (Black Magnet Soft Focusing Powder - bản màu xanh dương cấp ẩm).</p>
+              <div class="matrix">
+                <div class="cam">
+                  <div class="mlbl cam-lbl"><b>Góc máy</b><span>CAMERA</span></div>
+                  <div class="cam-parts">
+                    <span class="cam-seg"><i>Cỡ cảnh</i>Cận (CU) sản phẩm trên tay</span>
+                    <span class="cam-seg"><i>Góc</i>Ngang tầm mắt</span>
+                    <span class="cam-seg"><i>Chuyển động</i>Tĩnh, xóa phông nền sâu</span>
+                  </div>
+                </div>
+                <div class="mgrid">
+                  <div class="mrow"><div class="mlbl"><b>Hành động</b><span>ACTION</span></div><div class="mval">Hai tay giơ hộp phấn màu xanh nhạt lấp lánh sát camera</div></div>
+                  <div class="mrow"><div class="mlbl"><b>Bối cảnh</b><span>SETTING</span></div><div class="mval">Bàn trang điểm ngập ánh sáng</div></div>
+                  <div class="mrow"><div class="mlbl"><b>Âm thanh</b><span>SOUND</span></div><div class="mval">VO giải thích lý do lựa chọn hạt phấn siêu mịn của Carslan cho da khô</div></div>
+                  <div class="mrow"><div class="mlbl"><b>Trang phục</b><span>WARDROBE</span></div><div class="mval">Móng tay sơn vẽ họa tiết xinh xắn</div></div>
+                  <div class="mrow"><div class="mlbl"><b>Diễn viên</b><span>CAST</span></div><div class="mval">Creator giơ sản phẩm giới thiệu</div></div>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <div class="beat reveal">
+            <div class="beat-frame"><img loading="lazy" src="data:image/jpeg;base64,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"><span class="ts">0:42</span></div>
+            <div class="beat-body">
+              <p class="zh">Xoáy cọ trang điểm lấy hạt bột phấn mịn</p>
+              <p class="vi">Dùng cọ bản to xoáy nhẹ lấy lượng phấn phủ vừa đủ</p>
+              <p class="note">Cận cảnh cọ trang điểm lông đen mịn màng xoáy tròn trong lõi hộp phấn.</p>
+              <div class="matrix">
+                <div class="cam">
+                  <div class="mlbl cam-lbl"><b>Góc máy</b><span>CAMERA</span></div>
+                  <div class="cam-parts">
+                    <span class="cam-seg"><i>Cỡ cảnh</i>Cận (CU) khay phấn</span>
+                    <span class="cam-seg"><i>Góc</i>Góc cao 45° nhìn xuống</span>
+                    <span class="cam-seg"><i>Chuyển động</i>Tĩnh, lấy nét sâu khay phấn</span>
+                  </div>
+                </div>
+                <div class="mgrid">
+                  <div class="mrow"><div class="mlbl"><b>Hành động</b><span>ACTION</span></div><div class="mval">Tay cầm cọ xoáy nhẹ, gõ nhẹ cán cọ để rũ bớt hạt phấn thừa</div></div>
+                  <div class="mrow"><div class="mlbl"><b>Bối cảnh</b><span>SETTING</span></div><div class="mval">Góc phẳng của bàn trang điểm</div></div>
+                  <div class="mrow"><div class="mlbl"><b>Âm thanh</b><span>SOUND</span></div><div class="mval">Tiếng gõ nhẹ cán cọ thật (SFX Foley)</div></div>
+                  <div class="mrow"><div class="mlbl"><b>Trang phục</b><span>WARDROBE</span></div><div class="mval">Không có</div></div>
+                  <div class="mrow"><div class="mlbl"><b>Diễn viên</b><span>CAST</span></div><div class="mval">Bàn tay model thao tác cọ</div></div>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <div class="beat reveal">
+            <div class="beat-frame"><img loading="lazy" src="data:image/jpeg;base64,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"><span class="ts">0:44</span></div>
+            <div class="beat-body">
+              <p class="zh">Dùng cọ dặm nhẹ phấn phủ lên vùng má</p>
+              <p class="vi">"Hạt phấn siêu nhỏ nên lên da rất tự nhiên..."</p>
+              <p class="note">Creator dùng cọ dặm đều phấn phủ lên má, hạt phấn siêu mịn tiệp vào da không mốc.</p>
+              <div class="matrix">
+                <div class="cam">
+                  <div class="mlbl cam-lbl"><b>Góc máy</b><span>CAMERA</span></div>
+                  <div class="cam-parts">
+                    <span class="cam-seg"><i>Cỡ cảnh</i>Cận (CU) mặt nghiêng</span>
+                    <span class="cam-seg"><i>Góc</i>Ngang tầm mắt</span>
+                    <span class="cam-seg"><i>Chuyển động</i>Tĩnh, xóa phông nhẹ</span>
+                  </div>
+                </div>
+                <div class="mgrid">
+                  <div class="mrow"><div class="mlbl"><b>Hành động</b><span>ACTION</span></div><div class="mval">Dặm cọ nhẹ nhàng lên má và trán, tán đều phấn</div></div>
+                  <div class="mrow"><div class="mlbl"><b>Bối cảnh</b><span>SETTING</span></div><div class="mval">Phòng ngủ ánh sáng tự nhiên từ cửa sổ</div></div>
+                  <div class="mrow"><div class="mlbl"><b>Âm thanh</b><span>SOUND</span></div><div class="mval">VO chia sẻ trải nghiệm nhẹ mặt, không mốc của Carslan</div></div>
+                  <div class="mrow"><div class="mlbl"><b>Trang phục</b><span>WARDROBE</span></div><div class="mval">Áo hai dây be sữa</div></div>
+                  <div class="mrow"><div class="mlbl"><b>Diễn viên</b><span>CAST</span></div><div class="mval">Nữ creator biểu cảm thư thái</div></div>
+                </div>
+              </div>
+            </div>
+          </div>
+
+        </div>
+      </section>
+
+      <!-- MAN 4 -->
+      <section class="act reveal">
+        <div class="act-head">
+          <div class="act-no">04</div>
+          <div>
+            <div class="act-range">0:47–1:13</div>
+            <h3 class="act-title">Màn 4 · Đi chi tiết, Khoe thành quả &amp; Test tập gym đổ mồ hôi</h3>
+            <p class="act-sum">Đi cọ nhỏ các vùng khe kẽ, khoe lớp nền mịn lì và chứng thực độ bám bằng cảnh tập gym đổ mồ hôi đầm đìa.</p>
+          </div>
+        </div>
+        <div class="beats">
+          
+          <div class="beat reveal">
+            <div class="beat-frame"><img loading="lazy" src="data:image/jpeg;base64,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"><span class="ts">0:56</span></div>
+            <div class="beat-body">
+              <p class="zh">Dùng cọ nhỏ phủ phấn chi tiết vùng khe kẽ</p>
+              <p class="vi">"Dùng cọ nhỏ đi kỹ vào các phần kẽ, khóe mũi, bầu mắt..."</p>
+              <p class="note">Mẹo kỹ thuật: dùng cọ nhỏ đi phấn chi tiết để khóa chặt các vùng hay đổ dầu/dễ mốc nền.</p>
+              <div class="matrix">
+                <div class="cam">
+                  <div class="mlbl cam-lbl"><b>Góc máy</b><span>CAMERA</span></div>
+                  <div class="cam-parts">
+                    <span class="cam-seg"><i>Cỡ cảnh</i>Cận (CU) mặt</span>
+                    <span class="cam-seg"><i>Góc</i>Ngang tầm mắt</span>
+                    <span class="cam-seg"><i>Chuyển động</i>Tĩnh, lấy nét mắt mũi</span>
+                  </div>
+                </div>
+                <div class="mgrid">
+                  <div class="mrow"><div class="mlbl"><b>Hành động</b><span>ACTION</span></div><div class="mval">Dùng cọ nhỏ dặm phấn kỹ quanh khóe mũi, bọng mắt, khóe miệng</div></div>
+                  <div class="mrow"><div class="mlbl"><b>Bối cảnh</b><span>SETTING</span></div><div class="mval">Phòng ngủ sáng đều</div></div>
+                  <div class="mrow"><div class="mlbl"><b>Âm thanh</b><span>SOUND</span></div><div class="mval">VO chia sẻ kỹ thuật dặm hai lớp (double setting)</div></div>
+                  <div class="mrow"><div class="mlbl"><b>Trang phục</b><span>WARDROBE</span></div><div class="mval">Khuyên tai vàng sáng</div></div>
+                  <div class="mrow"><div class="mlval">Nữ creator tập trung trang điểm</div></div>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <div class="beat reveal">
+            <div class="beat-frame"><img loading="lazy" src="data:image/jpeg;base64,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"><span class="ts">1:06</span></div>
+            <div class="beat-body">
+              <p class="zh">Creator bấu/bẹo má khoe độ đàn hồi nền</p>
+              <p class="vi">"Thậm chí đi tập thể dục, đổ mồ hôi mà nền vẫn không hề bị chảy"</p>
+              <p class="note">Bấu má kiểm chứng độ bền dai và mềm mại của da sau trang điểm hoàn chỉnh.</p>
+              <div class="matrix">
+                <div class="cam">
+                  <div class="mlbl cam-lbl"><b>Góc máy</b><span>CAMERA</span></div>
+                  <div class="cam-parts">
+                    <span class="cam-seg"><i>Cỡ cảnh</i>Cận (CU) mặt nghiêng</span>
+                    <span class="cam-seg"><i>Góc</i>Ngang tầm mắt</span>
+                    <span class="cam-seg"><i>Chuyển động</i>Tĩnh</span>
+                  </div>
+                </div>
+                <div class="mgrid">
+                  <div class="mrow"><div class="mlbl"><b>Hành động</b><span>ACTION</span></div><div class="mval">Bấu má kéo nhẹ, mỉm cười tự hào trước camera</div></div>
+                  <div class="mrow"><div class="mlbl"><b>Bối cảnh</b><span>SETTING</span></div><div class="mval">Phòng khách sang trọng sáng sủa</div></div>
+                  <div class="mrow"><div class="mlbl"><b>Âm thanh</b><span>SOUND</span></div><div class="mval">Nhạc nền tăng cao trào</div></div>
+                  <div class="mrow"><div class="mlbl"><b>Trang phục</b><span>WARDROBE</span></div><div class="mval">Tóc tạo kiểu thời trang, mặc áo hai dây</div></div>
+                  <div class="mrow"><div class="mlbl"><b>Diễn viên</b><span>CAST</span></div><div class="mval">Nữ creator xinh đẹp rạng rỡ</div></div>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <div class="beat reveal">
+            <div class="beat-frame"><img loading="lazy" src="data:image/jpeg;base64,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"><span class="ts">1:08</span></div>
+            <div class="beat-body">
+              <p class="zh">Mặt đẫm mồ hôi tại công viên/phòng tập</p>
+              <p class="vi">Cận cảnh khuôn mặt lấm tấm mồ hôi nhưng không trôi nền</p>
+              <p class="note">Cực kỳ trực quan: mồ hôi đọng thành hạt trên trán và thái dương nhưng nền vẫn mịn lì, không hề bị chảy vệt.</p>
+              <div class="matrix">
+                <div class="cam">
+                  <div class="mlbl cam-lbl"><b>Góc máy</b><span>CAMERA</span></div>
+                  <div class="cam-parts">
+                    <span class="cam-seg"><i>Cỡ cảnh</i>Cận (CU) $ightarrow$ Cực cận (ECU) trán</span>
+                    <span class="cam-seg"><i>Góc</i>Hơi cao nhìn xuống</span>
+                    <span class="cam-seg"><i>Chuyển động</i>Cầm tay (handheld) rung nhẹ</span>
+                  </div>
+                </div>
+                <div class="mgrid">
+                  <div class="mrow"><div class="mlbl"><b>Hành động</b><span>ACTION</span></div><div class="mval">Creator thở dốc nhẹ, lau nhẹ mồ hôi bằng khăn giấy, cười chào tạm biệt</div></div>
+                  <div class="mrow"><div class="mlbl"><b>Bối cảnh</b><span>SETTING</span></div><div class="mval">Ngoài trời công viên/phòng tập gym, ánh sáng mặt trời tự nhiên</div></div>
+                  <div class="mrow"><div class="mlbl"><b>Âm thanh</b><span>SOUND</span></div><div class="mval">VO kết thúc cam kết chất lượng + Lời chào tạm biệt</div></div>
+                  <div class="mrow"><div class="mlbl"><b>Trang phục</b><span>WARDROBE</span></div><div class="mval">Áo thun thể thao màu trắng, tóc buộc cao gọn gàng</div></div>
+                  <div class="mrow"><div class="mlbl"><b>Diễn viên</b><span>CAST</span></div><div class="mval">Nữ creator mặt đẫm mồ hôi khỏe khoắn</div></div>
+                </div>
+              </div>
+            </div>
+          </div>
+
+        </div>
+      </section>
+
+    </div>
+  </section>
+
+  <!-- DEEP BREAKDOWN -->
+  <section class="sec">
+    <div class="sec-head"><span class="sec-no">04</span><h2>Bóc tách khung &amp; 3 cảnh then chốt</h2></div>
+    <div class="cards">
+      <div class="card reveal">
+        <h4>Khung tổng</h4>
+        <p class="big">Hook bẹo má $ightarrow$ Kiến thức dặm nền (kem nền set) $ightarrow$ Review bột phấn siêu mịn $ightarrow$ Test mồ hôi gym</p>
+        <p>Bố cục video đi từ nỗi đau đời thường (sợ bẹo má trôi nền) dẫn dắt khéo léo qua kiến thức chuyên môn (chờ nền khô) rồi bán sản phẩm phấn phủ Carslan xanh dưỡng ẩm cho da khô và test mồ hôi gym để khóa niềm tin.</p>
+      </div>
+      <div class="card reveal">
+        <h4>3 cảnh then chốt</h4>
+        <p><b>1. Cảnh gây tò mò:</b> Giây 0:01 – Hành động bẹo má tự bấu má cực mạnh.<br>
+           <b>2. Cảnh tạo chuyển đổi:</b> Giây 0:14 – Vết lõm in hằn dấu vân tay trên nền ướt so sánh với giây 0:34 khi nền đã khô phẳng lì.<br>
+           <b>3. Cảnh dẫn mua hàng (CTA):</b> Giây 1:08 – Cận cảnh mồ hôi đọng hạt trên trán khi đi tập thể dục nhưng nền không bị chảy vệt.</p>
+      </div>
+    </div>
+  </section>
+
+  <!-- CHECKLIST -->
+  <section class="sec">
+    <div class="sec-head"><span class="sec-no">05</span><h2>Checklist hiệu quả 7 điểm</h2></div>
+    <table class="tbl">
+      <thead>
+        <tr><th>Tiêu chí hiệu quả</th><th>Mức độ</th><th>Ghi chú phân tích chi tiết</th></tr>
+      </thead>
+      <tbody>
+        <tr class="reveal">
+          <td class="c-crit">① 3s đầu giữ người</td>
+          <td><span class="chip ok">Đạt</span></td>
+          <td class="c-note">Hành động bẹo má kéo căng má tự nhiên và lời mở đầu "make up xinh nhưng không cho bồ bẹo má" gây tò mò tốt.</td>
+        </tr>
+        <tr class="reveal">
+          <td class="c-crit">② Pain point cụ thể</td>
+          <td><span class="chip ok">Đạt</span></td>
+          <td class="c-note">Giải quyết sâu sắc vấn đề mốc da khi dùng phấn phủ hạt to cho da khô và trôi nền khi vận động ra mồ hôi.</td>
+        </tr>
+        <tr class="reveal">
+          <td class="c-crit">③ Kết quả nhìn thấy</td>
+          <td><span class="chip ok">Đạt</span></td>
+          <td class="c-note">Minh họa cực kỳ rõ nét bằng vết hằn ngón tay (trước) và lớp da phẳng lì khi khô (sau), cùng mồ hôi đọng hạt ở phòng gym.</td>
+        </tr>
+        <tr class="reveal">
+          <td class="c-crit">④ Có so sánh</td>
+          <td><span class="chip ok">Đạt</span></td>
+          <td class="c-note">So sánh trực diện giữa việc ấn tay lên nền chưa set (lộ vết hằn) và nền đã khô set (không hề bị in dấu).</td>
+        </tr>
+        <tr class="reveal">
+          <td class="c-crit">⑤ Quá trình sử dụng</td>
+          <td><span class="chip ok">Đạt</span></td>
+          <td class="c-note">Quá trình chi tiết từ lúc bôi kem nền ẩm $ightarrow$ chờ set khô $ightarrow$ dặm phấn Carslan bằng cọ $ightarrow$ đi tập gym đổ mồ hôi.</td>
+        </tr>
+        <tr class="reveal">
+          <td class="c-crit">⑥ Cảnh chuyển đổi mạnh</td>
+          <td><span class="chip ok">Đạt</span></td>
+          <td class="c-note">Cảnh mồ hôi đọng hạt trên trán nhưng không bị loang lổ hay chảy dòng kem nền vô cùng đắt giá.</td>
+        </tr>
+        <tr class="reveal">
+          <td class="c-crit">⑦ CTA rõ ràng</td>
+          <td><span class="chip mid">Một phần</span></td>
+          <td class="c-note">Kêu gọi hành động chọn sản phẩm phù hợp qua lời chúc tạm biệt, chưa đẩy mạnh ưu đãi mua sắm.</td>
+        </tr>
+      </tbody>
+    </table>
+  </section>
+
+  <!-- BOOM FORMULA -->
+  <section class="sec">
+    <div class="sec-head"><span class="sec-no">06</span><h2>Chấm theo công thức bùng nổ</h2></div>
+    <div class="formula reveal">
+      <div class="flabel">Công thức bùng nổ tổng quát</div>
+      <div class="fbody"><b>[Mở đầu bẹo má thú vị]</b> + <b>[Kinh nghiệm set nền chuyên nghiệp]</b> + <b>[Thử thách đổ mồ hôi gym]</b> = <b>[Video triệu view bền vững &amp; uy tín chuyên gia]</b></div>
+    </div>
+    <p class="lead">Video này thuyết phục người xem bằng **giá trị kiến thức** (Value-driven content) hơn là dùng chiêu trò sốc. Việc phân tích cấu trúc da khô và chỉ ra lỗi sai khi set nền giúp người xem nâng cao nhận thức, từ đó tin tưởng tuyệt đối vào sản phẩm phấn phủ Carslan được giới thiệu.</p>
+  </section>
+
+  <!-- FORMULA FOR REUSE -->
+  <section class="sec">
+    <div class="sec-head"><span class="sec-no">07</span><h2>Công thức tái dùng</h2></div>
+    <div class="formula reveal">
+      <div class="flabel">Cấu trúc hình ảnh</div>
+      <div class="fbody"><b>[Mở đầu]</b> Hành động bẹo má/tương tác da mặt $ightarrow$ <b>[Nội dung kỹ thuật]</b> Quét kem nền lỏng + test ngón tay in dấu vân tay $ightarrow$ <b>[Mẹo trung gian]</b> Vẽ chân mày/mắt trong lúc đợi nền khô $ightarrow$ <b>[Dặm phấn]</b> Cận cảnh xoáy cọ dặm phấn phủ hạt siêu mịn lên má và đi chi tiết rãnh cười $ightarrow$ <b>[Test thực tế]</b> Đi gym/vận động đổ mồ hôi đầm đìa nhưng nền giữ nguyên.</div>
+    </div>
+    <div class="formula reveal">
+      <div class="flabel">Cấu trúc lời thoại</div>
+      <div class="fbody"><b>Nêu nỗi sợ trôi nền thường ngày</b> $ightarrow$ <b>Đặt câu hỏi kỹ thuật</b> ("Tại sao phủ phấn lại bị mốc/trượt?") $ightarrow$ <b>Hướng dẫn nguyên lý chờ nền set</b> $ightarrow$ <b>Giới thiệu sản phẩm phấn phủ hạt siêu nhỏ cho da khô</b> $ightarrow$ <b>Chứng minh độ bền sau vận động đổ mồ hôi</b> $ightarrow$ <b>Lời khuyên chọn sản phẩm phù hợp</b>.</div>
+    </div>
+  </section>
+
+  <!-- NONELAB IMPLEMENTATION -->
+  <section class="sec">
+    <div class="sec-head"><span class="sec-no">08</span><h2>Lắp khung vào Nonelab</h2></div>
+    <div class="cards" style="margin-bottom:22px">
+      <div class="card reveal">
+        <h4>Thương hiệu Cimee</h4>
+        <p class="big">Bột phấn kiềm dầu Cimee</p>
+        <p>Áp dụng cho dòng phấn phủ bột tơi siêu mịn của Cimee. Nhấn mạnh kỹ thuật "double setting" dùng cọ nhỏ đi chi tiết bầu mắt/khóe mũi chống mốc nền.</p>
+      </div>
+      <div class="card reveal">
+        <h4>Thương hiệu Nerman</h4>
+        <p class="big">Phấn chống trôi nam Nerman</p>
+        <p>Rất phù hợp cho Nerman: làm kịch bản hướng dẫn nam giới dặm phấn kiềm dầu cực nhanh để đi đá bóng, tập gym ra mồ hôi không bị bết rít hay chảy vệt trắng loang lổ.</p>
+      </div>
+      <div class="card reveal">
+        <h4>Đối chuẩn chiến lược</h4>
+        <p class="big">Đối chuẩn nhóm ② &amp; ⑤</p>
+        <p>Bên cạnh dội nước trực tiếp (video trước), video này cung cấp thêm hướng đi **đổ mồ hôi thể thao thực tế** để chứng minh độ bền bám lì, tăng độ đa dạng cho kho nội dung.</p>
+      </div>
+    </div>
+    
+    <h4 style="font-family:var(--ui);font-size:11px;letter-spacing:.16em;text-transform:uppercase;color:var(--amber);margin:0 0 6px">5 ý tưởng góc quay đẻ ra cho sản phẩm Nonelab</h4>
+    <ul class="klist">
+      <li class='reveal'><b>Góc 1 — Thử thách "Bẹo má" người yêu:</b> KOC quay vlog đi chơi với người yêu, người yêu liên tục bẹo má trêu đùa nhưng cuối ngày về nền má vẫn tơi mịn, không để lại vết hằn đỏ hay trợt phấn nhờ set phấn Cimee.</li>
+      <li class='reveal'><b>Góc 2 — Đeo khẩu trang test độ bám:</b> Dặm phấn phủ Cimee và đeo khẩu trang y tế liên tục trong 4 tiếng đi xe máy ngoài đường nắng $ightarrow$ tháo khẩu trang ra mặt trong hoàn toàn sạch trắng, không dính kem nền.</li>
+      <li class='reveal'><b>Góc 3 — So sánh vân tay trực diện trên điện thoại:</b> Áp sát màn hình điện thoại tối màu lên má chưa set phấn (để lại vệt dầu/kem loang lổ) và má đã phủ phấn Cimee (màn hình điện thoại hoàn toàn sạch bóng).</li>
+      <li class='reveal'><b>Góc 4 — Mồ hôi phòng xông hơi:</b> KOC dặm phấn Cimee và bước vào phòng xông hơi nóng ẩm 15 phút. Khi bước ra, lau nhẹ mồ hôi bằng khăn giấy $ightarrow$ khăn giấy sạch tinh, lớp nền vẫn lì mịn.</li>
+      <li class='reveal'><b>Góc 5 — Cọ nhỏ thần kỳ:</b> Cận cảnh dùng cọ chi tiết siêu nhỏ dặm bột phấn Cimee quanh khóe mắt, khóe miệng rãnh cười để chứng minh hạt phấn lấp đầy nếp nhăn mảnh, không gây đọng phấn.</li>
+    </ul>
+    
+    <div class="rule reveal">
+      <div class="rl">Nguyên tắc vàng khi tái dùng</div>
+      <p>Bản gốc thắng nhờ **kiến thức chia sẻ hữu ích** kết hợp **visual đổ mồ hôi chân thực**. Khi Nonelab thực hiện, hãy tập trung vào việc **giải thích cơ chế khoa học dễ hiểu** và tạo ra các cảnh test đời thường (đeo khẩu trang, áp điện thoại) để tạo sự gần gũi và nâng tầm uy tín thương hiệu.</p>
+    </div>
+  </section>
+
+  <!-- KHO -->
+  <section class="sec" style="border-bottom:none">
+    <div class="sec-head"><span class="sec-no">09</span><h2>Nạp kho</h2></div>
+    <div class="two">
+      <div>
+        <h4 style="font-family:var(--ui);font-size:11px;letter-spacing:.16em;text-transform:uppercase;color:var(--amber);margin:0 0 6px">Kho lời thoại · 文案库</h4>
+        <ul class="klist">
+          <li class='reveal'>“Make up cho xinh nhưng mà không cho bồ bẹo má là vì mọi người sợ bị trôi nền đúng không?”</li>
+          <li class='reveal'>“Nên là sau khi đánh nền xong mà ấn vào nó vẫn bị lộ vết như thế này thì chưa được phủ phấn đâu nha.”</li>
+          <li class='reveal'>“Thường mình sẽ không chọn những cái loại phấn hạt to vì da khô dùng không cẩn thận sẽ rất dễ bị mốc.”</li>
+          <li class='reveal'>“Hạt phấn siêu nhỏ nên là lên da rất tự nhiên.”</li>
+          <li class='reveal'>“Dùng một cái cây cọ nhỏ để đi kỹ vào những cái phần kẽ, khóe mũi, bầu mắt.”</li>
+          <li class='reveal'>“Thậm chí đi tập thể dục, đổ mồ hôi mà nền vẫn không hề bị chảy.”</li>
+        </ul>
+      </div>
+      <div>
+        <h4 style="font-family:var(--ui);font-size:11px;letter-spacing:.16em;text-transform:uppercase;color:var(--amber);margin:0 0 6px">Kho hình ảnh · 画面库</h4>
+        <ul class="klist">
+          <li class='reveal'>Hành động bẹo má kéo căng má tự nhiên ở giây đầu.</li>
+          <li class='reveal'>Quét kem nền ẩm bằng cọ dẹt lên má mộc.</li>
+          <li class='reveal'>Ấn ngón tay để lại vết lõm hằn trên nền ẩm ướt.</li>
+          <li class='reveal'>Tranh thủ vẽ lông mày trong lúc chờ nền set khô.</li>
+          <li class='reveal'>Cận cảnh cọ trang điểm lớn phủ phấn bột tơi mịn lên má.</li>
+          <li class='reveal'>Khuôn mặt đẫm mồ hôi ròng ròng sau tập gym nhưng nền không bị chảy loang lổ.</li>
+        </ul>
+      </div>
+    </div>
+  </section>
+
+</main>
+
+<footer class="wrap">
+  Nonelab · Hệ thống video bùng nổ — Phiếu mổ xẻ theo khung Năm Lực. Tài liệu nội bộ cho team Brand Manager.
+</footer>
+
+<script>
+const io=new IntersectionObserver((es)=>{es.forEach(e=>{if(e.isIntersecting){e.target.classList.add('in');io.unobserve(e.target)}})},{threshold:.08,rootMargin:'0px 0px -8% 0px'});
+document.querySelectorAll('.reveal').forEach((el,i)=>{el.style.transitionDelay=(Math.min(i%6,5)*40)+'ms';io.observe(el)});
+</script>
+</body>
+</html>

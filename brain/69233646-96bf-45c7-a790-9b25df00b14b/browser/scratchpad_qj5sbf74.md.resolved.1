@@ -1,0 +1,16 @@
+# KOC Live Charts Verification Plan
+
+- [x] Navigate to http://localhost:3000/koc-live
+- [ ] Verify 4 chart panels are visible:
+    - Trend (Revenue) - Currently hidden (Empty state)
+    - Peak Hours (Session distribution) - Currently hidden (Empty state)
+    - Ranking (Top 10 KOC) - Currently hidden (Empty state)
+    - Scatter (Performance) - Currently hidden (Empty state)
+- [x] Check for console errors or build errors
+    - Found a syntax error in console logs related to `src/app/(dashboard)/koc-live/page.tsx:31:1`.
+    - However, the page seems to render the "KOC Live Analytics" header and uploader.
+- [x] Take screenshot of the charts section
+    - Captured `koc_live_empty_state`.
+- [ ] Verify empty state if no data is present
+    - "Chưa có dữ liệu" (No data) message is visible.
+

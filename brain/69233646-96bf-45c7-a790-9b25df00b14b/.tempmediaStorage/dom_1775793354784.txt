@@ -1,0 +1,107 @@
+<current_dom_explanation>
+This is a temporary snapshot of the current page's DOM structure. The DOM will change if you navigate to or interact with another page. Use a tool like browser_get_dom to capture and preserve the DOM in your trajectory if needed for later reference.
+</current_dom_explanation>
+<current_dom>
+Ecom OS
+[0] (67,128)<a class='nav-item active' href='/' />
+	[1] (52,128)<span >Tổng quan />
+[2] (67,181)<a class='nav-item ' href='/brands' />
+	[3] (55,181)<span >Thương hiệu />
+[4] (67,234)<a class='nav-item ' href='/marketing' />
+	[5] (62,234)<span >Marketing & Ads />
+[6] (67,288)<a class='nav-item ' href='/inventory' />
+	[7] (50,288)<span >Kho hàng />
+[8] (67,341)<a class='nav-item ' href='/customers' />
+	[9] (54,341)<span >Khách hàng />
+[10] (67,911)<a class='nav-item ' href='/settings' />
+	[11] (44,911)<span >Cài đặt />
+[12] (67,963)<button class='nav-item text-rose-500 hover:bg-rose-500/10 transition-colors text-left w-full' />
+	[13] (50,963)<span >Đăng xuất />
+[14] (568,500)<main class='main-content' scrollable='true' />
+	[15] (195,49)<button class='px-4 py-2 bg-[#1A1E29] border border-white/10 rounded-xl text-gray-300 text-sm font-medium flex items-center gap-2 hover:bg-white/5 transition-colors'>Tất cả các Brand />
+	[16] (260,49)<button class='px-3 py-1.5 text-xs font-medium rounded-lg transition-colors whitespace-nowrap text-gray-400 hover:text-white hover:bg-white/5'>Hôm nay />
+	[17] (294,49)<button class='px-3 py-1.5 text-xs font-medium rounded-lg transition-colors whitespace-nowrap text-gray-400 hover:text-white hover:bg-white/5'>Hôm qua />
+	[18] (326,49)<button class='px-3 py-1.5 text-xs font-medium rounded-lg transition-colors whitespace-nowrap bg-indigo-500 text-white shadow-sm'>7 Ngày />
+	[19] (357,49)<button class='px-3 py-1.5 text-xs font-medium rounded-lg transition-colors whitespace-nowrap text-gray-400 hover:text-white hover:bg-white/5'>30 Ngày />
+	Doanh thu Gross
+	124.500.000₫
+	12.5%
+	vs cùng kỳ
+	[20] (319,201)<div  />
+	Doanh thu Net
+	108.200.000₫
+	10.2%
+	vs cùng kỳ
+	[21] (525,201)<div  />
+	High
+	Tỷ lệ hủy đơn
+	4.8%
+	1.2%
+	vs cùng kỳ
+	[22] (731,201)<div  />
+	Tổng chi phí
+	42.300.000₫
+	5.4%
+	vs cùng kỳ
+	[23] (937,201)<div  />
+	ROAS Blended
+	2.94x
+	8.4%
+	vs cùng kỳ
+	[24] (319,374)<div  />
+	AOV (Trung bình đơn)
+	85.700₫
+	2.1%
+	vs cùng kỳ
+	[25] (525,374)<div  />
+	Tổng số đơn
+	1.452
+	4.5%
+	vs cùng kỳ
+	[26] (731,374)<div  />
+	Biên lợi nhuận gộp
+	64.2%
+	0.8%
+	vs cùng kỳ
+	[27] (937,374)<div  />
+	KPI Tracker
+	[28] (807,481)<button class='px-4 py-2 bg-[#1A1E29] border border-white/10 rounded-xl text-gray-300 text-sm font-medium flex items-center gap-2 hover:bg-white/5 transition-colors'>Tất cả các Brand />
+	[29] (866,481)<button class='px-4 py-1.5 text-xs font-semibold rounded-lg transition-all text-gray-500 hover:text-gray-300'>Tuần />
+	[30] (895,481)<button class='px-4 py-1.5 text-xs font-semibold rounded-lg transition-all bg-indigo-500 text-white shadow-md'>Tháng />
+	[31] (924,481)<button class='px-4 py-1.5 text-xs font-semibold rounded-lg transition-all text-gray-500 hover:text-gray-300'>Quý />
+	[32] (950,481)<button class='px-4 py-1.5 text-xs font-semibold rounded-lg transition-all text-gray-500 hover:text-gray-300'>Năm />
+	Tiến độ tổng thể
+	64.0
+	%
+	₫320.000
+	Target:
+	₫500.000
+	Trạng thái nhịp độ (Pace)
+	ĐANG NHANH HƠN
+	Thời gian đã trôi qua
+	60
+	%
+	Target Logic
+	★ MỨC CẦN ĐẠT TRUNG BÌNH NGÀY
+	₫15.000
+	/ ngày
+	Cần đạt
+	₫15.000
+	đ/ngày
+	trong
+	12
+	ngày
+	còn lại
+	Dự báo cuối kỳ
+	₫533.333
+	106.7
+	% KPI
+	Dựa trên nhịp độ hiện tại
+	Chi tiết
+	Monthly
+	So sánh doanh thu thực tế vs mục tiêu
+	Revenue
+	KPI Target
+	[33] (701,798)<div  />
+
+</current_dom>

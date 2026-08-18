@@ -1,0 +1,8 @@
+# Task: Verify Dashboard Updates
+
+## Steps:
+- [ ] Refresh the dashboard page
+- [ ] Verify primary color is Pantone 292C (#69b3e7)
+- [ ] Verify there are 7 metric cards including "Chi phí thực tế"
+- [ ] Capture screenshot in Light Mode
+- [ ] Report findings and screenshot path

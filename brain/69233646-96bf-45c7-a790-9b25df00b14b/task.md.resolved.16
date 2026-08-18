@@ -1,0 +1,9 @@
+- [x] Đổi định dạng số sang chuẩn `vi-VN`
+- [x] Việt hóa thanh Sidebar điều hướng
+- [x] Việt hóa Dashboard Tổng quan (KPI Cards, Tracker, Charts)
+- [x] Việt hóa Module Khách hàng
+- [x] Việt hóa Module Kho hàng (inventory/page.tsx)
+- [x] Việt hóa Module Thương hiệu (brands/page.tsx)
+- [x] Việt hóa Module Marketing (marketing/page.tsx)
+- [x] Việt hóa Module Cài đặt (settings/page.tsx)
+- [x] Kiểm tra tổng thể định dạng tiền tệ và nhãn biểu đồ

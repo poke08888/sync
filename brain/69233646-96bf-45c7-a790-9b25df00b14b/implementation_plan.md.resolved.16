@@ -1,0 +1,43 @@
+# Kế hoạch Xây dựng Bảng Danh sách KOC Chuyên sâu
+
+Tôi sẽ triển khai một hệ thống bảng dữ liệu mạnh mẽ, giúp bạn quản lý và so sánh hiệu suất của toàn bộ KOC một cách trực quan và tiện lợi nhất.
+
+## User Review Required
+
+> [!IMPORTANT]
+> - **Chuyển đổi Tab**: Khi nhấn vào một hàng, hệ thống sẽ chuyển sang tab "History" và tự động lọc dữ liệu cho KOC đó. Bạn có muốn tôi thiết lập một trạng thái Tab chính trên trang Dashboard để quản lý việc này không?
+> - **Phân trang**: Tôi sẽ mặc định sử dụng phân trang (Pagination) ở mức 10-20 hàng/trang để đảm bảo hiệu năng tối ưu nhất khi dữ liệu lớn.
+
+## Proposed Changes
+
+### 1. Nâng cấp Data Service
+#### [MODIFY] [koc-service.ts](file:///Users/kevin/.gemini/antigravity/scratch/ecom-next-dashboard/src/lib/koc-service.ts)
+- Cập nhật hàm `aggregateByKoc`:
+    - Bổ sung tích lũy: `impressions`, `clicks`.
+    - Tính toán: `ctr` (Clicks/Imp), `cvr` (Orders/Clicks), `revPerHour` (GMV/Hours).
+
+### 2. Thành phần Bảng Danh sách KOC
+#### [NEW] [KocTable.tsx](file:///Users/kevin/.gemini/antigravity/scratch/ecom-next-dashboard/src/components/koc/KocTable.tsx)
+- **Tính năng cốt lõi**:
+    - **Sắp xếp**: Cho phép click vào Header để sắp xếp tăng/giảm theo bất kỳ cột nào.
+    - **Tìm kiếm**: Ô nhập liệu phía trên để lọc nhanh theo tên hoặc username.
+    - **Xuất dữ liệu**: Nút "Xuất CSV" để tải về bảng hiện tại.
+    - **Hàng tổng hợp (Summary Row)**: Hiển thị tổng/trung bình ở cuối bảng.
+- **Phong cách hiển thị**:
+    - Highlight nhẹ màu Teal cho KOC đã ra đơn.
+    - Huy hiệu "Top" cho 3 KOC có GMV cao nhất.
+    - Hiển thị "—" cho các giá trị bằng 0.
+    - Màu sắc cảnh báo cho CTR/CVR (<1% màu đỏ, >3% màu xanh).
+
+### 3. Tích hợp Dashboard
+#### [MODIFY] [page.tsx](file:///Users/kevin/.gemini/antigravity/scratch/ecom-next-dashboard/src/app/(dashboard)/koc-live/page.tsx)
+- Thêm `KocTable` vào dưới phần biểu đồ.
+- Quản lý trạng thái lọc/chuyển tab khi tương tác với bảng.
+
+## Verification Plan
+
+### Manual Verification
+- Kiểm tra tính đúng đắn của việc sắp xếp khi click vào các cột khác nhau.
+- Thử nghiệm bộ lọc tìm kiếm với các từ khóa tên KOC khác nhau.
+- Tải file CSV và mở bằng Excel để kiểm tra định dạng dữ liệu.
+- Xác nhận các điều kiện màu sắc (Đỏ/Xanh) cho CTR/CVR.

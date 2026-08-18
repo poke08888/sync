@@ -1,0 +1,37 @@
+# Xây dựng trang KOC History
+
+Tạo một phân hệ Lịch sử hoạt động riêng biệt nằm ngay trong module KOC Analytics bằng Tab-navigation (Overview và History).
+
+## Cấu trúc Hệ thống
+
+### 1. Tab Navigation: KOC Dashboard 
+Cập nhật `KocDashboard.jsx` để thêm Sub-tab navigation:
+- Tab "Tổng quan KOC" (Hiển thị `KocOverview, KocCharts, KocPerformanceTable`)
+- Tab "Lịch sử KOC" (Hiển thị `KocHistoryView` mới)
+
+### 2. KOC History View Component (`src/components/koc/history/KocHistoryView.jsx`)
+- **State Management**: state `selectedKoc`, `periodToggle` ('day', 'week', 'month'), `dateRange` (start, end).
+- **Filter Bar**: Select picker, Date `<input type="date">`, Toggle buttons.
+- **Dynamic Render**:
+  - Nếu `!selectedKoc`: Render màn hình Global History (Stacked bar chart Top 5 KOC theo thời gian).
+  - Nếu có `selectedKoc`: Render chuyên sâu 3 sections (Profile card, Line Chart, Session Table).
+
+### 3. KOC History Components (`src/components/koc/history/...`)
+#### `KocProfileCard.jsx`: 
+- Giao diện 4 thẻ thông minh hiển thị Metrics của duy nhất KOC đang chọn trong khoảng thời gian Date range.
+
+#### `KocTimelineChart.jsx`:
+- Line chart 2 trục Y (GMV và Orders). Data source được lấy qua hàm helper `.filter` dựa trên KOC ID. Phục vụ responsive theo Tuần/Tháng/Ngày.
+
+#### `KocGlobalStackedChart.jsx`:
+- Sử dụng khi đang ở chế độ "Tất cả KOC". Dùng `aggregateByDate` sau đo nhóm top 5 GMV KOC để xuất ra dải Stacked bar chart theo Ngày.
+
+#### `KocSessionTable.jsx`: 
+- Nhận input là mảng `Live Sessions`.
+- Render bảng với expandable rows. Sub-row sẽ hiện ra Viewers, Comments, Likes, Shares, Lượt thêm vào giỏ, Khách hàng độc nhất. (Sẽ bổ sung index mapping ở bộ parser nếu thiếu các trường comments, shares, etc.).
+
+> [!NOTE] 
+> Ở file `kocExcelParser.js`, tôi sẽ update list `parseRows` lấy thêm biến số liệu như: `comments: parseInt(row[18])`, `shares: parseInt(row[19])`, `newFollowers: parseInt(row[21])`.
+
+## Xác Nhận Từ Người Dùng
+Anh kiểm tra xem luồng đi bằng Sub-tabs (Tổng Quan / Lịch Sử) ở màn KOC Analytics có hợp lý không nhé. Nếu ô kê, tôi sẽ bắt tay code ngay!

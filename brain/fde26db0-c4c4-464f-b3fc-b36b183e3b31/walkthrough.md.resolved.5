@@ -1,0 +1,25 @@
+# Hoàn tất Tích hợp Quản lý Thương hiệu (Brand)
+
+Tôi đã triển khai thành công hệ thống quản lý dữ liệu theo Thương hiệu cho KOC Analytics. Giờ đây bạn có thể tách biệt báo cáo cho từng Brand hoặc xem tổng thể toàn bộ công ty.
+
+## 1. Gán nhãn Thương hiệu khi Upload
+Tại tab **Quản lý Dữ liệu**, trước khi chọn file Excel để tải lên, bạn sẽ thấy một ô nhập mới:
+- **Gán dữ liệu cho Thương hiệu**: Bạn có thể nhập tên thương hiệu mới (VD: Brand A) hoặc chọn từ danh sách các thương hiệu đã từng upload trước đó.
+- Hệ thống sẽ bắt buộc bạn nhập tên Brand để đảm bảo dữ liệu luôn được phân loại minh bạch.
+- Trong danh sách file đã upload, mỗi file giờ đây sẽ hiển thị kèm tên Brand tương ứng để bạn dễ quản lý.
+
+## 2. Bộ lọc Thương hiệu Toàn Dashboard
+Tại thanh Header (nằm cạnh bộ lọc ngày tháng), tôi đã thêm một **Dropdown chọn Brand**:
+- **Tất cả Brand**: Xem số liệu tổng của mọi nhãn hàng bạn đã tải lên.
+- **Từng Brand cụ thể**: Khi chọn một Brand, toàn bộ Dashboard (Tổng quan, Lịch sử KOC, Cảnh báo) sẽ lập tức lọc và chỉ hiển thị dữ liệu thuộc về Brand đó.
+
+## 3. Đồng bộ Chỉ số & So sánh Cùng kỳ
+Hệ thống tính toán thông minh đã được nâng cấp để:
+- Khi lọc theo Brand, các chỉ số % tăng trưởng (Period-over-Period) sẽ chỉ so sánh dữ liệu của chính Brand đó giữa kỳ này và kỳ trước.
+- Tab **Cảnh báo Khác thường** sẽ chỉ quét và báo động cho các KOC có hoạt động trong thương hiệu bạn đang chọn.
+- Tab **Lịch sử KOC** sẽ chỉ liệt kê các KOC có phát sinh phiên live cho thương hiệu đó.
+
+---
+
+> [!TIP]
+> **Mẹo sử dụng**: Nếu bạn lỡ upload file nhầm Brand, bạn có thể xóa file đó trong tab "Quản lý Dữ liệu" và upload lại với nhãn Brand chính xác. Hệ thống sẽ tự động cập nhật lại toàn bộ báo cáo ngay lập tức!

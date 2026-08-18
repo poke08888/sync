@@ -1,0 +1,96 @@
+<!DOCTYPE html>
+<html lang="vi">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Upload Dữ liệu - KOC Report</title>
+    <link rel="stylesheet" href="css/style.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+</head>
+
+<body>
+    <nav class="sidebar">
+        <div class="brand">
+            <i class="fa-solid fa-chart-line"></i>
+            KOC Report
+        </div>
+        <ul class="nav-links">
+            <li><a href="index.html" class="nav-item"><i class="fa-solid fa-house"></i> Dashboard</a></li>
+            <li><a href="koc-list.html" class="nav-item"><i class="fa-solid fa-users"></i> Danh sách KOC</a></li>
+            <li><a href="koc-management.html" class="nav-item"><i class="fa-solid fa-user-plus"></i> Quản lý KOC</a>
+            </li>
+            <li><a href="data-upload.html" class="nav-item active"><i class="fa-solid fa-cloud-arrow-up"></i> Upload Dữ
+                    liệu</a></li>
+        </ul>
+    </nav>
+
+    <main class="main-content">
+        <header>
+            <h1 class="page-title">Upload Báo cáo</h1>
+        </header>
+
+        <div class="metrics-grid" style="grid-template-columns: 1fr;">
+            <div class="card" style="text-align: center; padding: 4rem 2rem;">
+                <div
+                    style="background: rgba(99, 102, 241, 0.1); width: 80px; height: 80px; border-radius: 50%; display: flex; align-items: center; justify-content: center; margin: 0 auto 1.5rem;">
+                    <i class="fa-solid fa-cloud-arrow-up" style="font-size: 2rem; color: var(--primary-color);"></i>
+                </div>
+                <h2 style="margin-bottom: 1rem;">Tải lên dữ liệu báo cáo mới</h2>
+                <p style="color: var(--text-secondary); max-width: 500px; margin: 0 auto 2rem;">
+                    Hỗ trợ định dạng .xlsx, .csv. Dữ liệu sẽ được tự động xử lý và cập nhật vào Dashboard sau khi tải
+                    lên thành công.
+                </p>
+
+                <div style="display: flex; gap: 1rem; justify-content: center;">
+                    <button class="btn-primary">
+                        <i class="fa-solid fa-upload"></i> Chọn file báo cáo
+                    </button>
+                    <button class="btn-secondary">
+                        <i class="fa-solid fa-download"></i> Tải file mẫu
+                    </button>
+                </div>
+            </div>
+        </div>
+
+        <div style="margin-top: 2rem;">
+            <h3 style="margin-bottom: 1rem; font-size: 1.1rem;">Lịch sử upload</h3>
+            <div class="table-container">
+                <table class="custom-table">
+                    <thead>
+                        <tr>
+                            <th>Tên File</th>
+                            <th>Ngày upload</th>
+                            <th>Người upload</th>
+                            <th>Trạng thái</th>
+                            <th>Hành động</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td>Report_T10_2023.xlsx</td>
+                            <td>21/10/2023 10:30</td>
+                            <td>Admin</td>
+                            <td><span style="color: var(--success)">Thành công</span></td>
+                            <td><button
+                                    style="background: none; border: none; color: var(--text-secondary); cursor: pointer;"><i
+                                        class="fa-solid fa-trash"></i></button></td>
+                        </tr>
+                        <tr>
+                            <td>Report_T9_2023.xlsx</td>
+                            <td>01/10/2023 09:15</td>
+                            <td>Admin</td>
+                            <td><span style="color: var(--success)">Thành công</span></td>
+                            <td><button
+                                    style="background: none; border: none; color: var(--text-secondary); cursor: pointer;"><i
+                                        class="fa-solid fa-trash"></i></button></td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+        </div>
+    </main>
+    <script src="js/script.js"></script>
+</body>
+
+</html>

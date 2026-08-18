@@ -1,0 +1,9 @@
+# Hạng mục Công việc - Xây dựng TikTok Webhook System
+
+- `[/]` Tạo bảng `failed_webhooks` để lưu các event lỗi.
+- `[ ]` Cấu hình Middleware loại trừ CSRF cho webhook route.
+- `[ ]` Triển khai `TikTokWebhookController` (Xác thực chữ ký & Đẩy vào Queue).
+- `[ ]` Tạo Laravel Jobs xử lý (Order, Inventory, Return events).
+- `[ ]` Thêm phương thức `subscribeWebhooks` vào `TikTokClient`.
+- `[ ]` Cấu hình route API cho Webhook.
+- `[ ]` Kiểm tra luồng xử lý realtime.

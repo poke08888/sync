@@ -1,0 +1,52 @@
+# Kế hoạch Xây dựng TikTok Webhook Realtime System (Laravel)
+
+Tôi sẽ xây dựng hệ thống xử lý Webhook chuyên nghiệp, cho phép Dashboard cập nhật dữ liệu gần như tức thời (realtime) mà không cần nhấn nút đồng bộ thủ công.
+
+## 1. Cơ sở Hạ tầng Webhook
+
+### [NEW] Migration `create_failed_webhooks_table.php`
+- Lưu trữ các webhook bị lỗi để xử lý lại (Dead Letter Queue):
+    - `type` (string): Loại event.
+    - `payload` (json): Dữ liệu thô từ TikTok.
+    - `error` (text): Nguyên nhân lỗi.
+    - `attempts` (integer): Số lần thử lại.
+
+### [NEW] `app/Http/Controllers/TikTokWebhookController.php`
+- **`handle(Request $request)`**:
+    - Trích xuất `x-tts-signature`.
+    - Lấy `APP_SECRET` dựa trên `shop_id` trong payload.
+    - Kiểm tra chữ ký bằng `hash_hmac('sha256', $rawBody, $appSecret)`.
+    - Trả về `200 OK` ngay lập tức (phản hồi trong < 1s để tránh TikTok retry vô hạn).
+    - Đẩy payload vào Laravel Queue để xử lý ngầm.
+
+## 2. Xử lý Background (Jobs)
+
+Tôi sẽ tạo các Laravel Job chuyên biệt để xử lý từng loại event:
+
+### `ProcessTikTokOrderWebhook.php`
+- Cập nhật trạng thái đơn hàng trong bảng `orders`.
+- Xử lý các logic đặc biệt như: Nếu hủy đơn -> Cập nhật tỷ lệ hủy (Cancel Rate).
+- Xóa cache Dashboard của shop liên quan.
+
+### `ProcessTikTokInventoryWebhook.php`
+- Cập nhật số lượng sản phẩm chi tiết.
+- Tự động chạy lại logic **Inventory Health** để gửi cảnh báo nếu tồn kho giảm xuống mức nguy hiểm.
+
+### `ProcessTikTokReturnWebhook.php`
+- Xử lý các yêu cầu trả hàng/hoàn tiền.
+- Cập nhật doanh thu thuần (Net Revenue).
+
+## 3. Quản lý và Đăng ký
+
+### [MODIFY] `TikTokClient.php`
+- Thêm phương thức `subscribeWebhooks()`: Gọi API TikTok để đăng ký URL webhook của hệ thống.
+- URL dự kiến: `https://your-domain.com/api/webhooks/tiktok`.
+
+### [MODIFY] `VerifyCsrfToken.php` (Middleware)
+- Ngoại lệ (Exempt) route `/api/webhooks/tiktok` khỏi kiểm tra CSRF.
+
+## 4. Câu hỏi và Lưu ý
+- **Môi trường Local**: Webhook yêu cầu một URL công khai có HTTPS. Tôi đề xuất bạn sử dụng **Ngrok** để expose port 8000 ra ngoài khi test local.
+- **Queue Driver**: Bạn nên đảm bảo `QUEUE_CONNECTION` trong `.env` không phải là `sync` (nên dùng `database` hoặc `redis`) để tránh làm chậm phản hồi cho TikTok.
+
+Mời bạn xác nhận để tôi bắt đầu triển khai hệ thống realtime này!

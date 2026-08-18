@@ -1,0 +1,111 @@
+<current_dom_explanation>
+This is a temporary snapshot of the current page's DOM structure. The DOM will change if you navigate to or interact with another page. Use a tool like browser_get_dom to capture and preserve the DOM in your trajectory if needed for later reference.
+</current_dom_explanation>
+<current_dom>
+Ecom OS
+[0] (70,138)<a class='nav-item active' href='/' />
+	[1] (52,138)<span >Overview />
+[2] (70,195)<a class='nav-item' href='/brands' />
+	[3] (47,195)<span >Brands />
+[4] (70,253)<a class='nav-item' href='/marketing' />
+	[5] (64,253)<span >Marketing (Ads) />
+[6] (70,311)<a class='nav-item' href='/customers' />
+	[7] (54,311)<span >Customers />
+[8] (70,900)<a class='nav-item' href='/settings' />
+	[9] (50,900)<span >Settings />
+Logout
+[10] (570,500)<main class='main-content' scrollable='true' />
+	Comparing today vs previous period
+	[11] (361,199)<div  />
+	Peak #
+	1
+	:
+	12h
+	Peak #
+	2
+	:
+	13h
+	Peak #
+	3
+	:
+	10h
+	Sales volume vs Moving Average
+	[12] (772,199)<div  />
+	04/04
+	Payday Sale
+	05/04
+	Flash Deal
+	09/04
+	9.4 Mega
+	Platform Distribution
+	Revenue split by marketplace
+	[13] (292,738)<div  />
+		TikTok Shop
+		₫
+		450.000
+		50.6
+		% OF TOTAL
+	Total
+	₫
+	890
+	k
+	TikTok Shop
+	51
+	% share
+	Shopee
+	36
+	% share
+	Direct/Web
+	Top 10 Products
+	Product performance ranking
+	[14] (871,519)<button class='px-3 py-1.5 text-[10px] font-black uppercase tracking-widest rounded-lg transition-all bg-indigo-500 text-white shadow-lg'>revenue />
+	[15] (904,519)<button class='px-3 py-1.5 text-[10px] font-black uppercase tracking-widest rounded-lg transition-all text-gray-500 hover:text-gray-300'>qty />
+	[16] (935,519)<button class='px-3 py-1.5 text-[10px] font-black uppercase tracking-widest rounded-lg transition-all text-gray-500 hover:text-gray-300'>margin />
+	#
+	1
+	Silk Serenity Mask
+	₫45.0k
+	[17] (941,584)<div  />
+	#
+	2
+	Luxe Sleep Gown
+	₫38.0k
+	[18] (941,635)<div  />
+	#
+	3
+	Cloud Comfort Pillow
+	₫32.0k
+	[19] (941,687)<div  />
+	#
+	4
+	Aura Glow Serum
+	₫29.0k
+	[20] (941,738)<div  />
+	#
+	5
+	Dreamy Mist Spray
+	₫24.0k
+	[21] (941,789)<div  />
+	#
+	6
+	Velvet Ribbon Scrunchie
+	₫18.0k
+	[22] (941,841)<div  />
+	#
+	7
+	Midnight Eye Cream
+	₫15.0k
+	[23] (941,892)<div  />
+	#
+	8
+	Satin Bedding Set
+	₫12.0k
+	[24] (941,944)<div  />
+[25] (52,951)<div  />
+	[26] (52,951)<div  />
+		[27] (52,951)<div  />
+			[28] (48,951)<span >1
+error />
+			[29] (80,951)<button aria-label='Hide Errors' class='nextjs-toast-errors-hide-button' />
+
+</current_dom>

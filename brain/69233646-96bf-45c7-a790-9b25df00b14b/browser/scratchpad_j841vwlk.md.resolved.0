@@ -1,0 +1,9 @@
+# Verification Plan: KPI Cards Module
+
+## Checklist
+- [ ] Navigate to http://localhost:3000
+- [ ] Wait for page load and hot-reload
+- [ ] Verify 8 KPI metrics
+- [ ] Verify time filter
+- [ ] Scroll and check layout
+- [ ] Final summary

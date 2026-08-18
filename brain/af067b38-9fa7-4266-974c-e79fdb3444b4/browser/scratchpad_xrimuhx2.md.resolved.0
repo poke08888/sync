@@ -1,0 +1,8 @@
+# KPI Tracker Layout Bug Investigation
+
+## Task Checklist
+- [ ] Navigate to http://localhost:5174/
+- [ ] Locate 'Weekly Breakdown' in 'KPI Tracker' module
+- [ ] Take screenshot of the layout bug
+- [ ] Analyze the DOM/UI to understand why it's overflowing
+- [ ] Summarize findings and describe the bug

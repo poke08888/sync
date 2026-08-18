@@ -1,0 +1,38 @@
+# Task: Triển khai Hệ thống Dự báo Tái cung ứng Kho hàng
+
+## Phân kỳ 1: Database & Backend Foundation
+- [ ] Cập nhật `schema.prisma` với các model mới (Sku, Supplier, Snapshot, PO, Alert, Logs)
+- [ ] Chạy Prisma Generate & Migrate
+- [ ] Khởi tạo Redis client trong `lib/redis.ts` (nếu chưa có)
+
+## Phân kỳ 2: Engine Tính toán (Core Logic)
+- [ ] Tạo `lib/replenishment-engine.ts`
+- [ ] Viết hàm tính ADO (7, 14, 30 ngày)
+- [ ] Viết hàm tính Net Stock & Days of Stock
+- [ ] Viết hàm tính Reorder Date & Recommended Quantity
+- [ ] Viết hàm generate/update Replenishment Alerts
+
+## Phân kỳ 3: Hệ thống Import Excel
+- [ ] Tạo API Route `/api/upload/inventory`
+- [ ] Tạo API Route `/api/upload/purchase-orders`
+- [ ] Tạo API Route `/api/upload/sku-master`
+- [ ] Tạo API Route `/api/upload/suppliers`
+- [ ] Xây dựng trang `/inventory/upload` với tính năng kéo thả và mapping cột
+- [ ] Thực hiện validation logic (sku_code, dates, MOQ)
+
+## Phân kỳ 4: Dashboard & Visuals
+- [ ] Thiết kế Dashboard chính (`/inventory`)
+- [ ] Dashboard: Thẻ KPI (Critical, Warning, In-transit value)
+- [ ] Dashboard: Bảng tình trạng Tái cung ứng (màu sắc cảnh báo)
+- [ ] Dashboard: Biểu đồ Forecast dự báo tồn kho 30 ngày
+- [ ] Dashboard: Panel quản lý PO đang về
+
+## Phân kỳ 5: Thông báo & Workflow PO
+- [ ] Tạo dịch vụ thông báo đa kênh (`lib/notifications.ts`)
+- [ ] Xây dựng trang xác nhận PO (`/inventory/po/[id]/confirm`)
+- [ ] Thiết lập logic Cron Job hàng ngày (8:00 AM) để nhắc nhở PO về
+
+## Phân kỳ 6: Dữ liệu mẫu & Nghiệm thu
+- [ ] Seed dữ liệu mẫu (Warehouses, Suppliers, SKUs, Snapshots)
+- [ ] Kiểm tra toàn bộ luồng từ Upload -> Dự báo -> Thông báo
+- [ ] Tạo bộ mẫu Excel (Template) cho người dùng tải về

@@ -1,0 +1,41 @@
+# Báo cáo: Hệ thống Dashboard E-commerce
+
+Hệ thống theo dõi số liệu thương mại điện tử (Shopee & TikTok) đã được cấu trúc và xây dựng thành công.
+*Lưu ý:* Do máy tính của bạn hiện không được cài đặt PHP & Composer, tôi đã thiết lập sẵn toàn bộ cấu trúc file cho Laravel và trang bị thêm một file HTML tĩnh có đầy đủ hiệu ứng & biểu đồ để bạn có thể xem trước giao diện ngay lập tức. Sau này bạn chỉ cần copy thư mục `ecommerce-dashboard` vào máy chủ PHP của mình.
+
+## Tổng quan Thiết kế
+
+Giao diện được thiết kế mang phong cách hiện đại (Premium feel) với đầy đủ 2 chế độ (Sáng / Tối). Layout sử dụng Vanilla CSS kết hợp font chữ `Inter` (cho số liệu) và `Outfit` (cho tiêu đề).
+
+![Giao diện Dashboard Chế độ Tối](/Users/kevin/.gemini/antigravity/brain/fde26db0-c4c4-464f-b3fc-b36b183e3b31/dashboard_verified_dark_mode_1775703289856.png)
+
+## Chi tiết Triển khai
+
+### 1. Số Liệu Báo Cáo
+Tập hợp 6 thẻ chỉ số được render từ Controller, tất cả đều có tỷ lệ phần trăm so sánh ở dưới:
+- **Doanh số** & **Doanh số sau hủy**
+- **Tỷ lệ hủy** (Tự động bôi màu xanh nếu tỷ lệ giảm)
+- **Chi phí ROAS** & **AOV**
+- **Số đơn hàng**
+
+### 2. Hệ Thống Biểu Đồ (Chart.js)
+Trong phần bên dưới, các biểu đồ tự động đáp ứng hiển thị:
+- **Biểu đồ tỷ trọng kênh:** Doughnut Chart nổi bật phần trăm của Shopee vs TikTok.
+- **Biểu đồ doanh số theo giờ:** Line Chart, so sánh đường liền (hiện tại) và đường đứt khúc (cùng kỳ).
+- **Biểu đồ doanh số theo ngày:** Bar Chart so sánh cột số liệu của 7 ngày qua.
+
+### 3. Cấu Trúc Laravel
+Toàn bộ source code chuẩn bị sẵn nằm trong thư mục `ecommerce-dashboard`:
+- `routes/web.php` – Hệ thống định tuyến cơ bản
+- `app/Http/Controllers/DashboardController.php` – Controller chứa các mock data để dễ dàng tích hợp logic lấy DB thật.
+- `resources/views/layouts/app.blade.php` – Layout master file.
+- `resources/views/index.blade.php` – View content chính sử dụng vòng lặp (Blade loops) linh hoạt.
+- `public/css/app.css` & `public/js/dashboard.js` – Các file frontend tĩnh.
+
+### Xem Trước Tính Năng
+
+Quá trình chuyển đổi chế độ tối (Dark mode) và tương tác biểu đồ đã được trình duyệt tự động kiểm thử. Bạn có thể xem hình ảnh động/recording bên dưới:
+
+![Quá trình Tương tác UI - Recording](/Users/kevin/.gemini/antigravity/brain/fde26db0-c4c4-464f-b3fc-b36b183e3b31/ecommerce_dashboard_ui_1775703247027.webp)
+
+Bạn có thể double-click mở file `ecommerce-dashboard/public/index.html` trong máy tính của mình để xem trực tiếp phiên bản HTML nhé.

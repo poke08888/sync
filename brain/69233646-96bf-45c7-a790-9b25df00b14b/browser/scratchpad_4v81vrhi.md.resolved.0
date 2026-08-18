@@ -1,0 +1,19 @@
+# Task: Verify KOC Live Integration
+
+## Checklist
+- [ ] Navigate to http://localhost:3000
+- [ ] Observe Sidebar for "KOC Live" item
+- [ ] Ensure Global Dashboard Filter is visible
+- [ ] Navigate to "KOC Live" page
+- [ ] Verify "Bắt đầu Phân tích Hệ sinh thái KOC" empty state
+- [ ] Check "Data Management" section in KOC Live
+- [ ] Switch to "Lịch sử chi tiết" tab
+- [ ] Check KOC selector (Searchable Dropdown)
+- [ ] Take required screenshots
+    - [ ] Dashboard Overview with global filters
+    - [ ] KOC Live empty state
+    - [ ] KOC Live "Lịch sử chi tiết" with searchable dropdown open
+    - [ ] Sidebar
+
+## Observations
+- 

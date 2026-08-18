@@ -1,0 +1,40 @@
+# Kế hoạch Xây dựng Trang Lịch sử KOC Chi tiết
+
+Tôi sẽ triển khai tab "Lịch sử chi tiết" để cung cấp cái nhìn sâu sắc nhất về hiệu suất của từng KOC hoặc toàn bộ đội ngũ theo thời gian.
+
+## User Review Required
+
+> [!IMPORTANT]
+> - **Date Range Picker**: Để đảm bảo tính đồng bộ và thẩm mỹ, tôi sẽ sử dụng một bộ chọn ngày tối giản phù hợp với phong cách Glassmorphism của Dashboard.
+> - **Stacked Bar Chart**: Khi chọn "Tất cả KOC", biểu đồ này sẽ giúp bạn nhận diện ngay 5 "chiến thần" đang đóng góp GMV lớn nhất theo từng ngày.
+
+## Proposed Changes
+
+### 1. Nâng cấp Data Service
+#### [MODIFY] [koc-service.ts](file:///Users/kevin/.gemini/antigravity/scratch/ecom-next-dashboard/src/lib/koc-service.ts)
+- Bổ sung hàm `filterSessions(sessions, filters)`: Lọc theo creatorId và khoảng ngày.
+- Bổ sung hàm `aggregateByPeriod(sessions, period)`: Nhóm dữ liệu theo Ngày/Tuần/Tháng/Năm.
+- Bổ sung hàm `getTopContributors(sessions, topN)`: Dữ liệu cho biểu đồ Stacked Bar.
+
+### 2. Thành phần Giao diện Lịch sử
+#### [NEW] [KocHistoryTab.tsx](file:///Users/kevin/.gemini/antigravity/scratch/ecom-next-dashboard/src/components/koc/KocHistoryTab.tsx)
+- **Thanh bộ lọc (Filter Bar)**: Chọn KOC, chế độ xem (Ngày/Tuần/Tháng), và khoảng ngày.
+- **Thẻ Profile (KOC Profile Card)**: Hiển thị tóm tắt năng lực của KOC được chọn.
+- **Biểu đồ Timeline**: GMV và Đơn hàng qua các mốc thời gian.
+
+#### [NEW] [KocSessionTable.tsx](file:///Users/kevin/.gemini/antigravity/scratch/ecom-next-dashboard/src/components/koc/KocSessionTable.tsx)
+- Bảng chi tiết từng phiên LIVE với tính năng **Expandable Rows** (Mở rộng hàng) để xem thêm các chỉ số tương tác (Viewers, Comments, Likes, Followers).
+- Highlight các hàng có kết quả tốt (GMV > 0).
+
+### 3. Tích hợp Hoàn thiện
+#### [MODIFY] [page.tsx](file:///Users/kevin/.gemini/antigravity/scratch/ecom-next-dashboard/src/app/(dashboard)/koc-live/page.tsx)
+- Kết nối trạng thái giữa Tab Tổng quan và Tab Lịch sử.
+- Đảm bảo khi click vào Profile KOC ở bảng tổng, Tab Lịch sử sẽ tự động được lọc và hiển thị ngay.
+
+## Verification Plan
+
+### Manual Verification
+- Chọn 1 KOC cụ thể và kiểm tra xem bảng lịch sử có hiện đúng các phiên live của người đó không.
+- Chuyển đổi giữa các chế độ Ngày/Tuần/Tháng để xác nhận biểu đồ Timeline cập nhật chính xác.
+- Nhấn vào một hàng trong bảng phiên live để kiểm tra tính năng "Mở rộng" (Expand) thông tin chi tiết.
+- Kiểm tra chế độ "Tất cả KOC" (All KOCs view).

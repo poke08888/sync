@@ -1,0 +1,30 @@
+# Kế hoạch Tích hợp Toàn diện Dashboard
+
+Hiện tại, chúng ta có 2 phần riêng biệt:
+1. **Module KOC Analytics (Vite)**: Chuyên phân tích file Excel KOC.
+2. **Module TikTok API (Next.js 14)**: Chuyên quản lý kết nối và gán Brand.
+
+Để tích hợp, tôi đề xuất di chuyển toàn bộ Module KOC sang dự án Next.js 14 để tạo thành một hệ thống Dashboard đồng nhất.
+
+## 1. Di chuyển và Chuyển đổi (Migration)
+- **Component**: Chuyển các component từ `src/components/koc/*` sang `components/koc/*` trong dự án Next.js.
+- **State Management**: Giữ nguyên `useKocStore.js` (Zustand) vì nó hoạt động rất tốt trong Next.js.
+- **Pages**:
+    - `app/dashboard/koc/page.tsx`: Sẽ chứa giao diện Analytics hiện tại.
+    - `app/dashboard/settings/page.tsx`: Sẽ chứa giao diện Cấu hình TikTok API vừa xây dựng.
+
+## 2. Kết nối Điều hướng (Unified Navigation)
+- Cập nhật `KocDashboard.jsx` để thêm một Tab mới: **"Cấu hình API"**.
+- Tab này sẽ cho phép người dùng chuyển nhanh từ việc phân tích Excel sang việc quản lý các kết nối API thời gian thực.
+
+## 3. Kết nối Dữ liệu (Backend Synergy)
+- **Giai đoạn 1**: Thêm thông báo trên Dashboard Analytics nếu một Brand hiện tại đã được kết nối API (giúp người dùng biết dữ liệu có thể được cập nhật tự động).
+- **Giai đoạn 2**: Cập nhật logic tính toán để gộp dữ liệu từ File Excel (Lịch sử) và Dữ liệu API (Thời gian thực).
+
+## 4. Open Questions
+> [!IMPORTANT]
+> **Câu hỏi cho bạn**:
+> 1. Bạn muốn tôi di chuyển toàn bộ code KOC Analytics sang folder dự án Next.js 14 (`tiktok-shop-nx`) luôn bây giờ phải không?
+> 2. Bạn có muốn sử dụng một Sidebar chung cho toàn bộ Dashboard để dễ dàng chuyển đổi giữa "Báo cáo KOC" và "Cài đặt TikTok" không?
+
+Sau khi bạn xác nhận "Di chuyển", tôi sẽ tiến hành gộp 2 dự án làm một.

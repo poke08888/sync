@@ -1,0 +1,6 @@
+# Hạng mục Công việc - Bộ lọc Thương hiệu Dashboard
+
+- `[/]` Controller: Cập nhật `DashboardController` để xử lý query `brand_id`.
+- `[ ]` UI: Thêm dropdown Thương hiệu vào Filter Bar (`index.blade.php`).
+- `[ ]` Logic: Tích hợp JS để tự động lọc khi thay đổi dropdown.
+- `[ ]` Kiểm tra kết quả hiển thị theo từng Brand.

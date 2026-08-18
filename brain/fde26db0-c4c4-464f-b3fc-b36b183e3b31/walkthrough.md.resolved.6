@@ -1,0 +1,42 @@
+# Tích hợp TikTok Shop Partner API (Global Portal)
+
+Tôi đã hoàn thành việc xây dựng module quản lý xác thực và vòng đời Token cho TikTok Shop. Hệ thống đã được thiết kế chuẩn cho **Next.js 14 App Router**, hỗ trợ nhiều Shop và khả năng mở rộng thêm nhiều App Key/Secret.
+
+## 1. Cấu trúc và Modules chính
+
+### 🔐 Token Lifecycle (`lib/tiktok/auth.ts`)
+Đây là trái tim của hệ thống. Nó xử lý:
+- **Exchange Code**: Đổi mã ủy quyền lấy bộ Token (`access_token`, `refresh_token`, `shop_cipher`).
+- **Auto-Refresh**: Hàm `getValidToken(shopId)` tự động kiểm tra hết hạn (với buffer 5 phút) và gọi refresh API nếu cần trước khi trả về Token cho các API call khác. 
+
+### 📁 Storage (`lib/tiktok/storage.ts`)
+Sử dụng file JSON (`data/tiktok_tokens.json`) để lưu trữ an toàn thông tin Shop và Token:
+- Lưu trữ `shop_cipher` (cực kỳ quan trọng để gọi API của TikTok Global).
+- Lưu kèm `app_key` để hệ thống biết cần dùng Secret nào khi thực hiện Refresh Token cho shop đó.
+
+### ⚙️ Hỗ trợ Nhiều App Key (`lib/tiktok/app-config`)
+Hệ thống hỗ trợ lưu nhiều bộ App Key thông qua `tiktok_apps.json` hoặc sử dụng mặc định từ `.env.local`. Điều này cho phép bạn quản lý nhiều Thương hiệu với các Partner App khác nhau.
+
+## 2. API Routes (Auth Flow)
+
+- `/api/auth/tiktok/connect`: Route khởi tạo, chuyển hướng người dùng sang TikTok Auth Center.
+- `/api/auth/tiktok/callback`: Route tiếp nhận kết quả từ TikTok, thực hiện đổi Token và lưu trữ vào database (JSON).
+
+## 3. Cấu hình Environment
+
+Các thông tin nhạy cảm đã được cấu hình trong file `.env.local`:
+```env
+TIKTOK_APP_KEY=6c7rgbqtf73p0
+TIKTOK_APP_SECRET=1141445ff08d9964d0c6503b736cb445c202c54f
+TIKTOK_REDIRECT_URI=https://mydashboard.com/api/auth/tiktok/callback
+```
+
+---
+
+> [!IMPORTANT]
+> **Lưu ý triển khai**:
+> 1. Toàn bộ code đã được viết bằng **TypeScript** với xử lý lỗi (Error Handling) và Logging đầy đủ.
+> 2. Hệ thống sử dụng `fetch` API tích hợp sẵn của Next.js (Node 18+), không cần cài thêm thư viện external như Axios.
+> 3. Bạn có thể sử dụng hàm `TikTokAuthService.getValidToken(shopId)` ở bất cứ đâu trong Server Components hoặc API Routes để luôn có một token hợp lệ mà không cần lo lắng về việc hết hạn.
+
+Mời bạn kiểm tra mã nguồn tại thư mục `/Users/kevin/clawd/tiktok-shop-nx`.

@@ -1,0 +1,28 @@
+# Kế hoạch Sửa lỗi UX Sidebar
+
+Hiện tại, trạng thái "Active" (đánh dấu trang đang xem) trên thanh Sidebar đang bị cố định vào mục "Tổng quan", dẫn đến việc khi bạn chuyển sang các trang khác (Kho hàng, Thương hiệu...), mục "Tổng quan" vẫn hiện sáng. Tôi sẽ xử lý lỗi này bằng cách sử dụng logic nhận diện URL động.
+
+## User Review Required
+
+> [!NOTE]
+> Tôi sẽ tách phần Sidebar ra thành một Component riêng (`Sidebar.tsx`) để sử dụng tính năng `usePathname` của Next.js. Điều này giúp hệ thống tự động nhận diện bạn đang ở trang nào để đánh dấu chính xác.
+
+## Proposed Changes
+
+### 1. Thành phần Sidebar mới
+#### [NEW] [Sidebar.tsx](file:///Users/kevin/.gemini/antigravity/scratch/ecom-next-dashboard/src/components/layout/Sidebar.tsx)
+- Tạo Component Client (`'use client'`).
+- Sử dụng `usePathname` để so sánh URL hiện tại với đường dẫn của từng mục menu.
+- Chuyển toàn bộ thẻ `<a>` thành `<Link>` của Next.js để quá trình chuyển trang nhanh hơn và không cần tải lại toàn bộ trang.
+
+### 2. Cập nhật Layout gốc
+#### [MODIFY] [layout.tsx](file:///Users/kevin/.gemini/antigravity/scratch/ecom-next-dashboard/src/app/layout.tsx)
+- Loại bỏ mã nguồn Sidebar hardcoded.
+- Nhúng Component `Sidebar` mới vào.
+
+## Verification Plan
+
+### Manual Verification
+- Truy cập vào từng trang (Thương hiệu, Marketing, Kho hàng, Khách hàng, Cài đặt).
+- Kiểm tra xem mục menu tương ứng có được làm nổi bật (active) và mục "Tổng quan" có hết highlight hay không.
+- Đảm bảo việc chuyển trang diễn ra mượt mà nhờ thẻ `Link`.

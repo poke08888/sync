@@ -1,0 +1,8 @@
+# Hạng mục Công việc - Xây dựng TikTok Finance Service
+
+- `[/]` Tạo bảng `tiktok_payments` để lưu dữ liệu dòng tiền.
+- `[ ]` Tạo Model `TikTokPayment.php`.
+- `[ ]` Triển khai `searchPayments` bằng APIv2 (202309).
+- `[ ]` Triển khai `computeFinancialSummary`.
+- `[ ]` Tích hợp vào `DashboardController` để hiển thị Biên lợi nhuận thật.
+- `[ ]` Kiểm tra tính chính xác của thuật toán Net Profit.

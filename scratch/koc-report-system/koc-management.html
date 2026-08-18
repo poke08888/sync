@@ -1,0 +1,98 @@
+<!DOCTYPE html>
+<html lang="vi">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Quản lý KOC - KOC Report</title>
+    <link rel="stylesheet" href="css/style.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+</head>
+
+<body>
+    <nav class="sidebar">
+        <div class="brand">
+            <i class="fa-solid fa-chart-line"></i>
+            KOC Report
+        </div>
+        <ul class="nav-links">
+            <li><a href="index.html" class="nav-item"><i class="fa-solid fa-house"></i> Dashboard</a></li>
+            <li><a href="koc-list.html" class="nav-item"><i class="fa-solid fa-users"></i> Danh sách KOC</a></li>
+            <li><a href="koc-management.html" class="nav-item active"><i class="fa-solid fa-user-plus"></i> Quản lý
+                    KOC</a></li>
+            <li><a href="data-upload.html" class="nav-item"><i class="fa-solid fa-cloud-arrow-up"></i> Upload Dữ
+                    liệu</a></li>
+        </ul>
+    </nav>
+
+    <main class="main-content">
+        <header>
+            <h1 class="page-title">Thêm mới KOC</h1>
+        </header>
+
+        <div class="card" style="max-width: 800px; margin-bottom: 2rem;">
+            <div class="card-header">
+                <h2 class="card-title" style="font-size: 1.1rem; color: var(--text-primary);">Thông tin KOC</h2>
+            </div>
+
+            <form id="koc-form">
+                <div class="form-group">
+                    <label class="form-label">Tên KOC</label>
+                    <input type="text" class="form-control" placeholder="Nhập tên KOC">
+                </div>
+
+                <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 1rem;">
+                    <div class="form-group">
+                        <label class="form-label">ID KOC</label>
+                        <input type="text" class="form-control" placeholder="Ví dụ: KOC_001">
+                    </div>
+                    <div class="form-group">
+                        <label class="form-label">Số điện thoại</label>
+                        <input type="tel" class="form-control" placeholder="09xxxxxxx">
+                    </div>
+                </div>
+
+                <div class="form-group">
+                    <label class="form-label">Link TikTok Profile</label>
+                    <div style="position: relative;">
+                        <i class="fa-brands fa-tiktok"
+                            style="position: absolute; left: 1rem; top: 1rem; color: var(--text-secondary);"></i>
+                        <input type="url" class="form-control" style="padding-left: 2.5rem;"
+                            placeholder="https://tiktok.com/@username">
+                    </div>
+                </div>
+
+                <div class="form-group">
+                    <label class="form-label">Địa chỉ</label>
+                    <input type="text" class="form-control" placeholder="Địa chỉ liên hệ">
+                </div>
+
+                <div style="display: flex; gap: 1rem; margin-top: 1.5rem;">
+                    <button type="button" class="btn-primary">
+                        <i class="fa-solid fa-plus"></i> Thêm KOC
+                    </button>
+                    <button type="button" class="btn-secondary">Hủy bỏ</button>
+                </div>
+            </form>
+        </div>
+
+        <div class="card" style="max-width: 800px;">
+            <div class="card-header">
+                <h2 class="card-title" style="font-size: 1.1rem; color: var(--text-primary);">Upload danh sách từ Excel
+                </h2>
+            </div>
+
+            <div
+                style="border: 2px dashed var(--glass-border); border-radius: 1rem; padding: 3rem; text-align: center; cursor: pointer; transition: all 0.3s; background: rgba(255,255,255,0.02)">
+                <i class="fa-solid fa-file-excel"
+                    style="font-size: 3rem; color: var(--success); margin-bottom: 1rem;"></i>
+                <h3 style="margin-bottom: 0.5rem; font-weight: 500;">Kéo thả file Excel vào đây</h3>
+                <p style="color: var(--text-secondary); margin-bottom: 1.5rem;">Hoặc nhấn để chọn file từ máy tính</p>
+                <button class="btn-secondary">Chọn File</button>
+            </div>
+        </div>
+    </main>
+    <script src="js/script.js"></script>
+</body>
+
+</html>

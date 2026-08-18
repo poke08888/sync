@@ -1,0 +1,40 @@
+# Kế hoạch Xây dựng TikTok Finance Service (Laravel)
+
+Tôi sẽ xây dựng lớp `TikTokFinanceService` để quản lý dòng tiền, phí sàn và tính toán lợi nhuận thực tế từ TikTok Shop, giúp hoàn thiện chỉ số "Biên lợi nhuận gộp" trên Dashboard.
+
+## 1. Cấu trúc Dữ liệu mới
+
+### [NEW] Migration `create_tiktok_payments_table.php`
+- Lưu trữ lịch sử thanh toán từ TikTok:
+    - `payment_id` (string, unique): Mã giao dịch thanh toán.
+    - `order_id` (string, nullable): Liên kết với đơn hàng.
+    - `amount` (decimal): Số tiền thanh toán.
+    - `payment_type` (string): Loại thanh toán (Settlement, adjustment, v.v.).
+    - `status` (string): SUCCESS, FAILED, PENDING.
+    - `details` (json): Lưu chi tiết phí sàn (commission), phí vận chuyển (shipping), và chi phí quảng cáo (ads).
+    - `paid_at` (timestamp): Thời điểm thanh toán.
+
+### [NEW] Model `TikTokPayment.php`
+- Cấu hình `casts` cho trường `details` sang kiểu `array`.
+
+## 2. Thành phần Logic
+
+### [NEW] `app/Services/TikTokFinanceService.php`
+- **`searchPayments(Carbon $from, Carbon $to)`**: Truy vấn danh sách thanh toán từ API `POST /finance/202309/payments/search`.
+- **`getPaymentDetail(string $paymentId)`**: Lấy chi tiết một phiên giao dịch cụ thể.
+- **`computeFinancialSummary(array $payments, array $orders)`**:
+    - **Gross Revenue**: Tổng doanh số thô.
+    - **Total Commission**: Tổng phí sàn và phí thanh toán.
+    - **Total Shipping Fee**: Tổng phí vận chuyển.
+    - **Total Ads Cost**: Chi phí quảng cáo (trích xuất từ dữ liệu thanh toán).
+    - **Net Profit**: Lợi nhuận ròng thực tế = `Doanh thu - Phí sàn - Phí ship - Ads`.
+    - **Gross Margin Rate**: Tỷ lệ biên lợi nhuận gộp (%).
+    - **Cost Breakdown**: Phân tích cơ cấu chi phí theo biểu đồ hình tròn.
+
+## 3. Tích hợp Dashboard
+
+### [MODIFY] `DashboardController.php`
+- Xóa bỏ trạng thái "N/A" ở thẻ **Biên lợi nhuận gộp**.
+- Sử dụng `TikTokFinanceService` để tính toán số liệu tài chính thực tế và trả về cho React frontend.
+
+Mời bạn xác nhận để tôi bắt đầu hoàn thiện mảnh ghép tài chính quan trọng này!

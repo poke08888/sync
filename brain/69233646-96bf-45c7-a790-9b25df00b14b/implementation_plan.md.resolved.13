@@ -1,0 +1,43 @@
+# Kế hoạch Xây dựng Data Layer cho KOC Live
+
+Tôi sẽ triển khai lớp xử lý dữ liệu cho module KOC Live, tập trung vào việc đọc file Excel từ TikTok Shop, chuyển đổi dữ liệu thô thành các đối tượng có cấu trúc và tính toán các chỉ số phân tích chuyên sâu.
+
+## User Review Required
+
+> [!IMPORTANT]
+> - Tôi sẽ sử dụng thư viện `xlsx` (SheetJS) để xử lý file. Tôi giả định môi trường của bạn đã hoặc sẽ được cài đặt thư viện này (`npm install xlsx`).
+> - Việc xử lý dữ liệu sẽ hoàn toàn thực hiện ở phía Client (Trình duyệt) để đảm bảo tốc độ và tính bảo mật.
+
+## Proposed Changes
+
+### 1. Định nghĩa Kiểu dữ liệu & Tiện ích xử lý
+#### [NEW] [koc-service.ts](file:///Users/kevin/.gemini/antigravity/scratch/ecom-next-dashboard/src/lib/koc-service.ts)
+- Định nghĩa Interface `KocLiveSession` với đầy đủ các trường từ file Excel.
+- Hàm `parseRows`: Chuyển đổi mảng 2D từ Excel sang danh sách Object.
+    - Xử lý Regex cho Duration ("1h 30min" -> 1.5).
+    - Chuẩn hóa Date ("2026/04/06/ 22:55" -> "2026-04-06").
+    - Làm sạch dữ liệu số (loại bỏ ký tự tiền tệ, dấu phẩy).
+- Các hàm Aggregation:
+    - `computeKpis`: Tính toán GMV tổng, CVR, AOV, Doanh thu/Giờ.
+    - `aggregateByKoc`: Nhóm dữ liệu theo từng KOC.
+    - `aggregateByPeriod`: Nhóm dữ liệu theo Ngày/Tuần/Tháng.
+
+### 2. Thành phần Giao diện Upload
+#### [NEW] [KocLiveUpload.tsx](file:///Users/kevin/.gemini/antigravity/scratch/ecom-next-dashboard/src/components/koc/KocLiveUpload.tsx)
+- Xây dựng vùng Dropzone sử dụng CSS thuần và Tailwind.
+- Logic tích hợp `xlsx` để đọc file ngay khi người dùng chọn.
+- Hiển thị trạng thái: Tên file, số lượng phiên LIVE được tìm thấy trong file.
+- Nút "Xóa dữ liệu" để dọn dẹp state hiện tại.
+
+### 3. Trang hiển thị Test (Tạm thời)
+#### [NEW] [page.tsx](file:///Users/kevin/.gemini/antigravity/scratch/ecom-next-dashboard/src/app/(dashboard)/koc-live/page.tsx)
+- Tạo trang mới để kiểm tra luồng dữ liệu.
+- Quản lý state `sessions` (dữ liệu tích lũy từ nhiều file).
+- Hiển thị thử nghiệm các KPI đã tính toán được.
+
+## Verification Plan
+
+### Manual Verification
+- Sử dụng file Excel mẫu (theo cấu trúc TikTok Live Analysis) để upload.
+- Kiểm tra log console hoặc UI xem các chỉ số Revenue/Hour, CVR có được tính đúng công thức không.
+- Kiểm tra tính năng "Cộng dồn" khi upload 2 file khác nhau.

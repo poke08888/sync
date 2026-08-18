@@ -1,0 +1,16 @@
+# Task: Khắc phục Sự cố Kết nối (Connectivity Fix)
+
+## Chuẩn bị
+- [x] Dừng các tiến trình LocalTunnel cũ (lt)
+- [x] Giải phóng cổng 3000 nếu bị treo
+
+## Triển khai Cloudflare
+- [x] Tải binary `cloudflared` chính thức cho macOS
+- [x] Cấp quyền thực thi (`chmod +x`) cho binary
+- [x] Khởi tạo đường truyền (Tunnel) đến `http://127.0.0.1:3000`
+- [x] Thu thập URL công khai mới
+
+## Kiểm tra & Bàn giao
+- [x] Kiểm tra URL mới qua `curl` (Status 200)
+- [ ] Cập nhật Walkthrough cho người dùng
+- [ ] Xác nhận người dùng đã truy cập thành công

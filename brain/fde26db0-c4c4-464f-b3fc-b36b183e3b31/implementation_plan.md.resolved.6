@@ -1,0 +1,38 @@
+# Kế hoạch Tích hợp Quản lý Shop & Thương hiệu
+
+Bản kế hoạch này mở rộng hệ thống TikTok Shop API để tích hợp trực tiếp vào phần Cài đặt và cho phép ánh xạ (mapping) từng Shop với một Thương hiệu cụ thể.
+
+## 1. Mở rộng Model Dữ liệu (`lib/tiktok/storage.ts`)
+- **Cập nhật `TikTokToken`**: Thêm trường `brand?: string` để lưu trữ thông tin thương hiệu mà shop đó thuộc về.
+- **Hàm `updateShopBrand(shopId, brand)`**: Cho phép cập nhật thương hiệu cho một shop đã kết nối.
+- **Hàm `removeTokens(shopId)`**: Cho phép xóa toàn bộ thông tin kết nối của một shop (Ngắt kết nối).
+
+## 2. API Routes mới
+- **`app/api/auth/tiktok/update-brand/route.ts`**:
+    - `POST`: Nhận `shopId` và `brand`. Cập nhật vào storage.
+- **`app/api/auth/tiktok/disconnect/route.ts`**:
+    - `POST`: Nhận `shopId`. Xóa dữ liệu shop khỏi hệ thống.
+
+## 3. Giao diện Quản lý (`app/settings/tiktok/page.tsx`)
+Xây dựng giao diện Settings hiện đại, bóng bẩy (Pantone 292 C):
+
+### Thành phần giao diện:
+- **Header**: Nút "Kết nối Shop mới" và tổng quan số lượng shop.
+- **Danh sách Shop (Grid Card)**:
+    - Hiển thị thông tin Shop: Tên, Seller ID, Avatar.
+    - **Dropdown Gắn Thương hiệu**: Cho phép chọn thương hiệu từ danh sách hiện có (đọc từ hệ thống KOC Analytics) hoặc nhập mới.
+    - **Badge Trạng thái**: (Đã kết nối / Hết hạn / Sắp hết hạn).
+    - **Nút Hành động**: Ngắt kết nối, Làm mới Token.
+
+## 4. Đồng bộ với hệ thống KOC Analytics
+- Khi một Shop được gắn với "Thương hiệu A", các dữ liệu API sau này (Đơn hàng, GMV) sẽ tự động được gán cho "Thương hiệu A".
+- Điều này giúp bộ lọc Thương hiệu ở Dashboard hoạt động nhất quán trên cả dữ liệu file Excel và dữ liệu API.
+
+---
+
+> [!IMPORTANT]
+> **Câu hỏi cho người dùng**:
+> 1. Trong phần Cài đặt, bạn có muốn quản lý cả danh sách các **App Key/Secret** (Partner Apps) không, hay chỉ quản lý các **Shop**?
+> 2. Danh sách Thương hiệu nên lấy tự động từ dữ liệu KOC bạn đã upload trước đó, hay cho phép người dùng tự nghĩa mới trong trang Cài đặt này?
+
+Vui lòng xác nhận để tôi bắt đầu triển khai code.

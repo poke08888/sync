@@ -1,0 +1,10 @@
+# Hạng mục Công việc - TikTok Shop API Integration
+
+- `[x]` Khởi tạo cấu trúc thư mục dự án (`tiktok-shop-nx`)
+- `[x]` Tạo file `.env.local` chứa credentials mẫu
+- `[x]` [NEW] `lib/tiktok/config.ts`: Cấu hình hằng số & Scopes
+- `[x]` [NEW] `lib/tiktok/storage.ts`: Module lưu trữ Token & App Config (JSON)
+- `[x]` [NEW] `lib/tiktok/auth.ts`: Module xử lý OAuth Logic (Exchange, Refresh, Expiry)
+- `[x]` [NEW] `app/api/auth/tiktok/connect/route.ts`: Redirect tới TikTok Auth
+- `[x]` [NEW] `app/api/auth/tiktok/route.ts`: Callback handler & Token storage
+- `[x]` Kiểm tra luồng logic và xử lý lỗi

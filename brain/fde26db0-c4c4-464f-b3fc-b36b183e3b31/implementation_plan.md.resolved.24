@@ -1,0 +1,28 @@
+# Kế hoạch Khắc phục lỗi Kết nối Database
+
+Thông báo lỗi `SQLSTATE[HY000] [2002] Connection refused` xác nhận rằng hệ thống của bạn hiện đang cố gắng kết nối tới **MySQL Server** nhưng không thành công (có thể do Service MySQL chưa bật hoặc cấu hình chưa đúng).
+
+Để giải quyết vấn đề này một cách nhanh chóng và ổn định nhất cho môi trường local, tôi đề xuất chuyển sang dùng **SQLite** — một loại database dạng file không cần server chạy ngầm.
+
+## Giải pháp: Chuyển sang SQLite
+
+### 1. Khởi tạo cấu hình môi trường
+- Tạo file **`.env`** nếu nó đang bị thiếu.
+- Cấu hình database sang SQLite:
+  ```env
+  DB_CONNECTION=sqlite
+  DB_DATABASE=/Users/kevin/clawd/ecommerce-dashboard/database/database.sqlite
+  ```
+
+### 2. Tạo file File Database
+- Tạo file trống `database/database.sqlite` để Laravel có chỗ lưu trữ dữ liệu.
+
+### 3. Tái khởi tạo dữ liệu (Migration)
+- Vì cấu trúc thư mục của bạn khá đặc biệt (thiếu file `artisan` tiêu chuẩn), tôi sẽ cố gắng kích hoạt việc khởi tạo bảng (migration) thông qua code hoặc tìm kiếm file chạy thay thế.
+
+## Lợi ích
+- **Không cần MySQL**: Bạn không cần lo lắng về việc bật/tắt MySQL service.
+- **Tốc độ**: Tải dashboard nhanh hơn đối với dữ liệu local.
+- **Ổn định**: Không bị lỗi "Connection refused" trong tương lai.
+
+Mời bạn xác nhận để tôi tiến hành chuyển đổi sang SQLite và đưa Dashboard hoạt động trở lại!

@@ -1,0 +1,70 @@
+Ecom OS
+[0] (67,128)<a class='nav-item active' href='/' />
+	[1] (50,128)<span >Overview />
+[2] (67,181)<a class='nav-item' href='/brands' />
+	[3] (46,181)<span >Brands />
+[4] (67,234)<a class='nav-item' href='/marketing' />
+	[5] (61,234)<span >Marketing (Ads) />
+[6] (67,288)<a class='nav-item' href='/inventory' />
+	[7] (50,288)<span >Inventory />
+[8] (67,341)<a class='nav-item' href='/customers' />
+	[9] (52,341)<span >Customers />
+[10] (67,908)<a class='nav-item' href='/settings' />
+	[11] (48,908)<span >Settings />
+Logout
+[12] (568,500)<main class='main-content' scrollable='true' />
+	Customer Intelligence
+	Deep dive into buyer behavior, retention and lifetime value.
+	Est. LTV
+	₫1,450k
+	Avg. Life: 14mo
+	Blended CAC
+	₫125k
+	Target: ₫150k
+	Repeat Rate
+	34.2%
+	+2.1% MoM
+	Total Buyers
+	12,450
+	All 5 Brands
+	New vs Returning
+	[13] (289,469)<div  />
+	New (65%)
+	Returning (35%)
+	Acquisition Trend
+	[14] (701,479)<div  />
+	Cohort Retention (%)
+	Month of Acquisition
+	Cohort Size
+	Month 1
+	Month 2
+	Month 3
+	Month 4
+	Jan 2024
+	1.200
+	users
+	100%
+	12%
+	8%
+	5%
+	Feb 2024
+	950
+	users
+	100%
+	10%
+	7%
+	Mar 2024
+	1.100
+	users
+	100%
+	14%
+	Apr 2024
+	800
+	users
+	100%
+[15] (50,955)<div  />
+	[16] (50,955)<div  />
+		[17] (50,955)<div  />
+			[18] (46,955)<span >1
+error />
+			[19] (77,955)<button aria-label='Hide Errors' class='nextjs-toast-errors-hide-button' />

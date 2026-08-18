@@ -1,0 +1,35 @@
+# Hoàn tất Tích hợp TikTok API vào Laravel Dashboard
+
+Tôi đã chuyển đổi thành công toàn bộ module TikTok Shop API từ Next.js sang Laravel để đảm bảo tính đồng bộ hoàn hảo với hệ thống hiện tại của bạn.
+
+## 1. Cơ cấu Dữ liệu & Hệ thống ngầm
+Hệ thống hiện đã sử dụng Database thay vì file JSON để lưu trữ:
+- **`App\Services\TikTokService`**: Xử lý toàn bộ logic trao đổi mã xác thực và **tự động làm mới Token** ngầm bên dưới mỗi khi bạn lấy dữ liệu.
+- **Migrations**: Đã tạo các bảng `tiktok_tokens`, `tiktok_apps`, và `brands` để quản lý mối quan hệ giữa Shop và nhãn hàng.
+
+## 2. Giao diện Cửa sổ Cài đặt mới
+Bạn có thể truy cập mục **"Cài đặt TikTok"** ngay trên Sidebar của Dashboard. Giao diện bao gồm 3 tab:
+
+### 🏬 Danh sách Shop
+- Hiển thị các Shop đã liên kết và trạng thái kết nối thực tế.
+- **Gán Thương hiệu**: Menu thả xuống cho phép bạn chọn Thương hiệu tương ứng cho từng Shop (Dữ liệu này sẽ được dùng để lọc báo cáo sau này).
+- **Ngắt kết nối**: Nút xóa shop an toàn.
+
+### 🏷️ Quản lý Thương hiệu
+- Nơi bạn có thể tự tạo mới danh sách tên Thương hiệu của mình (VD: Brand Alpha, Brand Beta...).
+
+### 🔑 Partner Apps
+- Quản lý các bộ Credentials (App Key/Secret). Bạn có thể thêm nhiều App Key khác nhau và chọn chúng khi thực hiện kết nối Shop mới.
+
+## 3. Quy trình vận hành chuẩn
+1. Thêm **App Key/Secret** vào tab "Partner Apps".
+2. Nhấn **"Kết nối Shop"** (chọn App Key tương ứng) -> Hệ thống sẽ dẫn bạn sang trang xác thực của TikTok.
+3. Sau khi xác thực xong, hệ thống tự động quay về Dashboard và hiện Shop trong danh sách.
+4. Bạn gán **Thương hiệu** cho Shop đó để hoàn tất quy trình.
+
+---
+
+> [!TIP]
+> **Tự động hóa**: Bạn không cần lo lắng về việc Access Token bị hết hạn. Mỗi khi hệ thống cần lấy dữ liệu từ API, `TikTokService` sẽ tự động kiểm tra và làm mới token nếu nó hết hạn trong vòng 5 phút tới.
+
+Mời bạn kiểm tra giao diện mới tại menu **Cài đặt TikTok** trên Sidebar!

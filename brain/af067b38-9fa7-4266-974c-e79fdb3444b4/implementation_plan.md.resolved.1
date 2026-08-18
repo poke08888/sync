@@ -1,0 +1,61 @@
+# KOC Live Analytics - Architecture Design
+
+Đây là tài liệu thiết kế bản vẽ kiến trúc (Architecture) cho phân hệ báo cáo KOC Livestream từ file export của TikTok Shop, tập trung vào mô hình hóa Data Pipeline ở phía Client (Browser).
+
+## 1. Cấu trúc Component (Component Tree)
+
+```text
+src/
+ ├── pages/
+ │    └── KocAnalytics.jsx               (Trang chính, quản lý hiển thị theo state)
+ │
+ ├── components/koc/
+ │    ├── KocUploadZone.jsx              (Dropzone upload & kéo thả file .xlsx)
+ │    ├── KocDashboard.jsx               (Giao diện tổng hiển thị khi đã có data)
+ │    │    ├── KocOverview.jsx           (4-8 Thẻ KPI tổng quan toàn chiến dịch)
+ │    │    ├── KocPerformanceTable.jsx   (Bảng DataGrid danh sách KOC + sorting/filtering)
+ │    │    ├── KocTrendChart.jsx         (Biểu đồ Recharts so sánh hiệu quả KOC)
+ │    │    └── KocProfileModal.jsx       (Popup xem chi tiết 1 KOC cụ thể)
+```
+
+## 2. Luồng Dữ liệu (Data Flow)
+Mọi xử lý sẽ nằm hoàn toàn dưới Browser Client để giữ tính bảo mật và tốc độ Realtime.
+
+1. **[User Action]** Người dùng kéo upload file `.xlsx` vào `KocUploadZone`.
+2. **[Read & Parse]** Gọi tiện ích (Utils) dùng thư viện `xlsx` (SheetJS) để đọc mảng Array Buffer.
+3. **[Sanitization]** Bỏ qua 2 Row đầu (Row 0 là Title, Row 1 trống). Lấy Row 2 làm Header Mapping. Đọc từ Row 3 trở đi.
+4. **[Transformation]** 
+   - Duyệt qua từng Row dữ liệu thô. Chuyển đổi định dạng giờ (`Xh Ymin -> (X + Y/60)`), parse Date (`YYYY/MM/DD`).
+   - Xử lý các string chứa dấu `%` hoặc ₫ (VND).
+   - Dùng vòng lặp giảm trừ (Reduce / map) để tính toán **Chỉ số phái sinh** cho từng Row (Phiên Live) lẫn Nhóm theo KOC (Gộp những người Live nhiều lần).
+5. **[Store Persist]** Đẩy Data Object hoàn chỉnh (Raw array + Aggregated KOC Array) vào Context / Store (Zustand).
+6. **[Render UI]** Unmount Upload Zone -> Mount `KocDashboard` và feed data vào biểu đồ/bảng.
+
+## 3. State Management (Zustand Store)
+
+Cần khởi tạo 1 file store riêng để quản lý session: `useKocStore.js`.
+
+**State Objects:**
+- `rawLives` (Array): Dữ liệu sạch của từng phiên Live (1 Row = 1 Live).
+- `kocList` (Array): Dữ liệu Aggregate (Map/Reduce theo KOC Username để gom cục nhiều buổi live của 1 người).
+- `globalMetrics` (Object): Kết quả tổng quát toàn bộ tệp Excel (Tổng CVR, Tổng Lượt Xem, Total GMV).
+- `isParsed` (Boolean): Flag đánh dấu đã nạp data thành công.
+- `selectedKoc` (Object | null): Dùng để show Modal xem chi tiết.
+
+## 4. Danh sách Hooks & Utils cần thiết
+
+**Utils:** `src/utils/kocExcelParser.js`
+1. `parseExcelBufferToJSON(buffer)`: Xử lý wrapper của thư viện `xlsx`. Đẩy ra mảng thô.
+2. `parseDuration(timeString)`: Thuật toán Tách chữ "h" và "min" ➝ Parse Float.
+3. `calculateDerivedMetrics(rawData)`: Hàm cốt lõi gánh Logic Business (CVR, AOV, CTR, Revenue/Hour). Thực hiện cả 2 level: Mức Live Session (từng dòng) và Mức Tổng.
+
+**Custom Hooks:** (Nằm sẵn trong KocStore hoặc module rời)
+1. `useExcelProcessor()`: Quản lý progress của việc parse (loading state, try-catch báo lỗi sai format excel).
+2. `useKocFilters()`: Dành cho cái Bảng. Quản lý trạng thái Sort (Doanh thu cao -> thấp) & Search KOC name.
+
+## 5. Câu hỏi Mở (Open Questions)
+*   **Dependency Requirement:** Chúng ta sẽ cần cài thư viện `xlsx` để cho phép Browser bóc tách dữ liệu từ file Excel gốc. Xin phép được chạy `npm install xlsx` khi bắt đầu code?
+*   Phần Layout: Tab KOC Live Analytics này sẽ xuất hiện trên Sidebar đúng không anh? Cùng ngang hàng với Dashboard hiện tại?
+
+> [!IMPORTANT]
+> Chờ xác nhận của user. Nếu đồng ý với kiến trúc này, bước tiếp theo tôi sẽ thực hiện cài NPM và xây skeleton code theo đúng mô hình flow trên.

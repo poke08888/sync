@@ -1,0 +1,65 @@
+# Kế hoạch Cải tiến Hệ thống Dự báo & Phân quyền Kho (V2)
+
+Dựa trên phản hồi của bạn, tôi sẽ nâng cấp hệ thống để giải quyết các vấn đề về Bot, Logic đa kho và Phân quyền truy cập.
+
+## User Review Required
+
+> [!IMPORTANT]
+> - **Phân quyền (RBAC)**: Vì hệ thống hiện chưa có module Login hoàn chỉnh, tôi sẽ triển khai một **"Mock Auth"** (giả lập phiên làm việc) để bạn có thể chuyển đổi giữa quyền `CEO` và `WAREHOUSE_ADMIN`. Bạn có đồng ý với cách tiếp cận này để demo nhanh không?
+> - **Logic Gộp kho**: Khi chọn "Tất cả các kho", hệ thống sẽ cộng dồn tồn kho và ADO của mọi địa điểm. Các cảnh báo sẽ dựa trên tổng thể mạng lưới bán hàng.
+> - **Bot Setup**: Tôi sẽ ưu tiên tài liệu và công cụ kiểm tra cho **Telegram Bot**.
+
+## Những thay đổi đề xuất
+
+---
+
+### 1. Phân quyền & Quản lý User
+Triển khai hệ thống phân quyền dựa trên vai trò người dùng (Role-based Access Control).
+
+- **Hành động**: Thêm `AuthContext` để lưu trữ role hiện tại.
+- **Ràng buộc**: 
+  - Chỉ `WAREHOUSE_ADMIN` được quyền truy cập trang `/inventory/upload` và các nút "Xác nhận hàng về".
+  - `CEO` và các role khác chỉ được xem Dashboard nhưng không được chỉnh sửa dữ liệu Master.
+- **UI**: Ẩn/Hiện các nút chức năng tương ứng với Role.
+
+---
+
+### 2. Logic Đa kho & Gộp kho (Aggregate View)
+Nâng cấp Engine tính toán và Dashboard để hỗ trợ cái nhìn tổng quát hoặc chi tiết từng kho.
+
+- **Dịch vụ (`replenishment-engine.ts`)**: 
+  - Cập nhật hàm tính toán để hỗ trợ tham số `warehouseCode`. 
+  - Nếu chọn "Tất cả", engine sẽ gộp nhóm (group by) theo `sku` và `date` trước khi tính ADO.
+- **Dashboard**: 
+  - Thêm dropdown **"Chọn Kho hàng"** tại Header trang quản lý kho (Mặc định là "Tất cả").
+  - Hiển thị thông tin luân chuyển: Nếu Kho A bị `CRITICAL` nhưng Kho B đang `OVER_STOCK`, hệ thống sẽ gợi ý "Nên luân chuyển hàng từ B sang A".
+
+---
+
+### 3. Thiết lập & Kiểm tra Bot thông báo
+Hỗ trợ người dùng tự thiết lập bot khi chưa có sẵn.
+
+- **Settings Page**: Thêm tab **"Cấu hình Bot"**.
+  - Hướng dẫn 3 bước tạo Telegram Bot qua @BotFather.
+  - Ô nhập `Bot Token` và `Chat ID`.
+  - Nút **"Gửi tin nhắn thử nghiệm"**: Gọi API gửi tin nhắn "Hello from Ecom OS" để kiểm tra kết nối ngay lập tức.
+- **API**: Tạo route `/api/notifications/test` để xử lý việc gửi thử.
+
+---
+
+### 4. Chỉnh sửa Dữ liệu & Lịch sử
+- Cho phép `WAREHOUSE_ADMIN` chỉnh sửa các thông số `lead_time`, `safety_stock` trực tiếp trên UI thay vì chỉ upload Excel.
+- Ghi lại lịch sử ai đã thay đổi thông số nào (tích hợp vào `UploadLog`).
+
+## Open Questions
+
+1. **Gợi ý Luân chuyển**: Bạn có muốn hệ thống tự động tạo một "Transfer Order" khi phát hiện có thể luân chuyển hàng giữa các kho không?
+2. **Loại Bot**: Bạn thích dùng Telegram hơn hay Zalo OA? (Tôi đề xuất Telegram vì tính ổn định và miễn phí cho Bot cá nhân).
+
+---
+
+## Kế hoạch Xác minh
+
+- **Xác minh Phân quyền**: Dùng bộ chọn Role để kiểm tra hiển thị nút "Upload".
+- **Xác minh Gộp kho**: Tải dữ liệu 2 kho và kiểm tra con số tổng trên Dashboard.
+- **Xác minh Bot**: Nhập Token và nhận tin nhắn test thành công.

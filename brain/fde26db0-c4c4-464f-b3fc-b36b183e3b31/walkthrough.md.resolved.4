@@ -1,0 +1,29 @@
+# Hoàn tất Cải tiến Dashboard KOC
+
+Tôi đã hoàn tất việc nâng cấp các tính năng Phân tích dữ liệu theo kế hoạch đã phê duyệt. Dưới đây là tóm tắt các tính năng mới và cách chúng hoạt động trên giao diện KOC Live Analytics.
+
+## 1. Truy cập Nhanh Tùy chọn Ngày (Quick Filters)
+Tại thanh điều hướng trên cùng, bên cạnh công cụ chọn ngày thủ công, hệ thống hiện đã có thêm các nút lọc nhanh:
+*   **Hôm nay**: Lọc dữ liệu đúng trong ngày.
+*   **Tuần này**: Tự động xác định từ Thứ Hai đầu tuần đến ngày hôm nay.
+*   **Tháng này**: Tính từ ngày mùng 1 của tháng đến ngày hôm nay.
+Khi click vào các nút này, toàn bộ Dashboard sẽ lập tức tải lại dữ liệu mà không cần phải nhập lịch tay.
+
+## 2. Theo dõi Chỉ số Cùng kỳ (Period-over-Period)
+Hệ thống tự động hiểu bối cảnh thời gian mà bạn đang lựa chọn để so sánh cùng kỳ trước đó *(Ví dụ: Đang xem 5 ngày gần đây thì biểu đồ biến động sẽ so với 5 ngày liền trước đó)*.
+*   Tại tab **Tổng quan KOC**, tất cả các thẻ KPI chính (DOANH THU, SỐ PHIÊN LIVE, AOV, CTR...) đều sẽ có phần trăm (%) hiển thị bên cạnh giá trị tổng:
+    *   Màu **xanh dương / ngọc lục bảo (Tiếp tục ↑)** biểu thị hiệu suất tăng.
+    *   Màu **đỏ nhạt / cam (Nguy cơ ↓)** báo hiệu sự tụt giảm so với giai đoạn trước.
+*   Logic này được xây dựng ngầm hoàn toàn bên trong lõi quản lý dữ liệu Zustand để không làm nặng trình duyệt.
+
+## 3. Tab Nhận diện Bất thường (Anomaly Alerts)
+Tôi đã bổ sung thêm một màn hình hoàn toàn mới: **Cảnh báo Khác thường**.
+Khi chọn một dải ngày bất kỳ (như *"Tuần này"*), tính năng này sẽ duyệt qua hàng loạt dữ liệu của 2 giai đoạn để trích xuất ra các KOC cần bạn chú ý nhất:
+-   🚨 **Sụt giảm Doanh thu**: Phát hiện KOC bị sụt giảm GMV quá 20%.
+-   ⚡️ **Khởi sắc đột biến**: KOC bỗng dưng mang lại GMV vượt 50% so với tuần trước.
+-   ⏳ **Giảm nỗ lực**: Nếu số giờ Live trung bình của KOC bất ngờ giảm đi >30%.
+
+Các Insights này được trình bày dưới dạng danh sách "News feed", tự động ghim những rủi ro cấp bách nhất lên trên cùng. Nếu toàn bộ KOC duy trì phong độ ổn định, hệ thống cũng sẽ xác thực xanh "Không phát hiện bất thường".
+
+> [!TIP]
+> **Cách kiểm tra tốt nhất**: Bạn thử vào trang Upload file, đưa ít nhất 2-3 tháng dữ liệu lên. Sau đó trải nghiệm bằng cách bấm nút "Tháng này" và chuyển qua tab "Cảnh báo Khác thường" để xem những insight mà máy đào được!

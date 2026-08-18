@@ -1,0 +1,13 @@
+# Hạng mục Công việc - Cài đặt TikTok & Brand
+
+- `[x]` Cập nhật `lib/tiktok/storage.ts`: Mở rộng Token, Brands & Apps storage.
+- `[x]` [NEW] `/api/auth/tiktok/apps`: API quản lý Partner Apps.
+- `[x]` [NEW] `/api/auth/tiktok/brands`: API quản lý Thương hiệu.
+- `[x]` [NEW] `/api/auth/tiktok/update-brand`: API gán Shop vào Brand.
+- `[x]` [NEW] `/api/auth/tiktok/disconnect`: API ngắt kết nối Shop.
+- `[ ]` [NEW] `components/tiktok/SettingsLayout.tsx`: Bố cục trang cài đặt (Tabs).
+- `[ ]` [NEW] `components/tiktok/AppManager.tsx`: Giao diện quản lý Partner Apps.
+- `[ ]` [NEW] `components/tiktok/BrandManager.tsx`: Giao diện quản lý Thương hiệu.
+- `[ ]` [NEW] `components/tiktok/ShopManager.tsx`: Giao diện quản lý Shop đã kết nối.
+- `[ ]` [NEW] `app/settings/tiktok/page.tsx`: Trang cài đặt tổng hợp.
+- `[ ]` Kiểm tra luồng và hiệu ứng UI (Pantone 292 C).

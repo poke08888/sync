@@ -1,0 +1,27 @@
+# Kế hoạch Xây dựng TikTok Shop API Client (Laravel)
+
+Tôi sẽ xây dựng một lớp Client chuyên dụng trong Laravel để thực hiện các yêu cầu kỹ thuật khắt khe về bảo mật và hiệu suất từ TikTok Shop Partner API.
+
+## 1. Thành phần mới
+
+### [NEW] `app/Exceptions/TikTokApiError.php`
+- Lớp Exception tùy chỉnh chứa: `code`, `message`, `request_id`, `shop_id`.
+
+### [NEW] `app/Services/TikTokClient.php`
+- **Request Signing**: Triển khai thuật toán HMAC-SHA256 theo đúng công thức: `APP_SECRET + path + timestamp + sorted_params + body + APP_SECRET`.
+- **Rate Limiter**: Triển khai cơ chế Token Bucket (40 req/s). Nếu hết "vé", client sẽ đợi cho đến khi có thể gửi yêu cầu tiếp theo.
+- **Retry Logic**: Tự động thử lại tối đa 3 lần với cơ chế **Exponential Backoff** (0s -> 1s -> 2s).
+- **Auto-Refresh Token**: Nếu nhận mã lỗi `40002` (Token expired), client sẽ tự gọi `TikTokService` để làm mới token và thực hiện lại request ban đầu.
+- **Logging**: Ghi log chi tiết cho mọi yêu cầu: `[timestamp] [shopId] [method] [path] [status] [duration_ms]`.
+
+## 2. Cập nhật thành phần hiện có
+
+### [MODIFY] `app/Services/TikTokService.php`
+- Refactor để sử dụng `TikTokClient` cho tất cả các cuộc gọi API (như `syncOrders`).
+- Loại bỏ các logic gọi `Http::post` thủ công để chuyển sang `TikTokClient->request()`.
+
+## 3. Câu hỏi và Lưu ý
+- **Lưu ý về Signing**: Công thức ký yêu cầu của TikTok thường không bao gồm `access_token` và `sign` trong chuỗi ký. Tôi sẽ tuân thủ nghiêm ngặt quy trình: Thu thập Params/Body -> Sắp xếp Key -> Nối chuỗi -> Ký.
+- **Rate Limit**: Cơ chế rate limit trong PHP (Request-bound) chỉ đảm bảo cho phiên làm việc hiện tại. Trong môi trường production quy mô lớn, ta có thể nâng cấp lên dùng Redis sau này.
+
+Mời bạn xác nhận để tôi bắt đầu triển khai lớp Client mạnh mẽ này!

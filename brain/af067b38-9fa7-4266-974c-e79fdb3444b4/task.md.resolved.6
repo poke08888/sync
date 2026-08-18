@@ -1,0 +1,16 @@
+# Hạng mục Phát triển: 4 Core Charts (Recharts)
+
+## Phần 1: Khởi tạo Dữ liệu Mock (mockData.js)
+- `[ ]` Dữ liệu `Hourly`: 0-23h, 2 dòng dữ liệu (current vs previous).
+- `[ ]` Dữ liệu `Daily`: Doanh số, khung MA7, KPI Target, và Danh sách Mốc sự kiện (Annotations).
+- `[ ]` Dữ liệu `Channel Donut`: Tổng hợp kênh, logic nested array chuyển cấp khi Drill-down.
+- `[ ]` Dữ liệu `Top 10 Products`: Tên, Qty, Revenue, Margin%, 7-day trend array.
+
+## Phần 2: Xây dựng Component Tách rời (Thư mục components/charts)
+- `[ ]` `HourlySalesChart.jsx`: Cấu hình Tooltip hiển thị chênh lệch %, xử lý đỉnh (Peak marker).
+- `[ ]` `DailySalesChart.jsx`: Tương tác bar/line combo, cấu hình ReferenceLine cho Annotations & KPI.
+- `[ ]` `ChannelDonutChart.jsx`: State quản lý Drill-down, tính toán tọa độ để ép Total revenue vào giữa Donut.
+- `[ ]` `TopProductsChart.jsx`: Horizontal Bar với Toggle Mode, viết Helper tô màu tự động theo Margin%. Custom cột Sparkline nhúng vào cạnh label.
+
+## Phần 3: Tích hợp Lưới Giao Diện
+- `[ ]` Ráp cả 4 module nằm trong một Grid bên dưới bảng KPI Tracker thuộc `Dashboard.jsx`.

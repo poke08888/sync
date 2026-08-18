@@ -1,0 +1,45 @@
+# Kế hoạch Xây dựng Hệ thống Biểu đồ KOC Live
+
+Tôi sẽ triển khai 4 biểu đồ phân tích kỹ thuật để trích xuất tối đa thông tin từ dữ liệu livestream, giúp bạn đánh giá hiệu quả của từng KOC và tối ưu hóa khung giờ live.
+
+## User Review Required
+
+> [!IMPORTANT]
+> - **Tương tác**: Tôi sẽ thiết lập logic để khi nhấn vào tên KOC hoặc thanh biểu đồ, hệ thống có thể chuyển hướng hoặc lọc dữ liệu chi tiết cho KOC đó (Chuẩn bị cho tính năng KOC Profile sau này).
+> - **Xử lý dữ liệu ít**: Biểu đồ Xu hướng ngày sẽ tự động chuyển sang hiển thị **Theo giờ** nếu dữ liệu upload chỉ nằm trong 1 ngày duy nhất để đảm bảo tính trực quan.
+
+## Proposed Changes
+
+### 1. Nâng cấp Data Service
+#### [MODIFY] [koc-service.ts](file:///Users/kevin/.gemini/antigravity/scratch/ecom-next-dashboard/src/lib/koc-service.ts)
+- Bổ sung hàm `aggregateByHour(rows)`: Nhóm phiên live theo khung giờ 0-23h.
+- Bổ sung hàm `getScatterData(rows)`: Chuẩn bị dữ liệu cho Scatter Plot và tính toán các giá trị Trung vị (Median) để phân chia 4 góc phần tư (Quadrant).
+
+### 2. Thành phần Biểu đồ Mới
+#### [NEW] [KocRankingChart.tsx](file:///Users/kevin/.gemini/antigravity/scratch/ecom-next-dashboard/src/components/koc/KocRankingChart.tsx)
+- Biểu đồ thanh ngang (Horizontal Bar) hiển thị Top 10 KOC.
+- Sử dụng Gradient Teal-Blue cho thanh biểu đồ.
+
+#### [NEW] [KocTrendChart.tsx](file:///Users/kevin/.gemini/antigravity/scratch/ecom-next-dashboard/src/components/koc/KocTrendChart.tsx)
+- Biểu đồ Area kết hợp 2 trục tung (GMV bên trái, Đơn hàng bên phải).
+- Cơ chế fallback thông minh cho dữ liệu đơn ngày.
+
+#### [NEW] [KocEfficiencyScatter.tsx](file:///Users/kevin/.gemini/antigravity/scratch/ecom-next-dashboard/src/components/koc/KocEfficiencyScatter.tsx)
+- Biểu đồ Scatter Plot với 4 góc phần tư: Hiệu quả cao / Nhiều effort, v.v.
+- Bubble size thay đổi theo số lượng đơn hàng.
+
+#### [NEW] [PeakHoursChart.tsx](file:///Users/kevin/.gemini/antigravity/scratch/ecom-next-dashboard/src/components/koc/PeakHoursChart.tsx)
+- Biểu đồ Stacked Bar hiển thị mật độ phiên live theo giờ.
+- Phân biệt phiên có doanh thu và phiên không có doanh thu bằng màu sắc.
+
+### 3. Tích hợp Dashboard
+#### [MODIFY] [page.tsx](file:///Users/kevin/.gemini/antigravity/scratch/ecom-next-dashboard/src/app/(dashboard)/koc-live/page.tsx)
+- Sắp xếp lại bố cục Dashboard để tích hợp 4 biểu đồ mới vào các Section chuyên biệt.
+- Thêm trạng thái Loading Skeleton khi đang xử lý file Excel.
+
+## Verification Plan
+
+### Manual Verification
+- Upload file Excel có nhiều KOC và nhiều ngày để kiểm tra tính chính xác của dữ liệu trên biểu đồ.
+- Kiểm tra Tooltip hiển thị đầy đủ thông tin: Tên KOC, GMV, Doanh thu/Giờ đối với Top 10.
+- Thử nghiệm upload dữ liệu chỉ trong 1 ngày để xác nhận biểu đồ Xu hướng chuyển sang chế độ Xem theo giờ.

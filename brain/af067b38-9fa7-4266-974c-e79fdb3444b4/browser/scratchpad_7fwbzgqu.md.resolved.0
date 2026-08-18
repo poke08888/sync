@@ -1,0 +1,10 @@
+# Task Plan: Debug E-commerce Dashboard
+
+- [ ] Navigate to http://localhost:5174/
+- [ ] Check if the page is loading or blank
+- [ ] Capture console logs to identify JavaScript errors
+- [ ] Extract the exact error message and file/line number
+- [ ] Report the findings back
+
+## Findings
+- 

@@ -1,0 +1,37 @@
+# Kế hoạch Mở rộng Dashboard Thương mại Điện tử (Giai đoạn 2)
+
+Nâng cấp Dashboard thành một hệ thống quản trị chuyên sâu với khả năng lọc dữ liệu và phân tích đa chiều.
+
+## User Review Required
+> [!IMPORTANT]
+> Trong đợt cập nhật này, tôi sẽ thay đổi cấu trúc của bảng **Top 10 sản phẩm** để hiển thị chuyên nghiệp hơn (có vạch tiến độ % doanh thu) và thêm biểu đồ so sánh nguồn thu từ **Livestream vs Organic (Tự nhiên)** - một chỉ số sống còn trên TikTok Shop. Bạn có muốn thêm bất kỳ kênh bán hàng nào khác ngoài Shopee và TikTok không?
+
+## Proposed Changes
+
+### 1. Nâng cấp Backend (Laravel Controller)
+- **DashboardController.php**:
+    - Bổ sung dữ liệu giả lập cho **Category Share** (Thị phần theo ngành hàng: Mỹ phẩm, Gia dụng, Thời trang...).
+    - Bổ sung dữ liệu so sánh **Livestream Revenue vs Video/Storefront Revenue**.
+    - Cấu trúc lại dữ liệu cho bảng sản phẩm để bao gồm thông tin tăng trưởng (%) so với tháng trước.
+
+### 2. Giao diện & Trải nghiệm người dùng (UI/UX)
+- **Filter Bar [NEW]**: Thêm thanh công cụ phía dưới tiêu đề trang để chọn:
+    - Khoảng thời gian (Hôm nay, 7 ngày, 30 ngày, Tùy chỉnh).
+    - Lọc theo sàn (Tất cả, Shopee, TikTok Shop).
+    - Lọc theo gian hàng (Store selection).
+- **Category Insights [NEW]**: Thêm biểu đồ thanh ngang (Horizontal Bar Chart) hiển thị doanh số theo phân loại hàng hóa.
+- **Livestream Analytics [NEW]**: Biểu đồ miền (Area Chart) so sánh doanh số từ Live vs các nguồn khác.
+- **Premium Table**: Nâng cấp bảng sản phẩm với:
+    - Hiển thị tỷ trọng đóng góp doanh thu của sản phẩm đó trong tổng doanh số.
+    - Trạng thái tăng trưởng (Trend icon).
+
+### 3. File tĩnh & Scripts
+- **app.css**: Thêm style cho `.filter-bar`, `.status-chip`, `.progress-mini`.
+- **dashboard.js**: Khởi tạo thêm 2 biểu đồ mới (Category Chart & Livestream Area Chart).
+- **index.html**: Cập nhật mockup tĩnh để bạn xem trước ngay lập tức.
+
+## Verification Plan
+### Manual Verification
+1. Mở `index.html` để kiểm tra độ thẩm mỹ của Thanh lọc (Filter Bar) và các biểu đồ mới.
+2. Kiểm tra tính năng chuyển đổi Dark Mode trên các thành phần mới thêm.
+3. Đảm bảo các chỉ số logic trong `DashboardController` đồng nhất với giao diện.

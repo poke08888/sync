@@ -1,0 +1,26 @@
+# Kế hoạch Tích hợp TikTok Settings vào Dashboard React (localhost:5173)
+
+Hiện tại, phần quản lý TikTok API đã được xây dựng trên Laravel (Blade). Tuy nhiên, vì bạn đang sử dụng Dashboard chính chạy bằng **React/Vite (cổng 5173)**, tôi sẽ tiến hành đưa giao diện này vào trực tiếp ứng dụng React của bạn.
+
+## 1. Xây dựng UI trong React (Vite Project)
+Tôi sẽ tạo các Component mới trong thư mục `src/components/tiktok/` của dự án Vite:
+- **`TikTokSettingsView.jsx`**: Giao diện chính chứa các Tab (Shop, Brand, Apps).
+- **`AppManager.jsx`**, **`BrandManager.jsx`**, **`ShopManager.jsx`**: Các module chức năng tương ứng.
+- Sử dụng **Tailwind CSS** (nếu có) và **Lucide Icons** để duy trì phong cách Premium đồng nhất.
+
+## 2. Kết nối API Backend (Laravel)
+Ứng dụng React sẽ gọi tới các Endpoint mà tôi đã xây dựng trong Laravel:
+- Cập nhật Laravel để cho phép **CORS** từ `localhost:5173`.
+- Đảm bảo các API trả về JSON thay vì Redirect (phục vụ Client-side fetching).
+
+## 3. Tích hợp Điều hướng
+- Thêm một mục menu mới mang tên **"Cài đặt TikTok"** vào Sidebar của `DashboardLayout.jsx`.
+- Cập nhật `App.jsx` để hiển thị `TikTokSettingsView` khi chọn mục này.
+
+## 4. Open Questions
+> [!IMPORTANT]
+> **Câu hỏi cần xác nhận**:
+> 1. Dashboard React hiện tại của bạn đang gọi API tới backend Laravel ở cổng nào? (Mặc định tôi sẽ giả định là `http://localhost:8000`).
+> 2. Bạn muốn tôi bắt đầu clone các Component từ Laravel sang React ngay bây giờ không?
+
+Tôi sẽ bắt đầu thực hiện ngay khi nhận được xác nhận "Đồng ý" từ bạn.

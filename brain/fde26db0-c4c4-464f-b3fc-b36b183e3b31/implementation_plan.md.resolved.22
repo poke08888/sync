@@ -1,0 +1,46 @@
+# Kế hoạch Xây dựng TikTok Sync Engine & Caching Layer (Laravel)
+
+Tôi sẽ xây dựng hệ thống "động cơ" đồng bộ dữ liệu tự động, giúp Dashboard của bạn luôn tràn đầy dữ liệu mới nhất mà không gây áp lực lên TikTok API.
+
+## 1. Nâng cấp Hạ tầng Dữ liệu
+
+### [MODIFY] Migration `tiktok_tokens`
+- Bổ sung các cột để theo dõi trạng thái đồng bộ:
+    - `last_sync_at` (timestamp): Thời điểm hoàn thành đồng bộ Incremental gần nhất.
+    - `last_full_sync_at` (timestamp): Thời điểm hoàn thành Full Sync (90 ngày) gần nhất.
+
+### [NEW] `app/Services/TikTokCacheService.php`
+- Triển khai **Cache-Aside Pattern** sử dụng Laravel Cache (Redis/File):
+    - **`getDashboardOverview($shopId, $range)`**: Cache TTL 15 phút.
+    - **`getOrderMetrics($shopId, $date)`**: Cache TTL 1 giờ.
+    - **`invalidateShop($shopId)`**: Xóa toàn bộ cache liên quan đến một shop khi có Webhook hoặc yêu cầu Sync thủ công.
+
+## 2. Xây dựng Sync Engine
+
+### [NEW] `app/Services/TikTokSyncEngine.php`
+- **`fullSync(string $shopId)`**:
+    - Truy quét Orders, Affiliate Orders, Payments trong 90 ngày.
+    - Đồng bộ toàn bộ Danh mục Sản phẩm.
+    - Tính toán lại toàn bộ Metrics và lưu vào Cache.
+- **`incrementalSync(string $shopId)`**:
+    - Lấy dữ liệu từ `last_sync_at` đến hiện tại.
+    - Thực hiện `upsert` vào DB các bản ghi thay đổi.
+    - Cập nhật Cache Metrics.
+
+## 3. Tự động hóa (Scheduling)
+
+### [NEW] `app/Jobs/SyncTikTokShopJob.php`
+- Job xử lý việc đồng bộ cho từng shop đơn lẻ, hỗ trợ Retry và Logging chi tiết.
+
+### [MODIFY] `app/Console/Kernel.php`
+- Cấu hình lịch chạy (Cron):
+    - **Incremental Sync**: Mỗi 15 phút cho tất cả các shop đang hoạt động.
+    - **Full Sync**: Mỗi ngày lúc 2:00 sáng để đảm bảo tính nhất quán dữ liệu 90 ngày.
+
+## 4. Tích hợp Dashboard
+
+### [MODIFY] `DashboardController.php`
+- Thay đổi logic từ truy vấn trực tiếp DB sang sử dụng `TikTokCacheService`. 
+- Nếu Cache miss -> Tính toán từ DB -> Lưu Cache.
+
+Mời bạn xác nhận để tôi bắt đầu triển khai "bộ não" điều phối dữ liệu này!

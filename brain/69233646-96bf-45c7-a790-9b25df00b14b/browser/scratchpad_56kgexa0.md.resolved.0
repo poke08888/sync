@@ -1,0 +1,8 @@
+# Task: Verify Vietnamese text rendering in KOC Live Analytics dashboard
+
+- [ ] Navigate to http://localhost:3000/koc-live
+- [ ] Check Overview tab KPIs
+- [ ] Check KOC Table headers
+- [ ] Check History tab text
+- [ ] Take screenshot of KPIs area
+- [ ] Verify overall Vietnamese text correctness

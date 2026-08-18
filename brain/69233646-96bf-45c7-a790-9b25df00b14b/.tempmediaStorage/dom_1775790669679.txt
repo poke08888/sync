@@ -1,0 +1,54 @@
+Ecom OS
+[0] (70,138)<a class='nav-item active' href='/' />
+	[1] (52,138)<span >Overview />
+[2] (70,195)<a class='nav-item' href='/brands' />
+	[3] (47,195)<span >Brands />
+[4] (70,253)<a class='nav-item' href='/marketing' />
+	[5] (64,253)<span >Marketing (Ads) />
+[6] (70,311)<a class='nav-item' href='/customers' />
+	[7] (54,311)<span >Customers />
+[8] (70,900)<a class='nav-item' href='/settings' />
+	[9] (50,900)<span >Settings />
+Logout
+[10] (570,500)<main class='main-content' scrollable='true' />
+	Pace Status
+	AHEAD OF PACE
+	Time Elapsed
+	60
+	%
+	Target Logic
+	★ DAILY AVERAGE NEEDED
+	₫
+	15.000
+	/ day
+	Cần đạt
+	₫
+	15.000
+	đ/ngày
+	trong
+	12
+	ngày
+	còn lại
+	Forecast End of Period
+	₫
+	533.333,333
+	106.7
+	% of KPI
+	Based on current pace
+	Region Performance
+	Direct vs Platforms
+	Top Performing Products
+	Silk Serenity Mask
+	₫45,200k
+	Tech Luxe Band
+	₫32,100k
+	Aura Glow Serum
+	₫24,800k
+	Essential Fit Tee
+	₫15,400k
+[11] (52,951)<div  />
+	[12] (52,951)<div  />
+		[13] (52,951)<div  />
+			[14] (48,951)<span >1
+error />
+			[15] (80,951)<button aria-label='Hide Errors' class='nextjs-toast-errors-hide-button' />

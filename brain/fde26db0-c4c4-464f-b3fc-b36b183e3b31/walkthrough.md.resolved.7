@@ -1,0 +1,32 @@
+# Hoàn tất Giao diện Cài đặt TikTok & Quản lý Thương hiệu
+
+Tôi đã triển khai đầy đủ hệ thống quản trị tích hợp cho TikTok Shop. Giao diện được thiết kế theo phong cách **Premium Dark Mode** với tông màu xanh **Pantone 292 C**, đảm bảo trải nghiệm người dùng mượt mà và trực quan.
+
+## 1. Các tính năng chính trong Cài đặt
+
+### 🏬 Quản lý Shop (Tab chính)
+- Hiển thị danh sách các Shop đã kết nối dưới dạng Card hiện đại.
+- **Gắn Thương hiệu**: Cho phép bạn chọn gán từng Shop vào một Thương hiệu cụ thể thông qua Menu thả xuống. Việc này giúp Dashboard tự động lọc dữ liệu API theo đúng Brand bạn chọn.
+- **Theo dõi trạng thái**: Badge màu sắc (Xanh/Vàng/Đỏ) giúp bạn biết ngay Shop nào đang hoạt động tốt hoặc sắp hết hạn cần Re-auth.
+
+### 🏷️ Quản lý Thương hiệu (Brands)
+- Tab riêng biệt để bạn tự định nghĩa danh sách các nhãn hàng của mình.
+- Cho phép Thêm, Sửa hoặc Xóa các Thương hiệu. Các tên này sẽ tự động xuất hiện làm tùy chọn trong tab Quản lý Shop.
+
+### 🔑 Partner Apps (App Key/Secret)
+- Nơi bạn quản lý các bộ credentials của TikTok Partner. 
+- Giờ đây bạn có thể cấu hình nhiều bộ App Key khác nhau (VD: một bộ cho Global, một bộ cho Local) và chọn chúng khi thực hiện kết nối Shop mới.
+
+## 2. Luồng hoạt động hoàn chỉnh
+1. Bạn tạo **Thương hiệu** (Vd: Brand A).
+2. Bạn cấu hình **Partner App** (nhập Key/Secret).
+3. Bạn nhấn **Kết nối Shop** -> Chọn App Key -> TikTok Auth xong.
+4. Tại danh sách Shop, bạn chọn gán Shop vừa kết nối vào **Brand A**.
+5. Toàn bộ báo cáo sau này của Brand A sẽ bao gồm cả số liệu từ Shop này.
+
+---
+
+> [!TIP]
+> **Tự động hóa**: Bạn không cần lo lắng về việc Access Token hết hạn. Hệ thống đã được tích hợp logic tự động làm mới (Auto-Refresh) ngầm bên dưới mỗi khi bạn truy cập dữ liệu.
+
+Mời bạn kiểm tra giao diện tại `/settings/tiktok` trong dự án của mình!

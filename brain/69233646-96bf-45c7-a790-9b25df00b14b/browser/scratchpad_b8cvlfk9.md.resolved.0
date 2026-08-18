@@ -1,0 +1,9 @@
+# KOC Live KPI Cards Verification Plan
+
+- [ ] Navigate to http://localhost:3000/koc-live
+- [ ] Verify 12 KPI cards are present
+- [ ] Verify grid layout (2 rows x 6 columns on desktop)
+- [ ] Verify label styling (uppercase, 11px)
+- [ ] Verify value styling (bold, 24px)
+- [ ] Verify accent colors
+- [ ] Take screenshot of the KPI cards section

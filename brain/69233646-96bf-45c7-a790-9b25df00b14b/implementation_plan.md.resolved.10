@@ -1,0 +1,38 @@
+# Kế hoạch Cải thiện UI/UX và Tính năng Dashboard
+
+Theo yêu cầu của bạn, tôi sẽ thực hiện 3 cải tiến chính: thêm bộ lọc Brand cho trang tổng quan, bổ sung thông số cho biểu đồ Tỷ trọng kênh và thu nhỏ Module KPI Tracker để cân đối hơn.
+
+## User Review Required
+
+> [!IMPORTANT]
+> - Bộ lọc Brand mới trên Dashboard tổng sẽ sử dụng chung danh sách 5 thương hiệu như mục KPI Tracker.
+> - Biểu đồ Tỷ trọng kênh sẽ hiển thị thêm giá trị tiền tệ (₫) và tỷ lệ tăng/giảm so với cùng kỳ trong phần chú thích bên dưới.
+
+## Proposed Changes
+
+### 1. Dashboard Chính
+#### [MODIFY] [KpiDashboard.tsx](file:///Users/kevin/.gemini/antigravity/scratch/ecom-next-dashboard/src/components/metrics/KpiDashboard.tsx)
+- Thêm bộ lọc Brand (Dropdown) ở phần Header.
+- Cập nhật state để quản lý Brand đang chọn (hiện tại sẽ dùng mock data).
+
+### 2. Biểu đồ Tỷ trọng kênh
+#### [MODIFY] [PlatformDistributionChart.tsx](file:///Users/kevin/.gemini/antigravity/scratch/ecom-next-dashboard/src/components/charts/PlatformDistributionChart.tsx)
+- Cập nhật dữ liệu mẫu để bao gồm giá trị "Cùng kỳ".
+- Hiển thị số tiền tuyệt đối (₫) ngay trong danh sách chú thích.
+- Thêm chỉ số so sánh (%, mũi tên) so với cùng kỳ cho mỗi kênh.
+
+### 3. Tinh chỉnh KPI Tracker
+#### [MODIFY] [KpiTracker.tsx](file:///Users/kevin/.gemini/antigravity/scratch/ecom-next-dashboard/src/components/metrics/KpiTracker.tsx)
+- Giảm `padding` của các card từ `p-6` xuống `p-4`.
+- Giảm kích thước font của các thông số chính (ví dụ: `text-2xl` xuống `text-xl`).
+- Thu gọn khoảng cách (gap) giữa các thành phần để tổng thể module trông gọn gàng hơn.
+
+## Verification Plan
+
+### Automated Tests
+- Chạy `npm run build` để đảm bảo không có lỗi TypeScript/Next.js sau khi thay đổi logic state.
+
+### Manual Verification
+- Kiểm tra tính thẩm mỹ của KPI Tracker sau khi thu nhỏ.
+- Đảm bảo biểu đồ Tỷ trọng kênh hiển thị đầy đủ thông tin mới mà không bị tràn layout.
+- Kiểm tra bộ lọc Brand mới trên Dashboard có hoạt động (UI toggle).

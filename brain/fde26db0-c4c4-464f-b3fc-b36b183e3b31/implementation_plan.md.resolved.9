@@ -1,0 +1,36 @@
+# Kế hoạch Tích hợp TikTok API vào Ecommerce Dashboard (Next.js 14)
+
+Dựa trên yêu cầu của bạn, tôi sẽ tiến hành đưa toàn bộ module TikTok Shop API vào hệ thống Dashboard TMĐT chính, chuyển đổi từ Laravel sang Next.js 14 để tạo ra một hệ thống dashboard thống nhất.
+
+## 1. Cơ cấu lại Thư mục Dự án
+Tôi sẽ chuyển đổi `ecommerce-dashboard` thành cấu trúc của một dự án Next.js 14 (App Router):
+- **`/app`**: Thư mục gốc chứa các trang chính.
+- **`/components`**: Chứa các UI components (MetricCards, Charts, Sidebar).
+- **`/lib/tiktok`**: Logic xử lý API TikTok (từ module đã xây dựng).
+- **`/public`**: Chứa assets (CSS, Images).
+
+## 2. Xây dựng Giao diện Dashboard Chính (Next.js)
+Tôi sẽ "re-build" giao diện hiện có của Laravel sang Next.js 14 để đảm bảo tính đồng bộ:
+- **`app/layout.tsx`**: Xây dựng Sidebar và Header giống như bản Laravel nhưng sử dụng React & Lucide.
+- **`app/page.tsx` (Báo cáo tổng quan)**: 
+    - Chuyển đổi các thẻ chỉ số (Revenue, Orders, ROAS).
+    - Tích hợp các biểu đồ (Hourly Revenue, Channel Share) sử dụng Recharts hoặc Chart.js.
+- **`app/settings/tiktok/page.tsx`**: Tích hợp giao diện Quản lý Shop & App Key đã làm.
+
+## 3. Tích hợp Điều hướng (Unified Navigation)
+Sidebar mới sẽ bao gồm các mục:
+- 📊 **Báo cáo tổng quan** (Link tới `/`)
+- 📦 **Đơn hàng** (Link tới `/orders`)
+- ⚙️ **Cài đặt TikTok** (Link tới `/settings/tiktok`)
+
+## 4. Đồng bộ Dữ liệu
+Hệ thống sẽ được thiết kế để:
+- Dữ liệu từ API TikTok sẽ được nạp trực tiếp vào các biểu đồ trên Dashboard thông qua module xác thực đã xây dựng.
+- Sử dụng Server Components để fetch dữ liệu từ JSON Storage ban đầu, sau đó chuyển dần sang Database thực tế.
+
+---
+
+> [!IMPORTANT]
+> **Câu hỏi cần xác nhận**:
+> 1. Tôi nên khởi tạo Next.js trực tiếp tại thư mục gốc của `ecommerce-dashboard` (đè lên các file Laravel cũ nếu trùng tên) hay tạo một thư mục con như `ecommerce-dashboard/next/`?
+> 2. Bạn có muốn tôi giữ lại các biểu đồ hiện tại (Hourly Revenue, Channel Share, Livestream vs Organic) trong bản Next.js mới không?

@@ -1,0 +1,42 @@
+E-comDash
+.
+[0] (115,159)<a href='#'>Báo Cáo Tổng Quan />
+[1] (115,238)<a href='#'>Đơn Hàng />
+[2] (115,303)<a href='#'>Sản Phẩm />
+[3] (115,368)<a href='#'>Tăng Trưởng />
+[4] (115,434)<a href='#'>Cài Đặt />
+Báo Cáo Hoạt Động (TikTok & Shopee)
+Tổng quan số liệu kinh doanh đa kênh
+[5] (843,71)<button class='btn btn-outline' id='theme-toggle'>Chế độ tối />
+Doanh số
+1.25B ₫
+12.5%
+so với cùng kỳ
+Doanh số sau hủy
+1.10B ₫
+10.2%
+so với cùng kỳ
+Tỷ lệ hủy
+12%
+2.5%
+so với cùng kỳ
+Chi phí thực tế
+18.5M ₫
+3.2%
+so với cùng kỳ
+Chi phí ROAS
+8.5
+1.2%
+so với cùng kỳ
+AOV
+250K ₫
+5.0%
+so với cùng kỳ
+Số đơn hàng
+5,000
+1.5%
+so với cùng kỳ
+Biểu đồ Doanh số theo Giờ
+So sánh với cùng kỳ
+Tỷ trọng Báo Cáo Theo Kênh
+Shopee vs TikTok Shop

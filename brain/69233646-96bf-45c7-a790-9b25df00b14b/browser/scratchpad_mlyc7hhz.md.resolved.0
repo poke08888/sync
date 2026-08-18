@@ -1,0 +1,16 @@
+# KOC Live Analytics - Verification Plan
+
+## Tasks:
+- [ ] Navigate to http://localhost:3000/koc-live
+- [ ] Observe the "Dữ liệu" tab in navigation
+- [ ] Verify "Dữ liệu" tab content (upload component & file management list)
+- [ ] Confirm "Xóa tất cả" button is absent
+- [ ] Verify individual "X" (Delete) button is present
+- [ ] Verify "Đi tới Tab Dữ liệu" button in "No data" state
+- [ ] Capture screenshots:
+    - [ ] Tab navigation with "Dữ liệu" tab
+    - [ ] Content of "Dữ liệu" tab
+    - [ ] "No data" state with the "Đi tới Tab Dữ liệu" button
+
+## Findings:
+- 

@@ -1,0 +1,41 @@
+# Kế hoạch Xây dựng Hệ thống Cảnh báo KOC
+
+Tôi sẽ triển khai một hệ thống cảnh báo thông minh giúp bạn phát hiện sớm các thay đổi bất thường trong hiệu suất của KOC (Doanh thu và Giờ live), từ đó giúp quản trị chủ động hơn.
+
+## User Review Required
+
+> [!IMPORTANT]
+> - **Tiêu chí cảnh báo**: Tôi dự kiến thiết lập các ngưỡng: sụt giảm >40% doanh thu, sụt giảm >30% giờ live, hoặc "mất tích" (0 giờ live tuần này dù tuần trước có live). Bạn có muốn thay đổi các con số này không?
+> - **Phạm vi so sánh**: Hệ thống sẽ tự động so sánh dữ liệu của **khoảng thời gian hiện tại** (dựa trên bộ lọc bạn chọn) với **khoảng thời gian tương đương ngay trước đó**.
+
+## Proposed Changes
+
+### 1. Nâng cấp Logic Phân tích
+#### [MODIFY] [koc-service.ts](file:///Users/kevin/.gemini/antigravity/scratch/ecom-next-dashboard/src/lib/koc-service.ts)
+- Thêm interface `KocAnomaly`.
+- Thêm hàm `detectKocAnomalies(sessions)`:
+    - Chia dữ liệu thành 2 giai đoạn (Hiện tại vs Trước đó).
+    - Tính toán sự thay đổi % cho từng KOC.
+    - Phân loại mức độ nghiêm trọng (High, Medium, Info).
+
+### 2. Giao diện Cảnh báo
+#### [NEW] [KocAlertsTab.tsx](file:///Users/kevin/.gemini/antigravity/scratch/ecom-next-dashboard/src/components/koc/KocAlertsTab.tsx)
+- Hiển thị danh sách cảnh báo dưới dạng thẻ (Cards) hiện đại.
+- Hiệu ứng Pulse (nháy nhẹ) cho các cảnh báo nghiêm trọng.
+- Hiển thị con số cụ thể: "Tăng trưởng đột biến +150%" hoặc "Sụt giảm nghiêm trọng -60%".
+- Nút "Xem chi tiết" để nhảy nhanh sang tab Lịch sử của KOC đó.
+
+### 3. Tích hợp Hệ thống
+#### [MODIFY] [page.tsx](file:///Users/kevin/.gemini/antigravity/scratch/ecom-next-dashboard/src/app/(dashboard)/koc-live/page.tsx)
+- Thêm tab thứ 3: **"Cảnh báo"**.
+- Hiển thị Badge số lượng cảnh báo trên nhãn Tab.
+
+#### [MODIFY] [Sidebar.tsx](file:///Users/kevin/.gemini/antigravity/scratch/ecom-next-dashboard/src/components/layout/Sidebar.tsx)
+- Tích hợp thêm logic đếm số cảnh báo nghiêm trọng để hiển thị chấm đỏ thông báo trên Sidebar.
+
+## Verification Plan
+
+### Automated/Manual Verification
+1. **Kiểm tra tính toán**: Upload file có dữ liệu 2 tuần, kiểm tra xem hệ thống có tính đúng % thay đổi không.
+2. **Kiểm tra tương tác**: Click vào cảnh báo -> Chuyển sang tab Lịch sử và filter đúng KOC đó.
+3. **Kiểm tra Responsive**: Đảm bảo danh sách cảnh báo hiển thị tốt trên cả Mobile và Desktop.

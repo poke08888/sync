@@ -1,0 +1,8 @@
+# Hạng mục Công việc - Tinh chỉnh Dashboard React
+
+- `[/]` Backend: Hỗ trợ JSON & CORS cho `DashboardController`.
+- `[ ]` React Service: Tạo `src/services/dashboardService.js`.
+- `[ ]` Dashboard Integration: Kết nối số liệu thật vào `Dashboard.jsx`.
+- `[ ]` Dynamic Brands: Chuyển đổi dropdown Brand sang dữ liệu từ API.
+- `[ ]` UX Polish: Thêm hiệu ứng loading và thông báo đồng bộ.
+- `[ ]` Kiểm tra độ tương thích Theme.

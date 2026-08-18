@@ -1,0 +1,26 @@
+# Tổng kết Module: KPI Tracker & Forecast
+
+Module theo dõi hiệu suất chiến lược (KPI Tracker) đã được tích hợp thành công ngay dưới khu vực 8 thẻ KPI ban nãy.
+
+## 1. Giao diện & Tính năng Tổng quan
+* **Header & Controls:** Góc trên bên phải của bảng có 2 Dropdown/Toggle cho phép chọn xem tiến độ theo: **Brand** (All Brands, Brand A, Brand B, Brand C) và **Chu kỳ** (Tuần / Tháng / Quý / Năm). Bảng dữ liệu sẽ lập tức Scale Target và kết quả dựa trên các tuỳ chọn này.
+* **Thanh Tiến độ Đa lớp (Progress Bar):**
+   * Thanh chính hiển thị % **Doanh thu đạt được** (ví dụ 45%).
+   * Thanh highlight màu Vàng chỉ định ranh giới **Thời gian đã trôi qua**. 
+   * Trực quan hóa Pace: Nếu vạch tiến độ chạy nhanh/vượt qua vạch Vàng (thời gian) -> Thanh máu sẽ chuyển sang **Màu Xanh** (Vượt tiến độ). Nếu tụt lại phía sau -> Thanh báo **Màu Xanh Đậm Pantone** phối kèm trạng thái **Đang chậm tiến độ (Màu Đỏ)** bên dưới.
+
+## 2. Thông số Insight Đặc Quyền (Actionable Text)
+Tôi đã bố trí 2 khối phân tích đặc biệt sử dụng layout Gradient để tập trung sự chú ý của CEO:
+* **DAILY AVERAGE NEEDED**: Được thiết kế nổi bật với hiệu ứng kính (Glassmorphism) và viền Gradient. Nó cung cấp lời giải chính xác thay vì chỉ báo cáo: *"Để đạt chuẩn 100% KPI, cần duy trì X đồng/ngày trong N ngày còn lại"*.
+* **DỰ BÁO CUỐI KỲ (FORECAST)**: Thuật toán ngoại suy tốc độ trung bình hằng ngày (Current Daily Average) nhân với tổng số ngày trong kỳ để đưa ra con số dự kiến cuối cùng so với Target (Kèm % kỳ vọng).
+
+## 3. Biểu đồ Weekly Breakdown (ComposedChart)
+Nằm ở nửa phải của khung màn hình là biểu đồ hỗn hợp Recharts:
+* Trục hoành chia theo các mốc thời gian nhỏ (ví dụ 4 tuần của Tháng).
+* Graphic `Thực đạt` được biểu diễn bằng cột **Bar**. Cột của tuần hiện tại (Current Week) được làm nổi bật với màu Xanh Neon (Green-400), trong khi các tuần cũ có màu mờ hơn.
+* **Đường KPI Line** chạy ngang đè trên các cột (dạng đứt ngang step) để minh họa mục tiêu KPI trung bình của mỗi phân đoạn.
+
+> [!CAUTION]
+> Mockup mô phỏng: Nếu anh chọn **"Brand A"**, hệ thống sẽ cố tình hạ Pace xuống 0.9 (Chậm KPI) để hiển thị dòng cảnh báo và Daily Needed tăng lên. Ngược lại, nếu chọn **"Brand B"**, Pace sẽ tăng vọt 1.2 (Vượt KPI) để xem thanh Tiến độ đổi sang màu Xanh tích cực.
+
+Anh hãy qua màn hình Trình duyệt để test lại các Filter mới này nhé!

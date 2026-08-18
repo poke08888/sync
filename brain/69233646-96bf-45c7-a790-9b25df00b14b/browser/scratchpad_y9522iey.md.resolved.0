@@ -1,0 +1,8 @@
+# Task: Verify Dashboard Charts
+
+- [ ] Navigate to http://localhost:3000
+- [ ] Verify 'Sales by Hour' chart (Hover tools, peaks)
+- [ ] Verify 'Daily Performance' chart (MA7, Target line)
+- [ ] Verify 'Platform Distribution' donut (Click segment for drill-down)
+- [ ] Verify 'Top 10 Products' chart (Sort toggle, margin colors)
+- [ ] Ensure UI is premium and responsive

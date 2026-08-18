@@ -1,0 +1,110 @@
+# Kiến trúc Hệ thống E-commerce Dashboard (TikTok Shop & Shopee)
+
+Tài liệu này mô tả chi tiết kiến trúc của nền tảng Báo Cáo & Phân Tích dữ liệu e-commerce theo yêu cầu của bạn, được tối ưu cho tốc độ realtime và trải nghiệm phân quyền quản lý chuyên nghiệp (CEO, BM, Media Buyer).
+
+## User Review Required
+> [!IMPORTANT]
+> Đây là bản thiết kế kiến trúc (Architecture Design). Bạn vui lòng **đọc kỹ phần phân quyền, luồng ETL và các câu hỏi mở (Open Decisions) ở phần cuối**. Nếu bạn đồng ý với hướng thiết kế này, chúng ta sẽ bắt tay vào code các module cụ thể.
+
+---
+
+## 1. Cấu trúc Database (Database Schema)
+
+Dựa trên yêu cầu quản lý đa thương hiệu (3 brands), dữ liệu cần được chia theo kiến trúc Multi-tenant:
+
+* **Users & Roles**
+  * `roles`: ID, name (`ceo`, `brand_manager`, `media_buyer`)
+  * `users`: ID, name, email, password_hash, role_id, brand_id (nullable, CEO có thể null để xem tất cả).
+* **Core Models**
+  * `brands`: ID, name, logo, created_at
+  * `platforms`: ID, name (Shopee, TikTok)
+  * `shops`: ID, brand_id, platform_id, shop_code, api_credentials
+* **Products & Inventory**
+  * `products`: ID, brand_id, shop_id, platform_sku_id, name, sku_code, base_price
+  * `inventory_logs`: ID, product_id, shop_id, available_stock, reserved_stock, updated_time
+* **Sales & Orders**
+  * `orders`: ID, shop_id, platform_order_id, status, total_amount, discount_amount, net_sales, placed_at
+  * `order_items`: ID, order_id, product_id, quantity, unit_price
+* **Marketing & Ads**
+  * `ads_campaigns`: ID, shop_id, platform_campaign_id, type, name, status, budget
+  * `ads_metrics`: ID, campaign_id, date, views/impressions, clicks, conversions, spend, generated_revenue
+
+---
+
+## 2. Pipeline Dữ Liệu (ETL Logic)
+
+Do tính chất API của các sàn khác nhau, để có số liệu realtime, pipeline phải kết hợp giữa Webhook (Push) và Polling (Pull):
+
+* **Extract (Thu thập)**
+  1. **Real-time (Webhooks):** Đăng ký Webhook API trên Shopee/TikTok Developer. Khi có đơn hàng mới (Created) hoặc cập nhật trạng thái (Shipped/Cancelled/Delivered) hay thay đổi kho, sàn sẽ push thẳng payload về Backend (Laravel API).
+  2. **Batch Polling (Cron Jobs):** Chạy tác vụ nền (chẳng hạn mỗi 1-3 giờ) để kéo số liệu Ads (Chi tiêu, Lượt click) và đối soát (Reconciliation) lại các đơn hàng có thể bị miss webhook.
+* **Transform (Chuẩn hóa)**
+  * **Status Normalization:** Chuyển đổi mã trạng thái đơn hàng của Shopee và TikTok về một hệ quy chiếu chung (Ví dụ: `110` của TikTok và `READY_TO_SHIP` của Shopee đều quy đổi về trạng thái `PROCESSING` nội bộ).
+  * **Idempotency (Tránh trùng lặp):** Check mã `platform_order_id` trước khi insert/update để giữ nguyên vẹn dữ liệu khi Webhook call nhiều lần.
+* **Load & Serve (Lưu trữ và Truyền tải)**
+  * Ghi vào DB chính (MySQL/PostgreSQL).
+  * **Realtime Websocket:** Ngay khi lưu thành công, Backend kích hoạt event qua WebSockets (e.g. Pusher hoặc Laravel Reverb). Gửi payload có chứa dòng tiền tăng giảm để Frontend (React) tự động cộng số trên biểu đồ mà không cần user tốn công refresh trang.
+
+---
+
+## 3. Danh sách Metrics & Frequency
+
+| Tên Metric | Công thức tính toán | Tần suất cập nhật | Roles có quyền xem |
+| :--- | :--- | :--- | :--- |
+| **Gross Revenue (GMV)** | Tổng (`total_amount`) của tất cả các đơn hàng | Realtime (Webhook) | CEO, Brand Manager |
+| **Net Revenue** | GMV - Refunds - Cancellations - Khuyến mãi | Realtime | CEO, Brand Manager |
+| **Orders Volume** | Tổng số lượng đơn hàng đo đếm được | Realtime | CEO, Brand Manager |
+| **AOV** (Avg Order Value)| Net Revenue / Orders Volume | Realtime | CEO, Brand Manager |
+| **Cancellation Rate** | (Đơn hủy / Tổng đơn) * 100% | Realtime | CEO, Brand Manager |
+| **ROAS** (Return on Ads)| Doanh thu quy từ Ads / Chi phí Ads Spend | Batch (Mỗi 1-3 giờ) | Tất cả các Roles |
+| **Ads CPR** (Cost/Result) | Tổng chi phí Ads / Lượt Conversion | Batch (Mỗi 1-3 giờ) | Media Buyer, CEO |
+| **Inventory Turnover** | Số lượng bán ra / Lượng hàng tồn kho trung bình | Daily (Cuối ngày) | CEO, Brand Manager |
+
+---
+
+## 4. Frontend Architecture (React)
+
+Để làm ra một hệ thống mượt, premium và dễ maintain, cấu trúc theo Domain-driven Design:
+
+**Công nghệ sử dụng Frontend:** React + Vite, Tailwind CSS (cho giao diện), Zustand (Quản lý State), React Query (Fetching dữ liệu/Cache caching), Recharts (Biểu đồ).
+
+```markdown
+src/
+├── assets/               # Hình ảnh, Fonts, Global styles 
+├── components/           # UI Elements xài chung (Buttons, Inputs, Cards)
+│   ├── charts/           # Các wrapper dùng Recharts (Line, Pie, Bar charts)
+│   ├── tables/           # DataGrid components với sorting/pagination
+│   └── feedback/         # Loading skeletons, Toasts, Alerts
+├── features/             # Mã nguồn chia theo Logic miền / nghiệp vụ
+│   ├── auth/             # Logic đăng nhập, phân quyền Role (CEO vs Staff)
+│   ├── dashboard/        # Widget tổng quan toàn màn hình (Realtime tickers)
+│   ├── orders/           # Quản lý luồng đơn hàng, Refund
+│   ├── inventory/        # Bảng tính hàng tồn, cảnh báo hết hàng
+│   └── ads/              # Báo cáo hiệu quả Media (Chi phí, ROAS)
+├── hooks/                # Custom React Hooks
+│   ├── useWebsocket.js   # Kết nối Pusher lắng nghe Event đơn hàng realtime
+│   └── useMetrics.js     # Chứa logic gộp dữ liệu
+├── layouts/              # Giao diện khung (Sidebar, Header Navbar)
+├── services/             # Axios requests 
+├── store/                # Zustand: Lưu trạng thái App (Theme, Date Range đã chọn)
+├── utils/                # Hàm phụ trợ (format Currency VNĐ, Format Date)
+├── pages/                # Lắp ráp Feature vào Page theo Routing 
+└── routes.jsx            # Defined routing của ứng dụng
+```
+
+---
+
+## 5. Các câu hỏi và Quyết định cần đưa ra (Open Questions)
+
+Để hệ thống đi đúng hướng, tôi cần anh chốt một số thiết kế kỹ thuật sau:
+
+1. **Volume Dữ liệu (Backend Infrastructure)**:
+   * Anh dự kiến khoảng bao nhiêu đơn hàng 1 ngày / 1 tháng? Nếu lên đến chục nghìn/trăm nghìn record, việc tính toán Report trực tiếp trên một DB quan hệ MySQL có thể bị chậm theo thời gian. *Khuyến nghị: Có thể tạm dùng MySQL nhưng phải tối ưu hóa index, sau này sẵn sàng tách DB phân tích.* 
+2. **Webhook Error Handling**: 
+   * Đôi khi API sàn down, đẩy webhook trễ. Hệ thống có bắt buộc phải giữ tính đúng đắn 100% đến từng giây không? *Khuyến nghị: Backend bắt buộc phải có một lịch trình đối soát (Reconciliation) mỗi 12 giờ một lần để sync thẳng các record bị "rơi rớt".*
+3. **Phân quyền Media Buyer**:
+   * Media Buyer có được phép xem **toàn bộ doanh thu tự nhiên (Organic Revenue)** của Brand đó không, hay hệ thống sẽ thiết kế che đi, chỉ cho họ xem số chạy Ads? 
+4. **Giao diện Dashboard Premium**:
+   * Chúng ta sẽ dùng chế độ Dark Mode mặc định để tăng tính "Wow" (các dashboard monitor thường làm Dark mode) hay xây dựng chức năng chuyển đổi Light/Dark mode linh hoạt?
+
+Vui lòng cho tôi biết quyết định / feedback của anh để tôi có thể bắt tay vào chuẩn bị setup code base!

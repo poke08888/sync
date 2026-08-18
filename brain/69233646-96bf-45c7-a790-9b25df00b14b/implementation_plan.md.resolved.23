@@ -1,0 +1,81 @@
+# Kế hoạch triển khai Hệ thống Dự báo Tái cung ứng Kho hàng
+
+Hệ thống này sẽ giúp tự động hóa việc dự báo nhu cầu nhập hàng dựa trên dữ liệu tồn kho hàng ngày và các đơn hàng đang về (In-transit PO), đồng thời gửi thông báo nhắc nhở khi hàng chuẩn bị hết.
+
+## User Review Required
+
+> [!IMPORTANT]
+> - **Cách tính ADO (Average Daily Outbound)**: Tôi sẽ mặc định tính toán dựa trên trung bình 14 ngày gần nhất. Bạn có muốn cho phép người dùng tùy chỉnh con số này trên Dashboard không?
+> - **Thông báo Telegram/Email**: Bạn cần chuẩn bị sẵn API Token cho Telegram và cấu hình SMTP cho Email. Tôi sẽ tạo file cấu hình mẫu.
+> - **Dữ liệu Master**: Hệ thống yêu cầu khớp `sku_code` giữa tất cả các file Excel. Bất kỳ SKU nào không có trong file Master sẽ bị bỏ qua khi tính toán dự báo.
+
+## Phân kỳ triển khai
+
+---
+
+### Phân kỳ 1: Thiết lập Cấu trúc Dữ liệu & Database
+Tôi sẽ cập nhật `prisma/schema.prisma` để bao gồm các model cần thiết như `Sku`, `Supplier`, `InventorySnapshot`, và `PurchaseOrder`.
+
+#### [MODIFY] [schema.prisma](file:///Users/kevin/.gemini/antigravity/scratch/ecom-next-dashboard/prisma/schema.prisma)
+- Thêm model `Sku`: Lưu thông số lead time, safety stock, MOQ.
+- Thêm model `Supplier`: Quản lý nhà cung cấp.
+- Thêm model `InventorySnapshot`: Lưu lịch sử kho hàng ngày.
+- Thêm model `PurchaseOrder` & `PurchaseOrderDelay`: Theo dõi đơn hàng và lịch sử chậm trễ.
+- Thêm model `ReplenishmentAlert`: Lưu trữ các cảnh báo tái cung ứng.
+
+---
+
+### Phân kỳ 2: Xây dựng Engine Tính toán Dự báo
+Tạo dịch vụ cốt lõi để tính toán các chỉ số ADO, Tồn kho thực tế (Net Stock), và Ngày cần nhập hàng.
+
+#### [NEW] `lib/replenishment-engine.ts`
+- Logic tính ADO (7, 14, 30 ngày).
+- Tính `days_of_net_stock` và `reorder_date`.
+- Tính toán `recommended_qty` (Số lượng đề xuất nhập) dựa trên ADO và chu kỳ nhập hàng.
+
+---
+
+### Phân kỳ 3: Hệ thống Import Excel & Validation
+Xây dựng giao diện tải lên thông minh, cho phép xem trước và kiểm tra lỗi dữ liệu trước khi lưu vào DB.
+
+#### [NEW] `/app/(dashboard)/inventory/upload/page.tsx`
+- Khu vực kéo thả file Excel.
+- UI mapping cột dữ liệu (nếu tên cột không khớp).
+- Quy trình kiểm tra lỗi (sku_code trống, ngày sai định dạng).
+
+#### [NEW] API Routes: `/api/upload/[type]`
+- Xử lý lưu dữ liệu hàng loạt (bulk upsert) và kích hoạt engine dự báo ngay sau khi upload.
+
+---
+
+### Phân kỳ 4: Dashboard & Biểu đồ Dự báo
+Hiển thị cái nhìn tổng quan về tình trạng kho và dự báo dòng chảy hàng hóa.
+
+#### [NEW] `/app/(dashboard)/inventory/page.tsx`
+- Thẻ KPI: SKUs Critical, Warning, Tổng giá trị hàng đang về.
+- Bảng Tái cung ứng: Phân loại màu sắc (Đỏ/Cam/Vàng) dựa trên mức độ khẩn cấp.
+- Biểu đồ Forecast (Recharts): Dự đoán lượng tồn kho trong 30 ngày tới.
+
+---
+
+### Phân kỳ 5: Workflow Đơn hàng & Thông báo
+Quy trình xác nhận hàng về và tự động gửi thông báo.
+
+#### [NEW] `/app/(dashboard)/inventory/po/[id]/confirm/page.tsx`
+- Trang xác nhận hàng đã về kho hoặc gia hạn ngày dự kiến (EAD).
+- Tích hợp gửi thông báo qua Email/Telegram bằng Nodemailer và Fetch API.
+- Thiết lập Cron Job hàng ngày để kiểm tra các PO dự kiến về trong ngày.
+
+---
+
+## Kế hoạch Kiểm thử & Xác minh
+
+### Kiểm tra tính toán
+- Sử dụng bộ dữ liệu mẫu (Sample Data) để verify: `current_stock = 10`, `ADO = 1`, `lead_time = 5`, `safety_stock = 2`. Máy phải báo `Reorder Date = Today + 3` (Warning).
+
+### Kiểm tra File Excel
+- Thử upload file thiếu cột bắt buộc để kiểm tra thông báo lỗi UI.
+- Thử upload trùng mã PO để kiểm tra logic Update (Upsert).
+
+### Kiểm tra Thông báo
+- Trigger tay lệnh gửi Telegram để xác nhận API hoạt động đúng cấu trúc.

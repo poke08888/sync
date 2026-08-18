@@ -1,0 +1,597 @@
+<current_dom_explanation>
+This is a temporary snapshot of the current page's DOM structure. The DOM will change if you navigate to or interact with another page. Use a tool like browser_get_dom to capture and preserve the DOM in your trajectory if needed for later reference.
+</current_dom_explanation>
+<current_dom>
+import { createHotContext as __vite__createHotContext } from "/@vite/client";import.meta.hot = __vite__createHotContext("/src/pages/Dashboard.jsx");import __vite__cjsImport0_react_jsxDevRuntime from "/node_modules/.vite/deps/react_jsx-dev-runtime.js?v=87d51b92"; const jsxDEV = __vite__cjsImport0_react_jsxDevRuntime["jsxDEV"];
+import * as RefreshRuntime from "/@react-refresh";
+const inWebWorker = typeof WorkerGlobalScope !== "undefined" && self instanceof WorkerGlobalScope;
+let prevRefreshReg;
+let prevRefreshSig;
+if (import.meta.hot && !inWebWorker) {
+  if (!window.$RefreshReg$) {
+    throw new Error(
+      "@vitejs/plugin-react can't detect preamble. Something is wrong."
+    );
+  }
+  prevRefreshReg = window.$RefreshReg$;
+  prevRefreshSig = window.$RefreshSig$;
+  window.$RefreshReg$ = RefreshRuntime.getRefreshReg("/Users/kevin/.gemini/antigravity/scratch/ecom-dashboard/src/pages/Dashboard.jsx");
+  window.$RefreshSig$ = RefreshRuntime.createSignatureFunctionForTransform;
+}
+var _s = $RefreshSig$();
+import __vite__cjsImport3_react from "/node_modules/.vite/deps/react.js?v=87d51b92"; const React = __vite__cjsImport3_react.__esModule ? __vite__cjsImport3_react.default : __vite__cjsImport3_react; const useState = __vite__cjsImport3_react["useState"];
+import { useAuthStore } from "/src/store/useAuthStore.js";
+import {
+  LineChart,
+  Line,
+  AreaChart,
+  Area,
+  XAxis,
+  YAxis,
+  CartesianGrid,
+  Tooltip,
+  ResponsiveContainer,
+  BarChart,
+  Bar,
+  Legend
+} from "/node_modules/.vite/deps/recharts.js?v=87d51b92";
+import { ArrowUpRight, ArrowDownRight, Users, ShoppingBag, DollarSign, Activity } from "/node_modules/.vite/deps/lucide-react.js?v=87d51b92";
+const mockSalesData = [
+  { name: "Mon", gmv: 4e3, net: 2400, ads: 2400 },
+  { name: "Tue", gmv: 3e3, net: 1398, ads: 2210 },
+  { name: "Wed", gmv: 5e3, net: 4800, ads: 2290 },
+  { name: "Thu", gmv: 2780, net: 3908, ads: 2e3 },
+  { name: "Fri", gmv: 6890, net: 4800, ads: 2181 },
+  { name: "Sat", gmv: 8390, net: 6800, ads: 2500 },
+  { name: "Sun", gmv: 7490, net: 5300, ads: 2100 }
+];
+const mockOrderData = [
+  { id: "ORD-1012", platform: "Shopee", status: "Shipped", amount: 154e4, date: "2026-04-09" },
+  { id: "ORD-1013", platform: "TikTok", status: "Processing", amount: 235e4, date: "2026-04-09" },
+  { id: "ORD-1014", platform: "TikTok", status: "Delivered", amount: 89e4, date: "2026-04-08" },
+  { id: "ORD-1015", platform: "Shopee", status: "Cancelled", amount: 45e4, date: "2026-04-08" }
+];
+const StatCard = ({ title, value, change, isPositive, icon: Icon, visible }) => {
+  if (!visible) return null;
+  return /* @__PURE__ */ jsxDEV("div", { className: "bg-surface border border-border p-5 rounded-2xl flex flex-col justify-between", children: [
+    /* @__PURE__ */ jsxDEV("div", { className: "flex justify-between items-start mb-4", children: [
+      /* @__PURE__ */ jsxDEV("div", { className: "w-10 h-10 rounded-full bg-pantone-293/20 flex items-center justify-center", children: /* @__PURE__ */ jsxDEV(Icon, { className: "w-5 h-5 text-pantone-light" }, void 0, false, {
+        fileName: "/Users/kevin/.gemini/antigravity/scratch/ecom-dashboard/src/pages/Dashboard.jsx",
+        lineNumber: 52,
+        columnNumber: 11
+      }, this) }, void 0, false, {
+        fileName: "/Users/kevin/.gemini/antigravity/scratch/ecom-dashboard/src/pages/Dashboard.jsx",
+        lineNumber: 51,
+        columnNumber: 9
+      }, this),
+      /* @__PURE__ */ jsxDEV("div", { className: `flex items-center gap-1 text-sm font-medium px-2 py-1 rounded-full ${isPositive ? "bg-green-500/10 text-green-400" : "bg-red-500/10 text-red-400"}`, children: [
+        isPositive ? /* @__PURE__ */ jsxDEV(ArrowUpRight, { className: "w-4 h-4" }, void 0, false, {
+          fileName: "/Users/kevin/.gemini/antigravity/scratch/ecom-dashboard/src/pages/Dashboard.jsx",
+          lineNumber: 55,
+          columnNumber: 25
+        }, this) : /* @__PURE__ */ jsxDEV(ArrowDownRight, { className: "w-4 h-4" }, void 0, false, {
+          fileName: "/Users/kevin/.gemini/antigravity/scratch/ecom-dashboard/src/pages/Dashboard.jsx",
+          lineNumber: 55,
+          columnNumber: 64
+        }, this),
+        change,
+        "%"
+      ] }, void 0, true, {
+        fileName: "/Users/kevin/.gemini/antigravity/scratch/ecom-dashboard/src/pages/Dashboard.jsx",
+        lineNumber: 54,
+        columnNumber: 9
+      }, this)
+    ] }, void 0, true, {
+      fileName: "/Users/kevin/.gemini/antigravity/scratch/ecom-dashboard/src/pages/Dashboard.jsx",
+      lineNumber: 50,
+      columnNumber: 7
+    }, this),
+    /* @__PURE__ */ jsxDEV("div", { children: [
+      /* @__PURE__ */ jsxDEV("h3", { className: "text-textMuted text-sm font-medium mb-1", children: title }, void 0, false, {
+        fileName: "/Users/kevin/.gemini/antigravity/scratch/ecom-dashboard/src/pages/Dashboard.jsx",
+        lineNumber: 60,
+        columnNumber: 9
+      }, this),
+      /* @__PURE__ */ jsxDEV("h2", { className: "text-2xl font-bold text-white", children: value }, void 0, false, {
+        fileName: "/Users/kevin/.gemini/antigravity/scratch/ecom-dashboard/src/pages/Dashboard.jsx",
+        lineNumber: 61,
+        columnNumber: 9
+      }, this)
+    ] }, void 0, true, {
+      fileName: "/Users/kevin/.gemini/antigravity/scratch/ecom-dashboard/src/pages/Dashboard.jsx",
+      lineNumber: 59,
+      columnNumber: 7
+    }, this)
+  ] }, void 0, true, {
+    fileName: "/Users/kevin/.gemini/antigravity/scratch/ecom-dashboard/src/pages/Dashboard.jsx",
+    lineNumber: 49,
+    columnNumber: 5
+  }, this);
+};
+_c = StatCard;
+export default function Dashboard() {
+  _s();
+  const { user } = useAuthStore();
+  const [timeRange, setTimeRange] = useState("7D");
+  const canViewOrganic = user.role === "ceo" || user.role === "brand_manager" || user.role === "media_buyer";
+  const isMediaBuyer = user.role === "media_buyer";
+  return /* @__PURE__ */ jsxDEV("div", { className: "space-y-6", children: [
+    /* @__PURE__ */ jsxDEV("div", { className: "flex flex-col md:flex-row md:items-center justify-between gap-4", children: [
+      /* @__PURE__ */ jsxDEV("div", { children: [
+        /* @__PURE__ */ jsxDEV("h1", { className: "text-2xl font-bold text-white", children: "Overview" }, void 0, false, {
+          fileName: "/Users/kevin/.gemini/antigravity/scratch/ecom-dashboard/src/pages/Dashboard.jsx",
+          lineNumber: 78,
+          columnNumber: 11
+        }, this),
+        /* @__PURE__ */ jsxDEV("p", { className: "text-textMuted text-sm", children: "Welcome back! Here's your e-commerce summary." }, void 0, false, {
+          fileName: "/Users/kevin/.gemini/antigravity/scratch/ecom-dashboard/src/pages/Dashboard.jsx",
+          lineNumber: 79,
+          columnNumber: 11
+        }, this)
+      ] }, void 0, true, {
+        fileName: "/Users/kevin/.gemini/antigravity/scratch/ecom-dashboard/src/pages/Dashboard.jsx",
+        lineNumber: 77,
+        columnNumber: 9
+      }, this),
+      /* @__PURE__ */ jsxDEV("div", { className: "flex items-center gap-2 bg-surface p-1 rounded-lg border border-border shrink-0", children: ["24H", "7D", "30D", "All"].map(
+        (range) => /* @__PURE__ */ jsxDEV(
+          "button",
+          {
+            onClick: () => setTimeRange(range),
+            className: `px-3 py-1 rounded-md text-sm font-medium transition-colors ${timeRange === range ? "bg-pantone-293 text-white" : "text-textMuted hover:text-white"}`,
+            children: range
+          },
+          range,
+          false,
+          {
+            fileName: "/Users/kevin/.gemini/antigravity/scratch/ecom-dashboard/src/pages/Dashboard.jsx",
+            lineNumber: 84,
+            columnNumber: 11
+          },
+          this
+        )
+      ) }, void 0, false, {
+        fileName: "/Users/kevin/.gemini/antigravity/scratch/ecom-dashboard/src/pages/Dashboard.jsx",
+        lineNumber: 82,
+        columnNumber: 9
+      }, this)
+    ] }, void 0, true, {
+      fileName: "/Users/kevin/.gemini/antigravity/scratch/ecom-dashboard/src/pages/Dashboard.jsx",
+      lineNumber: 76,
+      columnNumber: 7
+    }, this),
+    /* @__PURE__ */ jsxDEV("div", { className: "grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-4", children: [
+      /* @__PURE__ */ jsxDEV(
+        StatCard,
+        {
+          title: "Gross Revenue (GMV)",
+          value: "â‚«845,920,000",
+          change: 12.5,
+          isPositive: true,
+          icon: DollarSign,
+          visible: user.role !== "media_buyer"
+        },
+        void 0,
+        false,
+        {
+          fileName: "/Users/kevin/.gemini/antigravity/scratch/ecom-dashboard/src/pages/Dashboard.jsx",
+          lineNumber: 97,
+          columnNumber: 9
+        },
+        this
+      ),
+      /* @__PURE__ */ jsxDEV(
+        StatCard,
+        {
+          title: "Net Revenue",
+          value: "â‚«712,450,000",
+          change: 8.2,
+          isPositive: true,
+          icon: Activity,
+          visible: canViewOrganic
+        },
+        void 0,
+        false,
+        {
+          fileName: "/Users/kevin/.gemini/antigravity/scratch/ecom-dashboard/src/pages/Dashboard.jsx",
+          lineNumber: 105,
+          columnNumber: 9
+        },
+        this
+      ),
+      /* @__PURE__ */ jsxDEV(
+        StatCard,
+        {
+          title: "Ads Spend",
+          value: "â‚«145,200,000",
+          change: 3.1,
+          isPositive: false,
+          icon: Megaphone,
+          visible: true
+        },
+        void 0,
+        false,
+        {
+          fileName: "/Users/kevin/.gemini/antigravity/scratch/ecom-dashboard/src/pages/Dashboard.jsx",
+          lineNumber: 113,
+          columnNumber: 9
+        },
+        this
+      ),
+      /* @__PURE__ */ jsxDEV(
+        StatCard,
+        {
+          title: "Total Orders",
+          value: "1,248",
+          change: 15.3,
+          isPositive: true,
+          icon: ShoppingBag,
+          visible: user.role !== "media_buyer"
+        },
+        void 0,
+        false,
+        {
+          fileName: "/Users/kevin/.gemini/antigravity/scratch/ecom-dashboard/src/pages/Dashboard.jsx",
+          lineNumber: 121,
+          columnNumber: 9
+        },
+        this
+      ),
+      /* @__PURE__ */ jsxDEV(
+        StatCard,
+        {
+          title: "ROAS",
+          value: "4.8x",
+          change: 0.4,
+          isPositive: true,
+          icon: Activity,
+          visible: isMediaBuyer
+        },
+        void 0,
+        false,
+        {
+          fileName: "/Users/kevin/.gemini/antigravity/scratch/ecom-dashboard/src/pages/Dashboard.jsx",
+          lineNumber: 129,
+          columnNumber: 9
+        },
+        this
+      )
+    ] }, void 0, true, {
+      fileName: "/Users/kevin/.gemini/antigravity/scratch/ecom-dashboard/src/pages/Dashboard.jsx",
+      lineNumber: 96,
+      columnNumber: 7
+    }, this),
+    /* @__PURE__ */ jsxDEV("div", { className: "grid grid-cols-1 lg:grid-cols-3 gap-6", children: [
+      /* @__PURE__ */ jsxDEV("div", { className: "lg:col-span-2 bg-surface border border-border rounded-2xl p-6", children: [
+        /* @__PURE__ */ jsxDEV("h3", { className: "text-white font-semibold mb-6", children: "Revenue Performance" }, void 0, false, {
+          fileName: "/Users/kevin/.gemini/antigravity/scratch/ecom-dashboard/src/pages/Dashboard.jsx",
+          lineNumber: 143,
+          columnNumber: 11
+        }, this),
+        /* @__PURE__ */ jsxDEV("div", { className: "h-72", children: /* @__PURE__ */ jsxDEV(ResponsiveContainer, { width: "100%", height: "100%", children: /* @__PURE__ */ jsxDEV(AreaChart, { data: mockSalesData, children: [
+          /* @__PURE__ */ jsxDEV("defs", { children: /* @__PURE__ */ jsxDEV("linearGradient", { id: "colorNet", x1: "0", y1: "0", x2: "0", y2: "1", children: [
+            /* @__PURE__ */ jsxDEV("stop", { offset: "5%", stopColor: "#003DA5", stopOpacity: 0.3 }, void 0, false, {
+              fileName: "/Users/kevin/.gemini/antigravity/scratch/ecom-dashboard/src/pages/Dashboard.jsx",
+              lineNumber: 149,
+              columnNumber: 21
+            }, this),
+            /* @__PURE__ */ jsxDEV("stop", { offset: "95%", stopColor: "#003DA5", stopOpacity: 0 }, void 0, false, {
+              fileName: "/Users/kevin/.gemini/antigravity/scratch/ecom-dashboard/src/pages/Dashboard.jsx",
+              lineNumber: 150,
+              columnNumber: 21
+            }, this)
+          ] }, void 0, true, {
+            fileName: "/Users/kevin/.gemini/antigravity/scratch/ecom-dashboard/src/pages/Dashboard.jsx",
+            lineNumber: 148,
+            columnNumber: 19
+          }, this) }, void 0, false, {
+            fileName: "/Users/kevin/.gemini/antigravity/scratch/ecom-dashboard/src/pages/Dashboard.jsx",
+            lineNumber: 147,
+            columnNumber: 17
+          }, this),
+          /* @__PURE__ */ jsxDEV(CartesianGrid, { strokeDasharray: "3 3", stroke: "#334155", vertical: false }, void 0, false, {
+            fileName: "/Users/kevin/.gemini/antigravity/scratch/ecom-dashboard/src/pages/Dashboard.jsx",
+            lineNumber: 153,
+            columnNumber: 17
+          }, this),
+          /* @__PURE__ */ jsxDEV(XAxis, { dataKey: "name", stroke: "#94A3B8", fontSize: 12, tickLine: false, axisLine: false }, void 0, false, {
+            fileName: "/Users/kevin/.gemini/antigravity/scratch/ecom-dashboard/src/pages/Dashboard.jsx",
+            lineNumber: 154,
+            columnNumber: 17
+          }, this),
+          /* @__PURE__ */ jsxDEV(YAxis, { stroke: "#94A3B8", fontSize: 12, tickLine: false, axisLine: false, tickFormatter: (val) => `â‚«${val / 1e3}k` }, void 0, false, {
+            fileName: "/Users/kevin/.gemini/antigravity/scratch/ecom-dashboard/src/pages/Dashboard.jsx",
+            lineNumber: 155,
+            columnNumber: 17
+          }, this),
+          /* @__PURE__ */ jsxDEV(
+            Tooltip,
+            {
+              contentStyle: { backgroundColor: "#1E293B", borderColor: "#334155", color: "#F8FAFC", borderRadius: "8px" },
+              itemStyle: { color: "#F8FAFC" }
+            },
+            void 0,
+            false,
+            {
+              fileName: "/Users/kevin/.gemini/antigravity/scratch/ecom-dashboard/src/pages/Dashboard.jsx",
+              lineNumber: 156,
+              columnNumber: 17
+            },
+            this
+          ),
+          /* @__PURE__ */ jsxDEV(Area, { type: "monotone", dataKey: "net", stroke: "#003DA5", strokeWidth: 3, fillOpacity: 1, fill: "url(#colorNet)" }, void 0, false, {
+            fileName: "/Users/kevin/.gemini/antigravity/scratch/ecom-dashboard/src/pages/Dashboard.jsx",
+            lineNumber: 160,
+            columnNumber: 17
+          }, this)
+        ] }, void 0, true, {
+          fileName: "/Users/kevin/.gemini/antigravity/scratch/ecom-dashboard/src/pages/Dashboard.jsx",
+          lineNumber: 146,
+          columnNumber: 15
+        }, this) }, void 0, false, {
+          fileName: "/Users/kevin/.gemini/antigravity/scratch/ecom-dashboard/src/pages/Dashboard.jsx",
+          lineNumber: 145,
+          columnNumber: 13
+        }, this) }, void 0, false, {
+          fileName: "/Users/kevin/.gemini/antigravity/scratch/ecom-dashboard/src/pages/Dashboard.jsx",
+          lineNumber: 144,
+          columnNumber: 11
+        }, this)
+      ] }, void 0, true, {
+        fileName: "/Users/kevin/.gemini/antigravity/scratch/ecom-dashboard/src/pages/Dashboard.jsx",
+        lineNumber: 142,
+        columnNumber: 9
+      }, this),
+      /* @__PURE__ */ jsxDEV("div", { className: "bg-surface border border-border rounded-2xl p-6 flex flex-col justify-between", children: [
+        /* @__PURE__ */ jsxDEV("div", { children: [
+          /* @__PURE__ */ jsxDEV("h3", { className: "text-white font-semibold mb-6", children: "Sales by Platform" }, void 0, false, {
+            fileName: "/Users/kevin/.gemini/antigravity/scratch/ecom-dashboard/src/pages/Dashboard.jsx",
+            lineNumber: 169,
+            columnNumber: 13
+          }, this),
+          /* @__PURE__ */ jsxDEV("div", { className: "space-y-4", children: [
+            /* @__PURE__ */ jsxDEV("div", { className: "flex items-center justify-between", children: [
+              /* @__PURE__ */ jsxDEV("div", { className: "flex items-center gap-3", children: [
+                /* @__PURE__ */ jsxDEV("div", { className: "w-3 h-3 rounded-full bg-orange-500" }, void 0, false, {
+                  fileName: "/Users/kevin/.gemini/antigravity/scratch/ecom-dashboard/src/pages/Dashboard.jsx",
+                  lineNumber: 173,
+                  columnNumber: 19
+                }, this),
+                /* @__PURE__ */ jsxDEV("span", { className: "text-textMuted", children: "Shopee" }, void 0, false, {
+                  fileName: "/Users/kevin/.gemini/antigravity/scratch/ecom-dashboard/src/pages/Dashboard.jsx",
+                  lineNumber: 174,
+                  columnNumber: 19
+                }, this)
+              ] }, void 0, true, {
+                fileName: "/Users/kevin/.gemini/antigravity/scratch/ecom-dashboard/src/pages/Dashboard.jsx",
+                lineNumber: 172,
+                columnNumber: 17
+              }, this),
+              /* @__PURE__ */ jsxDEV("span", { className: "text-white font-medium", children: "55%" }, void 0, false, {
+                fileName: "/Users/kevin/.gemini/antigravity/scratch/ecom-dashboard/src/pages/Dashboard.jsx",
+                lineNumber: 176,
+                columnNumber: 17
+              }, this)
+            ] }, void 0, true, {
+              fileName: "/Users/kevin/.gemini/antigravity/scratch/ecom-dashboard/src/pages/Dashboard.jsx",
+              lineNumber: 171,
+              columnNumber: 15
+            }, this),
+            /* @__PURE__ */ jsxDEV("div", { className: "w-full bg-background rounded-full h-2", children: /* @__PURE__ */ jsxDEV("div", { className: "bg-orange-500 h-2 rounded-full", style: { width: "55%" } }, void 0, false, {
+              fileName: "/Users/kevin/.gemini/antigravity/scratch/ecom-dashboard/src/pages/Dashboard.jsx",
+              lineNumber: 179,
+              columnNumber: 17
+            }, this) }, void 0, false, {
+              fileName: "/Users/kevin/.gemini/antigravity/scratch/ecom-dashboard/src/pages/Dashboard.jsx",
+              lineNumber: 178,
+              columnNumber: 15
+            }, this),
+            /* @__PURE__ */ jsxDEV("div", { className: "flex items-center justify-between mt-4", children: [
+              /* @__PURE__ */ jsxDEV("div", { className: "flex items-center gap-3", children: [
+                /* @__PURE__ */ jsxDEV("div", { className: "w-3 h-3 rounded-full bg-black border border-border" }, void 0, false, {
+                  fileName: "/Users/kevin/.gemini/antigravity/scratch/ecom-dashboard/src/pages/Dashboard.jsx",
+                  lineNumber: 184,
+                  columnNumber: 19
+                }, this),
+                /* @__PURE__ */ jsxDEV("span", { className: "text-textMuted", children: "TikTok Shop" }, void 0, false, {
+                  fileName: "/Users/kevin/.gemini/antigravity/scratch/ecom-dashboard/src/pages/Dashboard.jsx",
+                  lineNumber: 185,
+                  columnNumber: 19
+                }, this)
+              ] }, void 0, true, {
+                fileName: "/Users/kevin/.gemini/antigravity/scratch/ecom-dashboard/src/pages/Dashboard.jsx",
+                lineNumber: 183,
+                columnNumber: 17
+              }, this),
+              /* @__PURE__ */ jsxDEV("span", { className: "text-white font-medium", children: "45%" }, void 0, false, {
+                fileName: "/Users/kevin/.gemini/antigravity/scratch/ecom-dashboard/src/pages/Dashboard.jsx",
+                lineNumber: 187,
+                columnNumber: 17
+              }, this)
+            ] }, void 0, true, {
+              fileName: "/Users/kevin/.gemini/antigravity/scratch/ecom-dashboard/src/pages/Dashboard.jsx",
+              lineNumber: 182,
+              columnNumber: 15
+            }, this),
+            /* @__PURE__ */ jsxDEV("div", { className: "w-full bg-background rounded-full h-2", children: /* @__PURE__ */ jsxDEV("div", { className: "bg-black border border-border h-2 rounded-full", style: { width: "45%" } }, void 0, false, {
+              fileName: "/Users/kevin/.gemini/antigravity/scratch/ecom-dashboard/src/pages/Dashboard.jsx",
+              lineNumber: 190,
+              columnNumber: 17
+            }, this) }, void 0, false, {
+              fileName: "/Users/kevin/.gemini/antigravity/scratch/ecom-dashboard/src/pages/Dashboard.jsx",
+              lineNumber: 189,
+              columnNumber: 15
+            }, this)
+          ] }, void 0, true, {
+            fileName: "/Users/kevin/.gemini/antigravity/scratch/ecom-dashboard/src/pages/Dashboard.jsx",
+            lineNumber: 170,
+            columnNumber: 13
+          }, this)
+        ] }, void 0, true, {
+          fileName: "/Users/kevin/.gemini/antigravity/scratch/ecom-dashboard/src/pages/Dashboard.jsx",
+          lineNumber: 168,
+          columnNumber: 11
+        }, this),
+        /* @__PURE__ */ jsxDEV("div", { className: "mt-8 pt-6 border-t border-border", children: /* @__PURE__ */ jsxDEV("button", { className: "w-full py-2 bg-pantone-293/10 text-pantone-light rounded-lg font-medium hover:bg-pantone-293 hover:text-white transition-colors duration-200", children: "View Detailed Report" }, void 0, false, {
+          fileName: "/Users/kevin/.gemini/antigravity/scratch/ecom-dashboard/src/pages/Dashboard.jsx",
+          lineNumber: 196,
+          columnNumber: 13
+        }, this) }, void 0, false, {
+          fileName: "/Users/kevin/.gemini/antigravity/scratch/ecom-dashboard/src/pages/Dashboard.jsx",
+          lineNumber: 195,
+          columnNumber: 11
+        }, this)
+      ] }, void 0, true, {
+        fileName: "/Users/kevin/.gemini/antigravity/scratch/ecom-dashboard/src/pages/Dashboard.jsx",
+        lineNumber: 167,
+        columnNumber: 9
+      }, this)
+    ] }, void 0, true, {
+      fileName: "/Users/kevin/.gemini/antigravity/scratch/ecom-dashboard/src/pages/Dashboard.jsx",
+      lineNumber: 140,
+      columnNumber: 7
+    }, this),
+    !isMediaBuyer && /* @__PURE__ */ jsxDEV("div", { className: "bg-surface border border-border rounded-2xl p-6", children: [
+      /* @__PURE__ */ jsxDEV("div", { className: "flex items-center justify-between mb-6", children: [
+        /* @__PURE__ */ jsxDEV("h3", { className: "text-white font-semibold", children: "Recent Orders" }, void 0, false, {
+          fileName: "/Users/kevin/.gemini/antigravity/scratch/ecom-dashboard/src/pages/Dashboard.jsx",
+          lineNumber: 207,
+          columnNumber: 13
+        }, this),
+        /* @__PURE__ */ jsxDEV("button", { className: "text-pantone-light text-sm font-medium hover:text-white transition-colors", children: "See all" }, void 0, false, {
+          fileName: "/Users/kevin/.gemini/antigravity/scratch/ecom-dashboard/src/pages/Dashboard.jsx",
+          lineNumber: 208,
+          columnNumber: 13
+        }, this)
+      ] }, void 0, true, {
+        fileName: "/Users/kevin/.gemini/antigravity/scratch/ecom-dashboard/src/pages/Dashboard.jsx",
+        lineNumber: 206,
+        columnNumber: 11
+      }, this),
+      /* @__PURE__ */ jsxDEV("div", { className: "overflow-x-auto", children: /* @__PURE__ */ jsxDEV("table", { className: "w-full text-left border-collapse", children: [
+        /* @__PURE__ */ jsxDEV("thead", { children: /* @__PURE__ */ jsxDEV("tr", { className: "border-b border-border text-textMuted text-sm", children: [
+          /* @__PURE__ */ jsxDEV("th", { className: "pb-3 font-medium", children: "Order ID" }, void 0, false, {
+            fileName: "/Users/kevin/.gemini/antigravity/scratch/ecom-dashboard/src/pages/Dashboard.jsx",
+            lineNumber: 214,
+            columnNumber: 19
+          }, this),
+          /* @__PURE__ */ jsxDEV("th", { className: "pb-3 font-medium", children: "Platform" }, void 0, false, {
+            fileName: "/Users/kevin/.gemini/antigravity/scratch/ecom-dashboard/src/pages/Dashboard.jsx",
+            lineNumber: 215,
+            columnNumber: 19
+          }, this),
+          /* @__PURE__ */ jsxDEV("th", { className: "pb-3 font-medium", children: "Date" }, void 0, false, {
+            fileName: "/Users/kevin/.gemini/antigravity/scratch/ecom-dashboard/src/pages/Dashboard.jsx",
+            lineNumber: 216,
+            columnNumber: 19
+          }, this),
+          /* @__PURE__ */ jsxDEV("th", { className: "pb-3 font-medium", children: "Status" }, void 0, false, {
+            fileName: "/Users/kevin/.gemini/antigravity/scratch/ecom-dashboard/src/pages/Dashboard.jsx",
+            lineNumber: 217,
+            columnNumber: 19
+          }, this),
+          /* @__PURE__ */ jsxDEV("th", { className: "pb-3 font-medium text-right", children: "Amount" }, void 0, false, {
+            fileName: "/Users/kevin/.gemini/antigravity/scratch/ecom-dashboard/src/pages/Dashboard.jsx",
+            lineNumber: 218,
+            columnNumber: 19
+          }, this)
+        ] }, void 0, true, {
+          fileName: "/Users/kevin/.gemini/antigravity/scratch/ecom-dashboard/src/pages/Dashboard.jsx",
+          lineNumber: 213,
+          columnNumber: 17
+        }, this) }, void 0, false, {
+          fileName: "/Users/kevin/.gemini/antigravity/scratch/ecom-dashboard/src/pages/Dashboard.jsx",
+          lineNumber: 212,
+          columnNumber: 15
+        }, this),
+        /* @__PURE__ */ jsxDEV("tbody", { className: "text-sm", children: mockOrderData.map(
+          (order) => /* @__PURE__ */ jsxDEV("tr", { className: "border-b border-border/50 hover:bg-white/5 transition-colors", children: [
+            /* @__PURE__ */ jsxDEV("td", { className: "py-4 text-white font-medium", children: order.id }, void 0, false, {
+              fileName: "/Users/kevin/.gemini/antigravity/scratch/ecom-dashboard/src/pages/Dashboard.jsx",
+              lineNumber: 224,
+              columnNumber: 21
+            }, this),
+            /* @__PURE__ */ jsxDEV("td", { className: "py-4", children: /* @__PURE__ */ jsxDEV("span", { className: `px-2 py-1 rounded-md text-xs font-medium ${order.platform === "Shopee" ? "bg-orange-500/10 text-orange-400" : "bg-white/10 text-gray-300"}`, children: order.platform }, void 0, false, {
+              fileName: "/Users/kevin/.gemini/antigravity/scratch/ecom-dashboard/src/pages/Dashboard.jsx",
+              lineNumber: 226,
+              columnNumber: 23
+            }, this) }, void 0, false, {
+              fileName: "/Users/kevin/.gemini/antigravity/scratch/ecom-dashboard/src/pages/Dashboard.jsx",
+              lineNumber: 225,
+              columnNumber: 21
+            }, this),
+            /* @__PURE__ */ jsxDEV("td", { className: "py-4 text-textMuted", children: order.date }, void 0, false, {
+              fileName: "/Users/kevin/.gemini/antigravity/scratch/ecom-dashboard/src/pages/Dashboard.jsx",
+              lineNumber: 230,
+              columnNumber: 21
+            }, this),
+            /* @__PURE__ */ jsxDEV("td", { className: "py-4", children: /* @__PURE__ */ jsxDEV("span", { className: `px-2 py-1 rounded-md text-xs font-medium 
+                        ${order.status === "Shipped" ? "bg-blue-500/10 text-blue-400" : order.status === "Delivered" ? "bg-green-500/10 text-green-400" : order.status === "Cancelled" ? "bg-red-500/10 text-red-400" : "bg-yellow-500/10 text-yellow-400"}`, children: order.status }, void 0, false, {
+              fileName: "/Users/kevin/.gemini/antigravity/scratch/ecom-dashboard/src/pages/Dashboard.jsx",
+              lineNumber: 232,
+              columnNumber: 23
+            }, this) }, void 0, false, {
+              fileName: "/Users/kevin/.gemini/antigravity/scratch/ecom-dashboard/src/pages/Dashboard.jsx",
+              lineNumber: 231,
+              columnNumber: 21
+            }, this),
+            /* @__PURE__ */ jsxDEV("td", { className: "py-4 text-white font-medium text-right", children: new Intl.NumberFormat("vi-VN", { style: "currency", currency: "VND" }).format(order.amount) }, void 0, false, {
+              fileName: "/Users/kevin/.gemini/antigravity/scratch/ecom-dashboard/src/pages/Dashboard.jsx",
+              lineNumber: 240,
+              columnNumber: 21
+            }, this)
+          ] }, order.id, true, {
+            fileName: "/Users/kevin/.gemini/antigravity/scratch/ecom-dashboard/src/pages/Dashboard.jsx",
+            lineNumber: 223,
+            columnNumber: 15
+          }, this)
+        ) }, void 0, false, {
+          fileName: "/Users/kevin/.gemini/antigravity/scratch/ecom-dashboard/src/pages/Dashboard.jsx",
+          lineNumber: 221,
+          columnNumber: 15
+        }, this)
+      ] }, void 0, true, {
+        fileName: "/Users/kevin/.gemini/antigravity/scratch/ecom-dashboard/src/pages/Dashboard.jsx",
+        lineNumber: 211,
+        columnNumber: 13
+      }, this) }, void 0, false, {
+        fileName: "/Users/kevin/.gemini/antigravity/scratch/ecom-dashboard/src/pages/Dashboard.jsx",
+        lineNumber: 210,
+        columnNumber: 11
+      }, this)
+    ] }, void 0, true, {
+      fileName: "/Users/kevin/.gemini/antigravity/scratch/ecom-dashboard/src/pages/Dashboard.jsx",
+      lineNumber: 205,
+      columnNumber: 7
+    }, this)
+  ] }, void 0, true, {
+    fileName: "/Users/kevin/.gemini/antigravity/scratch/ecom-dashboard/src/pages/Dashboard.jsx",
+    lineNumber: 75,
+    columnNumber: 5
+  }, this);
+}
+_s(Dashboard, "QW5C0Y0MVyCUeBFRj9RrfN2X30M=", false, function() {
+  return [useAuthStore];
+});
+_c2 = Dashboard;
+var _c, _c2;
+$RefreshReg$(_c, "StatCard");
+$RefreshReg$(_c2, "Dashboard");
+if (import.meta.hot && !inWebWorker) {
+  window.$RefreshReg$ = prevRefreshReg;
+  window.$RefreshSig$ = prevRefreshSig;
+}
+if (import.meta.hot && !inWebWorker) {
+  RefreshRuntime.__hmr_import(import.meta.url).then((currentExports) => {
+    RefreshRuntime.registerExportsForReactRefresh("/Users/kevin/.gemini/antigravity/scratch/ecom-dashboard/src/pages/Dashboard.jsx", currentExports);
+    import.meta.hot.accept((nextExports) => {
+      if (!nextExports) return;
+      const invalidateMessage = RefreshRuntime.validateRefreshBoundaryAndEnqueueUpdate("/Users/kevin/.gemini/antigravity/scratch/ecom-dashboard/src/pages/Dashboard.jsx", currentExports, nextExports);
+      if (invalidateMessage) import.meta.hot.invalidate(invalidateMessage);
+    });
+  });
+}
+
+//# sourceMappingURL=data:application/json;base64,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IkxpbmUiLCJBcmVhQ2hhcnQiLCJBcmVhIiwiWEF4aXMiLCJZQXhpcyIsIkNhcnRlc2lhbkdyaWQiLCJUb29sdGlwIiwiUmVzcG9uc2l2ZUNvbnRhaW5lciIsIkJhckNoYXJ0IiwiQmFyIiwiTGVnZW5kIiwiQXJyb3dVcFJpZ2h0IiwiQXJyb3dEb3duUmlnaHQiLCJVc2VycyIsIlNob3BwaW5nQmFnIiwiRG9sbGFyU2lnbiIsIkFjdGl2aXR5IiwibW9ja1NhbGVzRGF0YSIsIm5hbWUiLCJnbXYiLCJuZXQiLCJhZHMiLCJtb2NrT3JkZXJEYXRhIiwiaWQiLCJwbGF0Zm9ybSIsInN0YXR1cyIsImFtb3VudCIsImRhdGUiLCJTdGF0Q2FyZCIsInRpdGxlIiwidmFsdWUiLCJjaGFuZ2UiLCJpc1Bvc2l0aXZlIiwiaWNvbiIsIkljb24iLCJ2aXNpYmxlIiwiX2MiLCJEYXNoYm9hcmQiLCJfcyIsInVzZXIiLCJ0aW1lUmFuZ2UiLCJzZXRUaW1lUmFuZ2UiLCJjYW5WaWV3T3JnYW5pYyIsInJvbGUiLCJpc01lZGlhQnV5ZXIiLCJtYXAiLCJyYW5nZSIsIk1lZ2FwaG9uZSIsInZhbCIsImJhY2tncm91bmRDb2xvciIsImJvcmRlckNvbG9yIiwiY29sb3IiLCJib3JkZXJSYWRpdXMiLCJ3aWR0aCIsIm9yZGVyIiwiSW50bCIsIk51bWJlckZvcm1hdCIsInN0eWxlIiwiY3VycmVuY3kiLCJmb3JtYXQiLCJfYzIiXSwiaWdub3JlTGlzdCI6W10sInNvdXJjZXMiOlsiRGFzaGJvYXJkLmpzeCJdLCJzb3VyY2VzQ29udGVudCI6WyJpbXBvcnQgUmVhY3QsIHsgdXNlU3RhdGUgfSBmcm9tICdyZWFjdCc7XG5pbXBvcnQgeyB1c2VBdXRoU3RvcmUgfSBmcm9tICcuLi9zdG9yZS91c2VBdXRoU3RvcmUnO1xuaW1wb3J0IHsgXG4gIExpbmVDaGFydCwgTGluZSwgQXJlYUNoYXJ0LCBBcmVhLCBYQXhpcywgWUF4aXMsIENhcnRlc2lhbkdyaWQsIFRvb2x0aXAsIFJlc3BvbnNpdmVDb250YWluZXIsXG4gIEJhckNoYXJ0LCBCYXIsIExlZ2VuZFxufSBmcm9tICdyZWNoYXJ0cyc7XG5pbXBvcnQgeyBBcnJvd1VwUmlnaHQsIEFycm93RG93blJpZ2h0LCBVc2VycywgU2hvcHBpbmdCYWcsIERvbGxhclNpZ24sIEFjdGl2aXR5IH0gZnJvbSAnbHVjaWRlLXJlYWN0JztcblxuY29uc3QgbW9ja1NhbGVzRGF0YSA9IFtcbiAgeyBuYW1lOiAnTW9uJywgZ212OiA0MDAwLCBuZXQ6IDI0MDAsIGFkczogMjQwMCB9LFxuICB7IG5hbWU6ICdUdWUnLCBnbXY6IDMwMDAsIG5ldDogMTM5OCwgYWRzOiAyMjEwIH0sXG4gIHsgbmFtZTogJ1dlZCcsIGdtdjogNTAwMCwgbmV0OiA0ODAwLCBhZHM6IDIyOTAgfSxcbiAgeyBuYW1lOiAnVGh1JywgZ212OiAyNzgwLCBuZXQ6IDM5MDgsIGFkczogMjAwMCB9LFxuICB7IG5hbWU6ICdGcmknLCBnbXY6IDY4OTAsIG5ldDogNDgwMCwgYWRzOiAyMTgxIH0sXG4gIHsgbmFtZTogJ1NhdCcsIGdtdjogODM5MCwgbmV0OiA2ODAwLCBhZHM6IDI1MDAgfSxcbiAgeyBuYW1lOiAnU3VuJywgZ212OiA3NDkwLCBuZXQ6IDUzMDAsIGFkczogMjEwMCB9LFxuXTtcblxuY29uc3QgbW9ja09yZGVyRGF0YSA9IFtcbiAgeyBpZDogJ09SRC0xMDEyJywgcGxhdGZvcm06ICdTaG9wZWUnLCBzdGF0dXM6ICdTaGlwcGVkJywgYW1vdW50OiAxNTQwMDAwLCBkYXRlOiAnMjAyNi0wNC0wOScgfSxcbiAgeyBpZDogJ09SRC0xMDEzJywgcGxhdGZvcm06ICdUaWtUb2snLCBzdGF0dXM6ICdQcm9jZXNzaW5nJywgYW1vdW50OiAyMzUwMDAwLCBkYXRlOiAnMjAyNi0wNC0wOScgfSxcbiAgeyBpZDogJ09SRC0xMDE0JywgcGxhdGZvcm06ICdUaWtUb2snLCBzdGF0dXM6ICdEZWxpdmVyZWQnLCBhbW91bnQ6IDg5MDAwMCwgZGF0ZTogJzIwMjYtMDQtMDgnIH0sXG4gIHsgaWQ6ICdPUkQtMTAxNScsIHBsYXRmb3JtOiAnU2hvcGVlJywgc3RhdHVzOiAnQ2FuY2VsbGVkJywgYW1vdW50OiA0NTAwMDAsIGRhdGU6ICcyMDI2LTA0LTA4JyB9LFxuXTtcblxuY29uc3QgU3RhdENhcmQgPSAoeyB0aXRsZSwgdmFsdWUsIGNoYW5nZSwgaXNQb3NpdGl2ZSwgaWNvbjogSWNvbiwgdmlzaWJsZSB9KSA9PiB7XG4gIGlmICghdmlzaWJsZSkgcmV0dXJuIG51bGw7XG4gIFxuICByZXR1cm4gKFxuICAgIDxkaXYgY2xhc3NOYW1lPVwiYmctc3VyZmFjZSBib3JkZXIgYm9yZGVyLWJvcmRlciBwLTUgcm91bmRlZC0yeGwgZmxleCBmbGV4LWNvbCBqdXN0aWZ5LWJldHdlZW5cIj5cbiAgICAgIDxkaXYgY2xhc3NOYW1lPVwiZmxleCBqdXN0aWZ5LWJldHdlZW4gaXRlbXMtc3RhcnQgbWItNFwiPlxuICAgICAgICA8ZGl2IGNsYXNzTmFtZT1cInctMTAgaC0xMCByb3VuZGVkLWZ1bGwgYmctcGFudG9uZS0yOTMvMjAgZmxleCBpdGVtcy1jZW50ZXIganVzdGlmeS1jZW50ZXJcIj5cbiAgICAgICAgICA8SWNvbiBjbGFzc05hbWU9XCJ3LTUgaC01IHRleHQtcGFudG9uZS1saWdodFwiIC8+XG4gICAgICAgIDwvZGl2PlxuICAgICAgICA8ZGl2IGNsYXNzTmFtZT17YGZsZXggaXRlbXMtY2VudGVyIGdhcC0xIHRleHQtc20gZm9udC1tZWRpdW0gcHgtMiBweS0xIHJvdW5kZWQtZnVsbCAke2lzUG9zaXRpdmUgPyAnYmctZ3JlZW4tNTAwLzEwIHRleHQtZ3JlZW4tNDAwJyA6ICdiZy1yZWQtNTAwLzEwIHRleHQtcmVkLTQwMCd9YH0+XG4gICAgICAgICAge2lzUG9zaXRpdmUgPyA8QXJyb3dVcFJpZ2h0IGNsYXNzTmFtZT1cInctNCBoLTRcIiAvPiA6IDxBcnJvd0Rvd25SaWdodCBjbGFzc05hbWU9XCJ3LTQgaC00XCIgLz59XG4gICAgICAgICAge2NoYW5nZX0lXG4gICAgICAgIDwvZGl2PlxuICAgICAgPC9kaXY+XG4gICAgICA8ZGl2PlxuICAgICAgICA8aDMgY2xhc3NOYW1lPVwidGV4dC10ZXh0TXV0ZWQgdGV4dC1zbSBmb250LW1lZGl1bSBtYi0xXCI+e3RpdGxlfTwvaDM+XG4gICAgICAgIDxoMiBjbGFzc05hbWU9XCJ0ZXh0LTJ4bCBmb250LWJvbGQgdGV4dC13aGl0ZVwiPnt2YWx1ZX08L2gyPlxuICAgICAgPC9kaXY+XG4gICAgPC9kaXY+XG4gICk7XG59O1xuXG5leHBvcnQgZGVmYXVsdCBmdW5jdGlvbiBEYXNoYm9hcmQoKSB7XG4gIGNvbnN0IHsgdXNlciB9ID0gdXNlQXV0aFN0b3JlKCk7XG4gIGNvbnN0IFt0aW1lUmFuZ2UsIHNldFRpbWVSYW5nZV0gPSB1c2VTdGF0ZSgnN0QnKTtcbiAgXG4gIGNvbnN0IGNhblZpZXdPcmdhbmljID0gdXNlci5yb2xlID09PSAnY2VvJyB8fCB1c2VyLnJvbGUgPT09ICdicmFuZF9tYW5hZ2VyJyB8fCB1c2VyLnJvbGUgPT09ICdtZWRpYV9idXllcic7XG4gIGNvbnN0IGlzTWVkaWFCdXllciA9IHVzZXIucm9sZSA9PT0gJ21lZGlhX2J1eWVyJztcblxuICByZXR1cm4gKFxuICAgIDxkaXYgY2xhc3NOYW1lPVwic3BhY2UteS02XCI+XG4gICAgICA8ZGl2IGNsYXNzTmFtZT1cImZsZXggZmxleC1jb2wgbWQ6ZmxleC1yb3cgbWQ6aXRlbXMtY2VudGVyIGp1c3RpZnktYmV0d2VlbiBnYXAtNFwiPlxuICAgICAgICA8ZGl2PlxuICAgICAgICAgIDxoMSBjbGFzc05hbWU9XCJ0ZXh0LTJ4bCBmb250LWJvbGQgdGV4dC13aGl0ZVwiPk92ZXJ2aWV3PC9oMT5cbiAgICAgICAgICA8cCBjbGFzc05hbWU9XCJ0ZXh0LXRleHRNdXRlZCB0ZXh0LXNtXCI+V2VsY29tZSBiYWNrISBIZXJlJ3MgeW91ciBlLWNvbW1lcmNlIHN1bW1hcnkuPC9wPlxuICAgICAgICA8L2Rpdj5cbiAgICAgICAgXG4gICAgICAgIDxkaXYgY2xhc3NOYW1lPVwiZmxleCBpdGVtcy1jZW50ZXIgZ2FwLTIgYmctc3VyZmFjZSBwLTEgcm91bmRlZC1sZyBib3JkZXIgYm9yZGVyLWJvcmRlciBzaHJpbmstMFwiPlxuICAgICAgICAgIHtbJzI0SCcsICc3RCcsICczMEQnLCAnQWxsJ10ubWFwKHJhbmdlID0+IChcbiAgICAgICAgICAgIDxidXR0b24gXG4gICAgICAgICAgICAgIGtleT17cmFuZ2V9XG4gICAgICAgICAgICAgIG9uQ2xpY2s9eygpID0+IHNldFRpbWVSYW5nZShyYW5nZSl9XG4gICAgICAgICAgICAgIGNsYXNzTmFtZT17YHB4LTMgcHktMSByb3VuZGVkLW1kIHRleHQtc20gZm9udC1tZWRpdW0gdHJhbnNpdGlvbi1jb2xvcnMgJHt0aW1lUmFuZ2UgPT09IHJhbmdlID8gJ2JnLXBhbnRvbmUtMjkzIHRleHQtd2hpdGUnIDogJ3RleHQtdGV4dE11dGVkIGhvdmVyOnRleHQtd2hpdGUnfWB9XG4gICAgICAgICAgICA+XG4gICAgICAgICAgICAgIHtyYW5nZX1cbiAgICAgICAgICAgIDwvYnV0dG9uPlxuICAgICAgICAgICkpfVxuICAgICAgICA8L2Rpdj5cbiAgICAgIDwvZGl2PlxuXG4gICAgICB7LyogTWV0cmljIENhcmRzIEdyaWQgKi99XG4gICAgICA8ZGl2IGNsYXNzTmFtZT1cImdyaWQgZ3JpZC1jb2xzLTEgbWQ6Z3JpZC1jb2xzLTIgbGc6Z3JpZC1jb2xzLTQgZ2FwLTRcIj5cbiAgICAgICAgPFN0YXRDYXJkIFxuICAgICAgICAgIHRpdGxlPVwiR3Jvc3MgUmV2ZW51ZSAoR01WKVwiIFxuICAgICAgICAgIHZhbHVlPVwi4oKrODQ1LDkyMCwwMDBcIiBcbiAgICAgICAgICBjaGFuZ2U9ezEyLjV9IFxuICAgICAgICAgIGlzUG9zaXRpdmU9e3RydWV9IFxuICAgICAgICAgIGljb249e0RvbGxhclNpZ259XG4gICAgICAgICAgdmlzaWJsZT17dXNlci5yb2xlICE9PSAnbWVkaWFfYnV5ZXInfSBcbiAgICAgICAgLz5cbiAgICAgICAgPFN0YXRDYXJkIFxuICAgICAgICAgIHRpdGxlPVwiTmV0IFJldmVudWVcIiBcbiAgICAgICAgICB2YWx1ZT1cIuKCqzcxMiw0NTAsMDAwXCIgXG4gICAgICAgICAgY2hhbmdlPXs4LjJ9IFxuICAgICAgICAgIGlzUG9zaXRpdmU9e3RydWV9IFxuICAgICAgICAgIGljb249e0FjdGl2aXR5fVxuICAgICAgICAgIHZpc2libGU9e2NhblZpZXdPcmdhbmljfSBcbiAgICAgICAgLz5cbiAgICAgICAgPFN0YXRDYXJkIFxuICAgICAgICAgIHRpdGxlPVwiQWRzIFNwZW5kXCIgXG4gICAgICAgICAgdmFsdWU9XCLigqsxNDUsMjAwLDAwMFwiIFxuICAgICAgICAgIGNoYW5nZT17My4xfSBcbiAgICAgICAgICBpc1Bvc2l0aXZlPXtmYWxzZX0gXG4gICAgICAgICAgaWNvbj17TWVnYXBob25lfVxuICAgICAgICAgIHZpc2libGU9e3RydWV9IFxuICAgICAgICAvPlxuICAgICAgICA8U3RhdENhcmQgXG4gICAgICAgICAgdGl0bGU9XCJUb3RhbCBPcmRlcnNcIiBcbiAgICAgICAgICB2YWx1ZT1cIjEsMjQ4XCIgXG4gICAgICAgICAgY2hhbmdlPXsxNS4zfSBcbiAgICAgICAgICBpc1Bvc2l0aXZlPXt0cnVlfSBcbiAgICAgICAgICBpY29uPXtTaG9wcGluZ0JhZ31cbiAgICAgICAgICB2aXNpYmxlPXt1c2VyLnJvbGUgIT09ICdtZWRpYV9idXllcid9IFxuICAgICAgICAvPlxuICAgICAgICA8U3RhdENhcmQgXG4gICAgICAgICAgdGl0bGU9XCJST0FTXCIgXG4gICAgICAgICAgdmFsdWU9XCI0Ljh4XCIgXG4gICAgICAgICAgY2hhbmdlPXswLjR9IFxuICAgICAgICAgIGlzUG9zaXRpdmU9e3RydWV9IFxuICAgICAgICAgIGljb249e0FjdGl2aXR5fVxuICAgICAgICAgIHZpc2libGU9e2lzTWVkaWFCdXllcn0gXG4gICAgICAgIC8+XG4gICAgICA8L2Rpdj5cblxuICAgICAgey8qIENoYXJ0cyBTZWN0aW9uICovfVxuICAgICAgPGRpdiBjbGFzc05hbWU9XCJncmlkIGdyaWQtY29scy0xIGxnOmdyaWQtY29scy0zIGdhcC02XCI+XG4gICAgICAgIHsvKiBNYWluIENoYXJ0ICovfVxuICAgICAgICA8ZGl2IGNsYXNzTmFtZT1cImxnOmNvbC1zcGFuLTIgYmctc3VyZmFjZSBib3JkZXIgYm9yZGVyLWJvcmRlciByb3VuZGVkLTJ4bCBwLTZcIj5cbiAgICAgICAgICA8aDMgY2xhc3NOYW1lPVwidGV4dC13aGl0ZSBmb250LXNlbWlib2xkIG1iLTZcIj5SZXZlbnVlIFBlcmZvcm1hbmNlPC9oMz5cbiAgICAgICAgICA8ZGl2IGNsYXNzTmFtZT1cImgtNzJcIj5cbiAgICAgICAgICAgIDxSZXNwb25zaXZlQ29udGFpbmVyIHdpZHRoPVwiMTAwJVwiIGhlaWdodD1cIjEwMCVcIj5cbiAgICAgICAgICAgICAgPEFyZWFDaGFydCBkYXRhPXttb2NrU2FsZXNEYXRhfT5cbiAgICAgICAgICAgICAgICA8ZGVmcz5cbiAgICAgICAgICAgICAgICAgIDxsaW5lYXJHcmFkaWVudCBpZD1cImNvbG9yTmV0XCIgeDE9XCIwXCIgeTE9XCIwXCIgeDI9XCIwXCIgeTI9XCIxXCI+XG4gICAgICAgICAgICAgICAgICAgIDxzdG9wIG9mZnNldD1cIjUlXCIgc3RvcENvbG9yPVwiIzAwM0RBNVwiIHN0b3BPcGFjaXR5PXswLjN9Lz5cbiAgICAgICAgICAgICAgICAgICAgPHN0b3Agb2Zmc2V0PVwiOTUlXCIgc3RvcENvbG9yPVwiIzAwM0RBNVwiIHN0b3BPcGFjaXR5PXswfS8+XG4gICAgICAgICAgICAgICAgICA8L2xpbmVhckdyYWRpZW50PlxuICAgICAgICAgICAgICAgIDwvZGVmcz5cbiAgICAgICAgICAgICAgICA8Q2FydGVzaWFuR3JpZCBzdHJva2VEYXNoYXJyYXk9XCIzIDNcIiBzdHJva2U9XCIjMzM0MTU1XCIgdmVydGljYWw9e2ZhbHNlfSAvPlxuICAgICAgICAgICAgICAgIDxYQXhpcyBkYXRhS2V5PVwibmFtZVwiIHN0cm9rZT1cIiM5NEEzQjhcIiBmb250U2l6ZT17MTJ9IHRpY2tMaW5lPXtmYWxzZX0gYXhpc0xpbmU9e2ZhbHNlfSAvPlxuICAgICAgICAgICAgICAgIDxZQXhpcyBzdHJva2U9XCIjOTRBM0I4XCIgZm9udFNpemU9ezEyfSB0aWNrTGluZT17ZmFsc2V9IGF4aXNMaW5lPXtmYWxzZX0gdGlja0Zvcm1hdHRlcj17KHZhbCkgPT4gYOKCqyR7dmFsLzEwMDB9a2B9IC8+XG4gICAgICAgICAgICAgICAgPFRvb2x0aXAgXG4gICAgICAgICAgICAgICAgICBjb250ZW50U3R5bGU9e3sgYmFja2dyb3VuZENvbG9yOiAnIzFFMjkzQicsIGJvcmRlckNvbG9yOiAnIzMzNDE1NScsIGNvbG9yOiAnI0Y4RkFGQycsIGJvcmRlclJhZGl1czogJzhweCcgfX1cbiAgICAgICAgICAgICAgICAgIGl0ZW1TdHlsZT17eyBjb2xvcjogJyNGOEZBRkMnIH19XG4gICAgICAgICAgICAgICAgLz5cbiAgICAgICAgICAgICAgICA8QXJlYSB0eXBlPVwibW9ub3RvbmVcIiBkYXRhS2V5PVwibmV0XCIgc3Ryb2tlPVwiIzAwM0RBNVwiIHN0cm9rZVdpZHRoPXszfSBmaWxsT3BhY2l0eT17MX0gZmlsbD1cInVybCgjY29sb3JOZXQpXCIgLz5cbiAgICAgICAgICAgICAgPC9BcmVhQ2hhcnQ+XG4gICAgICAgICAgICA8L1Jlc3BvbnNpdmVDb250YWluZXI+XG4gICAgICAgICAgPC9kaXY+XG4gICAgICAgIDwvZGl2PlxuXG4gICAgICAgIHsvKiBQbGF0Zm9ybSBCcmVha2Rvd24gKi99XG4gICAgICAgIDxkaXYgY2xhc3NOYW1lPVwiYmctc3VyZmFjZSBib3JkZXIgYm9yZGVyLWJvcmRlciByb3VuZGVkLTJ4bCBwLTYgZmxleCBmbGV4LWNvbCBqdXN0aWZ5LWJldHdlZW5cIj5cbiAgICAgICAgICA8ZGl2PlxuICAgICAgICAgICAgPGgzIGNsYXNzTmFtZT1cInRleHQtd2hpdGUgZm9udC1zZW1pYm9sZCBtYi02XCI+U2FsZXMgYnkgUGxhdGZvcm08L2gzPlxuICAgICAgICAgICAgPGRpdiBjbGFzc05hbWU9XCJzcGFjZS15LTRcIj5cbiAgICAgICAgICAgICAgPGRpdiBjbGFzc05hbWU9XCJmbGV4IGl0ZW1zLWNlbnRlciBqdXN0aWZ5LWJldHdlZW5cIj5cbiAgICAgICAgICAgICAgICA8ZGl2IGNsYXNzTmFtZT1cImZsZXggaXRlbXMtY2VudGVyIGdhcC0zXCI+XG4gICAgICAgICAgICAgICAgICA8ZGl2IGNsYXNzTmFtZT1cInctMyBoLTMgcm91bmRlZC1mdWxsIGJnLW9yYW5nZS01MDBcIj48L2Rpdj5cbiAgICAgICAgICAgICAgICAgIDxzcGFuIGNsYXNzTmFtZT1cInRleHQtdGV4dE11dGVkXCI+U2hvcGVlPC9zcGFuPlxuICAgICAgICAgICAgICAgIDwvZGl2PlxuICAgICAgICAgICAgICAgIDxzcGFuIGNsYXNzTmFtZT1cInRleHQtd2hpdGUgZm9udC1tZWRpdW1cIj41NSU8L3NwYW4+XG4gICAgICAgICAgICAgIDwvZGl2PlxuICAgICAgICAgICAgICA8ZGl2IGNsYXNzTmFtZT1cInctZnVsbCBiZy1iYWNrZ3JvdW5kIHJvdW5kZWQtZnVsbCBoLTJcIj5cbiAgICAgICAgICAgICAgICA8ZGl2IGNsYXNzTmFtZT1cImJnLW9yYW5nZS01MDAgaC0yIHJvdW5kZWQtZnVsbFwiIHN0eWxlPXt7IHdpZHRoOiAnNTUlJyB9fT48L2Rpdj5cbiAgICAgICAgICAgICAgPC9kaXY+XG5cbiAgICAgICAgICAgICAgPGRpdiBjbGFzc05hbWU9XCJmbGV4IGl0ZW1zLWNlbnRlciBqdXN0aWZ5LWJldHdlZW4gbXQtNFwiPlxuICAgICAgICAgICAgICAgIDxkaXYgY2xhc3NOYW1lPVwiZmxleCBpdGVtcy1jZW50ZXIgZ2FwLTNcIj5cbiAgICAgICAgICAgICAgICAgIDxkaXYgY2xhc3NOYW1lPVwidy0zIGgtMyByb3VuZGVkLWZ1bGwgYmctYmxhY2sgYm9yZGVyIGJvcmRlci1ib3JkZXJcIj48L2Rpdj5cbiAgICAgICAgICAgICAgICAgIDxzcGFuIGNsYXNzTmFtZT1cInRleHQtdGV4dE11dGVkXCI+VGlrVG9rIFNob3A8L3NwYW4+XG4gICAgICAgICAgICAgICAgPC9kaXY+XG4gICAgICAgICAgICAgICAgPHNwYW4gY2xhc3NOYW1lPVwidGV4dC13aGl0ZSBmb250LW1lZGl1bVwiPjQ1JTwvc3Bhbj5cbiAgICAgICAgICAgICAgPC9kaXY+XG4gICAgICAgICAgICAgIDxkaXYgY2xhc3NOYW1lPVwidy1mdWxsIGJnLWJhY2tncm91bmQgcm91bmRlZC1mdWxsIGgtMlwiPlxuICAgICAgICAgICAgICAgIDxkaXYgY2xhc3NOYW1lPVwiYmctYmxhY2sgYm9yZGVyIGJvcmRlci1ib3JkZXIgaC0yIHJvdW5kZWQtZnVsbFwiIHN0eWxlPXt7IHdpZHRoOiAnNDUlJyB9fT48L2Rpdj5cbiAgICAgICAgICAgICAgPC9kaXY+XG4gICAgICAgICAgICA8L2Rpdj5cbiAgICAgICAgICA8L2Rpdj5cbiAgICAgICAgICBcbiAgICAgICAgICA8ZGl2IGNsYXNzTmFtZT1cIm10LTggcHQtNiBib3JkZXItdCBib3JkZXItYm9yZGVyXCI+XG4gICAgICAgICAgICA8YnV0dG9uIGNsYXNzTmFtZT1cInctZnVsbCBweS0yIGJnLXBhbnRvbmUtMjkzLzEwIHRleHQtcGFudG9uZS1saWdodCByb3VuZGVkLWxnIGZvbnQtbWVkaXVtIGhvdmVyOmJnLXBhbnRvbmUtMjkzIGhvdmVyOnRleHQtd2hpdGUgdHJhbnNpdGlvbi1jb2xvcnMgZHVyYXRpb24tMjAwXCI+XG4gICAgICAgICAgICAgIFZpZXcgRGV0YWlsZWQgUmVwb3J0XG4gICAgICAgICAgICA8L2J1dHRvbj5cbiAgICAgICAgICA8L2Rpdj5cbiAgICAgICAgPC9kaXY+XG4gICAgICA8L2Rpdj5cblxuICAgICAgey8qIFJlY2VudCBPcmRlcnMgdGFibGUgKi99XG4gICAgICB7IWlzTWVkaWFCdXllciAmJiAoXG4gICAgICAgIDxkaXYgY2xhc3NOYW1lPVwiYmctc3VyZmFjZSBib3JkZXIgYm9yZGVyLWJvcmRlciByb3VuZGVkLTJ4bCBwLTZcIj5cbiAgICAgICAgICA8ZGl2IGNsYXNzTmFtZT1cImZsZXggaXRlbXMtY2VudGVyIGp1c3RpZnktYmV0d2VlbiBtYi02XCI+XG4gICAgICAgICAgICA8aDMgY2xhc3NOYW1lPVwidGV4dC13aGl0ZSBmb250LXNlbWlib2xkXCI+UmVjZW50IE9yZGVyczwvaDM+XG4gICAgICAgICAgICA8YnV0dG9uIGNsYXNzTmFtZT1cInRleHQtcGFudG9uZS1saWdodCB0ZXh0LXNtIGZvbnQtbWVkaXVtIGhvdmVyOnRleHQtd2hpdGUgdHJhbnNpdGlvbi1jb2xvcnNcIj5TZWUgYWxsPC9idXR0b24+XG4gICAgICAgICAgPC9kaXY+XG4gICAgICAgICAgPGRpdiBjbGFzc05hbWU9XCJvdmVyZmxvdy14LWF1dG9cIj5cbiAgICAgICAgICAgIDx0YWJsZSBjbGFzc05hbWU9XCJ3LWZ1bGwgdGV4dC1sZWZ0IGJvcmRlci1jb2xsYXBzZVwiPlxuICAgICAgICAgICAgICA8dGhlYWQ+XG4gICAgICAgICAgICAgICAgPHRyIGNsYXNzTmFtZT1cImJvcmRlci1iIGJvcmRlci1ib3JkZXIgdGV4dC10ZXh0TXV0ZWQgdGV4dC1zbVwiPlxuICAgICAgICAgICAgICAgICAgPHRoIGNsYXNzTmFtZT1cInBiLTMgZm9udC1tZWRpdW1cIj5PcmRlciBJRDwvdGg+XG4gICAgICAgICAgICAgICAgICA8dGggY2xhc3NOYW1lPVwicGItMyBmb250LW1lZGl1bVwiPlBsYXRmb3JtPC90aD5cbiAgICAgICAgICAgICAgICAgIDx0aCBjbGFzc05hbWU9XCJwYi0zIGZvbnQtbWVkaXVtXCI+RGF0ZTwvdGg+XG4gICAgICAgICAgICAgICAgICA8dGggY2xhc3NOYW1lPVwicGItMyBmb250LW1lZGl1bVwiPlN0YXR1czwvdGg+XG4gICAgICAgICAgICAgICAgICA8dGggY2xhc3NOYW1lPVwicGItMyBmb250LW1lZGl1bSB0ZXh0LXJpZ2h0XCI+QW1vdW50PC90aD5cbiAgICAgICAgICAgICAgICA8L3RyPlxuICAgICAgICAgICAgICA8L3RoZWFkPlxuICAgICAgICAgICAgICA8dGJvZHkgY2xhc3NOYW1lPVwidGV4dC1zbVwiPlxuICAgICAgICAgICAgICAgIHttb2NrT3JkZXJEYXRhLm1hcCgob3JkZXIpID0+IChcbiAgICAgICAgICAgICAgICAgIDx0ciBrZXk9e29yZGVyLmlkfSBjbGFzc05hbWU9XCJib3JkZXItYiBib3JkZXItYm9yZGVyLzUwIGhvdmVyOmJnLXdoaXRlLzUgdHJhbnNpdGlvbi1jb2xvcnNcIj5cbiAgICAgICAgICAgICAgICAgICAgPHRkIGNsYXNzTmFtZT1cInB5LTQgdGV4dC13aGl0ZSBmb250LW1lZGl1bVwiPntvcmRlci5pZH08L3RkPlxuICAgICAgICAgICAgICAgICAgICA8dGQgY2xhc3NOYW1lPVwicHktNFwiPlxuICAgICAgICAgICAgICAgICAgICAgIDxzcGFuIGNsYXNzTmFtZT17YHB4LTIgcHktMSByb3VuZGVkLW1kIHRleHQteHMgZm9udC1tZWRpdW0gJHtvcmRlci5wbGF0Zm9ybSA9PT0gJ1Nob3BlZScgPyAnYmctb3JhbmdlLTUwMC8xMCB0ZXh0LW9yYW5nZS00MDAnIDogJ2JnLXdoaXRlLzEwIHRleHQtZ3JheS0zMDAnfWB9PlxuICAgICAgICAgICAgICAgICAgICAgICAge29yZGVyLnBsYXRmb3JtfVxuICAgICAgICAgICAgICAgICAgICAgIDwvc3Bhbj5cbiAgICAgICAgICAgICAgICAgICAgPC90ZD5cbiAgICAgICAgICAgICAgICAgICAgPHRkIGNsYXNzTmFtZT1cInB5LTQgdGV4dC10ZXh0TXV0ZWRcIj57b3JkZXIuZGF0ZX08L3RkPlxuICAgICAgICAgICAgICAgICAgICA8dGQgY2xhc3NOYW1lPVwicHktNFwiPlxuICAgICAgICAgICAgICAgICAgICAgIDxzcGFuIGNsYXNzTmFtZT17YHB4LTIgcHktMSByb3VuZGVkLW1kIHRleHQteHMgZm9udC1tZWRpdW0gXG4gICAgICAgICAgICAgICAgICAgICAgICAke29yZGVyLnN0YXR1cyA9PT0gJ1NoaXBwZWQnID8gJ2JnLWJsdWUtNTAwLzEwIHRleHQtYmx1ZS00MDAnIDogXG4gICAgICAgICAgICAgICAgICAgICAgICAgIG9yZGVyLnN0YXR1cyA9PT0gJ0RlbGl2ZXJlZCcgPyAnYmctZ3JlZW4tNTAwLzEwIHRleHQtZ3JlZW4tNDAwJyA6XG4gICAgICAgICAgICAgICAgICAgICAgICAgIG9yZGVyLnN0YXR1cyA9PT0gJ0NhbmNlbGxlZCcgPyAnYmctcmVkLTUwMC8xMCB0ZXh0LXJlZC00MDAnIDpcbiAgICAgICAgICAgICAgICAgICAgICAgICAgJ2JnLXllbGxvdy01MDAvMTAgdGV4dC15ZWxsb3ctNDAwJ31gfT5cbiAgICAgICAgICAgICAgICAgICAgICAgIHtvcmRlci5zdGF0dXN9XG4gICAgICAgICAgICAgICAgICAgICAgPC9zcGFuPlxuICAgICAgICAgICAgICAgICAgICA8L3RkPlxuICAgICAgICAgICAgICAgICAgICA8dGQgY2xhc3NOYW1lPVwicHktNCB0ZXh0LXdoaXRlIGZvbnQtbWVkaXVtIHRleHQtcmlnaHRcIj5cbiAgICAgICAgICAgICAgICAgICAgICB7bmV3IEludGwuTnVtYmVyRm9ybWF0KCd2aS1WTicsIHsgc3R5bGU6ICdjdXJyZW5jeScsIGN1cnJlbmN5OiAnVk5EJyB9KS5mb3JtYXQob3JkZXIuYW1vdW50KX1cbiAgICAgICAgICAgICAgICAgICAgPC90ZD5cbiAgICAgICAgICAgICAgICAgIDwvdHI+XG4gICAgICAgICAgICAgICAgKSl9XG4gICAgICAgICAgICAgIDwvdGJvZHk+XG4gICAgICAgICAgICA8L3RhYmxlPlxuICAgICAgICAgIDwvZGl2PlxuICAgICAgICA8L2Rpdj5cbiAgICAgICl9XG4gICAgPC9kaXY+XG4gICk7XG59XG4iXSwiZmlsZSI6Ii9Vc2Vycy9rZXZpbi8uZ2VtaW5pL2FudGlncmF2aXR5L3NjcmF0Y2gvZWNvbS1kYXNoYm9hcmQvc3JjL3BhZ2VzL0Rhc2hib2FyZC5qc3gifQ==
+
+</current_dom>

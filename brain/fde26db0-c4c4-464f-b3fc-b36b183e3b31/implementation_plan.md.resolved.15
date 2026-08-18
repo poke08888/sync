@@ -1,0 +1,22 @@
+# Kế hoạch Tích hợp TikTok Settings vào Trang Cài đặt Chính
+
+Tôi sẽ thực hiện gom nhóm và tích hợp toàn bộ tính năng quản lý TikTok API vào mục **Cài đặt (Settings)** của ứng dụng React để đảm bảo cấu trúc trang web gọn gàng và logic nhất.
+
+## 1. Xây dựng Trang Settings Tổng thể (`src/pages/Settings.jsx`)
+Thay vì để "TikTok Shop" làm một mục riêng ngoài Sidebar, tôi sẽ tạo một trang Cài đặt tập trung:
+- **Tab Cấu hình API**: Quản lý App Key, App Secret.
+- **Tab Kết nối Shop**: Quản lý danh sách Shop, gắn Shop với Thương hiệu.
+- **Tab Thương hiệu**: Quản lý danh sách các Brand trong hệ thống.
+
+## 2. Cập nhật Luồng Điều hướng
+- **DashboardLayout**: Giữ nguyên mục "Settings" ở Sidebar nhưng xóa mục "TikTok Shop" lẻ loi để tránh trùng lặp.
+- **App.jsx**: Khi người dùng nhấn vào "Settings", hệ thống sẽ hiển thị trang trung tâm cài đặt mới.
+
+## 3. Tối ưu hóa UI React
+- Đảm bảo các Form nhập App Key/Secret có thông báo lỗi/thành công rõ ràng.
+- Giao diện gán Shop vào Brand sẽ sử dụng dropdown mượt mà và lưu dữ liệu tức thì xuống Backend Laravel.
+
+## 4. Open Questions
+- Bạn có muốn thêm các loại cài đặt khác (như Profile, Thông báo, Giao diện) vào trang Settings này luôn không, hay chỉ tập trung vào TikTok API?
+
+Mời bạn xác nhận để tôi bắt đầu triển khai trang Settings tích hợp này!

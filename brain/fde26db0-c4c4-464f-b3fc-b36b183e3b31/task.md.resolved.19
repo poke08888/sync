@@ -1,0 +1,8 @@
+# Hạng mục Công việc - Tích hợp TikTok vào Dashboard React (5173)
+
+- `[/]` Backend (Laravel): Hỗ trợ CORS và chuẩn hóa JSON API.
+- `[ ]` React: Tạo `src/components/tiktok/TikTokSettingsView.jsx`.
+- `[ ]` React: Chuyển đổi các module App, Brand, Shop sang React.
+- `[ ]` Layout: Thêm mục menu "TikTok Shop" vào Sidebar.
+- `[ ]` App.jsx: Cấu hình hiển thị view cài đặt mới.
+- `[ ]` Kiểm tra kết nối đa cổng (5173 -> 8000).

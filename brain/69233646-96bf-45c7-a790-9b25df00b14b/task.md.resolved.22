@@ -1,0 +1,20 @@
+- [x] Đổi định dạng số sang chuẩn `vi-VN`
+- [x] Việt hóa thanh Sidebar điều hướng
+- [x] Việt hóa Dashboard Tổng quan (KPI Cards, Tracker, Charts)
+- [x] Việt hóa Module Khách hàng
+- [x] Việt hóa Module Kho hàng (inventory/page.tsx)
+- [x] Việt hóa Module Thương hiệu (brands/page.tsx)
+- [x] Việt hóa Module Marketing (marketing/page.tsx)
+- [x] Việt hóa Module Cài đặt (settings/page.tsx)
+- [x] Kiểm tra tổng thể định dạng tiền tệ và nhãn biểu đồ
+- [x] Thêm bộ lọc Brand vào Dashboard tổng (KpiDashboard.tsx)
+- [x] Cập nhật số tuyệt đối & so sánh cùng kỳ (PlatformDistributionChart.tsx)
+- [x] Thu nhỏ kích thước KPI Tracker (KpiTracker.tsx)
+- [x] Tạo Component Sidebar.tsx năng động (Client Component)
+- [x] Cập nhật Root layout để sử dụng Sidebar mới
+- [/] Tạo DashboardFilters.tsx và các hằng số dùng chung (src/lib/constants.ts)
+- [ ] Nâng cấp page.tsx để quản lý State tập trung
+- [ ] Tái cấu trúc KpiDashboard.tsx (chỉ giữ phần Grid thẻ KPI)
+- [ ] Tái cấu trúc KpiTracker.tsx (loại bỏ bộ lọc nội bộ)
+- [ ] Bổ sung tính năng Tùy chỉnh Timeline trong thanh bộ lọc
+- [ ] Kiểm tra đồng bộ hóa toàn bộ Dashboard

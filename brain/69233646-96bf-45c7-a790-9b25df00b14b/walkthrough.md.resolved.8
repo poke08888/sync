@@ -1,0 +1,42 @@
+# Hệ thống Bộ lọc Dashboard Toàn cục & Tùy chỉnh Timeline
+
+Tôi đã hoàn tất việc nâng cấp kiến trúc Dashboard, đưa toàn bộ quyền điều khiển về một bộ lọc duy nhất ở trên cùng để tối ưu hóa trải nghiệm người dùng.
+
+## Các cải tiến chính
+
+### 1. Bộ lọc tập trung (Global Filters)
+Đã loại bỏ tất cả các bộ lọc riêng lẻ trong `KpiTracker`. Thay vào đó, một thanh công cụ mới (`DashboardFilters`) được đặt ở vị trí cao nhất trên Dashboard.
+- **Đồng bộ hóa**: Khi bạn thay đổi Brand hoặc Thời gian ở đây, toàn bộ Dashboard (từ thẻ KPI đến Biểu đồ) sẽ cập nhật đồng loạt.
+- **Tiêu đề thông minh**: Các biểu đồ giờ đây hiển thị tên Brand đang chọn trong tiêu đề (ví dụ: *"Doanh số theo giờ: Macaron Cos"*).
+
+### 2. Tùy chỉnh Timeline (Custom Date Range)
+Đã bổ sung tính năng chọn ngày bắt đầu và kết thúc cụ thể.
+- **Cách sử dụng**: Trong phần chọn thời gian, hãy chọn mục **"Tùy chỉnh"**.
+- **Giao diện**: Một thanh chọn ngày (Date Picker) sẽ hiện ra cho phép bạn tinh chỉnh khoảng thời gian mong muốn.
+
+### 3. Tối ưu mã nguồn
+- **Lifting State**: Quản lý trạng thái bộ lọc tại `page.tsx` giúp dữ liệu nhất quán.
+- **Pure Components**: Các module con (`KpiDashboard`, `KpiTracker`, `Charts`) giờ đây chỉ tập trung vào hiển thị dữ liệu dựa trên đầu vào bộ lọc.
+
+## Trình diễn giao diện mới
+
+`````carousel
+```tsx
+// dashboard_filters_check
+// Bộ lọc hiện tại đang được apply toàn cục
+<DashboardFilters 
+  selectedBrand="Macaron Cos" 
+  timeRange="custom"
+  customRange={{ start: "2026-04-01", end: "2026-04-10" }}
+/>
+```
+<!-- slide -->
+![KPI Tracker đồng bộ](/Users/kevin/.gemini/antigravity/brain/69233646-96bf-45c7-a790-9b25df00b14b/main_dashboard_vietnamese_1775792831812.png)
+`````
+
+## Hướng dẫn kiểm tra
+1. Truy cập [http://localhost:3000](http://localhost:3000).
+2. Thử chọn một thương hiệu khác trong bộ lọc trên cùng. Quan sát tiêu đề các biểu đồ và biểu đồ KPI Tracker thay đổi theo.
+3. Chọn mục **"Tùy chỉnh"** ở phần thời gian và thử thay đổi ngày để thấy giao diện chọn ngày hiển thị.
+
+Cảm ơn bạn đã đồng hành cùng tôi trong đợt refactor quan trọng này!

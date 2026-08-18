@@ -1,0 +1,9 @@
+# Hạng mục Công việc - Di chuyển TikTok API sang Laravel
+
+- `[x]` Database & Models: Tạo Migrations và Models cho `Brand`, `TikTokApp`, `TikTokToken`.
+- `[x]` Service Layer: Tạo `App\Services\TikTokService` xử lý logic API.
+- `[x]` Routing: Cấu hình Route trong `web.php`.
+- `[x]` Controllers: Tạo `TikTokAuthController` và `TikTokSettingsController`.
+- `[x]` UI Integration: Thêm mục menu vào Sidebar (`layouts/app.blade.php`).
+- `[x]` UI (Blade Views): Xây dựng giao diện `settings/tiktok.blade.php`.
+- `[x]` Kiểm tra luồng OAuth và gán Brand.

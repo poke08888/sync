@@ -1,0 +1,35 @@
+# Hoàn tất Cải tiến UI/UX Dashboard theo yêu cầu
+
+Tôi đã cập nhật bộ lọc Brand cho trang tổng quan, bổ sung thông tin chi tiết cho biểu đồ Tỷ trọng và tinh chỉnh kích thước Module KPI Tracker để mang lại trải nghiệm xem dữ liệu tốt nhất.
+
+## Các thay đổi đã thực hiện
+
+### 1. Bộ lọc Brand Đa năng
+Đã thêm Dropdown chọn Brand vào Header của Dashboard chính. CEO giờ đây có thể lọc nhanh dữ liệu của từng thương hiệu riêng biệt hoặc xem toàn bộ Portfolio.
+- **Vị trí**: Nằm cạnh bộ lọc thời gian.
+- **Hỗ trợ**: Phản hồi tức thì trên UI (mock state).
+
+### 2. Biểu đồ Tỷ trọng Kênh nâng cao
+Bổ sung các chỉ số tài chính quan trọng để CEO nắm bắt hiệu suất sàn thương mại điện tử ngay lập tức.
+- **Số tuyệt đối**: Hiển thị số tiền cụ thể (₫) cho từng kênh.
+- **So sánh cùng kỳ**: Hiển thị tỷ lệ tăng trưởng (%) với chỉ báo mũi tên (▲/▼) so với kỳ trước.
+
+### 3. Tối ưu Module KPI Tracker
+Điều chỉnh lại kích thước để module này không còn chiếm quá nhiều diện tích và hài hòa hơn với layout tổng thể.
+- **Padding & Gaps**: Giảm từ `p-6` xuống `p-4` và thu hẹp khoảng cách giữa các card.
+- **Typography**: Tinh chỉnh cỡ chữ của các thông số chính (Target, Forecast, Pace) để gọn gàng hơn.
+
+## Kết quả trực quan
+
+````carousel
+![Cập nhật Tỷ trọng kênh](/Users/kevin/.gemini/antigravity/brain/69233646-96bf-45c7-a790-9b25df00b14b/channel_distribution_legend_1775793153744.png)
+<!-- slide -->
+![Video quá trình kiểm tra](/Users/kevin/.gemini/antigravity/brain/69233646-96bf-45c7-a790-9b25df00b14b/dashboard_improvements_check_1775793061146.webp)
+````
+
+## Kiểm tra nhanh
+Bạn có thể thấy trong ảnh chụp màn hình:
+- TikTok Shop hiển thị `₫450.000` với mức tăng **▲ 18.4% cùng kỳ**.
+- Các khối trong KPI Tracker đã cân đối hơn, giúp bạn bao quát được nhiều dữ liệu hơn trên một màn hình.
+
+Mời bạn kiểm tra trực tiếp tại [http://localhost:3000](http://localhost:3000).

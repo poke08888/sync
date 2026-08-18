@@ -1,0 +1,19 @@
+# Hạng mục Phát triển: KPI Tracker Module
+
+## 1. Cấu trúc Component và State
+- `[x]` Tạo component `KPITracker.jsx` có toggle thời gian (Tuần/Tháng/Quý/Năm) và Brand dropdown (All Brands, Brand A, Brand B, Brand C).
+- `[x]` Khởi tạo mock data logic để giả lập các target KPI, số ngày đã qua, và doanh thu đạt được.
+
+## 2. Xử lý Logic Calculation
+- `[x]` Tính toán tỷ lệ phần trăm Đạt được (`[Z]%`) vs Thời gian trôi qua (`[A]%`).
+- `[x]` Viết logic xác định Pace trạng thái: nhanh (xanh) hoặc chậm (đỏ).
+- `[x]` Viết logic tính toán Daily Average Needed: (Target - Đã đạt) / Số ngày còn lại.
+- `[x]` Tính toán Forecast doanh thu cuối kỳ dựa trên Pace hiện tại.
+
+## 3. Trực quan hóa Giao diện (UI)
+- `[x]` Thiết kế Progress Bar báo cáo % KPI.
+- `[x]` Thiết kế Highlight Box nổi bật cho thông điệp "Cần đạt [X]đ/ngày trong [N] ngày còn lại".
+- `[x]` Tích hợp biểu đồ Breakdown theo cột (Bar) đan xen đường mục tiêu trung bình (Line) sử dụng module `ComposedChart` của Recharts.
+
+## 4. Tích hợp Trang chủ
+- `[x]` Nhúng bảng `KPITracker` này vào ngay bên dưới cụm 8 thẻ KPI trong `Dashboard.jsx`.

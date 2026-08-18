@@ -1,0 +1,6 @@
+{
+  "artifactType": "ARTIFACT_TYPE_WALKTHROUGH",
+  "summary": "Hoàn tất khắc phục lỗi Database và ổn định Dashboard cho TikTok Shop Integration. Hệ thống hiện có khả năng tự phục hồi, tự khởi tạo Database SQLite và xử lý lỗi chuyên nghiệp ở cả Frontend lẫn Backend.",
+  "updatedAt": "2026-04-09T11:06:44.247677Z",
+  "version": "10"
+}

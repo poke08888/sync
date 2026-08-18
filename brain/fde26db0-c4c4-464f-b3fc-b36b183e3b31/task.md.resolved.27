@@ -1,0 +1,9 @@
+# Hạng mục Công việc - Xây dựng TikTok Affiliate Service
+
+- `[/]` Tạo bảng `tiktok_creators` lưu hồ sơ KOC.
+- `[ ]` Tạo Model `TikTokCreator.php`.
+- `[ ]` Triển khai `searchAffiliateOrders` bằng APIv2 (202309).
+- `[ ]` Triển khai `searchCreators` (Danh sách Creator).
+- `[ ]` Triển khai `computeKocMetrics` (GMV, Commission per KOC).
+- `[ ]` Triển khai cơ chế Import dữ liệu Live Stream từ XLSX (Hybrid mapping).
+- `[ ]` Kiểm tra luồng tính toán hiệu suất KOC.

@@ -1,0 +1,27 @@
+# KOC Live Analytics - Báo Cáo Hoàn Thành
+
+Module phân tích Livestream KOC (Đọc trực tiếp từ file export của TikTok Shop) đã được hoàn thiện. Dưới đây là tóm tắt cách thức hoạt động và tính năng.
+
+## 1. Flow Sử dụng
+- Giao diện có thêm 1 trang mới là **KOC Live** (biểu tượng Camera) trên thanh Sidebar. 
+- Ngay khi bấm vào, hệ thống yêu cầu nạp **File Excel (.xlsx)** tải về từ TikTok Shop (Live Analysis). Hệ thống đọc trực tiếp dữ liệu (Client-side) mà không lộ qua Server.
+- Sau khi file tải lên thành công, hệ thống chuyển màn hình sang Dashboard Phân tích KOC chuyên sâu.
+
+## 2. Dashboard Insight (Overview)
+Hệ thống tự động tính toán tổng quát dựa trên hàng ngàn ca Live của file:
+- **Tổng GMV Live**: Tổng toàn bộ doanh thu.
+- **Doanh thu / Giờ**: `GMV / tổng số giờ Live` để xét hiệu năng quy chiếu theo giờ.
+- **AOV (Giá trị ĐH)**: Biết được đặc thù KOC chuyên chốt đơn lớn hay đơn nhặt nhạnh.
+- **CVR Mua hàng & CTR Nhấp SP**: Bóc tách tỉ lệ vàng mua sắm.
+
+## 3. Bảng Thành tích KOC (Leaderboard)
+- Được gộp cục (Aggregate): Nếu 1 tài khoản KOC live 5 lần, bảng sẽ gom chung lại tính tổng doanh thu/vượng để xếp hạng.
+- Cột Data: KOC Profile, Tổng GMV, Tỉ lệ ra đơn (CVR), Doanh thu tính theo 1 Giờ Live trung bình, và Thống kê tổng quan (`5 phiên (3 phiên có đơn)`).
+- Tính năng: Tab Mũi tên giúp sắp xếp Tăng/Giảm từ trên xuống để tìm Top KOC, và Thanh tìm kiếm nhanh.
+
+## 4. Reset & Bảo mật
+- Nút "Reset Data" giúp xóa dữ liệu rỗng và chuẩn bị nạp file Analytics của tuần / tháng mới. 
+- Toàn bộ thuật toán parse duration, filter rác đều được đóng gói gọn trong Store ở Browser.
+
+> [!TIP]
+> Do không có Server đứng giữa, dữ liệu nạp lên từ Excel được phân tích siêu nhanh và hiển thị tức thì. Mời anh upload một file mẫu từ Seller Center để kiểm chứng độ chính xác!

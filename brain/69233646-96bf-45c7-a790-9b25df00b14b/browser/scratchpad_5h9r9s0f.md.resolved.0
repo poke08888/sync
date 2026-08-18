@@ -1,0 +1,11 @@
+# Task: Verify KOC Live Analytics Page
+
+## Plan
+- [ ] Check if `http://localhost:3000/koc-live` is loaded correctly.
+- [ ] Verify "KOC Live Analytics" header is visible.
+- [ ] Verify Upload Zone is visible.
+- [ ] Take a screenshot for confirmation.
+- [ ] Report findings.
+
+## Findings
+- 

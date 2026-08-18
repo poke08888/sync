@@ -1,0 +1,16 @@
+# Module Verification Plan
+
+- [ ] Navigate to http://localhost:3000
+- [ ] Verify **Inventory** Page
+    - [ ] Render advanced charts/tables
+    - [ ] Check stock alerts
+- [ ] Verify **Customers** Page
+    - [ ] Render Cohort Retention table
+    - [ ] Render pie + trend lines (New vs Returning)
+- [ ] Verify **Marketing** Page
+    - [ ] Render ROAS/MER charts
+    - [ ] Verify Top Creatives
+- [ ] Verify **Brands** Page
+    - [ ] Render Brand P&L table
+    - [ ] Interact with BCG Matrix (Scatter Chart)
+- [ ] General: Verify Premium Dark Mode theme across all modules

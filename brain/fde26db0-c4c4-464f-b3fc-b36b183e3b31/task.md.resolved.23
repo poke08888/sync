@@ -1,0 +1,9 @@
+# Hạng mục Công việc - Xây dựng TikTok Shop API Client
+
+- `[/]` Tạo Custom Exception `TikTokApiError.php`.
+- `[ ]` Triển khai thuật toán ký Request (Signing) HMAC-SHA256.
+- `[ ]` Triển khai cơ chế Rate Limiting (40 req/s).
+- `[ ]` Triển khai cơ chế Retry với Exponential Backoff.
+- `[ ]` Hoàn thiện lớp `TikTokClient.php` với Auto-Refresh Token.
+- `[ ]` Cập nhật `TikTokService.php` sử dụng Client mới.
+- `[ ]` Kiểm tra Logging và truyền nhận dữ liệu.

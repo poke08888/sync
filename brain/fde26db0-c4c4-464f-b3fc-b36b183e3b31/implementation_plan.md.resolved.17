@@ -1,0 +1,41 @@
+# Kế hoạch Xây dựng TikTok Order Service (Laravel)
+
+Tôi sẽ xây dựng lớp `TikTokOrderService` để xử lý chi tiết quy trình nghiệp vụ liên quan đến Đơn hàng từ TikTok Shop, tích hợp sâu với `TikTokClient` đã có.
+
+## 1. Cập nhật Cơ sở Dữ liệu
+
+### [MODIFY] Migration mới
+- Bổ sung các cột vào bảng `orders`:
+    - `cancel_reason` (string, nullable): Lý do hủy đơn.
+    - `sku_data` (json, nullable): Danh sách SKU và thông tin chi tiết từng món hàng.
+    - `raw_json` (json, nullable): Lưu toàn bộ phản hồi từ API để đối soát.
+    - `synced_at` (timestamp): Thời điểm đơn hàng được đồng bộ cuối cùng.
+
+### [MODIFY] Model `Order.php`
+- Thêm `casts` cho `sku_data` và `raw_json` sang kiểu `array`.
+- Bổ sung các trường mới vào `fillable`.
+
+## 2. Thành phần mới
+
+### [NEW] `app/Services/TikTokOrderService.php`
+- **`searchOrders(array $params)`**: Truy vấn API tìm kiếm đơn hàng với các tham số status, time range, paging.
+- **`getAllOrders(Carbon $from, Carbon $to, $status = null)`**: 
+    - Tự động xử lý phân trang bằng `next_page_token`.
+    - Lặp cho đến khi hết dữ liệu.
+    - Ghi log tiến trình: "Fetched X/Y orders...".
+- **`getOrderDetail(string $orderId)`**: Lấy chi tiết đơn hàng (bao gồm SKU list).
+- **`syncOrdersToDb(string $shopId, Carbon $from, Carbon $to)`**:
+    - Sử dụng `getAllOrders` để lấy dữ liệu.
+    - Thực hiện `upsert` (update if exists, else insert) vào bảng `orders`.
+    - Đảm bảo tính nhất quán dữ liệu.
+- **`computeOrderMetrics(array $orders)`**:
+    - Tính toán tổng GMV, Net Revenue, ROI.
+    - Tính tỷ lệ hủy (Cancel Rate).
+    - Phân tích Top Sản phẩm (Top Bestsellers).
+    - Phân tích Doanh thu theo giờ (Hourly) và theo ngày (Daily).
+
+## 3. Câu hỏi và Lưu ý
+- **Phân trang**: TikTok giới hạn `page_size` tối đa là 100. Tôi sẽ thiết lập mặc định ở mức này để tối ưu số lần gọi API.
+- **GMT/Timezone**: Dữ liệu TikTok trả về là Unix Timestamp. Tôi sẽ quy đổi về Timezone được cấu hình trong Laravel (mặc định là UTC hoặc +7 tùy cài đặt của bạn) để đảm bảo độ chính xác của biểu đồ.
+
+Mời bạn xác nhận để tôi bắt đầu triển khai dịch vụ quản lý đơn hàng chuyên nghiệp này!

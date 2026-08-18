@@ -1,0 +1,119 @@
+# Kiến Trúc Hệ Thống E-commerce Dashboard
+
+Hệ thống dashboard và reporting hoàn chỉnh dành cho việc quản lý nhiều thương hiệu (brands) trên TikTok Shop và Shopee, phục vụ các vai trò người dùng khác nhau (CEO, Brand Manager, Media Buyer).
+
+## User Review Required
+
+> [!IMPORTANT]  
+> Đây là bản thiết kế kiến trúc tổng thể dựa trên yêu cầu của bạn. Vui lòng xem xét các **Quyết định cần đưa ra (Decisions)** ở phần `Open Questions`. Nếu bạn đồng ý với hướng tiếp cận này, chúng ta sẽ bắt tay vào việc khởi tạo dự án và code.
+
+---
+
+## 1. Quyết Định Công Nghệ (Tech Stack)
+
+Dựa trên các tùy chọn bạn đưa ra, tôi đề xuất lựa chọn tối ưu nhất cho một hệ thống Dashboard yêu cầu tính thời gian thực, độ ổn định cao và phân quyền phức tạp:
+- **Frontend / Fullstack Framework**: **Next.js (React)** - Tối ưu cho hiệu suất, hỗ trợ API Routes mạnh mẽ, lý tưởng để viết thêm các đoạn script Cron Jobs.
+- **Styling**: **Vanilla CSS / CSS Modules** kết hợp với các hiệu ứng Glassmorphism, Animation hiện đại để đảm bảo một giao diện UI thực sự "WOW" và Premium như yêu cầu. *(Lưu ý: Sẽ không dùng TailwindCSS nếu bạn không yêu cầu rõ, nhằm đảm bảo tối đa quyền kiểm soát pixel-perfect cho UI).*
+- **Database / Backend-as-a-service**: **Supabase (PostgreSQL)** - Nó cung cấp khả năng lưu trữ mạnh mẽ từ Postgres, tích hợp sẵn hệ thống Authentication và có Row-Level Security (RLS) để xử lý việc phân quyền từng Brand cực kỳ bảo mật (Multi-tenant).
+
+## 2. Database Schema (PostgreSQL)
+
+Hệ thống quản lý dữ liệu đa luồng cho nhiều Brand và Shop:
+
+- **`users`**: Quản lý user (ID, Email, Role, Created_at)
+- **`roles`**: CEO, Brand_Manager, Media_Buyer
+- **`brands`**: Thông tin thương hiệu (ID, Name, Logo)
+- **`user_brands`**: Bảng mapping phân quyền. (Ví dụ: User A là Brand Manager chỉ được truy cập data của Brand X).
+- **`shops`**: ID, brand_id, platform (TikTok/Shopee), shop_identifier, tokens_mã_hóa.
+- **`products`**: Danh mục sản phẩm đồng bộ từ sàn (ID, shop_id, SKU, name, price, image).
+- **`orders`**: Thông tin đơn hàng gốc (ID, shop_id, platform_order_id, status_chuẩn_hoá, total_amount, discount, created_at, updated_at).
+- **`order_items`**: Chi tiết sản phẩm trong đơn (order_id, product_id, quantity, price).
+- **`ads_campaigns`**: Dữ liệu chạy quảng cáo (ID, shop_id, platform, campaign_name, spend, impressions, clicks, conversions).
+- **`inventory`**: Tồn kho cập nhật (ID, product_id, stock_level, timestamp).
+- **`customers`**: Dữ liệu khách hàng (ID, shop_id, customer_platform_id, region, LTV - nếu API sàn cấp quyền chia sẻ thông tin).
+
+## 3. Data Pipeline / ETL Logic (Nguồn Sinh Dữ Liệu)
+
+Chúng ta cần có cơ chế hút dữ liệu từ sàn về Database của mình một cách mượt mà nhất.
+
+**Các bước xử lý (ETL):**
+1. **Extract (Trích xuất):** 
+   - **Tự động:** Edge Functions quét API của TikTok Shop / Shopee Open Platform mỗi ngày lúc 6:00 AM (để lấy dữ liệu chốt ngày hôm trước).
+   - **Realtime (Tùy chọn):** Thiết lập Webhook Receiver ở Next.js API để hứng các event thay đổi trạng thái đơn hàng ngay khi xảy ra trên sàn.
+   - **Thủ công:** Nếu setup API phức tạp, có module upload file .CSV và parser trực tiếp trên UI.
+2. **Transform (Chuyển đổi):** 
+   - Chuẩn hoá tiền tệ.
+   - Chuẩn hoá trạng thái đơn: Ví dụ Shopee `UNPAID` và TikTok `AWAITING_PAYMENT` sẽ được dịch về cấu trúc nội bộ là `PENDING`.
+3. **Load (Tải vào DB):**
+   - Upsert dữ liệu (Nếu có `platform_order_id` rồi thì cập nhật trạng thái mới nhất, nếu chưa thì thêm mới). 
+
+## 4. Danh Sách Các Metrics Phân Tích Thực Tế
+
+Hệ thống sẽ tính toán các chỉ số Dashboard được gom nhóm như sau:
+
+**Doanh Thu & Đơn Hàng (Cho CEO & Brand Manager)**
+- **Tổng Doanh Thu (Gross Revenue):** Tổng giá trị đơn hàng được tạo (Công thức: X Tổng `total_amount` của đơn có trạng thái chưa hủy).
+- **Doanh Thu Thực Thu (Net Revenue):** Cập nhật nếu trừ đi phí sàn và phí hoàn trả.
+- **Tổng Đơn Hàng & AOV:** Số lượng đơn và Giá trị trung bình/Đơn ($Revenue / Orders$).
+- **Tỉ Lệ Hủy / Hoàn (Cancellation & Return Rate):** % đơn hàng không giao thành công.
+
+**Quảng Cáo & Tiếp Thị (Cho Media Buyer & CEO)**
+- **Total Ad Spend:** Chi phí quảng cáo trên từng sàn.
+- **ROAS (Return on Ad Spend):** $Doanh Thu mảng Ads / Chi Phí Quảng Cáo$.
+- **CPA (Cost per Acquisition) / CAC:** $Chi Phí Ads / Số Đơn Hàng mới$.
+- **Ad CTR & CR:** Tỷ lệ nhấp và tỷ lệ chuyển đổi.
+
+**Kho Hàng & Sản Phẩm**
+- **Top Performing SKUs:** Các sản phẩm gánh doanh thu cao nhất trong khoảng thời gian đang xem.
+- **Stock-out Risk Alert:** Cảnh báo sớm nếu lượng hàng tồn `stock_level` thấp hơn Tốc độ bán (Sale Velocity) trong 7 ngày tới.
+
+## 5. Cấu trúc Folder & Component (Frontend Dashboard)
+
+Tôi sẽ thiết kế giao diện theo hướng hiện đại, responsive, kết hợp micro-animations để mang lại cảm giác *Premium*, tránh sự thô cứng của các web quản lý cũ.
+
+```text
+src/
+├── app/
+│   ├── (auth)/login/                   # Xử lý xác thực người dùng
+│   ├── (dashboard)/
+│   │   ├── layout.tsx                  # Khung Sidebar & Top App Bar dùng chung
+│   │   ├── page.tsx                    # "Command Center" dành cho CEO
+│   │   ├── [brandId]/                  # Dashboard riêng biệt cho Brand Manager
+│   │   ├── marketing/                  # Khu vực riêng của Media Buyer
+│   │   └── settings/                   # Cài đặt nguồn dữ liệu, kết nối API/CSV
+│   └── api/                            
+│       ├── webhooks/                   # Endpoints lắng nghe Shopee/TikTok
+│       └── cron/                       # Vercel Cron jobs chạy tự động 6h sáng
+├── components/
+│   ├── layout/                         # Header, Sidebar (Kiểm tra và hiển thị theo Role)
+│   ├── dashboard/                      # Biểu đồ động (RevenueChart, RoasChart)
+│   ├── metrics/                        # Các thẻ hiển thị chỉ số, có trend tăng/giảm (màu xanh/đỏ)
+│   └── tables/                         # DataGrid phân loại đơn hàng, hàng hoá
+├── styles/
+│   ├── index.css                       # Chứa hệ thống System Design linh hoạt, màu gradient, dark mode
+│   └── components.module.css           # Vanilla CSS / Module CSS riêng rẽ
+├── lib/
+│   ├── supabaseClient.js               # Kết nối với DB
+│   └── analytics.js                    # Functions tính toán công thức metrics
+└── hooks/
+    ├── useRBAC.js                      # Phân quyền ẩn/hiện element theo Role
+    └── useDashboardData.js             # Dữ liệu thời gian thực
+```
+
+---
+
+## Open Questions
+
+Để hoàn thiện bản kiến trúc này cực kỳ sát với định hướng của bạn, bạn hãy giúp tôi quyết định các mục sau:
+
+> [!WARNING]  
+> 1. **Dữ Liệu Ban Đầu:** Bạn muốn chúng ta tập trung triển khai **Upload File CSV (Thủ công)** trước để ra mắt và trải nghiệm giao diện nhanh chóng, hay muốn đánh thẳng vào **Tích hợp API Shopee/TikTok ngay từ version 1**? (Đăng ký duyệt App API thực tế có thể cần thời gian).
+> 2. **Giao Diện / Aesthetic Mode:** Bạn muốn sử dụng phong cách Dashboard kiểu nền Sáng (Light Mode / Glassmorphism) hay Tập trung sâu vào Dark Mode đặc trưng cao cấp?
+> 3. **Cấp Quyền Media Buyer:** Vai trò Media Buyer có được quyền xem tổng Doanh Thu và Lợi Nhuận của công ty hay chỉ nhìn vùng số liệu (Spend, Traffic, Clicks & ROAS của Ads)?
+> 4. **Trực Quan Hóa (Charts):** Bạn có cần biểu đồ vẽ lại Hành trình Khách Hàng (Funnel) theo thời gian thực không?
+
+## Verification Plan
+1. Tiếp nhận câu trả lời của bạn cho nhóm Open Questions.
+2. Tôi sẽ tạo một dự án Next.js trắng (sử dụng base design system tinh tế bằng CSS thuần).
+3. Config DB tại Supabase hoặc mock cấu trúc như Database Schema đã liệt kê.
+4. Bắt đầu setup từng page cho CEO và Brand Manager.

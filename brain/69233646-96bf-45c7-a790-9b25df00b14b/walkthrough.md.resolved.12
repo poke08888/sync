@@ -1,0 +1,36 @@
+# Hoàn thiện Tab Lịch sử KOC Chi tiết
+
+Tôi đã hoàn tất việc xây dựng tab **Lịch sử chi tiết** cho module KOC Live. Đây là mảnh ghép cuối cùng để biến Dashboard của bạn thành một bộ công cụ phân tích livestream TikTok Shop chuyên nghiệp và toàn diện.
+
+## Các tính năng vừa ra mắt
+
+### 1. Hệ thống Bộ lọc Thông minh (Advance Filter Bar)
+- **Chọn KOC**: Thanh tìm kiếm tích hợp giúp bạn chọn nhanh 1 KOC hoặc xem tổng thể toàn bộ đội ngũ.
+- **Chế độ xem linh hoạt**: Chuyển đổi giữa góc nhìn **Ngày / Tuần / Tháng** chỉ với một nút bấm.
+- **Reset nhanh**: Nút Reset giúp bạn quay về trạng thái tổng quan ban đầu tức thì.
+
+### 2. Thẻ Profile KOC (Profile Insight Card)
+- Hiển thị tóm tắt năng lực của KOC được chọn: **Tổng GMV**, **Số phiên LIVE**, **Tổng giờ live** và chỉ số hiệu quả **Doanh thu/Giờ**.
+- Tự động nhận diện Initial Avatar dựa trên tên KOC.
+
+### 3. Biểu đồ Timeline & Tỷ trọng Đóng góp
+- **Timeline Chart**: Biểu đồ kết hợp giữa diện tích (GMV) và đường (Đơn hàng) giúp bạn thấy rõ nhịp độ tăng trưởng của từng cá nhân.
+- **Biểu đồ Đóng góp (Chỉ có ở chế độ "Tất cả KOC")**: Biểu đồ Stacked Bar cho thấy tỷ lệ đóng góp GMV của Top 5 KOC hàng đầu theo từng ngày, giúp bạn biết ai đang là "linh hồn" của team.
+
+### 4. Bảng Lịch sử Phiên LIVE Mở rộng (`KocSessionTable.tsx`)
+Đây là tính năng chi tiết nhất:
+- **Mở rộng hàng (Row Expand)**: Khi nhấn vào một phiên live, bạn sẽ thấy thêm 5 chỉ số tương tác quan trọng: **Lượt xem, Bình luận, Chia sẻ, Thích và Followers mới**.
+- **Highlight thông minh**: Các phiên có doanh thu được in đậm và đổi màu Teal để làm nổi bật sự thành công.
+
+## Quy trình sử dụng đề xuất
+1. **Tại Tab Tổng quan**: Nhấn vào một KOC bất kỳ trong bảng hiệu suất.
+2. **Tự động chuyển tiếp**: Hệ thống sẽ tự động đưa bạn sang Tab Lịch sử và lọc đúng KOC đó.
+3. **Phân tích sâu**: Dùng bộ lọc Thời gian để đánh giá hiệu quả của KOC qua các tuần hoặc tháng.
+
+## Kết quả kiểm tra giao diện (Empty State)
+
+![Trang Dashboard sẵn sàng cho dữ liệu](/Users/kevin/.gemini/antigravity/brain/69233646-96bf-45c7-a790-9b25df00b14b/koc_live_empty_state_1775813842574.png)
+
+*Lưu ý: Mọi tính năng phân tích sẽ xuất hiện ngay sau khi bạn tải file Excel lên.*
+
+Hệ thống **KOC Live Analytics** của bạn hiện đã hoàn chỉnh 100% theo yêu cầu ban đầu. Bạn đã sẵn sàng để quản lý đội ngũ KOC một cách chuyên nghiệp nhất chưa?

@@ -1,0 +1,41 @@
+# Kế hoạch tích hợp Quản lý Thương hiệu (Brand)
+
+Bản kế hoạch này mô tả việc thêm chiều dữ liệu "Thương hiệu" vào hệ thống báo cáo KOC, cho phép phân tách dữ liệu khi upload và lọc báo cáo toàn diện.
+
+## 1. Cập nhật Store (`useKocStore.js`)
+### Mục tiêu: Quản lý trạng thái Thương hiệu và lọc dữ liệu tập trung.
+- **Thêm trạng thái mới**: 
+  - `selectedBrand`: Thương hiệu đang được chọn (mặc định: 'Tất cả').
+  - `brands`: Danh sách các thương hiệu hiện có (trích xuất từ dữ liệu đã upload).
+- **Cập nhật Logic lọc (`applyFiltersAndSet`)**:
+  - Bổ sung điều kiện lọc theo `brand` vào quá trình xử lý `rawLives`.
+  - Đảm bảo các chỉ số cùng kỳ (PoP) cũng được lọc theo thương hiệu tương ứng.
+- **Cập nhật Hàm Upload (`appendData`)**:
+  - Chấp nhận tham số `brandName` khi người dùng tải file lên.
+  - Gắn nhãn `brand` vào từng dòng dữ liệu (row) để truy xuất sau này.
+  - Cập nhật danh sách `brands` duy nhất.
+
+## 2. Cập nhật Giao diện Upload (`KocUploadZone.jsx`)
+### Mục tiêu: Cho phép người dùng gắn nhãn thương hiệu khi tải file.
+- Thêm một dropdown hoặc ô nhập văn bản (input) "Chọn Thương hiệu" phía trên khu vực kéo thả file.
+- Người dùng có thể chọn các thương hiệu đã có hoặc thêm thương hiệu mới.
+- Giá trị thương hiệu này sẽ được gửi kèm vào hàm `appendData`.
+
+## 3. Cập nhật Thanh Filter Toàn cục (`KocAnalytics.jsx`)
+### Mục tiêu: Cung cấp bộ lọc Thương hiệu cho toàn Dashboard.
+- Thêm một bộ chọn (Select/Dropdown) Thương hiệu vào thanh Header (cạnh bộ lọc ngày).
+- Khi đổi Thương hiệu, toàn bộ các tab (Tổng quan, Lịch sử, Cảnh báo) sẽ tự động cập nhật số liệu theo thương hiệu đó.
+
+## 4. Kiểm tra sự tương thích của các thành phần
+- **KocOverview**: Phải hiển thị KPI của riêng thương hiệu đã chọn.
+- **KocHistoryView**: Danh sách KOC và biểu đồ lịch sử phải được lọc theo thương hiệu.
+- **KocAlertsView**: Chỉ đưa ra cảnh báo cho KOC thuộc thương hiệu đang xem.
+
+---
+
+> [!IMPORTANT]
+> **Câu hỏi cho người dùng**:
+> 1. Bạn muốn danh sách Thương hiệu là một danh sách cố định (ví dụ: Brand A, Brand B) hay cho phép người dùng tự nhập tên thương hiệu mới mỗi khi upload?
+> 2. Có cần hỗ trợ một file chứa dữ liệu của nhiều thương hiệu không? (Hiện tại kế hoạch đang là 1 file upload sẽ gắn cho 1 thương hiệu duy nhất).
+
+Vui lòng xem xét và phê duyệt để tôi bắt đầu thực hiện.

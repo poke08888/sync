@@ -1,0 +1,14 @@
+# KOC Live Analytics - History Tab Verification
+
+## Plan
+1. [x] Navigate to http://localhost:3000/koc-live
+2. [/] Click on "Lịch sử chi tiết" tab (Currently not visible, investigating)
+3. [ ] Verify Filter bar aesthetics (Search-in-dropdown, toggles, date picker, reset)
+4. [ ] Verify Profile Card placeholder aesthetics
+5. [ ] Take a final screenshot of the History tab
+6. [ ] Summarize findings
+
+## Observations
+- The page shows an "Empty State" (Chưa có dữ liệu) which seems to occupy the entire content area, hiding the tabs.
+- Navigating directly to `?tab=history` does not reveal the history tab structural elements either.
+- This suggests the component logic might be `if (noData) return <EmptyState />` before rendering the tab system.

@@ -1,0 +1,21 @@
+# KOC History Implementation
+
+## Phase 1: Data Parsing Updates
+- `[ ]` Cập nhật `kocExcelParser.js` thêm các trường `comments`, `shares`, `likes`, `newFollowers`.
+
+## Phase 2: Navigation & Sub-tabs
+- `[ ]` Thêm sub-tab (Overview/History) vào `KocDashboard.jsx`
+
+## Phase 3: History View Container
+- `[ ]` Tạo thư mục `history` và component chính `KocHistoryView.jsx` (chứa Filter bar).
+
+## Phase 4: Single KOC View
+- `[ ]` Build `KocProfileCard.jsx`
+- `[ ]` Build `KocTimelineChart.jsx`
+- `[ ]` Build `KocSessionTable.jsx` (với expandable row table details)
+
+## Phase 5: Global View 
+- `[ ]` Build `KocGlobalStackedChart.jsx` (stacked theo top 5 KOC)
+
+## Phase 6: Integration
+- `[ ]` Tích hợp tất cả vào tab. Update logic on-click Row ở bảng Performance Table nảy sang tab Lịch sử tự động điền filter.

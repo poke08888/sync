@@ -1,0 +1,22 @@
+# Hạng mục Frontend React Dashboard
+Màu chủ đạo: `Pantone 293 C` (#003DA5)
+
+## 1. Khởi tạo Dự Án (Initialization)
+- `[ ]` Setup Vite + React
+- `[ ]` Cài đặt Tailwind CSS và cấu hình mã màu Pantone 293 C
+- `[ ]` Cài đặt thư viện: `recharts`, `zustand`, `react-router-dom`, `lucide-react`, `axios`
+
+## 2. Cấu trúc Thư mục (Directory Structure)
+- `[ ]` Tạo cấu trúc thư mục Component: `components`, `features`, `pages`, `layouts`, `store`
+- `[ ]` Khởi tạo các boilerplate file cho Layout (Sidebar, Topbar)
+- `[ ]` Khởi tạo các file Mock Store (Zustand)
+
+## 3. Giao diện Cốt lõi (Core UI/UX)
+- `[ ]` Thiết kế Layout cơ bản
+- `[ ]` Khởi tạo Route cho Role CEO, Brand Manager, Media Buyer (phân quyền view cơ bản)
+
+## 4. Xây dựng Tính năng chính (Features)
+- `[ ]` Xây dựng Widget Ticker cho GMV, Net Revenue, Orders Volume (sử dụng format tiền tệ)
+- `[ ]` Xây dựng Chart Sales Performance (Line chart bằng Recharts)
+- `[ ]` Bảng Order Table có trạng thái
+- `[ ]` Kết nối tổng thể thành trang Dashboard hoàn chỉnh

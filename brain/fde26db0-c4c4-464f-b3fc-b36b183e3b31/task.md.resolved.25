@@ -1,0 +1,9 @@
+# Hạng mục Công việc - Xây dựng TikTok Product & Inventory Service
+
+- `[/]` Cập nhật Schema bảng `products` (TikTok ID, Skus, Images, Stock).
+- `[ ]` Cập nhật Model `Product.php` (Fillable & Casts).
+- `[ ]` Triển khai `searchProducts` (APIv2 202309).
+- `[ ]` Triển khai `getAllProducts` (Xử lý Phân trang).
+- `[ ]` Triển khai `getInventoryByWarehouse` (Tổng hợp tồn kho).
+- `[ ]` Triển khai `computeInventoryHealth` (Tính toán Days of Supply & Trạng thái).
+- `[ ]` Code Review & Kiểm tra đồng bộ.

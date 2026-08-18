@@ -1,0 +1,8 @@
+- [ ] Create Laravel project (`ecommerce-dashboard`)
+- [ ] Configure `DashboardController` with mock data for metrics and charts
+- [ ] Setup Web Routes mapping to dashboard
+- [ ] Create premium UI design system (CSS styling & layout)
+- [ ] Implement Dashboard View (`index.blade.php`) with 6 metrics cards
+- [ ] Implement Chart.js integration for Pie, Line, and Bar charts
+- [ ] Implement Top 10 Bestselling Products list
+- [ ] Verify functionality via `php artisan serve`

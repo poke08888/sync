@@ -1,0 +1,15 @@
+# Task: Verify Vietnamese text rendering in KOC Live Analytics dashboard
+
+- [x] Navigate to http://localhost:3000/koc-live
+- [/] Check Overview tab KPIs (Currently 'No data' state; UI shows correct Vietnamese: "Chưa có dữ liệu")
+- [/] Check KOC Table headers (Not visible without data)
+- [/] Check History tab text (Not visible without data)
+- [x] Take screenshot of KPIs area (Captured 'No data' state)
+- [x] Verify overall Vietnamese text correctness (Basic UI text is correct)
+
+Findings:
+- Page loads correctly.
+- Language appears correct in 'No data' state: "Chưa có dữ liệu", "Vui lòng tải lên file Excel để bắt đầu phân tích hiệu suất livestream của KOC."
+- Sidebar items are in correct Vietnamese: "Tổng quan", "KOC Live", "Thương hiệu", etc.
+- Dashboard components (Tabs, Table, KPIs) are hidden until data is uploaded.
+- Since I cannot upload a file or view the source code directly, I will try to verify the strings by other means if possible.

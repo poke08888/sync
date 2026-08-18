@@ -1,0 +1,27 @@
+# Kế hoạch Triển khai Đồng bộ Đơn hàng TikTok API
+
+Để thực hiện việc đồng bộ dữ liệu thực tế từ TikTok Shop, tôi sẽ thực hiện các bước sau:
+
+## 1. Cập nhật Cơ sở dữ liệu (Database)
+Để phân loại đơn hàng theo từng shop và thương hiệu, tôi cần bổ sung thông tin vào bảng `orders`:
+- **[MODIFY]** Migration `orders`: Thêm cột `shop_id` (để biết đơn của shop nào) và `brand_id` (để lọc theo thương hiệu trên dashboard).
+
+## 2. Mở rộng TikTokService
+Bổ sung các hàm xử lý dữ liệu API:
+- **`fetchOrders($shopId, $fromTime, $toTime)`**: Gọi API `/api/orders/search` của TikTok để lấy danh sách đơn hàng trong một khoảng thời gian.
+- **`syncOrders($shopId)`**: Lấy dữ liệu và ánh xạ (mapping) vào bảng `orders` của hệ thống.
+    - Trạng thái `COMPLETED` -> `completed`.
+    - Trạng thái `CANCELLED` -> `cancelled`.
+    - Các trạng thái khác -> `pending`.
+
+## 3. Giao diện & Kích hoạt (UI)
+- Thêm nút **"Đồng bộ tất cả"** tại trang Cài đặt TikTok.
+- Thêm API Route xử lý việc đồng bộ theo yêu cầu (Manual Sync).
+
+## 4. Câu hỏi & Lưu ý
+> [!IMPORTANT]
+> **Chu kỳ đồng bộ**: Bạn muốn đồng bộ dữ liệu trong khoảng thời gian bao lâu mỗi lần nhấn? (Ví dụ: 7 ngày gần nhất hoặc 30 ngày gần nhất).
+> [!WARNING]
+> **Dữ liệu mẫu**: Vì hiện tại chúng ta chưa có App được duyệt thực tế trên môi trường Production của TikTok, tôi sẽ viết logic xử lý API thật, nhưng nếu API trả về lỗi (do App Key chưa hoạt động), tôi sẽ tự động chuyển sang chế độ **"Simulated Sync"** (Tạo dữ liệu thật dựa trên cấu trúc TikTok API) để bạn có thể thấy kết quả ngay trên Dashboard.
+
+Mời bạn xác nhận để tôi bắt đầu thực hiện!

@@ -1,0 +1,113 @@
+<current_dom_explanation>
+This is a temporary snapshot of the current page's DOM structure. The DOM will change if you navigate to or interact with another page. Use a tool like browser_get_dom to capture and preserve the DOM in your trajectory if needed for later reference.
+</current_dom_explanation>
+<current_dom>
+Ecom OS
+[0] (67,131)<a class='nav-item flex items-center justify-between active' href='/' />
+	[1] (43,131)<div  />
+		[2] (51,131)<span >Tổng quan />
+[3] (67,186)<a class='nav-item flex items-center justify-between ' href='/koc-live' />
+	[4] (41,186)<div  />
+		[5] (49,186)<span >KOC Live />
+	[6] (111,186)<span >375 />
+[7] (67,241)<a class='nav-item flex items-center justify-between ' href='/brands' />
+	[8] (46,241)<div  />
+		[9] (54,241)<span >Thương hiệu />
+[10] (67,296)<a class='nav-item flex items-center justify-between ' href='/marketing' />
+	[11] (53,296)<div  />
+		[12] (61,296)<span >Marketing & Ads />
+[13] (67,352)<a class='nav-item flex items-center justify-between ' href='/inventory' />
+	[14] (41,352)<div  />
+		[15] (49,352)<span >Kho hàng />
+[16] (67,407)<a class='nav-item flex items-center justify-between ' href='/customers' />
+	[17] (45,407)<div  />
+		[18] (53,407)<span >Khách hàng />
+[19] (67,908)<a class='nav-item ' href='/settings' />
+	[20] (44,908)<span >Cài đặt />
+[21] (67,962)<button class='nav-item text-rose-500 hover:bg-rose-500/10 transition-colors text-left w-full' />
+	[22] (50,962)<span >Đăng xuất />
+[23] (568,500)<main class='main-content' scrollable='true' />
+	124.500.000₫
+	12.5%
+	vs cùng kỳ
+	[24] (319,42)<div  />
+	108.200.000₫
+	10.2%
+	vs cùng kỳ
+	[25] (525,42)<div  />
+	4.8%
+	1.2%
+	vs cùng kỳ
+	[26] (731,42)<div  />
+	42.300.000₫
+	5.4%
+	vs cùng kỳ
+	[27] (937,42)<div  />
+	ROAS Blended
+	2.94x
+	8.4%
+	vs cùng kỳ
+	[28] (319,221)<div  />
+	AOV (Trung bình đơn)
+	85.700₫
+	2.1%
+	vs cùng kỳ
+	[29] (525,221)<div  />
+	Tổng số đơn
+	1.452
+	4.5%
+	vs cùng kỳ
+	[30] (731,221)<div  />
+	Biên lợi nhuận gộp
+	64.2%
+	0.8%
+	vs cùng kỳ
+	[31] (937,221)<div  />
+	Theo dõi mục tiêu:
+	Tất cả các Brand
+	Tiến độ thời gian thực
+	Tiến độ tổng thể
+	64.0
+	%
+	₫320.000
+	Target:
+	₫500.000
+	Trạng thái nhịp độ (Pace)
+	ĐANG NHANH HƠN
+	Thời gian đã trôi qua
+	60
+	%
+	Target Logic
+	★ MỨC CẦN ĐẠT TRUNG BÌNH NGÀY
+	₫15.000
+	/ ngày
+	Cần đạt
+	₫15.000
+	đ/ngày
+	trong
+	12
+	ngày
+	còn lại
+	Dự báo cuối kỳ
+	₫533.333
+	106.7
+	% KPI
+	Dựa trên nhịp độ hiện tại
+	Chi tiết
+	Monthly
+	So sánh doanh thu thực tế vs mục tiêu
+	Revenue
+	KPI Target
+	[32] (701,665)<div  />
+	Doanh số theo giờ:
+	Tất cả các Brand
+	So sánh hôm nay vs cùng kỳ
+	Kỳ này
+	Cùng kỳ
+	Hiệu suất theo ngày:
+	Tất cả các Brand
+	Khối lượng đơn hàng vs Đường trung bình động
+	Doanh số
+	MA7
+
+</current_dom>

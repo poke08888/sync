@@ -1,0 +1,207 @@
+generator client {
+  provider = "prisma-client-js"
+}
+
+datasource db {
+  provider = "postgresql"
+}
+
+model User {
+  id        String   @id @default(uuid())
+  email     String   @unique
+  role      String   // CEO, BRAND_MANAGER, MEDIA_BUYER
+  brands    Brand[]  @relation("UserBrands")
+  createdAt DateTime @default(now())
+}
+
+model Brand {
+  id        String   @id @default(uuid())
+  name      String
+  users     User[]   @relation("UserBrands")
+  shops     Shop[]
+}
+
+model Shop {
+  id              String   @id @default(uuid())
+  brandId         String
+  brand           Brand    @relation(fields: [brandId], references: [id])
+  platform        String   // TIKTOK, SHOPEE
+  shopIdentifier  String   
+  orders          Order[]
+  adsCampaigns    AdsCampaign[]
+  products        Product[]
+}
+
+model Product {
+  id          String   @id @default(uuid())
+  shopId      String
+  shop        Shop     @relation(fields: [shopId], references: [id])
+  sku         String
+  name        String
+  price       Float
+  inventory   Inventory?
+  orderItems  OrderItem[]
+}
+
+model Order {
+  id              String   @id @default(uuid())
+  shopId          String
+  shop            Shop     @relation(fields: [shopId], references: [id])
+  platformOrderId String   @unique
+  status          String   // PENDING, SHIPPED, COMPLETED, CANCELLED, RETURNED
+  totalAmount     Float
+  createdAt       DateTime
+  items           OrderItem[]
+}
+
+model OrderItem {
+  id        String  @id @default(uuid())
+  orderId   String
+  order     Order   @relation(fields: [orderId], references: [id])
+  productId String
+  product   Product @relation(fields: [productId], references: [id])
+  quantity  Int
+  price     Float
+}
+
+model AdsCampaign {
+  id          String   @id @default(uuid())
+  shopId      String
+  shop        Shop     @relation(fields: [shopId], references: [id])
+  platform    String
+  name        String
+  spend       Float
+  impressions Int
+  clicks      Int
+  revenue     Float
+  date        DateTime
+}
+
+model Inventory {
+  id         String   @id @default(uuid())
+  productId  String   @unique
+  product    Product  @relation(fields: [productId], references: [id])
+  stockLevel Int
+  updatedAt  DateTime @updatedAt
+}
+
+// --- INVENTORY REPLENISHMENT SYSTEM MODELS ---
+
+model Supplier {
+  id              String   @id @default(uuid())
+  code            String   @unique // supplier_code
+  name            String   // supplier_name
+  defaultLeadTime Int      @default(14)
+  contactEmail    String?
+  skus            Sku[]
+  pos             PurchaseOrder[]
+  createdAt       DateTime @default(now())
+  updatedAt       DateTime @updatedAt
+}
+
+model Sku {
+  id                String   @id @default(uuid())
+  skuCode           String   @unique
+  productName       String
+  supplierCode      String
+  supplier          Supplier @relation(fields: [supplierCode], references: [code])
+  leadTimeDays      Int      @default(14)
+  safetyStockDays   Int      @default(7)
+  reorderCycleDays  Int      @default(30)
+  minOrderQuantity  Int      @default(1)
+  unitCost          Float    @default(0)
+  
+  snapshots         InventorySnapshot[]
+  pos               PurchaseOrder[]
+  alerts            ReplenishmentAlert[]
+  
+  createdAt         DateTime @default(now())
+  updatedAt         DateTime @updatedAt
+}
+
+model InventorySnapshot {
+  id            String   @id @default(uuid())
+  skuCode       String
+  sku           Sku      @relation(fields: [skuCode], references: [skuCode])
+  warehouseCode String
+  currentStock  Int
+  dailyOutbound Int
+  date          DateTime
+  
+  createdAt     DateTime @default(now())
+
+  @@unique([skuCode, warehouseCode, date])
+}
+
+model PurchaseOrder {
+  id                   String   @id @default(uuid())
+  poNumber             String   @unique
+  skuCode              String
+  sku                  Sku      @relation(fields: [skuCode], references: [skuCode])
+  supplierCode         String
+  supplier             Supplier @relation(fields: [supplierCode], references: [code])
+  orderedQuantity      Int
+  expectedArrivalDate  DateTime
+  orderDate            DateTime
+  status               String   // pending / confirmed / delayed / received
+  
+  delays               PurchaseOrderDelay[]
+  
+  createdAt            DateTime @default(now())
+  updatedAt            DateTime @updatedAt
+}
+
+model PurchaseOrderDelay {
+  id              String   @id @default(uuid())
+  poId            String
+  po              PurchaseOrder @relation(fields: [poId], references: [id])
+  originalDate    DateTime
+  newDate         DateTime
+  reason          String?
+  createdAt       DateTime @default(now())
+}
+
+model ReplenishmentAlert {
+  id              String   @id @default(uuid())
+  skuCode         String
+  sku             Sku      @relation(fields: [skuCode], references: [skuCode])
+  warehouseCode   String
+  type            String   // STOCK_LEVEL / PO_ARRIVAL_CONFIRMATION
+  priority        String   // CRITICAL / WARNING / INFO
+  status          String   @default("open") // open / snoozed / resolved
+  
+  currentStock    Int?
+  netStock        Int?
+  ado             Float?
+  daysRemaining   Int?
+  reorderDate     DateTime?
+  recommendedQty  Int?
+  estimatedCost   Float?
+  
+  snoozedUntil    DateTime?
+  resolvedAt      DateTime?
+  
+  createdAt       DateTime @default(now())
+  updatedAt       DateTime @updatedAt
+
+  notifications   NotificationLog[]
+}
+
+model UploadLog {
+  id            String   @id @default(uuid())
+  fileName      String
+  fileType      String   // INVENTORY / PO / SKU_MASTER / SUPPLIER
+  rowsProcessed Int
+  errors        Json?
+  uploadedBy    String?
+  timestamp     DateTime @default(now())
+}
+
+model NotificationLog {
+  id        String   @id @default(uuid())
+  channel   String   // EMAIL / TELEGRAM / ZALO
+  recipient String
+  alertId   String?
+  alert     ReplenishmentAlert? @relation(fields: [alertId], references: [id])
+  sentAt    DateTime @default(now())
+}

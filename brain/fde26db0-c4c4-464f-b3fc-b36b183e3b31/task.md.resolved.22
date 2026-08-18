@@ -1,0 +1,7 @@
+# Hạng mục Công việc - Gom nhóm Cài đặt TikTok vào mục Settings
+
+- `[/]` Tạo trang `src/pages/Settings.jsx` làm trung tâm quản lý.
+- `[ ]` Tích hợp `TikTokSettingsView` vào trang Settings mới.
+- `[ ]` Cập nhật `App.jsx` để kích hoạt tab "Settings".
+- `[ ]` Dọn dẹp `DashboardLayout.jsx` (Xóa mục TikTok Shop lẻ).
+- `[ ]` Kiểm tra độ mượt mà của Form và các thông báo.

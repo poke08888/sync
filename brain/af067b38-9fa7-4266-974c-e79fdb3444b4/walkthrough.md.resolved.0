@@ -1,0 +1,26 @@
+# Tổng kết Triển khai Frontend E-commerce Dashboard
+
+Chúng ta đã hoàn thành việc thiết lập bộ khung cấu trúc Frontend (React + Vite) và xây dựng giao diện Dashboard mô phỏng theo đúng kiến trúc đã thiết kế.
+
+## Các hạng mục đã hoàn thành
+* Khởi tạo file cấu hình chuẩn của Vite + React + Tailwind CSS.
+* Cập nhật **Pantone 293 C (#003DA5)** làm màu chủ đạo (Primary color) trong `tailwind.config.js`.
+* Xây dựng layout tối giản (Dark mode premium) chuyên dành cho giám sát Realtime.
+* Phân quyền UI sử dụng Zustand (Role: CEO, Brand Manager, Media Buyer) - có dropdown ở Sidebar để chuyển đổi Role xem thử.
+* Trang Dashboard bao gồm:
+  * Widget số liệu tài chính: GMV, Net Revenue, Ads Spend, ROAS (chặn hiển thị theo Role).
+  * Biểu đồ diện tích (AreaChart) theo dõi dòng tiền qua Recharts.
+  * Widget thống kê nền tảng Shopee & TikTok Shop.
+  * Bảng sao kê đơn hàng với các trạng thái status hiển thị trực quan.
+
+## Hướng dẫn Run nội bộ
+Vì các file đã được setup theo cấu trúc Vite tại workspace `/Users/kevin/.gemini/antigravity/scratch/ecom-dashboard`, anh có thể chạy test giao diện trực tiếp trên máy bằng các lệnh sau trong Terminal:
+
+```bash
+cd /Users/kevin/.gemini/antigravity/scratch/ecom-dashboard
+npm install
+npm run dev
+```
+
+> [!TIP]
+> Hãy vào trình duyệt theo địa chỉ `http://localhost:5173`. Ở Sidebar góc dưới cùng bên trái, anh có thể thay đổi Role từ `CEO` sang `Media Buyer` để xem cách Dashboard tự động giấu đi phần xem "GMV Tổng" hay "Đơn hàng", và tập trung vào `Ads Spend`/`ROAS`.

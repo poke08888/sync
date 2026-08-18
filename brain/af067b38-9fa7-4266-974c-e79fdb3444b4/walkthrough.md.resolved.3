@@ -1,0 +1,25 @@
+# Tổng kết Module: 4 Biểu Đồ Lõi (Core Charts)
+
+Theo yêu cầu, toàn bộ 4 biểu đồ chuyên sâu đã được tích hợp thành công vào khu vực "Charts Section" (lưới 2x2). Cả 4 biểu đồ được tối ưu hóa responsive, đổ màu Dark Mode Premium và đi kèm nhiều chức năng tương作:
+
+1. **Doanh số theo giờ (HourlySalesChart)**
+   - Sử dụng Line Chart so sánh dòng tiền 24 giờ. Đường Line "Kỳ này" được nối nét đậm (`strokeWidth=3`), "Cùng kỳ" là đường đứt đoạn (`dashed`).
+   - Lệnh tự động rà quét tìm **Top 3 Peak Hours** (Giờ vàng), gắn thêm dot Marker phát sáng màu Vàng (Amber) để cảnh báo.
+   - Tooltip Popup khi trỏ mỏ neo được thiết kế riêng: Tự động trừ hai kỳ và tính ra % chênh lệch (Màu đỏ/xanh) cho từng giờ tương ứng.
+
+2. **Doanh số theo ngày (DailySalesChart)**
+   - Kết hợp Cột (Doanh số) và Đường (Đường trung bình MA7) trên một hệ quy chiếu.
+   - Chèn thêm đường nằm ngang đứt khúc màu Vàng báo mốc "KPI Target" 300 triệu/ngày.
+   - Area Annotation: Khoanh vùng cột dọc mờ màu Xanh lá báo hiệu Event/Campaign "Payday" đang diễn ra vào ngày 15-16.
+
+3. **Tỷ trọng kênh (ChannelDonutChart)**
+   - Đưa Doanh thu Tổng nằm chính giữa biểu đồ hình khuyên (Donut).
+   - **Tính năng Drill-down**: Click vào múi cắt "Shopee", biểu đồ lập tức đào sâu và chẻ nhỏ thành các Brand con trực thuộc Shopee (kèm cấu trúc Nút "Quay lại"). Phân cấp dữ liệu xử lý mượt mà trên Recharts.
+
+4. **Top 10 Sản phẩm (TopProductsChart)**
+   - Module code Custom không phụ thuộc cứng vào chart chuẩn để tối đa hóa tính thẩm mỹ.
+   - Thanh Toggle cho phép người xem chủ động sắp xếp TOP theo `Doanh thu / Số lượng / Margin`.
+   - **Màu sắc Semantic Bar**: Thanh nền tiến độ (Progress Background) sau lưng mỗi sản phẩm sẽ tự chuyển màu: Xanh dương (>30% Lãi), Vàng (15-30% Lãi), Đỏ (<15% Lỗ).
+   - Graphic **Mini Sparkline** được vẽ bằng chuẩn SVG tiêm thẳng vào bên cạnh từng hàng chữ label.
+
+Giao diện đã sẵn sàng để kiểm thử!

@@ -1,0 +1,25 @@
+- [x] Đổi định dạng số sang chuẩn `vi-VN`
+- [x] Việt hóa thanh Sidebar điều hướng
+- [x] Việt hóa Dashboard Tổng quan (KPI Cards, Tracker, Charts)
+- [x] Việt hóa Module Khách hàng
+- [x] Việt hóa Module Kho hàng (inventory/page.tsx)
+- [x] Việt hóa Module Thương hiệu (brands/page.tsx)
+- [x] Việt hóa Module Marketing (marketing/page.tsx)
+- [x] Việt hóa Module Cài đặt (settings/page.tsx)
+- [x] Kiểm tra tổng thể định dạng tiền tệ và nhãn biểu đồ
+- [x] Thêm bộ lọc Brand vào Dashboard tổng (KpiDashboard.tsx)
+- [x] Cập nhật số tuyệt đối & so sánh cùng kỳ (PlatformDistributionChart.tsx)
+- [x] Thu nhỏ kích thước KPI Tracker (KpiTracker.tsx)
+- [x] Tạo Component Sidebar.tsx năng động (Client Component)
+- [x] Cập nhật Root layout để sử dụng Sidebar mới
+- [x] Tạo DashboardFilters.tsx và các hằng số dùng chung (src/lib/constants.ts)
+- [x] Nâng cấp page.tsx để quản lý State tập trung
+- [x] Tái cấu trúc KpiDashboard.tsx (chỉ giữ phần Grid thẻ KPI)
+- [x] Tái cấu trúc KpiTracker.tsx (loại bỏ bộ lọc nội bộ)
+- [x] Bổ sung tính năng Tùy chỉnh Timeline trong thanh bộ lọc
+- [x] Kiểm tra đồng bộ hóa toàn bộ Dashboard
+- [/] Xây dựng logic xử lý dữ liệu (src/lib/koc-service.ts)
+- [ ] Xây dựng thành phần Upload (src/components/koc/KocLiveUpload.tsx)
+- [ ] Tạo trang Dashboard KOC Live (src/app/(dashboard)/koc-live/page.tsx)
+- [ ] Kiểm tra parse dữ liệu và tính toán KPI
+- [ ] Hoàn thiện giao diện báo cáo KOC Live

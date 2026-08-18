@@ -1,0 +1,39 @@
+# Kế hoạch Phân loại KOC theo Brand
+
+Tôi sẽ bổ sung tính năng chọn Brand khi upload file KOC, cho phép bạn quản lý dữ liệu riêng biệt cho từng thương hiệu và lọc đồng bộ trên toàn bộ Dashboard.
+
+## User Review Required
+
+> [!IMPORTANT]
+> - **Gán Brand**: Một file upload sẽ chỉ phục vụ cho 1 Brand duy nhất. Toàn bộ phiên live trong file đó sẽ được gán Brand này.
+> - **Lọc dữ liệu**: Sau khi tích hợp, trang KOC Live sẽ tự động lọc theo Brand bạn chọn ở bộ lọc Dashboard phía trên cùng. Nếu chọn "Tất cả các Brand", bạn sẽ thấy dữ liệu gộp.
+
+## Proposed Changes
+
+### 1. Cập nhật Cấu trúc Dữ liệu
+#### [MODIFY] [koc-service.ts](file:///Users/kevin/.gemini/antigravity/scratch/ecom-next-dashboard/src/lib/koc-service.ts)
+- Thêm thuộc tính `brand: string` vào interface `KocLiveSession`.
+
+#### [MODIFY] [useKocData.ts](file:///Users/kevin/.gemini/antigravity/scratch/ecom-next-dashboard/src/hooks/useKocData.ts)
+- Cập nhật `FileMetadata` để lưu trữ brand của từng file.
+- Cập nhật hàm `addData(newSessions, fileName, brand)` để gán brand cho dữ liệu mới.
+
+### 2. Nâng cấp Quy trình Upload
+#### [MODIFY] [KocLiveUpload.tsx](file:///Users/kevin/.gemini/antigravity/scratch/ecom-next-dashboard/src/components/koc/KocLiveUpload.tsx)
+- Thêm dropdown chọn Brand (lấy từ danh sách `BRANDS` trong constants).
+- Hiển thị Brand bên cạnh tên file trong danh sách quản lý dữ liệu.
+- Ràng buộc người dùng phải chọn Brand trước khi kéo thả file.
+
+### 3. Tích hợp Bộ lọc Toàn cục
+#### [MODIFY] [page.tsx](file:///Users/kevin/.gemini/antigravity/scratch/ecom-next-dashboard/src/app/(dashboard)/koc-live/page.tsx)
+- Cập nhật hàm `filterSessions` để bao gồm logic lọc theo `selectedBrand` từ `FilterContext`.
+- Đảm bảo các biểu đồ và chỉ số KPI tự động cập nhật khi bạn đổi Brand trên thanh Header.
+
+## Verification Plan
+
+### Manual Verification
+1. **Upload 2 file**: 1 file gán cho "Macaron Cos", 1 file gán cho "Tech Haven".
+2. **Kiểm tra Lọc**:
+    - Chọn "Macaron Cos" ở Header -> Chỉ hiện 1 KOC của brand đó.
+    - Chọn "Tất cả các Brand" -> Hiện đầy đủ dữ liệu gộp.
+3. **Kiểm tra Metadata**: Trong tab "Dữ liệu", đảm bảo mỗi file hiển thị đúng Brand đã gán.

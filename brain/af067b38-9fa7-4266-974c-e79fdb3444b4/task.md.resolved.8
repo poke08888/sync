@@ -1,0 +1,18 @@
+# KOC Live Analytics - Task Checklist
+
+## 1. Setup & Cấu hình cơ sở
+- `[ ]` Cài đặt thư viện `xlsx` để render Excel Client-side.
+- `[ ]` Tạo Store mới `useKocStore.js` trong Zustand để quản lý State (Upload/Parsed/Data).
+- `[ ]` Tạo hàm Parser siêu tiện ích `src/utils/kocExcelParser.js` kết hợp thuật toán tính CVR, AOV, và Logic tính thời lượng "Xh Ymin".
+
+## 2. Giao diện & Component (Structure)
+- `[ ]` Define Layout mới cho file `KocAnalytics.jsx`. Thêm route mới và icon vào Sidebar `DashboardLayout.jsx`.
+- `[ ]` Build Component `KocUploadZone.jsx` (Giao diện Upload khung chấm chấm, kéo thả file).
+
+## 3. Build UI Dashboard Chuyên Sâu (KOC Level)
+- `[ ]` Build `KocOverview.jsx`: Cụm KPI tổng của nguyên tệp báo cáo (Tổng View, Tổng GMV, AOV...).
+- `[ ]` Build `KocPerformanceTable.jsx`: Bảng Vinh danh KOC, đổ danh sách `kocList` đã được parse ra với Sortable table.
+- `[ ]` Build `KocTrendChart.jsx`: Biểu đồ Scatter hoặc Bar để cross-compare KOC (Duration vs Doanh thu) / Tùy chọn nếu đủ data. Mặc định ưu tiên KPI Cards và Table cho bước đầu.
+
+## 4. Kiểm thử
+- `[ ]` Test quy trình Tải một file rỗng hoặc chuẩn format -> xem state nhảy vào Dashboard ảo hay không.

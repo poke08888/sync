@@ -1,0 +1,11 @@
+# KOC Live Charts Verification Plan
+
+- [ ] Navigate to http://localhost:3000/koc-live
+- [ ] Verify 4 chart panels are visible:
+    - Trend (Revenue)
+    - Peak Hours (Session distribution)
+    - Ranking (Top 10 KOC)
+    - Scatter (Performance)
+- [ ] Check for console errors or build errors
+- [ ] Take screenshot of the charts section
+- [ ] Verify empty state if no data is present

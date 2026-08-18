@@ -1,0 +1,33 @@
+# Kết quả Nâng cấp Dashboard Thương mại Điện tử (Giai đoạn 2)
+
+Hệ thống Dashboard đã được mở rộng mạnh mẽ với khả năng lọc dữ liệu linh hoạt và các báo cáo phân tích sâu (Deep Dive).
+
+## Các tính năng mới đã triển khai
+
+### 1. Thanh lọc dữ liệu (Filter Bar)
+- **Tích hợp**: Nằm ngay dưới tiêu đề chính, cho phép người dùng lọc theo sàn (TikTok/Shopee), chọn gian hàng và khoảng thời gian.
+- **Tiện ích**: Bổ sung nút **Xuất Excel** nhanh để người dùng có thể trích xuất dữ liệu báo cáo sang tệp bảng tính.
+
+### 2. Phân tích Nguồn thu Livestream
+- **Biểu đồ mới**: Biểu đồ miền (Area Chart) so sánh doanh thu từ **Livestream** so với doanh thu **Tự nhiên (Organic)**. 
+- **Ý nghĩa**: Giúp nhà bán hàng đánh giá nhanh hiệu quả của các phiên LIVE so với việc bán hàng qua Video/Cửa hàng.
+
+### 3. Thị phần theo Danh mục (Category Insights)
+- **Biểu đồ mới**: Biểu đồ thanh ngang (Horizontal Bar Chart) phân loại doanh số theo các nhóm ngành hàng (Mỹ phẩm, Chăm sóc tóc, v.v.).
+
+### 4. Bảng Sản phẩm Hiệu quả (Refined Table)
+- **Nâng cấp**: Không chỉ hiển thị con số, bảng sản phẩm giờ đây bao gồm:
+    - **Chỉ số tăng trưởng (% Trend)**: So sánh với kỳ trước.
+    - **Thanh tiến độ thị phần**: Hiển thị trực quan đóng góp của sản phẩm đó vào tổng doanh thu.
+
+### 5. Báo cáo Chi tiết theo Ngày
+- **Bảng Performance**: Một bảng dữ liệu lớn ở cuối trang hiển thị đầy đủ các chỉ số (Đơn hàng, Doanh số, Chi phí, ROAS, Tỷ lệ hủy) cho từng ngày trong tuần.
+- **Trạng thái**: Có các Chip màu (Đạt mục tiêu / Cần tối ưu) để nhận diện nhanh các ngày có vấn đề.
+
+## Thay đổi về Mã nguồn
+- **Backend**: `DashboardController.php` đã được cập nhật logic để cung cấp dữ liệu cho các biểu đồ và bảng mới.
+- **Frontend**: `public/js/dashboard.js` đã khởi tạo các Chart.js instance mới với tông màu Pantone 292 C chủ đạo.
+- **Mockup**: File `public/index.html` đã được cập nhật đầy đủ để xem thử (Preview) ngay lập tức.
+
+> [!TIP]
+> Bạn hãy mở lại file [index.html](file:///Users/kevin/clawd/ecommerce-dashboard/public/index.html) và nhấn **F5** để thấy giao diện "Premium" hoàn thiện với đầy đủ các thành phần mới này!

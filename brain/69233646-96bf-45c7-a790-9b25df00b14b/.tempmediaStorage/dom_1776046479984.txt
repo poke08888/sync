@@ -1,0 +1,97 @@
+<current_dom_explanation>
+This is a temporary snapshot of the current page's DOM structure. The DOM will change if you navigate to or interact with another page. Use a tool like browser_get_dom to capture and preserve the DOM in your trajectory if needed for later reference.
+</current_dom_explanation>
+<current_dom>
+Ecom OS
+[0] (67,131)<a class='nav-item flex items-center justify-between ' href='/' />
+	[1] (43,131)<div  />
+		[2] (51,131)<span >Tổng quan />
+[3] (67,186)<a class='nav-item flex items-center justify-between active' href='/koc-live' />
+	[4] (41,186)<div  />
+		[5] (49,186)<span >KOC Live />
+	[6] (111,186)<span >375 />
+[7] (67,241)<a class='nav-item flex items-center justify-between ' href='/brands' />
+	[8] (46,241)<div  />
+		[9] (54,241)<span >Thương hiệu />
+[10] (67,296)<a class='nav-item flex items-center justify-between ' href='/marketing' />
+	[11] (53,296)<div  />
+		[12] (61,296)<span >Marketing & Ads />
+[13] (67,352)<a class='nav-item flex items-center justify-between ' href='/inventory' />
+	[14] (41,352)<div  />
+		[15] (49,352)<span >Kho hàng />
+[16] (67,407)<a class='nav-item flex items-center justify-between ' href='/customers' />
+	[17] (45,407)<div  />
+		[18] (53,407)<span >Khách hàng />
+[19] (67,908)<a class='nav-item ' href='/settings' />
+	[20] (44,908)<span >Cài đặt />
+[21] (67,962)<button class='nav-item text-rose-500 hover:bg-rose-500/10 transition-colors text-left w-full' />
+	[22] (50,962)<span >Đăng xuất />
+[23] (568,500)<main class='main-content' scrollable='true' />
+	T
+	Tun Phạm Official
+	KOC Profile Active
+	Tổng Doanh thu
+	419.0m₫
+	100.0
+	%
+	Số phiên LIVE
+	3 phiên
+	100.0
+	%
+	Doanh thu / Giờ
+	25.9m₫
+	100.0
+	%
+	Xu hướng Hiệu suất: Tun Phạm Official
+	Theo thời gian đã chọn
+	[24] (568,384)<div  />
+	Chi tiết các phiên livestream
+	3
+	Phiên đã thực hiện
+	Ngày
+	Bắt đầu
+	Thời lượng
+	GMV
+	Đơn
+	Người xem
+	Hiển thị
+	Nhấp
+	CTR
+	[25] (568,748)<tr  />
+		[26] (181,748)<td  />
+		[27] (243,748)<td >2026/04/03/ />
+		[28] (338,748)<td >18:10 />
+		[29] (435,748)<td >1.5
+h />
+		[30] (532,748)<td >18.7m₫ />
+		[31] (610,748)<td >107 />
+		[32] (695,748)<td >176.627 />
+		[33] (789,748)<td >59.507 />
+		[34] (865,748)<td >2.477 />
+		[35] (933,748)<td >4.16% />
+	[36] (568,796)<tr  />
+		[37] (181,796)<td  />
+		[38] (243,796)<td >2026/04/03/ />
+		[39] (338,796)<td >10:01 />
+		[40] (435,796)<td >8.1
+h />
+		[41] (532,796)<td >365.1m₫ />
+		[42] (610,796)<td >2.008 />
+		[43] (695,796)<td >720.688 />
+		[44] (789,796)<td >895.395 />
+		[45] (865,796)<td >42.491 />
+		[46] (933,796)<td >4.75% />
+	[47] (568,844)<tr  />
+		[48] (181,844)<td  />
+		[49] (243,844)<td >2026/03/30/ />
+		[50] (338,844)<td >10:31 />
+		[51] (435,844)<td >6.5
+h />
+		[52] (532,844)<td >35.1m₫ />
+		[53] (610,844)<td >223 />
+		[54] (695,844)<td >519.279 />
+		[55] (789,844)<td >199.603 />
+		[56] (865,844)<td >6.881 />
+		[57] (933,844)<td >3.45% />
+
+</current_dom>

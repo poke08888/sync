@@ -1,0 +1,23 @@
+# Tổng kết Module: Lưới Báo Cáo KPI (8 Thẻ)
+
+Theo yêu cầu của anh, tôi đã triển khai hoàn thiện Module KPI Cards lên giao diện Dashboard chính.
+
+## Thông tin Triển khai
+1. **Module lọc thời gian (Time Filter)**
+   - Đã tích hợp thanh Filter ở trên cùng của trang với các dải thời gian: *Hôm nay, Hôm qua, 7 ngày, 30 ngày, Tháng này, Quý này, Năm này*.
+   - Logic Mock đã được setup: Mỗi khi anh nhấp chuột chuyển Filter, các chữ số của 8 thẻ sẽ tự động tính toán lại và thay đổi số "cùng kỳ".
+
+2. **Dữ liệu 8 Thẻ KPI (Phân luồng Semantic Logic)**
+   - **Tích cực (Màu xanh khi tăng):** Các thẻ Gross, Net, AOV, Đơn hàng, ROAS và Margin được gán mác tích cực (Màu xanh ngọc + Mũi tên hướng lên).
+   - **Tiêu cực (Màu xanh khi giảm / Đỏ khi tăng):** Thẻ **Tỷ lệ hủy đơn** và **Tổng chi phí** sử dụng logic đảo ngược: mũi tên cụp xuống sẽ mang màu xanh, còn vọt lên thì màu đỏ.
+   - Chức năng **Alert**: Thẻ `Tỷ lệ hủy đơn` đã được cấu hình nếu vượt quá mức giới hạn (>10%) sẽ xuất hiện thêm một ruy-băng "Vượt Ngưỡng" màu đỏ đi kèm Icon tam giác cảnh báo.
+
+3. **Giao diện & Đồ thị Sparkline**
+   - Các card đã được thiết kế đúng theo Tone Blue Pantone 293 C (Dark Mode).
+   - Mỗi KPI đều có nhúng một biểu đồ dạng sóng Sparkline nhỏ ở phần chân mờ ảo (Opacity 30%), giúp người quản lý nhìn thoáng qua là nắm được biến động 7 ngày gần nhất của chỉ số đó thay vì chỉ nhìn con số chết.
+
+## Xác nhận Trải nghiệm
+Giao diện đã cập nhật tự động (Auto-refresh) trên màn hình hiển thị trực tiếp của máy tính anh. 
+
+> [!TIP]
+> Hãy thử nhấp chuột vào các nút Thời gian trên cùng hệ thống (Ví dụ: Chuyển từ **"7 ngày"** sang **"Tháng này"**) để thấy các con số nhảy múa tự nhiên cùng biểu đồ Sparkline nhé! Sắp xếp bố cục của 8 thẻ trên màn hình Desktop (Grid 4 cột) đã hoàn thiện.

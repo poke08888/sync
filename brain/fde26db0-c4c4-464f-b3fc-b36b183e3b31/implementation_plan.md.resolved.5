@@ -1,0 +1,42 @@
+# Kế hoạch xây dựng UI Quản lý Shop TikTok
+
+Hệ thống sẽ cung cấp một giao diện chuyên nghiệp để người dùng theo dõi và quản lý các cửa hàng TikTok Shop đã liên kết.
+
+## 1. Cập nhật Backend & Storage
+- **`lib/tiktok/storage.ts`**: Thêm hàm `removeTokens(shopId)` để hỗ trợ tính năng ngắt kết nối Shop.
+- **`app/api/auth/tiktok/disconnect/route.ts`**: Tạo endpoint API để xử lý yêu cầu xóa Shop từ phía UI.
+
+## 2. Xây dựng Giao diện (UI)
+Sử dụng phong cách thiết kế **Premium Dark Mode** với tông màu **Blue Pantone 292 C**.
+
+### [NEW] `app/settings/tiktok/page.tsx` (Server Component)
+- Trang quản lý chính.
+- Lấy danh sách Shop trực tiếp từ storage.
+- Hiển thị thống kê nhanh (Số lượng shop đang kết nối).
+
+### [NEW] `components/tiktok/ShopManagement.tsx` (Client Component)
+- **Danh sách Shop (Shop List)**: Dạng thẻ (Card) bao gồm:
+    - Ảnh đại diện/Icon của Shop (Dùng placeholder hoặc icon TikTok).
+    - Tên Shop & Tên Người bán (Seller).
+    - **Trạng thái (Connection Status)**: Badge màu sắc (Xanh: Còn hạn, Vàng: Sắp hết hạn < 7 ngày, Đỏ: Đã hết hạn).
+    - **Thời điểm hết hạn**: Hiển thị ngày giờ cụ thể.
+- **Hành động (Actions)**:
+    - Nút "Ngắt kết nối" (Disconnect).
+    - Nút "Làm mới/Kết nối lại" (Re-connect).
+- **Nút "Thêm Shop mới"**: Nổi bật ở góc trên cùng.
+
+### [NEW] `components/tiktok/tiktok-styles.css`
+- Định nghĩa các biến màu sắc Pantone 292 C.
+- Hiệu ứng đổ bóng (shadow), border glassmorphism và micro-animations khi hover vào thẻ Shop.
+
+## 3. Các trạng thái Shop cần xử lý
+- **Connected**: Token còn hiệu lực (> 24h).
+- **Expiring Soon**: Token sắp hết hạn (< 24h - cần người dùng chú ý dù hệ thống có auto-refresh).
+- **Refresh Required**: Refresh token sắp hết hạn (cần re-auth).
+
+---
+
+> [!TIP]
+> **Thiết kế Premium**: Tôi sẽ sử dụng hệ thống biểu tượng từ `lucide-react` để giao diện trông hiện đại và trực quan hơn.
+
+Vui lòng xem xét và phê duyệt để tôi bắt đầu thực hiện các file UI này.

@@ -1,0 +1,25 @@
+# KOC Reporting System - Task List
+
+- [/] Project Scaffolding
+    - [ ] Initialize Next.js Application
+    - [ ] Setup Base CSS & Design System (Variables, Fonts, Glassmorphism)
+- [ ] Core UI Implementation
+    - [ ] Sidebar Navigation
+    - [ ] Top Header
+    - [ ] Main Layout Wrapper
+- [ ] Dashboard Feature
+    - [ ] Date Filter Component (Day/Week/Month)
+    - [ ] Metric Cards (Revenue, Ads, etc.)
+    - [ ] Charts Integration (Revenue/Hour, etc.)
+- [ ] KOC Management
+    - [ ] KOC List View
+    - [ ] Add KOC Form (Manual Entry)
+    - [ ] KOC Excel Upload
+- [ ] Reporting Data Management
+    - [ ] Data Excel Upload Interface
+    - [ ] Data Parsing Logic (KOC mapping)
+- [ ] KOC Analytics
+    - [ ] KOC Detail Page (Individual Metrics)
+- [ ] Refinement
+    - [ ] Animations & Micro-interactions
+    - [ ] Responsive Adjustments

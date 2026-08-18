@@ -1,0 +1,41 @@
+# Xây dựng Hệ thống Dashboard Thương mại Điện tử bằng Laravel
+
+Hệ thống dashboard và báo cáo dành cho công ty kinh doanh trên TikTok và Shopee.
+
+## User Review Required
+> [!IMPORTANT]
+> Vui lòng xác nhận trước khi tôi bắt đầu cài đặt và viết code. Tôi sẽ tạo một thư mục mới tên là `ecommerce-dashboard` trong không gian làm việc hiện tại của bạn để chứa source code Laravel.
+> Ngoài ra, với giao diện, tôi dự định sử dụng **Blade Templates**, **Vanilla CSS** (được thiết kế hiện đại, cao cấp với Dark mode/Glassmorphism hoặc tông màu sáng chuyên nghiệp) và **Chart.js** để vẽ biểu đồ. Bạn có đồng ý với công nghệ này không hay muốn sử dụng TailwindCSS?
+
+## Proposed Changes
+
+### Setup Environment & Backend
+- Khởi tạo project Laravel mới: `composer create-project laravel/laravel ecommerce-dashboard`
+- **DashboardController.php**: Xử lý logic tính toán các chỉ số và dữ liệu giả lập (mock data) cho:
+    - 6 thẻ chỉ số (Doanh số, Doanh số sau hủy, Tỷ lệ hủy, ROAS, AOV, Số đơn hàng) kèm theo số liệu so sánh cùng kỳ (tăng/giảm).
+    - Biểu đồ tròn: Tỷ trọng theo kênh (Shopee, TikTok).
+    - Danh sách: Top 10 sản phẩm bán chạy nhất.
+    - Biểu đồ đường/cột: Doanh số theo giờ (so sách cùng kỳ).
+    - Biểu đồ đường/cột: Doanh số theo ngày (so sánh cùng kỳ).
+- **Web Routes (web.php)**: Tạo route `/` trả về view Dashboard.
+
+### Frontend & UI (Mô đun Giao diện)
+- Tạo layout chuẩn, hệ thống định dạng (typography) và thiết kế mang tính premium. Các bảng màu sẽ được sử dụng hợp lý để nổi bật các con số và dễ dàng quan sát.
+- **index.blade.php** & **app.blade.php**: Cấu trúc HTML chính.
+- **app.css**: File CSS dùng Vanilla CSS với các hiệu ứng micro-animations, hover effects, thẻ card nổi bật (neumorphism/glassmorphism nếu phù hợp).
+- **dashboard.js**: Script sử dụng [Chart.js](https://www.chartjs.org/) để vẽ:
+    - Biểu đồ Doanh số theo giờ (Đường - Line Chart với 2 đường: hiện tại vs cùng kỳ).
+    - Biểu đồ Doanh số theo ngày (Đường/Cột - Bar/Line Chart với so sánh cùng kỳ).
+    - Biểu đồ Tỷ trọng theo kênh (Tròn - Doughnut/Pie Chart).
+
+## Open Questions
+> [!QUESTION]
+> 1. Bạn muốn thiết kế giao diện theo tông màu Sáng (Light mode) hay Tối (Dark mode)?
+> 2. Bạn muốn tôi tạo luôn bảng cơ sở dữ liệu (Database Migrations & Seeders) với dữ liệu giả để tính toán thực tế, hay chỉ cần dùng dữ liệu giả (Hardcoded dummy data) trong Controller ở giai đoạn này để xem giao diện trước?
+
+## Verification Plan
+### Manual Verification
+- Chạy PHP built-in server (`php artisan serve`).
+- Truy cập vào trang chủ và kiểm tra giao diện hiển thị xuất sắc, các biểu đồ (theo giờ, theo ngày, tròn) hoạt động chính xác.
+- Kiểm tra độ hiển thị của bảng xếp hạng Top 10 sản phẩm.
+- Đảm bảo hiển thị đầy đủ các chỉ số so sánh (màu xanh cho tăng, đỏ cho giảm).

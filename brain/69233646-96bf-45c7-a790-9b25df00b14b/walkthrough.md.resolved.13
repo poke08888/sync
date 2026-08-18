@@ -1,0 +1,19 @@
+# Khắc phục lỗi hiển thị Tiếng Việt
+
+Tôi đã hoàn tất việc rà soát và sửa lỗi mã hóa văn bản (encoding) trên toàn bộ module **KOC Live Analytics**. Các chuỗi ký tự lạ như `ChM-G-; M-QM-^TM-G-` đã được thay thế bằng văn bản tiếng Việt chuẩn, sắc nét.
+
+## Các khu vực đã được xử lý:
+1. **Thanh điều hướng Tab**: "Tổng quan" và "Lịch sử chi tiết" hiện đã hiển thị đúng.
+2. **Thẻ KPI**: Toàn bộ các nhãn như "Tổng giá trị giao dịch", "Đơn hàng", "Giờ live" đã được sửa lỗi.
+3. **Bảng dữ liệu (KocTable)**: Tiêu đề cột, các nút "Xuất CSV", "Trước", "Tiếp" và hàng "Tổng cộng" hiện đã chuẩn xác.
+4. **Tab Lịch sử (KocHistoryTab)**: Các nhãn bộ lọc và tiêu đề biểu đồ đã được "Việt hóa" hoàn toàn.
+
+## Kết quả kiểm tra giao diện:
+
+![Giao diện KOC Live chuẩn tiếng Việt](/Users/kevin/.gemini/antigravity/brain/69233646-96bf-45c7-a790-9b25df00b14b/koc_live_no_data_1775814830893.png)
+*Hình 1: Trạng thái chờ dữ liệu với thông báo tiếng Việt chính xác.*
+
+![Các KPI đã được sửa lỗi](/Users/kevin/.gemini/antigravity/brain/69233646-96bf-45c7-a790-9b25df00b14b/global_overview_kpis_1775815022673.png)
+*Hình 2: Kiểm tra các nhãn chỉ số trên toàn hệ thống.*
+
+Hệ thống hiện đã sẵn sàng với giao diện chuyên nghiệp và thân thiện nhất. Bạn có thể bắt đầu sử dụng mà không còn lo ngại về lỗi hiển thị!

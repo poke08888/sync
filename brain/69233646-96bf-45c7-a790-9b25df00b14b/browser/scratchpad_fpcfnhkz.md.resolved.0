@@ -1,0 +1,8 @@
+# KOC Live Anomaly Alerts Verification Task
+
+- [ ] Navigate to http://localhost:3000/koc-live
+- [ ] Verify "Cảnh báo" tab exists
+- [ ] Verify empty state ("Chưa phát hiện bất thường")
+- [ ] Upload data file (if available)
+- [ ] Capture screenshot of "Cảnh báo" tab
+- [ ] Capture screenshot of Tab header with red badge

@@ -1,0 +1,41 @@
+# Kế hoạch Tái cấu trúc Bộ lọc Toàn cục
+
+Hiện tại mỗi module (Dashboard, KPI Tracker) đang có bộ lọc riêng lẻ. Tôi sẽ đưa tất cả về một bộ lọc trung tâm ở trên cùng của trang chủ để đồng bộ hóa toàn bộ dữ liệu chỉ với một lần chọn.
+
+## User Review Required
+
+> [!IMPORTANT]
+> - Sau khi thay đổi, khi bạn chọn Thương hiệu hoặc Thời gian ở trên cùng, toàn bộ biểu đồ và thẻ KPI bên dưới sẽ thay đổi theo.
+> - Tôi sẽ bổ sung thêm tùy chọn **"Tùy chỉnh" (Custom)** trong phần Timeline để bạn có thể chọn khoảng thời gian cụ thể (ví dụ: từ ngày A đến ngày B).
+
+## Proposed Changes
+
+### 1. Quản lý State tập trung
+#### [MODIFY] [page.tsx](file:///Users/kevin/.gemini/antigravity/scratch/ecom-next-dashboard/src/app/page.tsx)
+- Đưa state `selectedBrand`, `timeRange`, và `customDateRange` lên cấp cha (`Home`).
+- Truyền các giá trị này xuống các Component con (KPI Grid, Tracker, Charts).
+
+### 2. Thành phần Bộ lọc mới
+#### [NEW] [DashboardFilters.tsx](file:///Users/kevin/.gemini/antigravity/scratch/ecom-next-dashboard/src/components/layout/DashboardFilters.tsx)
+- Tách phần UI bộ lọc từ `KpiDashboard` thành một thành phần riêng độc lập.
+- Thêm tính năng chọn khoảng ngày tùy chỉnh (Custom Date Range).
+
+### 3. Cải tổ các Module hiện tại
+#### [MODIFY] [KpiDashboard.tsx](file:///Users/kevin/.gemini/antigravity/scratch/ecom-next-dashboard/src/components/metrics/KpiDashboard.tsx)
+- Loại bỏ logic bộ lọc bên trong.
+- Chỉ tập trung hiển thị 8 thẻ KPI dựa trên dữ liệu từ Props truyền vào.
+
+#### [MODIFY] [KpiTracker.tsx](file:///Users/kevin/.gemini/antigravity/scratch/ecom-next-dashboard/src/components/metrics/KpiTracker.tsx)
+- Loại bỏ toàn bộ phần Header chứa bộ lọc Brand và Tầm nhìn (Weekly/Monthly).
+- Đồng bộ hóa logic hiển thị với `timeRange` toàn cục.
+
+### 4. Đồng bộ hóa Biểu đồ
+#### [MODIFY] Các biểu đồ trong [charts/](file:///Users/kevin/.gemini/antigravity/scratch/ecom-next-dashboard/src/components/charts/)
+- Nhận diện Brand được chọn để hiển thị tiêu đề và dữ liệu tương ứng.
+
+## Verification Plan
+
+### Manual Verification
+- Kiểm tra việc thay đổi Brand ở bộ lọc chính có làm thay đổi nhãn trong KPI Tracker và các biểu đồ không.
+- Kiểm tra tính năng "Tùy chỉnh Timeline" hiển thị đúng giao diện chọn ngày.
+- Đảm bảo layout không bị vỡ sau khi loại bỏ các thanh công cụ cũ.

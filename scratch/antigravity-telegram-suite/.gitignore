@@ -1,0 +1,69 @@
+# Dependencies
+node_modules/
+
+# Environment (contains secrets)
+.env
+
+# OS/IDE artifacts
+.DS_Store
+Thumbs.db
+*.swp
+*.swo
+*~
+.vscode/
+.idea/
+
+# Debug/scratch files
+core
+test_cdp.js
+install_standalone.sh
+check_dom*.js
+find_buttons.js
+patch.js
+test_send.js
+dump_*.js
+find_*.js
+test_*.js
+patch_*.js
+debug_*.js
+
+# Logs
+*.log
+npm-debug.log*
+
+# PM2
+ecosystem.config.js
+
+# Local agent documentation
+agent_work/
+
+CLAUDE.md
+GEMINI.md
+
+# AI Editor configs (local only)
+.cursor/
+.gemini/
+.mindsync/
+.cursorrules
+.windsurfrules
+
+# Local development
+antigravity-bot-pro/
+
+# CronCrew schedule client (not ready for production)
+src/schedule_client.js
+
+# Local temp and scratch files
+.heartbeat
+node_version.txt
+scratch/
+
+# Databases
+*.db
+*.sqlite
+*.sqlite3
+
+# Profiling artifacts
+*.cpuprofile
+*.heapsnapshot
+

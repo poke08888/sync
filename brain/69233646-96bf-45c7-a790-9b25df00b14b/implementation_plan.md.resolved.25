@@ -1,0 +1,23 @@
+# Kế hoạch Khắc phục Sự cố Kết nối (Public Connectivity)
+
+Người dùng gặp lỗi 503 liên tục với LocalTunnel do độ ổn định của dịch vụ này kém. Tôi sẽ chuyển sang sử dụng **Cloudflare Tunnel** - giải pháp ổn định hơn rất nhiều.
+
+## User Review Required
+
+> [!IMPORTANT]
+> - Tôi sẽ thay đổi công cụ tạo đường truyền từ **LocalTunnel** sang **Cloudflare**. 
+> - Bạn sẽ nhận được một địa chỉ mới có đuôi `.trycloudflare.com`.
+> - Giải pháp này không yêu cầu bạn cài đặt thêm gì, tôi sẽ tự tải và chạy trực tiếp trên máy chủ.
+
+## Các bước thực hiện
+
+1. **Dọn dẹp**: Dừng toàn bộ các tiến trình tunnel cũ đang chạy ngầm để tránh xung đột cổng.
+2. **Triển khai Cloudflare**: 
+   - Tải binary `cloudflared` chính thức cho macOS.
+   - Chạy lệnh tạo tunnel đến `http://127.0.0.1:3000`.
+3. **Cung cấp URL**: Lấy địa chỉ URL công khai từ log của Cloudflare và cung cấp cho người dùng.
+4. **Xác minh**: Kiểm tra xem URL mới có phản hồi `200 OK` hay không.
+
+## Kế hoạch Xác minh
+
+- Tôi sẽ sử dụng `curl` để kiểm tra trực tiếp địa chỉ mới. Nếu địa chỉ trả về mã `200`, hệ thống đã sẵn sàng.

@@ -1,0 +1,10 @@
+# Task: Verify KOC Live Dashboard Trends
+
+## Progress Checklist
+- [ ] Navigate to http://localhost:3000/koc-live
+- [ ] Verify Overview tab KPI cards show percentage trends (+X.X% vs kỳ trước)
+- [ ] Capture screenshot: Dashboard KPI cards with trends
+- [ ] Navigate to "Lịch sử chi tiết" tab
+- [ ] Select a KOC
+- [ ] Verify KOC History profile pills show percentage trends
+- [ ] Capture screenshot: KOC History profile pills with trends

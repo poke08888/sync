@@ -1,0 +1,38 @@
+# Kế hoạch Tích hợp Quản lý Shop & Thương hiệu
+
+Bản kế hoạch này mở rộng hệ thống TikTok Shop API để tích hợp trực tiếp vào phần Cài đặt và cho phép ánh xạ (mapping) từng Shop với một Thương hiệu cụ thể.
+
+## 1. Mở rộng Model Dữ liệu (`lib/tiktok/storage.ts`)
+- **Cập nhật `TikTokToken`**: Thêm trường `brand?: string` (ID/Tên thương hiệu).
+- **Hàm `brands` storage**: Thêm logic lưu trữ danh sách thương hiệu thủ công (`data/brands.json`).
+- **Hoàn thiện `TikTokApp` storage**: Đảm bảo đầy đủ hàm CRUD cho danh sách Partner Apps (App Key/Secret).
+- **Các hàm bổ trợ**: `updateShopBrand`, `removeTokens`, `removeAppConfig`, `addBrand`, `removeBrand`.
+
+## 2. API Routes mới
+- **`/api/auth/tiktok/apps`**: `GET` để lấy danh sách App, `POST` để thêm/sửa, `DELETE` để xóa.
+- **`/api/auth/tiktok/brands`**: `GET` để lấy danh sách thương hiệu, `POST` để tạo mới, `DELETE` để xóa.
+- **`/api/auth/tiktok/update-brand`**: Nhận `shopId` và `brandId` để gán shop vào thương hiệu.
+
+## 3. Giao diện Cài đặt mới (`app/settings/tiktok/page.tsx`)
+Giao diện sẽ chia làm 3 phần chính để quản lý tập trung:
+
+### Phần A: Quản lý Shop đã kết nối
+- Hiển thị danh sách Shop dưới dạng thẻ (Card).
+- Mỗi thẻ có dropdown để chọn **Thương hiệu** (lấy từ Phase B).
+- Hiển thị Shop đang sử dụng **Partner App** nào.
+- Nút "Ngắt kết nối".
+
+### Phần B: Quản lý Thương hiệu (Brands)
+- Giao diện để **Thêm mới Thương hiệu**.
+- Danh sách các thương hiệu hiện có.
+- Khả năng Xóa/Sửa tên thương hiệu.
+
+### Phần C: Cấu hình Partner Apps (App Key/Secret)
+- Giao diện nhập `App Key`, `App Secret` và đặt tên gợi nhớ.
+- Danh sách các bộ credentials đã lưu.
+
+## 4. Đồng bộ hóa & Quy trình
+- Khi người dùng tạo một Thương hiệu ở tab B, nó sẽ xuất hiện trong Dropdown ở tab A.
+- Khi một Shop được gắn thương hiệu, toàn bộ dữ liệu báo cáo sẽ được gộp theo thương hiệu đó.
+
+Vui lòng xác nhận để tôi bắt đầu triển khai code.

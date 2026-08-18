@@ -1,0 +1,9 @@
+# KOC Live Analytics - History Tab Verification
+
+## Plan
+1. [ ] Navigate to http://localhost:3000/koc-live
+2. [ ] Click on "Lịch sử chi tiết" tab
+3. [ ] Verify Filter bar aesthetics (Search-in-dropdown, toggles, date picker, reset)
+4. [ ] Verify Profile Card placeholder aesthetics
+5. [ ] Take a final screenshot of the History tab
+6. [ ] Summarize findings

@@ -1,0 +1,53 @@
+# Cải tiến Dashboard KOC: Quick Filters, So sánh Cùng kỳ & Cảnh báo Sự cố
+
+Tài liệu này mô tả chi tiết kế hoạch kỹ thuật để thực hiện 3 yêu cầu nâng cao dành cho hệ thống phân tích KOC Live.
+
+## 1. Quick Filters (Lọc nhanh Hôm nay, Tuần này, Tháng này)
+### [MODIFY] `src/pages/koc/KocAnalytics.jsx`
+- Cập nhật giao diện thanh Filter toàn cục (Header).
+- Thêm một dropdown hoặc danh sách các nút thao tác nhanh (Quick Presets) bên cạnh thanh chọn ngày thủ công:
+  - **Hôm nay (Today)**: Đặt start = end = ngày hiện tại.
+  - **Tuần này (This week)**: Tính toán ngày T2 đầu tuần đến CN cuối tuần.
+  - **Tháng này (This month)**: Tính toán mùng 1 đến ngày cuối tháng.
+- Khi người dùng click, sẽ tự động gán giá trị vào `globalFilterDate` hiện tại.
+
+## 2. So sánh cùng kỳ (Period-over-Period)
+Để các chỉ số (Tổng GMV, Chi phí, Đơn hàng,...) có mũi tên xanh đỏ so sánh với thời gian trước đó.
+
+### [MODIFY] `src/store/useKocStore.js`
+- Thêm trường `previousGlobalMetrics: {}` và `previousKocList: []`.
+- Sửa đổi hàm `setGlobalFilterDate`:
+  - Mỗi khi một chu kỳ `(start, end)` được chọn, tính toán số ngày = $N$.
+  - Khoảng thời gian **trước đó (cùng kỳ)** sẽ là khoảng thời gian $N$ ngày liền kề trước ngày `start`.
+  - Filter `originalRawLives` theo khoảng thời gian trước đó.
+  - Chạy `computeKpis` và `aggregateByKoc` trên tập dữ liệu này và lưu vào `previousGlobalMetrics` và `previousKocList`.
+- Cập nhật `appendData` và `removeFile` để tính toán lại các metric cùng kỳ (PoP) theo logic tương tự.
+
+### [MODIFY] `src/components/koc/KocOverview.jsx`
+- Lấy `previousGlobalMetrics` từ store.
+- Tính toán % thay đổi cho mỗi thẻ KPI chính (GMV, Sessions, Duration, Orders).
+- Hiển thị các chỉ báo tích cực (Màu xanh đục/chuẩn pantone mũi tên lên) và tiêu cực (Màu cam/đỏ mũi tên xuống) ở dưới mỗi số liệu tổng.
+
+## 3. Trang con Cảnh báo Khác thường (Anomaly Alerts)
+Hiển thị cảnh báo trực quan cho các tài khoản KOC có sự tăng/giảm hiệu suất đột ngột nhằm đưa ra quyết định tối ưu booking.
+
+### [MODIFY] `src/components/koc/KocDashboard.jsx`
+- Thêm tab thứ 3 vào Menu Navigation: **"Cảnh báo KOC"** với icon `AlertTriangle`.
+- Tích hợp trạng thái `viewMode === 'alerts'`.
+
+### [NEW] `src/components/koc/alerts/KocAlertsView.jsx`
+- So sánh từng KOC bằng cách đối chiếu thông số từ `kocList` (thuộc chu kỳ hiện tại) so với `previousKocList` (thuộc chu kỳ liền kề trước đó).
+- **Luật cảnh báo**:
+  - `Suy giảm GMV`: Nếu GMV giảm > 20% so với kỳ trước.
+  - `Giảm nỗ lực Live`: Giờ live giảm > 30% so với kỳ trước.
+  - `Tăng trưởng đột biến`: GMV tăng > 50% so với kỳ trước (Ngôi sao mới nổi).
+- Xây dựng giao diện Feed hiển thị danh sách các thẻ cảnh báo theo chiều dọc, ưu tiên các báo động đỏ/vàng lên trên, báo hiệu cơ hội (màu xanh/tím) xếp xuống dưới dọc theo trục thời gian.
+
+---
+
+> [!IMPORTANT]
+> **Câu hỏi chờ xác nhận**: 
+> 1. Hiện tại dữ liệu báo cáo KOC được nhập tự do qua Excel, có những ngày sẽ không có dữ liệu (khoảng trống). Logic so sánh cùng kỳ tôi dự kiến sẽ lấy chính xác "số ngày lùi lại một khoảng tương đương" (VD chọn lọc 7 ngày gần đây, sẽ so với 7 ngày trước đó) không phân biệt có hay không có phiên live. Cách này có phù hợp với nghiệp vụ của bạn không?
+> 2. Các ngưỡng kích hoạt cảnh báo bất thường: giảm > 20% và tăng > 50% tính theo Cùng kỳ. Mức độ này đã phản ánh đúng ngưỡng bạn mong đợi chưa hay bạn muốn tham số hóa chúng?
+
+Vui lòng xem xét kế hoạch trên và đưa yêu cầu phê duyệt để tôi bắt đầu tích hợp.
